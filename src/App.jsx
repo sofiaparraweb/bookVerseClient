@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Outlet } from 'react-router-dom'
 import React from 'react'
 // import {useAuth0} from "@auth0/auth0-react"
 
@@ -14,12 +14,11 @@ function App() {
   return (
     <>
       <div className='App'>
-        <p>HOLAAA</p>
-        <Routes>
-        <Route path="/" element={<NavBar/>} />
+       <NavBar />
+      <Routes>
         {/* <Route path="/home" element={<Home />} /> */}
-        <Route path="/" element={<Footer />} />
         </Routes>
+        <Footer />
       </div>
     </>
   )
