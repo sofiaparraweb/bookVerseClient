@@ -1,0 +1,54 @@
+.DetailContainer{
+    padding: 8rem 6rem;
+}
+
+.DetailImages{
+    margin: auto;
+}
+
+.DetailData h2{
+    text-transform: capitalize;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 100;
+    text-align: left;
+}
+
+.DetailDetail{
+    display: flex;
+    flex-direction: row;
+}
+
+.DetailIcons{
+    padding: 0 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.IconStyleDetail{
+    color: #13363e;
+    margin: auto;
+    font-size: 1.3rem;
+}
+
+.Botonera{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.BotoneraSumaResta{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.ButtonsSumaResta{
+    border: none;
+    font-size: 1.5rem;
+    justify-content: center;
+    background-color: transparent;
+    padding: 0 1.5rem;
+}
