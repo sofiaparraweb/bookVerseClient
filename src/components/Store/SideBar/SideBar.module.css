@@ -1,0 +1,35 @@
+.sidebarContenedor{
+  position: relative;
+  padding-top: 64.5px;
+}
+
+.ContenedorFiltroOrden{
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.Changuito button {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 21%;
+  margin-bottom:21%;
+  color: silver;
+  position: relative;
+  :hover {
+    color: white;
+  }
+  &.active {
+    color: var(--color-danger);
+  }
+}
+
+.NumeroChango {
+  color: silver;
+  top: -1rem;
+  right: -1rem;
+  font-weight: 4px;
+}
