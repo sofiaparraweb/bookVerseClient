@@ -1,0 +1,42 @@
+.FondoTienda{
+    background-color: rgb(241, 241, 241);
+}
+
+.tienda {
+    padding-top: 90px;
+}
+
+.SearchOrder{
+    position: absolute;
+    left:15%;
+    display: flex;justify-content: space-around;
+    flex-direction: row;
+    text-align: center;
+    width: 80%;
+    margin-bottom: 1px;
+}
+
+.PaginationConteinerTienda{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* Responsive para menos de 768px */
+@media (max-width: 767px) {
+    .SearchOrder {
+      position: static;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      left: 0;
+    }
+  }
+  
+  /* Responsive para menos de 480px */
+  @media (max-width: 479px) {
+    .SearchOrder {
+      padding: 10px;
+    }
+  }

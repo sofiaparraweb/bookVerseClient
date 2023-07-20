@@ -1,4 +1,53 @@
-:root {
+/* --------------------------NO LO BORREN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+*{
+  padding: 0;
+	margin: 0;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(246, 245, 245);
+}
+
+.GridTwoColumns{
+  display: Grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.GridThreeColumns{
+  display: Grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.GridFourColumns{
+  display: Grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1.2fr 0.5fr 0.8fr;
+}
+
+.Buttons{
+  text-decoration: none;
+  width: fit-content;
+  background-color: #13363e;
+  color: rgb(255 255 255);
+  padding: 1.4rem 2.4rem;
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+}
+
+.Buttons:hover,
+.Buttons:active{
+  transform: scale(0.96);
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -66,4 +115,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
