@@ -8,7 +8,7 @@
 
 .DetailData h2{
     text-transform: capitalize;
-    font-family: "Work Sans", sans-serif;
+    /* font-family: "Work Sans", sans-serif; */
     font-weight: 100;
     text-align: left;
 }

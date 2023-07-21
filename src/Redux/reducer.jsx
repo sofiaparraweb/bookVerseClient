@@ -1,5 +1,5 @@
 // // Importamos las acciones
-// import {
+import {
 //   GET_ALL_BOOKS,
 //   GET_DETAIL_BOOK,
 //   GET_BOOK_TYPE,
@@ -25,11 +25,11 @@
 //   GET_USER,
 //   GET_USER_EMAIL,
 //   CREATE_USER,
-//   GET_USER_ID,
-//   UPDATE_USER,
+  GET_USER_ID,
+  UPDATE_USER,
 //   SET_USER_ID,
 //   FORM_SUBSCRIPTION,
-// } from "./actions";
+} from "./actions";
 
 // Estado inicial del reducer
 const initialState = {
@@ -185,12 +185,16 @@ const reducer = (state = initialState, action) => {
 //     case CREATE_USER:
 //       // Agregar la lógica relacionada con la acción de crear usuario si es necesario
 //       return state;
-//     case GET_USER_ID:
-//       // Agregar la lógica relacionada con la acción de obtener ID de usuario si es necesario
-//       return state;
-//     case UPDATE_USER:
-//       // Agregar la lógica relacionada con la acción de actualizar usuario si es necesario
-//       return state;
+case GET_USER_ID:
+  return {
+    ...state,
+    userProfile: action.payload,
+  }
+    case UPDATE_USER:
+   return {
+    ...state,
+    userProfile: action.payload,
+  }
 //     case SET_USER_ID:
 //       // Agregar la lógica relacionada con la acción de establecer ID de usuario si es necesario
 //       return state;

@@ -27,7 +27,7 @@ const NavBar = ({ isAuthenticated }) => {
   };
 
   const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
+    loginWithRedirect({ appState: { targetUrl: "/" } });
     setIsLoggingIn(true);
   };
 
@@ -133,12 +133,12 @@ const NavBar = ({ isAuthenticated }) => {
 
         {isAuthenticated ? (
           <NavLink
-            to="/perfil"
+            to="/profile"
             className={`${style.linkContainer} ${style.link}`}
             activeClassName={style.activeLink}
             id="perfilNav"
             onClick={handleClick}>
-            Perfil
+            Profile
           </NavLink>
         ) : null}
         {isAdmin && (

@@ -36,8 +36,8 @@ export const GET_CART = "GET_CART";
 // export const GET_USER= "GET_USER";
 // export const GET_USER_EMAIL = 'GET_USER_EMAIL';
 // export const CREATE_USER = "CREATE_USER";
-// export const GET_USER_ID = "GET_USER_ID";
-// export const UPDATE_USER = "UPDATE_USER";
+export const GET_USER_ID = "GET_USER_ID";
+export const UPDATE_USER = "UPDATE_USER";
 // export const SET_USER_ID = "SET_USER_ID";
 
 // //actions footer
@@ -244,34 +244,34 @@ export const getCart = (user_id) => {
 
 // /* -----------------------------user----------------------------- */
 
-// export const getUser = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}/user/${userId}`);
-//       dispatch({
-//         type: GET_USER,
-//         payload: response.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const getUser = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/${userId}`);
+      dispatch({
+        type: GET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const getUserId = (email) =>{
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}/user/mail/${email}`);
-//       console.log(response);
-//       dispatch({
-//         type: GET_USER_ID,
-//         payload: response.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
+export const getUserId = (email) =>{
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/email/${email}`);
+      console.log(response);
+      dispatch({
+        type: GET_USER_ID,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 // export const createUser = (newUser) => {
 //   return async (dispatch, getState) => {
@@ -293,20 +293,20 @@ export const getCart = (user_id) => {
 //   };
 // };
 
-// export const updateUser = (data) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(`${url}/user/edit`, data);
-//       dispatch({
-//         type: UPDATE_USER,
-//         payload: response.data,
-//       });
-//       console.log('se ejecuto con exitot bbbb')
-//     } catch (error) {
-//       console.log({ error: error.message });
-//     }
-//   };
-// };
+export const updateUser = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${url}/user/edit`, data);
+      dispatch({
+        type: UPDATE_USER,
+        payload: response.data,
+      });
+      console.log('se ejecuto con exitot bbbb')
+    } catch (error) {
+      console.log({ error: error.message });
+    }
+  };
+};
 
 // //-------dashboard------
 
@@ -376,7 +376,7 @@ export const getCart = (user_id) => {
 //         type: FORM_SUBSCRIPTION,
 //         payload: response.data,
 //       });
-//       console.log('funcion mail footer')
+//       console.log('funcion email footer')
 //     } catch (error) {
 //       console.log("estoy en las actions", error);
 //     }

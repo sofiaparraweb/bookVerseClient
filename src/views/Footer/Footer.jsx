@@ -1,13 +1,7 @@
 import React from 'react';
 import './Footer.css';
-import { useAuth0 } from "@auth0/auth0-react";
 
 const Footer = () => {
-  const { loginWithRedirect, user } = useAuth0();
-
-  const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/home" } });
-  };
 
   return (
     <footer className="footer">

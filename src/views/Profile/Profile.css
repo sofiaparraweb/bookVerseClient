@@ -1,0 +1,124 @@
+
+.profile-container {
+  max-width: 1000px;
+  margin-top: 100px;
+  padding: 20px;
+  position: relative;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo-profile {
+  width: 80px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.profile-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 3%;
+  color: #17424b;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.profile-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.image-upload {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.image-upload input[type="file"] {
+  display: none;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+
+.profile-label {
+  font-weight: bold;
+  color: #b38a83;
+}
+
+.profile-input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  color: black;
+  font-size: 16px !important;
+}
+
+.error-message {
+  color: rgb(158, 48, 48);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.edit-button,
+.save-button,
+.cancel-button {
+  padding: 20px 40px; /* Ajusta el padding del botón */
+  margin-left: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 30px; 
+  width: 45%; 
+  height: auto; 
+  letter-spacing: 1.5px;
+}
+
+.edit-button {
+  color: #b38a83;
+  background-color: #fff;
+}
+
+.save-button {
+  color: #c2bd98;
+  background-color: #fff ;
+}
+
+.cancel-button {
+  color: #7d3e3e;
+  background-color: #fff;
+}
