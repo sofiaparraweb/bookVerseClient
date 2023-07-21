@@ -9,7 +9,7 @@ import { Image, Input, FormLabel, Textarea, Card, Text, Heading, CardBody, CardF
 //import { Toaster, toast } from "react-hot-toast";
 //import { useAuth0 } from "@auth0/auth0-react"; 
 
-const TiendaItems = ({ id, author, title, price, description, publisher, pages, language, category, publicationDate, image, Reviews }) => {
+const TiendaItems = ({ id, author, title, price, description, publisher, pages, language, category, reviews, stars, publicationDate, image, Reviews }) => {
   
   // const dispatch = useDispatch();
   // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
@@ -19,6 +19,8 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
   // const { isAuthenticated } = useAuth0();
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [quantity, setQuantity] = useState(0);
+
+  const firstImage = image[0];
   
   // useEffect(()=>{
   //   dispatch(getCarrito(user_id))
@@ -42,15 +44,18 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
         <Card width='280px' h='360px' margin="20px 0" _hover={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}} >
           <CardBody>
             <div>
-              <Image
-                src={image} 
-                alt='imagen Producto'
-                maxWidth='270px'
-                height='220px'
-                display='block'
-                margin='auto'
-                cursor='pointer'
-              />
+              {image && image.length > 0 && (
+                <Image
+                  src={image[0].url}
+                  alt={`imagen Producto`}
+                  maxWidth='270px'
+                  height='220px'
+                  display='block'
+                  margin='auto'
+                  cursor='pointer'
+                />
+              )}
+
             </div>
             <Heading size='md' paddingTop='3px' >
               <Link to={`/detail/${id}`}>

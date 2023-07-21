@@ -20,9 +20,9 @@
   align-items: center;
 }
 
-.logo-NavBar {
-  margin-right: 15px;
-  margin-left: 15px;
+.logoNavBar {
+  width: 40%;
+  min-height: 10vh;
 }
 
 .link {
@@ -33,7 +33,7 @@
   padding-right: 20px;
   transition: 0.5s ease;
   z-index: 9;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .link:hover {
@@ -68,41 +68,49 @@
   text-align: center;
 }
 .dropdownOption[id="nosotros"]:hover{
+
   border-bottom: 2px solid silver;
   color: #000804;
   text-decoration: none;
 }
 .ative[id="nosotros"]{
+
   border-bottom: 2px solid silver;
   color: white;
   text-decoration: none;
 }
 /* -------------------------------------Listas populares */
 .dropdownOption[id="nuestraHistoria"]{
+
   font-weight: 600;
   text-align: center;
 }
 .dropdownOption[id="nuestraHistoria"]:hover{
+
   border-bottom: 2px solid silver;
   color: #000804;
   text-decoration: none;
 }
 .active[id="nuestraHistoria"]{
+  
   border-bottom: 2px solid silver;
   color: white;
   text-decoration: none;
 }
 /* -------------------------------------nuestroEquipoNav */
 .dropdownOption[id="nuestroEquipoNav"]{
+  
   font-weight: 600;
   text-align: center;
 }
 .dropdownOption[id="nuestroEquipoNav"]:hover{
+
   border-bottom: 2px solid silver;
   color: #000804;
   text-decoration: none;
 }
 .active[id="nuestroEquipoNav"]{
+
   border-bottom: 2px solid silver;
   color: white;
   text-decoration: none;
@@ -124,6 +132,7 @@
 /* -------------------------------------Tienda */
 .link[id="tiendaNav"]{
   border-radius: 5px;
+  margin-right: 50px;
 }
 .link[id="tiendaNav"]:hover{
   background-color: silver;

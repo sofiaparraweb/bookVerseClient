@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-//import logo from "../../assets/logo.png";
+import logoBook from "../../assets/imgNavbar/logoBook.svg";
 //import {HamburgerIcon} from '@chakra-ui/icons'
 import style from "./NavBar.module.css";
 import SearchBar from "../../components/searchBar/SearchBar";
@@ -56,16 +56,15 @@ const NavBar = ({ isAuthenticated }) => {
     <header className={style.header}>
     <nav className={style.navContainer} ref={navRef}>
       <div className={style.LeftSection}>
-        <h1 style={{color: "#000804", margin: "50px"}}>Logo BookVerse</h1>
-        {/* <Link to="/">
+        {/* <h1 style={{color: "#000804", margin: "50px"}}>Logo BookVerse</h1> */}
+        <Link to="/">
           <img
-            src={logo}
+            src={logoBook}
             alt="logo"
-            width="60px"
-            className="logo-NavBar"
+            className={style.logoNavBar}
             onClick={handleClick}
           />
-        </Link> */}
+        </Link>
 
         <div className={style.dropdownContainer}>
           <div
@@ -121,7 +120,7 @@ const NavBar = ({ isAuthenticated }) => {
           Noticias
         </NavLink>
         <NavLink
-          to="/tienda"
+          to="/store"
           className={style.link}
           activeclassname="active"
           id="tiendaNav"

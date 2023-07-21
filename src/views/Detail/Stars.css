@@ -1,0 +1,20 @@
+.iconStars {
+    font-size: 1rem;
+    color: orange;
+}
+
+.icon-style {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    align-items: center;
+}
+
+.empty-icon {
+    font-size: 2.6rem;
+}
+
+.icon-style p {
+    margin: 0;
+    padding-left: 1.2rem;
+}

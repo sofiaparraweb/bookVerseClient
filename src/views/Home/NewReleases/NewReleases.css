@@ -1,4 +1,5 @@
 .ReleaseNowContainer{
+    padding-top: 2rem;
     background-color: white;
     width: 100%;
 }
@@ -11,7 +12,7 @@
 
 .ReleaseNowHomeTitle p{
     margin-bottom: 0.5rem;
-    color: #13363e;
+    color: #17424b;
 }
 
 .ReleaseNowHomeTitle h1{
@@ -36,7 +37,7 @@
 }
 
 .ImagenesCarrusel h1 {
-    color: #13363e;
+    color: #17424b;
     font-size: 16px;
     font-family: "Work Sans", sans-serif;
     font-weight: 100;
@@ -50,11 +51,11 @@
 }
   
 .scrollContainer::-webkit-scrollbar-thumb {
-    background-color: #13363e; /* Color del pulgar (parte móvil) */
+    background-color: #17424b; /* Color del pulgar (parte móvil) */
 }
   
 .scrollContainer::-webkit-scrollbar-thumb:hover {
-    background-color: #13363e; /* Color del pulgar en hover */
+    background-color: #17424b; /* Color del pulgar en hover */
 }
   
 .scrollContainer::-webkit-scrollbar-track {
