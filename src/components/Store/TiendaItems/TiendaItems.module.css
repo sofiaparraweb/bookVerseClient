@@ -32,7 +32,7 @@
 
 /* -----------------------------------------------BOTON ADD TO CART----------------------------------------------- */
 .BotonAddToCart{
-    /* font-family: 'DK Lemon Yellow Sun', sans-serif; */
+
     width: fit-content;
     height: 35px;
     display: flex;
@@ -43,7 +43,7 @@
 
 /* -----------------------------------------------COMENTARIOS----------------------------------------------- */
 .TextoComentarios{
-    /* font-family: 'DK Lemon Yellow Sun', sans-serif; */
+
     margin-top: 1%;
     font-size: 16px;
 }

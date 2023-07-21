@@ -10,7 +10,7 @@ const Footer = () => {
         <h2>Contact</h2>
         <address>
           5534 Somewhere In. The World 22193-10212<br />
-          <a className="footer__btn" href="mailto:info@bookverse.com">Email Us</a>
+          <a className="footer__btn" href="mailto:bookverse@gmail.com">Email Us</a>
         </address>
       </div>
 

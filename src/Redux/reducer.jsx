@@ -22,13 +22,11 @@ import {
 //   GET_ALL_USERS,
 //   DELETE_USER,
 //   SUSPEND_USER,
-//   GET_USER,
-//   GET_USER_EMAIL,
-//   CREATE_USER,
+  GET_USER,
+  CREATE_USER,
   GET_USER_ID,
   UPDATE_USER,
-//   SET_USER_ID,
-//   FORM_SUBSCRIPTION,
+  SET_USER_ID,
 } from "./actions";
 
 // Estado inicial del reducer
@@ -42,6 +40,7 @@ const initialState = {
   users: [],
   userProfile: null,
   userId: null,
+  userInfo: [],
   loading: true,
   error: null,
 };
@@ -176,33 +175,33 @@ const reducer = (state = initialState, action) => {
 //         users: action.payload,
 //       };
 
-//     case GET_USER:
-//       // Agregar la lógica relacionada con la acción de obtener usuario si es necesario
-//       return state;
-//     case GET_USER_EMAIL:
-//       // Agregar la lógica relacionada con la acción de obtener usuario por email si es necesario
-//       return state;
-//     case CREATE_USER:
-//       // Agregar la lógica relacionada con la acción de crear usuario si es necesario
-//       return state;
+    case GET_USER:
+      return {
+        ...state,
+        userInfo: action.payload,
+      }
+    case CREATE_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
 case GET_USER_ID:
   return {
     ...state,
-    userProfile: action.payload,
+    userInfo: action.payload,
   }
     case UPDATE_USER:
    return {
     ...state,
     userProfile: action.payload,
   }
-//     case SET_USER_ID:
-//       // Agregar la lógica relacionada con la acción de establecer ID de usuario si es necesario
-//       return state;
+  case SET_USER_ID:
+    return {
+      ...state,
+      userId: action.payload,
+    };
 
-//     // Actions relacionadas con el formulario de suscripción
-//     case FORM_SUBSCRIPTION:
-//       // Agregar la lógica relacionada con la acción de suscripción si es necesario
-//       return state;
+//     // Actions relacionadas con el formulario de suscripció
 
     default:
       return state;

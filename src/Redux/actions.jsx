@@ -33,17 +33,16 @@ export const GET_CART = "GET_CART";
 // export const SUSPEND_USER = "SUSPEND_USER"
 
 // //actions users
-// export const GET_USER= "GET_USER";
-// export const GET_USER_EMAIL = 'GET_USER_EMAIL';
-// export const CREATE_USER = "CREATE_USER";
+export const GET_USER= "GET_USER";
+export const CREATE_USER = "CREATE_USER";
 export const GET_USER_ID = "GET_USER_ID";
 export const UPDATE_USER = "UPDATE_USER";
-// export const SET_USER_ID = "SET_USER_ID";
+export const SET_USER_ID = "SET_USER_ID";
 
 // //actions footer
-// export const FORM_SUBSCRIPTION = "FORM_SUBSCRIPTION";
+export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
-//export const url = "http://localhost:3001";
+export const url = "http://localhost:3001";
 
 // //------books-----
 // export function getAllBooks() {
@@ -261,7 +260,7 @@ export const getUser = (userId) => {
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/email/${email}`);
+      const response = await axios.get(`${url}/user/mail/${email}`);
       console.log(response);
       dispatch({
         type: GET_USER_ID,
@@ -273,25 +272,25 @@ export const getUserId = (email) =>{
   };
 }
 
-// export const createUser = (newUser) => {
-//   return async (dispatch, getState) => {
-//     try {
-//       const response = await axios.post(`${url}/user`, newUser);
-//       const userId = response.data.newUser.id;
-//       dispatch({
-//         type: SET_USER_ID,
-//         payload: userId,
-//       });
-//       dispatch({
-//         type: CREATE_USER,
-//         payload: response.data,
-//       });
-//       dispatch(getProfile(userId));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const createUser = (newUser) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`${url}/user`, newUser);
+      const userId = response.data.newUser.id;
+      dispatch({
+        type: SET_USER_ID,
+        payload: userId,
+      });
+      dispatch({
+        type: CREATE_USER,
+        payload: response.data,
+      });
+      dispatch(getProfile(userId));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const updateUser = (data) => {
   return async (dispatch) => {
@@ -368,17 +367,17 @@ export const updateUser = (data) => {
 
 // /* -----------------------------formulario----------------------------- */
 
-// export const formSubscription = (formData) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(`${url}`, formData);
-//       dispatch({
-//         type: FORM_SUBSCRIPTION,
-//         payload: response.data,
-//       });
-//       console.log('funcion email footer')
-//     } catch (error) {
-//       console.log("estoy en las actions", error);
-//     }
-//   };
-// };
+export const formSuscription = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}`, formData);
+      dispatch({
+        type: FORM_SUSCRIPTION,
+        payload: response.data,
+      });
+      console.log('funcion email footer')
+    } catch (error) {
+      console.log("estoy en las actions", error);
+    }
+  };
+};
