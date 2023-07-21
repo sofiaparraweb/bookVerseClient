@@ -26,7 +26,7 @@
 }
 
 .link {
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   text-decoration: none;
   color: #000804;
   padding: 25px;
@@ -34,7 +34,7 @@
   padding-right: 20px;
   transition: 0.5s ease;
   z-index: 9;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .link:hover {
@@ -65,54 +65,54 @@
   align-content: center;
 }
 .dropdownOption[id="nosotros"]{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 600;
   text-align: center;
 }
 .dropdownOption[id="nosotros"]:hover{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-bottom: 2px solid silver;
   color: #000804;
   text-decoration: none;
 }
 .ative[id="nosotros"]{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-bottom: 2px solid silver;
   color: white;
   text-decoration: none;
 }
 /* -------------------------------------Listas populares */
 .dropdownOption[id="nuestraHistoria"]{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 600;
   text-align: center;
 }
 .dropdownOption[id="nuestraHistoria"]:hover{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-bottom: 2px solid silver;
   color: #000804;
   text-decoration: none;
 }
 .active[id="nuestraHistoria"]{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-bottom: 2px solid silver;
   color: white;
   text-decoration: none;
 }
 /* -------------------------------------nuestroEquipoNav */
 .dropdownOption[id="nuestroEquipoNav"]{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 600;
   text-align: center;
 }
 .dropdownOption[id="nuestroEquipoNav"]:hover{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-bottom: 2px solid silver;
   color: #000804;
   text-decoration: none;
 }
 .active[id="nuestroEquipoNav"]{
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-bottom: 2px solid silver;
   color: white;
   text-decoration: none;

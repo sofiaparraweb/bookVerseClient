@@ -11,7 +11,8 @@ const Header = () => {
                     <div className="HeaderSectionData">
                         <p className="IntroData"> Welcome to </p>
                         <h1> The BookVerse </h1>
-                        <p style={{marginBottom:'1rem'}}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum sit, blanditiis expedita, dicta labore aut laudantium alias placeat molestiae enim quos voluptatum, atque hic sed pariatur ea? Consequuntur, ullam deleniti.</p>
+                        <p style={{marginBottom:'1rem'}}>Discover new worlds, uncover hidden mysteries, and embark on unforgettable journeys with our carefully curated selection of ebooks. Our platform offers you the convenience of exploring and purchasing books in digital format, making your reading experience more accessible than ever.</p>
+                        {/* <p style={{marginBottom:'1rem'}}>Join our community of book lovers and embark on an adventure through the pages of The BookVerse. Happy reading!</p> */}
                         <NavLink>
                             <button className="Buttons">Shop now</button>
                         </NavLink>

@@ -1,8 +1,56 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
+import { useState } from "react";
 import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule} from "react-icons/ai";
+import Stars from "./Stars"
 import "./BookDetail.css";
 
 const BookDetail = () => {
+
+    const ebooks = [
+        {
+          "id": 1,
+          "author": "John Doe",
+          "title": "The Adventures of Wonderland",
+          "price": 9.99,
+          "description": "Follow Alice as she enters a magical world filled with curious creatures and enchanting adventures.",
+          "publisher": "Adventure Books Ltd.",
+          "pages": 320,
+          "format": "PDF",
+          "language": "English",
+          "category": "Adventure",
+          "reviews": 23,
+          "stars": 4.4,
+          "publicationDate": "2023-07-15",
+          "image":[
+            {
+              "url": "https://m.media-amazon.com/images/I/51QqAHWPH7L._SY346_.jpg",
+              "title": "image1"
+            },
+            {
+              "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+              "title": "image2"
+            },
+            {
+              "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+              "title": "image3"
+            },
+            {
+              "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+              "title": "image4"
+            },
+            {
+              "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+              "title": "image5"
+            },
+          ]
+        },
+    ]
+
+    // const [currentImage, setCurrentImage] = useState(images[0]);
+
+    // const handleImageChange = (imageUrl) => {
+    //     setCurrentImage(imageUrl);
+    // };
 
       // const handleSubmit = async (event) => {
   //   event.preventDefault()
@@ -57,60 +105,69 @@ const BookDetail = () => {
   //   }
   // }
 
-    const title = "hola"
     return (
         <form>
         {/* <form onSubmit={handleSubmit}> */}
             <div className="DetailContainer">
-                <PageNavigation title={title}/>
-                Este es el detalle de los productos
+                <PageNavigation title={ebooks[0].title}/>
                 <div className="ContainerContainer">
                     <div className="GridTwoColumns">
                         <div className="DetailImages">
                             <img src="https://m.media-amazon.com/images/I/517l4WXFFhL.jpg" alt="bookImage"></img>
                         </div>
 
-                        {/* <div className="GridFourColumns">
-                            {Image.map((currEl, index) => {
+                        {/* <div className="images-column">
+                            {Image.map((imageUrl, index) => {
                                 return(
-                                    <figure>
-                                        <img src={currEl.image} alt={currEl.title} className="BoxImageStyle" key={index} onClick={() => setMainImage(curElm)}></img>
-                                    </figure>
+                                    <img>
+                                        key={index} 
+                                        src={imageUrl} 
+                                        alt={imageUrl} 
+                                        className={`thumbnail ${currentImage === imageUrl ? "selected" : ""}`} 
+                                        onClick={() => handleImageChange(imageUrl)}
+                                    </img>
                                 )
                             })}
                         </div>
-                        <div className="main-screen">
-                            <img src={mainImage.url} alt={mainImage.filename} />
+                        <div className="current-image-column">
+                            <img src={currentImage} alt="Current Product" className="current-image"/>
                         </div> */}
 
                         <div className="DetailData">
-                            <h2>title</h2>
-                            <p>by author | Format</p>
-                            <p>stars</p>
-                            <p>reviews</p>
-                            <p className="DetailPrice">$ price</p>
-                            <p>description</p>
-                            <hr></hr>
+                            <h2>{ebooks[0].title}</h2>
+                            <p>
+                                <span className="outerTextStyle">by</span> 
+                                <span className="innerTextStyle"> {ebooks[0].author}</span> 
+                                <span className="outerTextStyle" style={{padding:"0 1rem"}}>|</span> 
+                                <span className="outerTextStyle">Format </span> 
+                                <span className="innerTextStyle"> {ebooks[0].format}</span>
+                            </p>
+                            <div style={{display:"flex", flexDirection:"row"}}>    
+                                <Stars stars={ebooks[0].stars} reviews={ebooks[0].reviews} />
+                            </div>
+                            <p style={{fontWeight:"lighter", color:"grey"}}>$ {ebooks[0].price}</p>
+                            <p >{ebooks[0].description}</p>
+                            <hr className="hrStyle"></hr>
                             <div className="DetailDetail">
                                 <div className="DetailIcons">
                                     <p>pages</p>
                                     <AiTwotoneContainer className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{ebooks[0].pages}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Language</p>
                                     <AiOutlineGlobal className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{ebooks[0].language}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Publisher</p>
                                     <AiOutlineRead className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{ebooks[0].publisher}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Publication date</p>
                                     <AiOutlineSchedule className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{ebooks[0].publicationDate}</p>
                                 </div>
                             </div>
                             <hr></hr>
