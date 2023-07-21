@@ -1,5 +1,6 @@
 .FirstContainer{
     padding: 8rem 6rem;
+    padding-top: 12rem;
 }
 
 .HeaderContainer{
@@ -9,6 +10,7 @@
 
 .HeaderSectionData p{
     margin: 0;
+    padding: 1rem 0;
     text-align: left;
 }
   
@@ -42,12 +44,12 @@ figure::after {
     height: 80%;
     background-color: #b38a83;
     position: absolute;
-    left: 50%;
+    left: 40%;
     top: -3rem;
     z-index: -1;
 }
 
 .HeaderImage {
-    width: 120%;
+    width: 110%;
     height: auto;
 }

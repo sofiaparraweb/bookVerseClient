@@ -24,8 +24,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Adventure",
+      "reviews": 23,
+      "stars": 4.4,
       "publicationDate": "2023-07-15",
-      "image": "https://m.media-amazon.com/images/I/51QqAHWPH7L._SY346_.jpg",
+      "image":[
+        {
+          "url": "https://m.media-amazon.com/images/I/51QqAHWPH7L._SY346_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 2,
@@ -38,8 +61,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Mystery",
+      "reviews": 35,
+      "stars": 3.8,
       "publicationDate": "2023-06-20",
-      "image": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 3,
@@ -52,8 +98,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science",
+      "reviews": 12, 
+      "stars": 4.9,
       "publicationDate": "2023-08-10",
-      "image": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 4,
@@ -66,8 +135,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Romance",
+      "reviews": 8, 
+      "stars": 2.3,
       "publicationDate": "2023-09-05",
-      "image": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 5,
@@ -80,8 +172,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 15, 
+      "stars": 3.2,
       "publicationDate": "2023-05-18",
-      "image": "https://m.media-amazon.com/images/I/51pboSz98NL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51pboSz98NL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 6,
@@ -94,8 +209,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 29, 
+      "stars": 4.7,
       "publicationDate": "2023-07-28",
-      "image": "https://m.media-amazon.com/images/I/41fFwONqqTL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/41fFwONqqTL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 7,
@@ -108,8 +246,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Adventure",
+      "reviews": 6, 
+      "stars": 1.8,
       "publicationDate": "2023-04-10",
-      "image": "https://m.media-amazon.com/images/I/41iKT76SP9L._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/41iKT76SP9L._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 8,
@@ -122,8 +283,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Horror",
+      "reviews": 17, 
+      "stars": 3.6,
       "publicationDate": "2023-08-22",
-      "image": "https://m.media-amazon.com/images/I/51n4Qmne+3L._PJprime-reading2,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51n4Qmne+3L._PJprime-reading2,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 9,
@@ -136,8 +320,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Fantasy",
+      "reviews": 14, 
+      "stars": 3.1,
       "publicationDate": "2023-06-15",
-      "image": "https://m.media-amazon.com/images/I/51eIIi71G+L._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51eIIi71G+L._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 10,
@@ -150,8 +357,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Mystery",
+      "reviews": 33, 
+      "stars": 4.9,
       "publicationDate": "2023-07-10",
-      "image": "https://m.media-amazon.com/images/I/51nStq7g0xL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51nStq7g0xL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 11,
@@ -164,8 +394,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Romance",
+      "reviews": 22, 
+      "stars": 4.3,
       "publicationDate": "2023-05-05",
-      "image": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 12,
@@ -178,8 +431,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 19, 
+      "stars": 4.0,
       "publicationDate": "2023-06-20",
-      "image": "https://m.media-amazon.com/images/I/412CdHg-rrL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/412CdHg-rrL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 13,
@@ -192,8 +468,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Horror",
+      "reviews": 10, 
+      "stars": 2.8,
       "publicationDate": "2023-07-28",
-      "image": "https://m.media-amazon.com/images/I/512LAKbMh0L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/512LAKbMh0L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 14,
@@ -206,8 +505,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Fantasy",
+      "reviews": 28, 
+      "stars": 4.5,
       "publicationDate": "2023-04-10",
-      "image": "https://m.media-amazon.com/images/I/51qxcWgpiSL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51qxcWgpiSL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 15,
@@ -220,8 +542,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Mystery",
+      "reviews": 9, 
+      "stars": 2.1,
       "publicationDate": "2023-08-22",
-      "image": "https://m.media-amazon.com/images/I/51Zlu84N15L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51Zlu84N15L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 16,
@@ -234,8 +579,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 20, 
+      "stars": 3.5,
       "publicationDate": "2023-06-15",
-      "image": "https://m.media-amazon.com/images/I/51mSWCtzDfL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51mSWCtzDfL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 17,
@@ -248,8 +616,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Romance",
+      "reviews": 13, 
+      "stars": 3.7,
       "publicationDate": "2023-07-10",
-      "image": "https://m.media-amazon.com/images/I/51br09C3UXL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51br09C3UXL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 18,
@@ -262,8 +653,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 7, 
+      "stars": 2.6,
       "publicationDate": "2023-05-05",
-      "image": "https://m.media-amazon.com/images/I/51Jxc4sb3XL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51Jxc4sb3XL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 19,
@@ -276,8 +690,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Horror",
+      "reviews": 31, 
+      "stars": 4.6,
       "publicationDate": "2023-08-28",
-      "image": "https://m.media-amazon.com/images/I/61Yr-QHNU8L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/61Yr-QHNU8L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 20,
@@ -290,8 +727,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Fantasy",
+      "reviews": 25, 
+      "stars": 4.2,
       "publicationDate": "2023-09-10",
-      "image": "https://m.media-amazon.com/images/I/41zbGZ4u2wL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/41zbGZ4u2wL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 21,
@@ -304,8 +764,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Romance",
+      "reviews": 30, 
+      "stars": 4.8,
       "publicationDate": "2023-07-15",
-      "image": "https://m.media-amazon.com/images/I/41dFU9f+JQL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/41dFU9f+JQL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 22,
@@ -318,8 +801,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 3, 
+      "stars": 1.5,
       "publicationDate": "2023-06-20",
-      "image": "https://m.media-amazon.com/images/I/419nbvvLEyS._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/419nbvvLEyS._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 23,
@@ -332,8 +838,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Horror",
+      "reviews": 11, 
+      "stars": 3.0,
       "publicationDate": "2023-08-22",
-      "image": "https://m.media-amazon.com/images/I/512CeT4SUKL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/512CeT4SUKL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 24,
@@ -346,8 +875,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Fantasy",
+      "reviews": 26, 
+      "stars": 4.1,
       "publicationDate": "2023-06-15",
-      "image": "https://m.media-amazon.com/images/I/51fW+C6511L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51fW+C6511L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 25,
@@ -360,8 +912,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Mystery",
+      "reviews": 16, 
+      "stars": 3.4,
       "publicationDate": "2023-07-10",
-      "image": "https://m.media-amazon.com/images/I/51JOj9t3DqL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51JOj9t3DqL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 26,
@@ -374,8 +949,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Romance",
+      "reviews": 27, 
+      "stars": 4.3,
       "publicationDate": "2023-09-05",
-      "image": "https://m.media-amazon.com/images/I/51cAoX5708L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51cAoX5708L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 27,
@@ -388,8 +986,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Science Fiction",
+      "reviews": 36, 
+      "stars": 4.9,
       "publicationDate": "2023-07-28",
-      "image": "https://m.media-amazon.com/images/I/51va8u2CiwL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51va8u2CiwL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 28,
@@ -402,8 +1023,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Horror",
+      "reviews": 5, 
+      "stars": 1.2,
       "publicationDate": "2023-08-10",
-      "image": "https://m.media-amazon.com/images/I/51FAZTV2LuL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/51FAZTV2LuL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 29,
@@ -416,8 +1060,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Fantasy",
+      "reviews": 24, 
+      "stars": 4.4,
       "publicationDate": "2023-04-10",
-      "image": "https://m.media-amazon.com/images/I/41i4r1VCW3L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+      "image": [
+        {
+          "url": "https://m.media-amazon.com/images/I/41i4r1VCW3L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     },
     {
       "id": 30,
@@ -430,8 +1097,31 @@ const Store = () => {
       "format": "PDF",
       "language": "English",
       "category": "Romance",
+      "reviews": 13, 
+      "stars": 4.1,
       "publicationDate": "2023-09-20",
-      "image": "https://ik.imagekit.io/mvt24ohb0ne/tr:n-img_details/covers-5/9786313000128.jpg",
+      "image":[
+        {
+          "url": "https://ik.imagekit.io/mvt24ohb0ne/tr:n-img_details/covers-5/9786313000128.jpg",
+          "title": "image1"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image2"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image3"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image4"
+        },
+        {
+          "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
+          "title": "image5"
+        },
+      ]
     }
   ]
   
@@ -454,8 +1144,9 @@ const Store = () => {
   ); 
 
   return (
-    <div className={style.FondoTienda}>
+    <div className={style.ContainerGrid-filter-column}>
       <div className={style.tienda}>
+        {/* <Filter /> */}
         {/* <div className={style.SearchOrder}>
           <Search />
           <Order setCurrentPage={setCurrentPage}/>

@@ -121,7 +121,7 @@ const NavBar = ({ isAuthenticated }) => {
           Noticias
         </NavLink>
         <NavLink
-          to="/tienda"
+          to="/store"
           className={style.link}
           activeclassname="active"
           id="tiendaNav"

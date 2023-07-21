@@ -23,6 +23,8 @@ const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
               pages={book.pages}
               language={book.language}
               category={book.category}
+              reviews={book.reviews}
+              stars={book.stars}
               publicationDate={book.publicationDate}
               image={book.image}
               // Reviews={prod.Reviews?.map((r) =>({

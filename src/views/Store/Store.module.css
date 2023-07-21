@@ -1,5 +1,5 @@
-.FondoTienda{
-    background-color: rgb(241, 241, 241);
+.ContainerGrid-filter-column {
+  grid-template-columns: 0.2fr 1fr;
 }
 
 .tienda {
