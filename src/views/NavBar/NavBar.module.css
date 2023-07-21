@@ -1,0 +1,321 @@
+.navContainer {
+  background-color: #efefdc;
+  display: flex;
+  position: fixed;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  height: 10.8%;
+  width: 100%; 
+  border-bottom: 2px solid silver;
+  z-index: 1;
+}
+
+/* -------------------------------------LeftSection------------------------------------- */
+.LeftSection {
+  width: 80%;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logoNavBar {
+  width: 40%;
+  min-height: 10vh;
+}
+
+.link {
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  text-decoration: none;
+  color: #000804;
+  padding: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.5s ease;
+  z-index: 9;
+  font-size: 17px;
+}
+
+.link:hover {
+  transition: 0.5s ease;
+  text-decoration: none;
+  color: #000804;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------------------------Conocenos */
+.link[id="conocenosNav"]{
+  border-radius: 5px;
+  text-decoration: none;
+}
+.link[id="conocenosNav"]:hover{
+  background-color: silver;
+  text-decoration: none;
+}
+/* -------------------------------------Novedades */
+.sectionOption{
+  background-color: #efefdc;
+  margin: -7px;
+  border-left: 2px solid silver;
+  border-right: 2px solid silver;
+  border-bottom: 2px solid silver;
+  width: 280%;
+  text-align: center;
+  align-content: center;
+}
+.dropdownOption[id="nosotros"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+.dropdownOption[id="nosotros"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  border-bottom: 2px solid silver;
+  color: #000804;
+  text-decoration: none;
+}
+.ative[id="nosotros"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  border-bottom: 2px solid silver;
+  color: white;
+  text-decoration: none;
+}
+/* -------------------------------------Listas populares */
+.dropdownOption[id="nuestraHistoria"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+.dropdownOption[id="nuestraHistoria"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  border-bottom: 2px solid silver;
+  color: #000804;
+  text-decoration: none;
+}
+.active[id="nuestraHistoria"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  border-bottom: 2px solid silver;
+  color: white;
+  text-decoration: none;
+}
+/* -------------------------------------nuestroEquipoNav */
+.dropdownOption[id="nuestroEquipoNav"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+.dropdownOption[id="nuestroEquipoNav"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  border-bottom: 2px solid silver;
+  color: #000804;
+  text-decoration: none;
+}
+.active[id="nuestroEquipoNav"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  border-bottom: 2px solid silver;
+  color: white;
+  text-decoration: none;
+}
+
+/* -------------------------------------Noticias */
+.link[id="noticiasNav"]{
+  margin: 1px;
+}
+.link[id="noticiasNav"]:hover{
+  background-color: silver;
+}
+.active[id="noticiasNav"]{
+  background-color: #EB5D0B;
+  color: #000804;
+  text-decoration: none;
+}
+
+/* -------------------------------------Tienda */
+.link[id="tiendaNav"]{
+  border-radius: 5px;
+  margin-right: 50px;
+}
+.link[id="tiendaNav"]:hover{
+  background-color: silver;
+}
+.active[id="tiendaNav"]{
+  color: #000804;
+  text-decoration: none;
+}
+
+/* -------------------------------------Perfil */
+.link[id="perfilNav"]{
+  border-bottom:6px solid #124476;
+  border-bottom-right-radius: 5px;
+}
+.link[id="perfilNav"]:hover{
+  background-color: #124476;
+  text-decoration: none;
+}
+.active[id="perfilNav"]{
+  background-color: #124476;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  min-width: 108px;
+  z-index: 1;
+}
+
+.link:hover + .dropdownContent,
+.dropdownContent:hover {
+  display: block;
+  position: absolute;
+  background-color: white;
+  top: 110%;
+}
+
+.dropdownOption {
+  color: grey;
+  padding: 6px 6px;
+  font-size: 15px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  transition: 0.5s ease;
+}
+
+.dropdownOption:hover {
+  transition: 0.5s ease;
+  color: white;
+  text-decoration: none;
+}
+
+/* -------------------------------------RightSection------------------------------------- */
+.rightSection {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.buttonContainer[id="cerrariniciarNav"] {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+
+}
+
+.buttonContainer[id="cerrariniciarNav"]:hover {
+  background-color: silver;
+}
+
+.loggingIn {
+  background-color: silver;
+  color: #000804;
+}
+
+
+/* -------------------------------------Administrador */
+.linkContainer[id="administradorNav"] {
+  border-bottom: 6px solid #3c67a4;
+}
+
+.linkContainer[id="administradorNav"]:hover {
+  background-color: #3c67a4;
+}
+
+.activeLink[id="administradorNav"] {
+  background-color: #3c67a4;
+  color: white;
+  text-decoration: none;
+}
+
+/*====>>>acá va ir responsivo hamburguesa<<<====*/
+
+
+/* 
+:root {
+	--mainColor: #29335c;
+	--mainColorLight: #5767aa;
+	--secondaryColor: #db2b39;
+	--textColor: #eee;
+} */
+
+/* header {
+    background-color: #29335c;
+    color: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 80px;
+	padding: 0 2rem;
+}
+
+nav a {
+	margin: 0 1rem;
+	color: #eee;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: #db2b39;
+}
+
+header .nav-btn {
+	padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: var(--textColor);
+	visibility: hidden;
+	opacity: 0;
+	font-size: 1.8rem;
+}
+
+header div,
+nav {
+	display: flex;
+	align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+	header .nav-btn {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	header nav {
+		position: fixed;
+		top: -100vh;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		background-color: #29335c;
+		transition: 1s;
+	}
+
+	header .responsive_nav {
+		transform: translateY(100vh);
+	}
+
+	nav .nav-close-btn {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+	}
+
+	nav a {
+		font-size: 1.5rem;
+	}
+} */
