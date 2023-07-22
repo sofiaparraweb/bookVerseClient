@@ -1,6 +1,6 @@
-// // Importamos las acciones
-// import {
-//   GET_ALL_BOOKS,
+//! Importamos las acciones
+ import {
+   GET_ALL_BOOKS,
 //   GET_DETAIL_BOOK,
 //   GET_BOOK_TYPE,
 //   GET_ALL_BOOKS_TYPES,
@@ -8,7 +8,7 @@
 //   ORDER_BY_PRICE,
 //   ORDER_BY_TITLE,
 //   ORDER_BY_AUTHOR,
-//   SEARCH_BY_NAME,
+   SEARCH_BY_NAME,
 //   GET_CART,
 //   ADD_TO_CART,
 //   DELETE_PRODUCT_CART,
@@ -29,7 +29,7 @@
 //   UPDATE_USER,
 //   SET_USER_ID,
 //   FORM_SUBSCRIPTION,
-// } from "./actions";
+ } from "./actions";
 
 // Estado inicial del reducer
 const initialState = {
@@ -50,12 +50,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 //     // Actions relacionadas con libros
-//     case GET_ALL_BOOKS:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
+    case GET_ALL_BOOKS:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
 //     case GET_DETAIL_BOOK:
 //       return {
 //         ...state,
@@ -98,12 +98,12 @@ const reducer = (state = initialState, action) => {
 //         books: action.payload,
 //         loading: false,
 //       };
-//     case SEARCH_BY_NAME:
-//       return {
-//         ...state,
-//         filteredBooks: action.payload,
-//         loading: false,
-//       };
+    case SEARCH_BY_NAME:
+      return {
+        ...state,
+        filteredBooks: action.payload,
+        loading: false,
+      };
 
 //     // Actions relacionadas con el carrito
 //     case GET_CART:

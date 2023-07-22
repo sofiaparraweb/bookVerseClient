@@ -1,0 +1,110 @@
+/* @import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun'); */
+
+.equipo {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 9%;
+}
+
+.equipoTitle {
+  color: #124476;
+  font-family: 'Wicked Grit', sans-serif;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.equipoCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.equipoCard {
+  width: calc(33.33% - 40px);
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.equipoCard:hover {
+  transform: rotateY(180deg);
+}
+
+.equipoCardImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.equipoCardFront,
+.equipoCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.equipoCardFront {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d28254;
+  transform: perspective(600px) rotateY(0deg);
+  box-shadow: 0 5px 5px;
+}
+
+.equipoCardBack {
+  transform: perspective(600px) rotateY(180deg);
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipoCard--active .equipoCardFront {
+  transform: rotateY(-180deg);
+}
+
+.equipoCard--active .equipoCardBack {
+  transform: rotateY(0deg);
+}
+
+.equipoCardContent {
+  margin-top: 20px;
+}
+
+.equipoCardName {
+  color: black;
+  font-family: 'Wicked Grit', sans-serif;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.equipoCardPosition {
+  color: white;
+  font-size: 25px;
+  margin-bottom: 8px;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+}
+
+.equipoCardDescription {
+  font-size: 25px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+}
+
+  

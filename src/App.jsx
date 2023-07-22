@@ -9,6 +9,8 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
 import Store from "./views/Store/Store";
 import BookDetail from "./views/Detail/BookDetail";
+import About from './views/About/About';
+import Equipo from './views/About/Equipo/Equipo';
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -19,6 +21,8 @@ const App = () => {
         <NavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About/>}/>
+          <Route path="/equipo" element={<Equipo/>}/>
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:detailId" element={<BookDetail />} />         
         </Routes>

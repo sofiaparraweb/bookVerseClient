@@ -2,7 +2,7 @@ import { User } from "@auth0/auth0-spa-js";
 import axios from "axios";
 
 // //actions books
-// export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
+ export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 // export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 // export const GET_BOOK_TYPE = "GET_BOOK_TYPE";
 // export const GET_ALL_BOOKS_TYPES = "GET_ALL_BOOKS_TYPES";
@@ -13,7 +13,7 @@ import axios from "axios";
 // export const ADD_BOOK_TO_WISHLIST = "ADD_BOOK_TO_WISHLIST";
 // export const REMOVE_BOOK_FROM_WISHLIST = "REMOVE_BOOK_FROM_WISHLIST";
 // export const CLEAR_WISHLIST = "CLEAR_WISHLIST";
-// export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
+ export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
 
 // //actions carrito
 export const GET_CART = "GET_CART";
@@ -45,18 +45,18 @@ export const GET_CART = "GET_CART";
 
 export const url = "http://localhost:3001";
 
-// //------books-----
-// export function getAllBooks() {
-//   return async function (dispatch) {
-//     try {
-//       const res = await axios.get(`${url}/`);
-//       return dispatch({ type: GET_ALL_BOOKS, payload: res.data,
-//       });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// }
+//!------books-----
+export function getAllBooks() {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${url}/`);
+      return dispatch({ type: GET_ALL_BOOKS, payload: res.data,
+      });
+    } catch (err) {
+      console.log(err, "estoy en actions getAllBooks", data);
+    }
+  };
+}
 
 // export const getDetailBooks = () =>{
 //   return async (dispatch) =>{
@@ -79,16 +79,16 @@ export const url = "http://localhost:3001";
 //   };
 // };
 
-// export const searchByName = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}`);
-//       dispatch({ type: SEARCH_BY_NAME, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const searchByName = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/`);
+      dispatch({ type: SEARCH_BY_NAME, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 // export const filterByType = (name) => {
 //   return async (dispatch) => {

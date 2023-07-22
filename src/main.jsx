@@ -4,15 +4,15 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-// import { Provider } from "react-redux";
-// import {store} from '../src/Redux/store.js'
+ import { Provider } from "react-redux";
+ import store from "./Redux/store.js";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <Provider 
-    // store = {store}
-    > */}
+    <Provider 
+     store = {store}
+    >
     <BrowserRouter>
            <Auth0Provider
                domain={import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN}
@@ -24,6 +24,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
     </Auth0Provider>
     </BrowserRouter>
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   )
