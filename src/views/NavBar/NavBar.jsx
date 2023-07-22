@@ -5,10 +5,8 @@ import logoBook from "../../assets/imgNavbar/logoBook.svg";
 //import {HamburgerIcon} from '@chakra-ui/icons'
 import style from "./NavBar.module.css";
 import SearchBar from "../../components/searchBar/SearchBar";
-import {BiSolidCartAdd, BiSolidUser, BiLogoShopify} from "react-icons/bi"
+import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
 import { FaBars, FaTimes } from "react-icons/fa";
-
-
 
 const NavBar = ({ isAuthenticated }) => {
   const { loginWithRedirect, logout, user } = useAuth0();
@@ -21,7 +19,7 @@ const NavBar = ({ isAuthenticated }) => {
   const showNavbar = () => {
     setNavVisible(!isNavVisible);
   };
- 
+
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
   };
@@ -54,142 +52,122 @@ const NavBar = ({ isAuthenticated }) => {
   const isAdmin = isAuthenticated && user.email === "lagrutacdi@gmail.com";
   return (
     <header className={style.header}>
-    <nav className={style.navContainer} ref={navRef}>
-      <div className={style.LeftSection}>
-        {/* <h1 style={{color: "#000804", margin: "50px"}}>Logo BookVerse</h1> */}
-        <Link to="/">
-          <img
-            src={logoBook}
-            alt="logo"
-            className={style.logoNavBar}
-            onClick={handleClick}
-          />
-        </Link>
+      <nav className={style.navContainer} ref={navRef}>
+        <div className={style.LeftSection}>
+          {/* <h1 style={{ color: "#000804", margin: "50px" }}>Logo BookVerse</h1> */}
+          <Link to="/">
+            <img
+              src={logoBook}
+              alt="logo"
+              className={style.logoNavBar}
+              onClick={handleClick}
+            />
+          </Link>
 
-        <div className={style.dropdownContainer}>
-          <div
-            className={`${style.link} ${isHovered ? "active" : ""}`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            id="conocenosNav">
-            Conocenos
-          </div>
-          {(isHovered || isOptionHovered) && (
-           
+          <div className={style.dropdownContainer}>
             <div
-              className={style.dropdownContent}
-              onMouseEnter={handleOptionMouseEnter}
-              onMouseLeave={handleOptionMouseLeave}>
-                 <div className={style.sectionOption}>
-              <NavLink
-                to="/about"
-                className={style.dropdownOption}
-                activeclassname="active"
-                id="nosotros"
-                onClick={handleClick}>
-                Novedades
-              </NavLink>
-              <NavLink
-                to="/historia"
-                className={style.dropdownOption}
-                activeclassname="active"
-                id="nuestraHistoria"
-                onClick={handleClick}>
-                Listas Populares
-              </NavLink>
-              <NavLink
-                to="/equipo"
-                className={style.dropdownOption}
-                activeclassname="active"
-                id="nuestroEquipoNav"
-                onClick={handleClick}>
-                Nuestro Equipo
-              </NavLink>
+              className={`${style.link} ${isHovered ? "active" : ""}`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              id="conocenosNav"
+            >
+              ABOUT US
             </div>
-            </div>
-          )}
-        </div>
-        
-
-        <NavLink
-          to="/noticias"
-          className={style.link}
-          activeclassname="active"
-          id="noticiasNav"
-          onClick={handleClick}>
-          Noticias
-        </NavLink>
-        <NavLink
-          to="/store"
-          className={style.link}
-          activeclassname="active"
-          id="tiendaNav"
-          onClick={handleClick}>
-          <BiLogoShopify/> Tienda
-        </NavLink>
-
-        <SearchBar/>
-
-        {isAuthenticated ? (
+            {(isHovered || isOptionHovered) && (
+              <div
+                className={style.dropdownContent}
+                onMouseEnter={handleOptionMouseEnter}
+                onMouseLeave={handleOptionMouseLeave}
+              >
+                <div className={style.sectionOption}>
+                  <NavLink
+                    to="/historia"
+                    className={style.dropdownOption}
+                    activeclassname="active"
+                    id="nuestraHistoria"
+                    onClick={handleClick}
+                  >
+                    POPULARS
+                  </NavLink>
+                </div>
+              </div>
+            )}
+          </div>
           <NavLink
-            to="/perfil"
-            className={`${style.linkContainer} ${style.link}`}
-            activeClassName={style.activeLink}
-            id="perfilNav"
-            onClick={handleClick}>
-            Perfil
-          </NavLink>
-        ) : null}
-        {isAdmin && (
-          <NavLink
-            to="/dashboard"
-            className={`${style.linkContainer} ${style.link}`}
-            activeClassName={style.activeLink}
-            id="administradorNav"
+            to="/store"
+            className={style.link}
+            activeclassname="active"
+            id="tiendaNav"
             onClick={handleClick}
           >
-            Administrador
+            OUR BOOKS
           </NavLink>
-        )}
-      </div>
-      <div className={style.rightSection}>
-        {isAuthenticated ? (
-          <button
-            onClick={handleLogout}
-            id="cerrariniciarNav"
-            className={`${style.buttonContainer} ${style.link} ${style.logoutButton}`}
+
+          <SearchBar />
+
+          {isAuthenticated ? (
+            <NavLink
+              to="/perfil"
+              className={`${style.linkContainer} ${style.link}`}
+              activeClassName={style.activeLink}
+              id="perfilNav"
+              onClick={handleClick}
             >
-            Cerrar Sesión
-          </button>
-        ) : (
-          <button
-            onClick={handleLogin}
-            id="cerrariniciarNav"
-            className={`${style.buttonContainer} ${style.link} ${isLoggingIn ? style.loggingIn : style.loginButton}`}>
-            <BiSolidUser/> Iniciar sesión 
-          </button>
-        )}
-        <h1 style={{color: "#000804", margin: "20px", textAlign: "center"}}><BiSolidCartAdd/></h1>
-        
-					
-      </div>
-      <button
-			className={`${style['nav-btn']} ${style['nav-close-btn']}`}
-			onClick={showNavbar}>
-			<FaTimes />
-		</button>
-        
-    </nav>
-    <button
-			className={style['nav-btn']}
-			onClick={showNavbar}>
-			<FaBars />
-		</button>
+              PROFILE
+            </NavLink>
+          ) : null}
+          {isAdmin && (
+            <NavLink
+              to="/dashboard"
+              className={`${style.linkContainer} ${style.link}`}
+              activeClassName={style.activeLink}
+              id="administradorNav"
+              onClick={handleClick}
+            >
+              DASHBOARD
+            </NavLink>
+          )}
+        </div>
+        <div className={style.rightSection}>
+          {isAuthenticated ? (
+            <button
+              onClick={handleLogout}
+              id="cerrariniciarNav"
+              className={`${style.buttonContainer} ${style.link} ${style.logoutButton}`}
+            >
+              LOG OUT
+            </button>
+          ) : (
+            <button
+              onClick={handleLogin}
+              id="cerrariniciarNav"
+              className={`${style.buttonContainer} ${style.link} ${
+                isLoggingIn ? style.loggingIn : style.loginButton
+              }`}
+            >
+              <BiSolidUser className='iconPerson' /> 
+            </button>
+          )}
+          <h1 style={{ color: "#000804", margin: "20px", textAlign: "center" }}>
+            <BiSolidCartAdd />
+          </h1>
+        </div>
+        {/* <button
+          className={`${style["nav-btn"]} ${style["nav-close-btn"]}`}
+          onClick={showNavbar}
+        >
+          <FaTimes />
+        </button> */}
+      </nav>
+      <button className={style["nav-btn"]} onClick={showNavbar}>
+        <FaBars />
+      </button>
     </header>
   );
 };
 
 export default NavBar;
+
 
 
 

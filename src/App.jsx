@@ -9,18 +9,33 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
 import Store from "./views/Store/Store";
 import BookDetail from "./views/Detail/BookDetail";
+import Profile from './views/Profile/Profile';
 
 const App = () => {
   const [count, setCount] = useState(0)
-
+  const { isAuthenticated, isLoading } = useAuth0();
+  
+    // if (isLoading) {
+    //   return (
+    //     <div className="loading-container">
+    //       <img
+    //         src={logo}
+    //         alt="Loading..."
+    //         className="loading-image"
+    //       />
+    //     </div>
+    //   );
+    // }
+  
   return (
     <>
       <div className='App'>
-        <NavBar/>
+      <NavBar isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/detail/:detailId" element={<BookDetail />} />         
+          <Route path="/detail/:detailId" element={<BookDetail />} /> 
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>

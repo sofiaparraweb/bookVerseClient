@@ -1144,7 +1144,9 @@ const Store = () => {
   ); 
 
   return (
-    <div className={style.ContainerGrid-filter-column}>
+    <div 
+    // className={style.ContainerGrid-filter-column}
+    >
       <div className={style.tienda}>
         {/* <Filter /> */}
         {/* <div className={style.SearchOrder}>

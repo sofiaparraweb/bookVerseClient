@@ -33,15 +33,14 @@ export const GET_CART = "GET_CART";
 // export const SUSPEND_USER = "SUSPEND_USER"
 
 // //actions users
-// export const GET_USER= "GET_USER";
-// export const GET_USER_EMAIL = 'GET_USER_EMAIL';
-// export const CREATE_USER = "CREATE_USER";
-// export const GET_USER_ID = "GET_USER_ID";
-// export const UPDATE_USER = "UPDATE_USER";
-// export const SET_USER_ID = "SET_USER_ID";
+export const GET_USER= "GET_USER";
+export const CREATE_USER = "CREATE_USER";
+export const GET_USER_ID = "GET_USER_ID";
+export const UPDATE_USER = "UPDATE_USER";
+export const SET_USER_ID = "SET_USER_ID";
 
 // //actions footer
-// export const FORM_SUBSCRIPTION = "FORM_SUBSCRIPTION";
+export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
 export const url = "http://localhost:3001";
 
@@ -244,69 +243,69 @@ export const getCart = (user_id) => {
 
 // /* -----------------------------user----------------------------- */
 
-// export const getUser = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}/user/${userId}`);
-//       dispatch({
-//         type: GET_USER,
-//         payload: response.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const getUser = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/${userId}`);
+      dispatch({
+        type: GET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const getUserId = (email) =>{
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}/user/mail/${email}`);
-//       console.log(response);
-//       dispatch({
-//         type: GET_USER_ID,
-//         payload: response.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
+export const getUserId = (email) =>{
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/mail/${email}`);
+      console.log(response);
+      dispatch({
+        type: GET_USER_ID,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
-// export const createUser = (newUser) => {
-//   return async (dispatch, getState) => {
-//     try {
-//       const response = await axios.post(`${url}/user`, newUser);
-//       const userId = response.data.newUser.id;
-//       dispatch({
-//         type: SET_USER_ID,
-//         payload: userId,
-//       });
-//       dispatch({
-//         type: CREATE_USER,
-//         payload: response.data,
-//       });
-//       dispatch(getProfile(userId));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const createUser = (newUser) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`${url}/user`, newUser);
+      const userId = response.data.newUser.id;
+      dispatch({
+        type: SET_USER_ID,
+        payload: userId,
+      });
+      dispatch({
+        type: CREATE_USER,
+        payload: response.data,
+      });
+      dispatch(getProfile(userId));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const updateUser = (data) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(`${url}/user/edit`, data);
-//       dispatch({
-//         type: UPDATE_USER,
-//         payload: response.data,
-//       });
-//       console.log('se ejecuto con exitot bbbb')
-//     } catch (error) {
-//       console.log({ error: error.message });
-//     }
-//   };
-// };
+export const updateUser = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${url}/user/edit`, data);
+      dispatch({
+        type: UPDATE_USER,
+        payload: response.data,
+      });
+      console.log('se ejecuto con exitot bbbb')
+    } catch (error) {
+      console.log({ error: error.message });
+    }
+  };
+};
 
 // //-------dashboard------
 
@@ -368,17 +367,17 @@ export const getCart = (user_id) => {
 
 // /* -----------------------------formulario----------------------------- */
 
-// export const formSubscription = (formData) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(`${url}`, formData);
-//       dispatch({
-//         type: FORM_SUBSCRIPTION,
-//         payload: response.data,
-//       });
-//       console.log('funcion mail footer')
-//     } catch (error) {
-//       console.log("estoy en las actions", error);
-//     }
-//   };
-// };
+export const formSuscription = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}`, formData);
+      dispatch({
+        type: FORM_SUSCRIPTION,
+        payload: response.data,
+      });
+      console.log('funcion email footer')
+    } catch (error) {
+      console.log("estoy en las actions", error);
+    }
+  };
+};

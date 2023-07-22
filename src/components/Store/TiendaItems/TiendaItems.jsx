@@ -13,8 +13,8 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
   
   // const dispatch = useDispatch();
   // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-  // const userName = useSelector(state => state.LocalPersist.userInfo.fullName);
-  // const mail = useSelector(state => state.LocalPersist.userInfo.mail);
+  // const userName = useSelector(state => state.LocalPersist.userInfo.name);
+  // const email = useSelector(state => state.LocalPersist.userInfo.email);
   // const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
   // const { isAuthenticated } = useAuth0();
   // const [isModalOpen, setIsModalOpen] = useState(false);
