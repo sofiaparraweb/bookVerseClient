@@ -18,7 +18,7 @@ const Header = () => {
                         </NavLink>
                     </div>
                     <div className="HeaderSectionImage">
-                        <figure>
+                        <figure className="figureHeader">
                             <img src={Header1} alt="HeaderSectionPhoto" className="HeaderImage"></img>
                         </figure>
                     </div>

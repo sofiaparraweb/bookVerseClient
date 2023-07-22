@@ -34,17 +34,17 @@
     align-items: center;
 }
 
-figure {
+.figureHeader {
     position: relative;
 }
 
-figure::after {
+.figureHeader::after {
     content: "";
     width: 85%;
     height: 80%;
     background-color: #b38a83;
     position: absolute;
-    left: 40%;
+    left: 37%;
     top: -3rem;
     z-index: -1;
 }
