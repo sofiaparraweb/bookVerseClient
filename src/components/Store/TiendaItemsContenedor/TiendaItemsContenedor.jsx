@@ -5,11 +5,7 @@ import style from "./TiendaItemsContenedor.module.css";
 const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
 
   return ( 
-    <div className={style.ContenedorTienda}>
-      {/* <div className={style.TiendaSideBar}>
-        <SideBar setCurrentPage={setCurrentPage}/>
-      </div>  */}
-      <div className={style.TiendaItemsContainer}> 
+      <div className="GridThreeColumns" style={{padding:"3rem"}}> 
         {ebooks?.length > 0 && ebooks?.map((book) => {
           return (
             <TiendaItems
@@ -36,7 +32,6 @@ const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
           ); 
         })}
       </div>
-    </div>
   );
 }
 

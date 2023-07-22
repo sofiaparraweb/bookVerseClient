@@ -6,7 +6,7 @@ import "./Header.css"
 const Header = () => {
     return (
         <div className="FirstContainer">
-            <div className="HeaderContainer">
+            <div className="HeaderContainer"> 
                 <div className="GridTwoColumns">
                     <div className="HeaderSectionData">
                         <p className="IntroData"> Welcome to </p>
@@ -18,7 +18,7 @@ const Header = () => {
                         </NavLink>
                     </div>
                     <div className="HeaderSectionImage">
-                        <figure>
+                        <figure className="figureHeader">
                             <img src={Header1} alt="HeaderSectionPhoto" className="HeaderImage"></img>
                         </figure>
                     </div>

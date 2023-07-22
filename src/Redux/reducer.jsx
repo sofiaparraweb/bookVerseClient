@@ -14,6 +14,7 @@ import {
 //   DELETE_PRODUCT_CART,
 //   DELETE_ALL_CART,
 //   CHANGE_QUANTITY,
+SET_GRIDVIEW,
 //   POST_PAYMENT,
 //   ADD_PRODUCT,
 //   DELETE_PRODUCT,
@@ -31,7 +32,7 @@ import {
 
 // Estado inicial del reducer
 const initialState = {
-  books: [],
+  allbooks: [],
   bookDetail: null,
   bookTypes: [],
   filteredBooks: [],
@@ -43,6 +44,7 @@ const initialState = {
   userInfo: [],
   loading: true,
   error: null,
+  grid_view: true,
 };
 
 // // Reducer
@@ -52,6 +54,7 @@ const reducer = (state = initialState, action) => {
 //     case GET_ALL_BOOKS:
 //       return {
 //         ...state,
+//         allbooks: action.payload,
 //         books: action.payload,
 //         loading: false,
 //       };
@@ -76,7 +79,7 @@ const reducer = (state = initialState, action) => {
 //     case FILTER_BY_TYPE:
 //       return {
 //         ...state,
-//         filteredBooks: action.payload,
+//         books: action.payload,
 //         loading: false,
 //       };
 //     case ORDER_BY_PRICE:
@@ -100,7 +103,7 @@ const reducer = (state = initialState, action) => {
 //     case SEARCH_BY_NAME:
 //       return {
 //         ...state,
-//         filteredBooks: action.payload,
+//         books: action.payload,
 //         loading: false,
 //       };
 
@@ -135,6 +138,11 @@ const reducer = (state = initialState, action) => {
 //         cart: action.payload,
 //         loading: false,
 //       };
+      case SET_GRIDVIEW:
+        return {
+          ...state,
+          grid_view: true
+        }
 //     case POST_PAYMENT:
 //       // Agregar la lógica relacionada con la acción de pago si es necesario
 //       return state;

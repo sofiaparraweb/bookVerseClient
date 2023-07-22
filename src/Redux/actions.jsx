@@ -21,6 +21,7 @@ export const GET_CART = "GET_CART";
 // export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
 // export const DELETE_ALL_CART = "DELETE_ALL_CART";
 // export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+export const SET_GRIDVIEW = "SET_GRIDVIEW"
 // export const POST_PAYMENT = "POST_PAYMENT";
 
 // //actions dashboard
@@ -165,6 +166,11 @@ export const url = "http://localhost:3001";
 //     }
 //   };
 // };
+
+/* -----------------------------Store View----------------------------- */
+const setGridView = () =>{
+  return dispatch({type: SET_GRIDVIEW})
+}
 
 // /* -----------------------------carrito----------------------------- */
 
