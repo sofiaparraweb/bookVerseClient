@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 //import { getAllProducts } from '../../Redux/actions';
 import TiendaItemsContenedor from "../../components/Store/TiendaItemsContenedor/TiendaItemsContenedor";
-import style from "./Store.module.css";
+import "./Store.css";
 //import { useDispatch, useSelector } from 'react-redux';
+import Filter from "../../components/Store/Filter/Filter"
 //import Order from "../../components/Store/Order/Order";
 //import Search from "../../components/Store/Search/Search";
 import Pagination from "../../components/Store/Pagination/Pagination";
@@ -1144,15 +1145,18 @@ const Store = () => {
   ); 
 
   return (
-    <div className={style.ContainerGrid-filter-column}>
-      <div className={style.tienda}>
-        {/* <Filter /> */}
-        {/* <div className={style.SearchOrder}>
-          <Search />
+    <div className="ContainerGridFilterColumn">
+      <div className="FilterStore">
+        <Filter />
+      </div>
+      <section className="BooksView">
+        {/* <div className="OrderStore">   
           <Order setCurrentPage={setCurrentPage}/>
         </div> */}
-        <TiendaItemsContenedor ebooks={currentBooks} setCurrentPage={setCurrentPage}/>
-        <div className={style.PaginationConteinerTienda}>
+        <div>
+          <TiendaItemsContenedor ebooks={currentBooks} setCurrentPage={setCurrentPage}/>
+        </div>
+        <div className="PaginationConteinerTienda">
           <Pagination
             booksPerPage={booksPerPage}
             totalBooks={ebooks?.length}
@@ -1160,7 +1164,7 @@ const Store = () => {
             handlePaginate={handlePaginate}
           />
         </div>
-      </div>
+      </section>
     </div>
   );
 }

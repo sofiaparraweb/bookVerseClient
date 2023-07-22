@@ -36,7 +36,7 @@ const PreOrder = () => {
         <div className={style.sliderContainer}>
             <Slider className={style.GalleryHome} ref={sliderRef} {...settings}>
                 <div className={style.slideItem}>
-                    <img src="src\views\assets\Pre-Order.jpg" alt="PreOrder1" />
+                    <img src="src\assets\assets\Pre-Order.jpg" alt="PreOrder1" />
                     <div className={style.slideContent}>
                         {/* <Link to="/about" onClick={handleClick}> */}
                             <button className={style.buttoninfo}>Pre-Order</button>
@@ -44,7 +44,7 @@ const PreOrder = () => {
                     </div>
                 </div>
                 <div className={style.slideItem}>
-                    <img src="src\views\assets\Pre-Order2.jpg" alt="PreOrder2" />
+                    <img src="src\assets\assets\Pre-Order2.jpg" alt="PreOrder2" />
                     <div className={style.slideContent}>
                         {/* <Link to="/about" onClick={handleClick}> */}
                             <button className={style.buttoninfo}>Pre-Order</button>

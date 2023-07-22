@@ -36,7 +36,7 @@ const SearchBar = () => {
             <input
               className={style.SearchInput}
               type="search"
-              placeholder="Buscar..."
+              placeholder="Find your next story..."
               value={productName}
               onChange={handleChange}
             />

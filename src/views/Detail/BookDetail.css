@@ -1,14 +1,13 @@
 .DetailContainer{
     padding: 3.5rem 1rem;
-    font-family: "Work Sans", sans-serif;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 .ContainerContainer{
     padding: 3rem 6rem;
 }
 
-.hrStyle{
+.hrStyle{ 
     margin: 0.5rem 0;
 }
 
@@ -30,15 +29,12 @@
 /* -----------------------------------------------DATA---------------------------------------------------- */
 .DetailData h2{
     text-transform: capitalize;
-    padding: 1rem 0;
-    text-align: left;
-    font-weight: 100;
+    font-weight: 400;
     white-space: normal;
 }
 .DetailData p{
     padding: 0.5rem 0;
     text-align: left;
-    font-weight: lighter;
 }
 
 .innerTextStyle{
@@ -48,7 +44,6 @@
 
 .outerTextStyle{
     color: grey;
-    font-weight: lighter;
 }
 
 
@@ -95,7 +90,7 @@
     flex-direction: row;
     margin: auto;
     align-items: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 .ButtonsSumaResta{

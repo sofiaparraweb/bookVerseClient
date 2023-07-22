@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 //! Importamos las acciones
  import {
    GET_ALL_BOOKS,
+=======
+// // Importamos las acciones
+import {
+//   GET_ALL_BOOKS,
+>>>>>>> develop
 //   GET_DETAIL_BOOK,
 //   GET_BOOK_TYPE,
 //   GET_ALL_BOOKS_TYPES,
@@ -14,6 +20,7 @@
 //   DELETE_PRODUCT_CART,
 //   DELETE_ALL_CART,
 //   CHANGE_QUANTITY,
+SET_GRIDVIEW,
 //   POST_PAYMENT,
 //   ADD_PRODUCT,
 //   DELETE_PRODUCT,
@@ -22,6 +29,7 @@
 //   GET_ALL_USERS,
 //   DELETE_USER,
 //   SUSPEND_USER,
+<<<<<<< HEAD
 //   GET_USER,
 //   GET_USER_EMAIL,
 //   CREATE_USER,
@@ -30,10 +38,18 @@
 //   SET_USER_ID,
 //   FORM_SUBSCRIPTION,
  } from "./actions";
+=======
+  GET_USER,
+  CREATE_USER,
+  GET_USER_ID,
+  UPDATE_USER,
+  SET_USER_ID,
+} from "./actions";
+>>>>>>> develop
 
 // Estado inicial del reducer
 const initialState = {
-  books: [],
+  allbooks: [],
   bookDetail: null,
   bookTypes: [],
   filteredBooks: [],
@@ -42,20 +58,32 @@ const initialState = {
   users: [],
   userProfile: null,
   userId: null,
+  userInfo: [],
   loading: true,
   error: null,
+  grid_view: true,
 };
 
 // // Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 //     // Actions relacionadas con libros
+<<<<<<< HEAD
     case GET_ALL_BOOKS:
       return {
         ...state,
         books: action.payload,
         loading: false,
       };
+=======
+//     case GET_ALL_BOOKS:
+//       return {
+//         ...state,
+//         allbooks: action.payload,
+//         books: action.payload,
+//         loading: false,
+//       };
+>>>>>>> develop
 //     case GET_DETAIL_BOOK:
 //       return {
 //         ...state,
@@ -77,7 +105,7 @@ const reducer = (state = initialState, action) => {
 //     case FILTER_BY_TYPE:
 //       return {
 //         ...state,
-//         filteredBooks: action.payload,
+//         books: action.payload,
 //         loading: false,
 //       };
 //     case ORDER_BY_PRICE:
@@ -98,12 +126,21 @@ const reducer = (state = initialState, action) => {
 //         books: action.payload,
 //         loading: false,
 //       };
+<<<<<<< HEAD
     case SEARCH_BY_NAME:
       return {
         ...state,
         filteredBooks: action.payload,
         loading: false,
       };
+=======
+//     case SEARCH_BY_NAME:
+//       return {
+//         ...state,
+//         books: action.payload,
+//         loading: false,
+//       };
+>>>>>>> develop
 
 //     // Actions relacionadas con el carrito
 //     case GET_CART:
@@ -136,6 +173,11 @@ const reducer = (state = initialState, action) => {
 //         cart: action.payload,
 //         loading: false,
 //       };
+      case SET_GRIDVIEW:
+        return {
+          ...state,
+          grid_view: true
+        }
 //     case POST_PAYMENT:
 //       // Agregar la lógica relacionada con la acción de pago si es necesario
 //       return state;
@@ -176,29 +218,33 @@ const reducer = (state = initialState, action) => {
 //         users: action.payload,
 //       };
 
-//     case GET_USER:
-//       // Agregar la lógica relacionada con la acción de obtener usuario si es necesario
-//       return state;
-//     case GET_USER_EMAIL:
-//       // Agregar la lógica relacionada con la acción de obtener usuario por email si es necesario
-//       return state;
-//     case CREATE_USER:
-//       // Agregar la lógica relacionada con la acción de crear usuario si es necesario
-//       return state;
-//     case GET_USER_ID:
-//       // Agregar la lógica relacionada con la acción de obtener ID de usuario si es necesario
-//       return state;
-//     case UPDATE_USER:
-//       // Agregar la lógica relacionada con la acción de actualizar usuario si es necesario
-//       return state;
-//     case SET_USER_ID:
-//       // Agregar la lógica relacionada con la acción de establecer ID de usuario si es necesario
-//       return state;
+    case GET_USER:
+      return {
+        ...state,
+        userInfo: action.payload,
+      }
+    case CREATE_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
+case GET_USER_ID:
+  return {
+    ...state,
+    userInfo: action.payload,
+  }
+    case UPDATE_USER:
+   return {
+    ...state,
+    userProfile: action.payload,
+  }
+  case SET_USER_ID:
+    return {
+      ...state,
+      userId: action.payload,
+    };
 
-//     // Actions relacionadas con el formulario de suscripción
-//     case FORM_SUBSCRIPTION:
-//       // Agregar la lógica relacionada con la acción de suscripción si es necesario
-//       return state;
+//     // Actions relacionadas con el formulario de suscripció
 
     default:
       return state;
