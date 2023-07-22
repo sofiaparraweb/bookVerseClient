@@ -30,7 +30,7 @@ const App = () => {
   return (
     <>
       <div className='App'>
-      <NavBar isAuthenticated={isAuthenticated} />
+        <NavBar isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />

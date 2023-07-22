@@ -6,7 +6,7 @@ import "./Header.css"
 const Header = () => {
     return (
         <div className="FirstContainer">
-            <div className="HeaderContainer">
+            <div className="HeaderContainer"> 
                 <div className="GridTwoColumns">
                     <div className="HeaderSectionData">
                         <p className="IntroData"> Welcome to </p>

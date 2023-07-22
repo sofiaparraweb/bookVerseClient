@@ -42,7 +42,7 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
 
   return (
     <div className="Card" >
-      <Link to={`/detail/${id}`} style={{textDecoration:"none", fontFamily:"Work Sans, sans-serif", fontWeight:"100", color:"#17424b"}}>
+      <Link to={`/detail/${id}`} style={{textDecoration:"none", fontWeight:"400", color:"#17424b"}}>
         <div className="BookCard">
           <figure className="figureStore">
             <img src={image[0].url} alt="image"/>

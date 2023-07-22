@@ -1,38 +1,22 @@
-.Card {
-}
-
 
 /* -------------------------imagen------------------------- */
 .figureStore{
-    width: auto;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    overflow: hidden;
     height: 18rem;
+    overflow:hidden;
     transition: all 0.5s linear;
 }
 
-.figureStore::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    transition: all 0.2s linear;
-    cursor: pointer;
-}
-
 .figureStore img {
-    max-width: 100%;
-    margin-top: 1.5rem;
-    height: 100%;
-    transition: all 0.3s linear;
+    transition: 1s ease;
+    border: none;
 }
 .figureStore img:hover {
-    transform: scale(1.1);
+    transition: 1s ease;
+    -webkit-transform:scale(1.05);transform:scale(1.05);
 }
 
 /* -------------------------data------------------------- */
@@ -47,9 +31,6 @@
     justify-content: space-between;
 }
   
-.BookCard-data--price {
-    
-}
   
     /* .btn {
       margin: 2rem auto;

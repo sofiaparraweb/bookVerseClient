@@ -145,7 +145,7 @@ const BookDetail = () => {
                             <div style={{display:"flex", flexDirection:"row"}}>    
                                 <Stars stars={ebooks[0].stars} reviews={ebooks[0].reviews} />
                             </div>
-                            <p style={{fontWeight:"lighter", color:"grey"}}>$ {ebooks[0].price}</p>
+                            <p style={{color:"grey"}}>$ {ebooks[0].price}</p>
                             <p >{ebooks[0].description}</p>
                             <hr className="hrStyle"></hr>
                             <div className="DetailDetail">
@@ -170,7 +170,7 @@ const BookDetail = () => {
                                     <p style={{fontWeight:"bold"}}>{ebooks[0].publicationDate}</p>
                                 </div>
                             </div>
-                            <hr></hr>
+                            <hr className="hrStyle"></hr>
                             <div className="Botonera">
                                 <div className="BotoneraSumaResta">
                                     <button className="ButtonsSumaResta" value="less" >-</button>

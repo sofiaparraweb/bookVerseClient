@@ -29,7 +29,7 @@ const Filter = ({ setCurrentPage }) => {
 
   return (
     <div>
-      estos son los filtros
+      Aca van los filtros
     </div>
     // <div className={style.FilterContainer}>
     //     <AiOutlineFilter className={style.Icon1} />
