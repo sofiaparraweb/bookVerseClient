@@ -1,4 +1,4 @@
-.navCtndr {
+navContainer {
   background-color: #efefdc;
   display: flex;
   position: fixed;
@@ -205,10 +205,6 @@
   color: white;
   text-decoration: none;
 }
-
-.menuBtn{
-  display: none;
-  }
 
 
 /*====>>>acá va ir responsivo hamburguesa<<<====*/

@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 //! Importamos las acciones
  import {
    GET_ALL_BOOKS,
-=======
-// // Importamos las acciones
-import {
-//   GET_ALL_BOOKS,
->>>>>>> develop
 //   GET_DETAIL_BOOK,
 //   GET_BOOK_TYPE,
 //   GET_ALL_BOOKS_TYPES,
@@ -29,23 +23,12 @@ SET_GRIDVIEW,
 //   GET_ALL_USERS,
 //   DELETE_USER,
 //   SUSPEND_USER,
-<<<<<<< HEAD
-//   GET_USER,
-//   GET_USER_EMAIL,
-//   CREATE_USER,
-//   GET_USER_ID,
-//   UPDATE_USER,
-//   SET_USER_ID,
-//   FORM_SUBSCRIPTION,
- } from "./actions";
-=======
   GET_USER,
   CREATE_USER,
   GET_USER_ID,
   UPDATE_USER,
   SET_USER_ID,
 } from "./actions";
->>>>>>> develop
 
 // Estado inicial del reducer
 const initialState = {
@@ -68,22 +51,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 //     // Actions relacionadas con libros
-<<<<<<< HEAD
     case GET_ALL_BOOKS:
       return {
         ...state,
+        allbooks: action.payload,
         books: action.payload,
         loading: false,
       };
-=======
-//     case GET_ALL_BOOKS:
-//       return {
-//         ...state,
-//         allbooks: action.payload,
-//         books: action.payload,
-//         loading: false,
-//       };
->>>>>>> develop
 //     case GET_DETAIL_BOOK:
 //       return {
 //         ...state,
@@ -126,21 +100,12 @@ const reducer = (state = initialState, action) => {
 //         books: action.payload,
 //         loading: false,
 //       };
-<<<<<<< HEAD
     case SEARCH_BY_NAME:
       return {
         ...state,
-        filteredBooks: action.payload,
+        books: action.payload,
         loading: false,
       };
-=======
-//     case SEARCH_BY_NAME:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
->>>>>>> develop
 
 //     // Actions relacionadas con el carrito
 //     case GET_CART:

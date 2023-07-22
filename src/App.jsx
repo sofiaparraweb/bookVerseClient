@@ -33,8 +33,8 @@ const App = () => {
         <NavBar isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About/>}/>
-          <Route path="/equipo" element={<Equipo/>}/>
+          {/* <Route path="/about" element={<About/>}/>
+          <Route path="/equipo" element={<Equipo/>}/> */}
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:detailId" element={<BookDetail />} /> 
           <Route path="/profile" element={<Profile />} />
