@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import Header1 from "../../assets/Header1.jpg";
-import Header2 from "../../assets/Header2.jpg";
+import Header1 from "../../../assets/assets/Header1.jpg";
+import Header2 from "../../../assets/assets/Header2.jpg";
 import "./Header.css"
 
 const Header = () => {

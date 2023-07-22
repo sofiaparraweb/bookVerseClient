@@ -1,4 +1,7 @@
 /* --------------------------NO LO BORREN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400');
+
 *{
   padding: 0;
 	margin: 0;
@@ -8,6 +11,7 @@ body{
   margin: 0;
   padding: 0;
   background-color: rgb(246, 245, 245);
+  font-family: 'Lato', sans-serif;
 }
 
 .GridTwoColumns{
