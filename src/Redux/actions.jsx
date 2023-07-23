@@ -266,7 +266,7 @@ export const getUser = (userId) => {
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/mail/${email}`);
+      const response = await axios.get(`${url}/user/email/${email}`);
       console.log(response);
       dispatch({
         type: GET_USER_ID,

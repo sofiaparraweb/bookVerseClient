@@ -1,7 +1,7 @@
 import style from "./SideBar.module.css"
 import Filter from "../Filtros/Filter"
 import {AiOutlineShoppingCart } from "react-icons/ai";
-import { getCarrito } from "../../../Redux/actions"
+import { getCart } from "../../../Redux/actions"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -13,14 +13,14 @@ const SideBar = ({ setCurrentPage }) =>{
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const Carrito = useSelector(state=>state.LocalPersist.Carrito.Products)
+  const cart = useSelector(state=>state.LocalPersist.cart.Products)
   const userId = useSelector(state => state.LocalPersist.userInfo.id);
 
   useEffect(() => {
-    dispatch(getCarrito(userId));
+    dispatch(getCart(userId));
   }, [userId]);
 
-  //const cartQuantity = Carrito?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);
+  //const cartQuantity = cart?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);
   
   const handleCartClick = () => {
     if (isAuthenticated) {
@@ -36,7 +36,7 @@ const SideBar = ({ setCurrentPage }) =>{
       <span className={style.Changuito}>
         <button onClick={handleCartClick} >
           <AiOutlineShoppingCart size={30} />
-          {isAuthenticated ? <p className={style.NumeroChango}>{Carrito?.length || 0}</p> : <p className={style.NumeroChango}>0</p>}         
+          {isAuthenticated ? <p className={style.NumeroChango}>{cart?.length || 0}</p> : <p className={style.NumeroChango}>0</p>}         
         </button>
       </span>
       <div className={style.ContenedorFiltroOrden}>

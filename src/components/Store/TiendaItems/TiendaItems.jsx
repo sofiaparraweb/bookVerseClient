@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 //import { useState, useEffect } from 'react';
 //import { useDispatch, useSelector } from "react-redux";
-//import { getCarrito, addToCart, setGridView } from "../../../Redux/actions"
+//import { getCart, addToCart, setGridView } from "../../../Redux/actions"
 import { Image, Input, FormLabel, Textarea, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Divider, Grid } from '@chakra-ui/react'
 //import { Toaster, toast } from "react-hot-toast";
 //import { useAuth0 } from "@auth0/auth0-react";
@@ -24,7 +24,7 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
   const firstImage = image[0];
   
   // useEffect(()=>{
-  //   dispatch(getCarrito(user_id))
+  //   dispatch(getCart(user_id))
   // },[dispatch])
   
   // const [review, setReview] = useState({  // --------------------------------------------------REVIEWS

@@ -107,7 +107,7 @@ const NavBar = ({ isAuthenticated }) => {
 
           {isAuthenticated ? (
             <NavLink
-              to="/perfil"
+              to="/profile"
               className={`${style.linkContainer} ${style.link}`}
               activeClassName={style.activeLink}
               id="perfilNav"

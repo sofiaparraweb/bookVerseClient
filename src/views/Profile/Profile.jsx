@@ -11,101 +11,93 @@ const Profile = () => {
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   
-//   const [initialProfile, setInitialProfile] = useState({
-//     // image: userInfo.image,
-//     name: userInfo.name,
-//     email: userInfo.email,
-//     birthDate: userInfo.birthDate,
-//     phone: userInfo.phone,
-//     country: userInfo.country,
-//     occupation: userInfo.occupation,
-//     role: userInfo.role,
-//   });
+  const [initialProfile, setInitialProfile] = useState({
+    // image: userInfo.image,
+    name: userInfo.name,
+    email: userInfo.email,
+    birthDate: userInfo.birthDate,
+    phone: userInfo.phone,
+    country: userInfo.country,
+  });
 
-//   const [editedProfile, setEditedProfile] = useState({
-//     // image: userInfo.image,
-//     name: userInfo.name,
-//     email: userInfo.email,
-//     birthDate: userInfo.birthDate,
-//     phone: userInfo.phone,
-//     country: userInfo.country,
-//     occupation: userInfo.occupation,
-//     role: userInfo.role,
-//   });
+  const [editedProfile, setEditedProfile] = useState({
+    // image: userInfo.image,
+    name: userInfo.name,
+    email: userInfo.email,
+    birthDate: userInfo.birthDate,
+    phone: userInfo.phone,
+    country: userInfo.country,
+  });
 
-//   const userProfile = useSelector((state) => state.userProfile);
-//   const dispatch = useDispatch();
-//   const isProfileFetchedRef = useRef(false);
-//   const [editing, setEditing] = useState(false);
-//   const email = user.email;
+  const userProfile = useSelector((state) => state.userProfile);
+  const dispatch = useDispatch();
+  const isProfileFetchedRef = useRef(false);
+  const [editing, setEditing] = useState(false);
+  const email = user.email;
 
-//   useEffect(() => {
-//     if (!isProfileFetchedRef.current && isAuthenticated) {
-//       dispatch(getUserId(email));
-//       isProfileFetchedRef.current = true;
-//     }
-//   }, [dispatch, isAuthenticated, email]);
+  useEffect(() => {
+    if (!isProfileFetchedRef.current && isAuthenticated) {
+      dispatch(getUserId(email));
+      isProfileFetchedRef.current = true;
+    }
+  }, [dispatch, isAuthenticated, email]);
 
-//   useEffect(() => {
-//     if (userProfile) {
-//       setInitialProfile(userProfile);
-//       setEditedProfile(userProfile);
-//     }
-//   }, [userProfile]);
+  useEffect(() => {
+    if (userProfile) {
+      setInitialProfile(userProfile);
+      setEditedProfile(userProfile);
+    }
+  }, [userProfile]);
 
-//   useEffect(() => {
-//     if (editedProfile) {
-//       // Actualizar los valores registrados con useForm cuando editedProfile cambia
-//       setValue("name", editedProfile.name || "");
-//       setValue("email", editedProfile.email || "");
-//       setValue("birthDate", editedProfile.birthDate || "");
-//       setValue("phone", editedProfile.phone || "");
-//       setValue("country", editedProfile.country || "");
-//       setValue("occupation", editedProfile.occupation || "");
-//       setValue("role", editedProfile.role || "");
-//     }
-//   }, [editedProfile, setValue]);
+  useEffect(() => {
+    if (editedProfile) {
+      // Actualizar los valores registrados con useForm cuando editedProfile cambia
+      setValue("name", editedProfile.name || "");
+      setValue("email", editedProfile.email || "");
+      setValue("birthDate", editedProfile.birthDate || "");
+      setValue("phone", editedProfile.phone || "");
+      setValue("country", editedProfile.country || "");
+    }
+  }, [editedProfile, setValue]);
 
-//   const handleEditProfile = () => {
-//     setEditing(true);
-//   };
+  const handleEditProfile = () => {
+    setEditing(true);
+  };
 
-//   const handleCancelEdit = () => {
-//     setEditing(false);
-//     setEditedProfile(initialProfile);
-//     reset(initialProfile);
-//   };
+  const handleCancelEdit = () => {
+    setEditing(false);
+    setEditedProfile(initialProfile);
+    reset(initialProfile);
+  };
 
-//   const handleSaveProfile = (data) => {
-//     const formData = new FormData();
-//     // formData.append("image", editedProfile.image);
-//     formData.append("name", data.name);
-//     formData.append("email", data.email);
-//     formData.append("birthDate", data.birthDate);
-//     formData.append("phone", data.phone);
-//     formData.append("country", data.country);
-//     formData.append("occupation", data.occupation);
-//     formData.append("role", data.role);
+  const handleSaveProfile = (data) => {
+    const formData = new FormData();
+    // formData.append("image", editedProfile.image);
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("birthDate", data.birthDate);
+    formData.append("phone", data.phone);
+    formData.append("country", data.country);
 
-//     dispatch(updateUser(formData));
-//     setEditing(false);
-//     setInitialProfile(data);
-//     setEditedProfile(data);
-//     reset(editedProfile);
-//   };
+    dispatch(updateUser(formData));
+    setEditing(false);
+    setInitialProfile(data);
+    setEditedProfile(data);
+    reset(editedProfile);
+  };
 
-//   const handleProfileImageChange = (e) => {
-//     const file = e.target.files[0];
-//     const reader = new FileReader();
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
 
-//     reader.onloadend = () => {
-//       setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
-//     };
+    reader.onloadend = () => {
+      setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
+    };
 
-//     if (file) {
-//   reader.readAsDataURL(file);
-// }
-// };
+    if (file) {
+  reader.readAsDataURL(file);
+}
+};
 
 return (
 <ChakraProvider>
@@ -124,7 +116,7 @@ return (
         )}
       </div> */}
       <form className="profile-form" onSubmit={handleSubmit(
-        // handleSaveProfile
+        handleSaveProfile
         )}>
         <label htmlFor="name" className="profile-label">
          Full name
@@ -133,8 +125,8 @@ return (
           type="text"
           id="name"
           className="profile-input"
-        //   isDisabled={!editing}
-        //   defaultValue={editedProfile.name}
+          isDisabled={!editing}
+          defaultValue={editedProfile.name}
           {...register("name", { required: true })}
         />
         {errors.name && <span className="error-message">Required field</span>}
@@ -145,8 +137,8 @@ return (
           type="email"
           id="email"
           className="profile-input"
-        //   isDisabled={!editing}
-        //   defaultValue={editedProfile.email}
+          isDisabled={!editing}
+          defaultValue={editedProfile.email}
           {...register("email", { required: true })}
         />
         {errors.email && <span className="error-message">Required field</span>}
@@ -157,8 +149,8 @@ return (
           type="date"
           id="birthDate"
           className="profile-input"
-        //   isDisabled={!editing}
-        //   defaultValue={editedProfile.birthDate}
+          isDisabled={!editing}
+          defaultValue={editedProfile.birthDate}
           {...register("birthDate", { required: true })}
         />
         {errors.birthDate && <span className="error-message">Required field</span>}
@@ -169,8 +161,8 @@ return (
           type="tel"
           id="phone"
           className="profile-input"
-        //   isDisabled={!editing}
-        //   defaultValue={editedProfile.phone}
+          isDisabled={!editing}
+          defaultValue={editedProfile.phone}
           {...register("phone", { required: true })}
           placeholder="Ej: +5493815709293"
         />
@@ -182,25 +174,13 @@ return (
           type="text"
           id="country"
           className="profile-input"
-        //   isDisabled={!editing}
-        //   defaultValue={editedProfile.country}
+          isDisabled={!editing}
+          defaultValue={editedProfile.country}
           {...register("country", { required: true })}
         />
         {errors.country && <span className="error-message">Required field</span>}
-        {/* <label htmlFor="occupation" className="profile-label">
-          Ocupación
-        </label>
-        <Input
-          type="text"
-          id="occupation"
-          className="profile-input"
-        //   isDisabled={!editing}
-        //   defaultValue={editedProfile.occupation}
-          {...register("occupation", { required: true })}
-        />
-        {errors.occupation && <span className="error-message">Required field</span>} */}
-        <div className="button-group">
-          {/* {!editing && ( */}
+     <div className="button-group">
+          {!editing && (
             <Button
               type="button"
               className="edit-button"
@@ -208,8 +188,8 @@ return (
             >
               Edit
             </Button>
-          {/* )} */}
-          {/* {editing && ( */}
+          )} 
+           {editing && ( 
             <div>
               <Button type="submit" className="save-button">
                 Save
@@ -222,7 +202,7 @@ return (
                 Cancel
               </Button>
             </div>
-          {/* )} */}
+           )}
         </div>
       </form>
     </div>
