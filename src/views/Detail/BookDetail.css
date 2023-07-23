@@ -13,20 +13,22 @@
 
 /* -----------------------------------------------IMAGENES---------------------------------------------------- */
 .DetailImages{
-    margin: auto;
+    display: flex;
+    justify-content: center;
     max-width: 100%;
 }
 
-.GridFourColumns{
+/* .GridFourColumns{
     flex-direction: row;
     justify-items: center;
     align-items: center;
     width: 100%;
     gap: 1rem;
-}
+} */
 
 
 /* -----------------------------------------------DATA---------------------------------------------------- */
+
 .DetailData h2{
     text-transform: capitalize;
     font-weight: 400;
@@ -50,6 +52,7 @@
 /* -----------------------------------------------SECTOR ICONOS */
 .DetailDetail{
     display: flex;
+    text-transform: capitalize;
     justify-content: space-between;
     flex-direction: row;
     padding: 0.5rem; 

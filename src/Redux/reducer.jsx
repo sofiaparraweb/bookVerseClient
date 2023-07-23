@@ -1,12 +1,12 @@
-// // Importamos las acciones
+// Importamos las acciones
 import {
-//   GET_ALL_BOOKS,
-//   GET_DETAIL_BOOK,
+  GET_ALL_BOOKS,
 //   GET_BOOK_TYPE,
 //   GET_ALL_BOOKS_TYPES,
-//   FILTER_BY_TYPE,
-//   ORDER_BY_PRICE,
-//   ORDER_BY_TITLE,
+  FILTER_BY_GENRE,
+  FILTER_BY_FORMAT,
+  ORDER_BY_PRICE,
+  ORDER_BY_TITLE,
 //   ORDER_BY_AUTHOR,
 //   SEARCH_BY_NAME,
 //   GET_CART,
@@ -14,7 +14,7 @@ import {
 //   DELETE_PRODUCT_CART,
 //   DELETE_ALL_CART,
 //   CHANGE_QUANTITY,
-SET_GRIDVIEW,
+//   SET_GRIDVIEW,
 //   POST_PAYMENT,
 //   ADD_PRODUCT,
 //   DELETE_PRODUCT,
@@ -33,7 +33,6 @@ SET_GRIDVIEW,
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-  bookDetail: null,
   bookTypes: [],
   filteredBooks: [],
   cart: [],
@@ -50,20 +49,15 @@ const initialState = {
 // // Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-//     // Actions relacionadas con libros
-//     case GET_ALL_BOOKS:
-//       return {
-//         ...state,
-//         allbooks: action.payload,
-//         books: action.payload,
-//         loading: false,
-//       };
-//     case GET_DETAIL_BOOK:
-//       return {
-//         ...state,
-//         bookDetail: action.payload,
-//         loading: false,
-//       };
+
+//------------------------------------book actions-----------------------------------
+    case GET_ALL_BOOKS:
+      return {
+        ...state,
+        allbooks: action.payload,
+        books: action.payload,
+        loading: false,
+      };
 //     case GET_BOOK_TYPE:
 //       return {
 //         ...state,
@@ -76,24 +70,30 @@ const reducer = (state = initialState, action) => {
 //         bookTypes: action.payload,
 //         loading: false,
 //       };
-//     case FILTER_BY_TYPE:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
-//     case ORDER_BY_PRICE:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
-//     case ORDER_BY_TITLE:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
+    case FILTER_BY_GENRE:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
+    case FILTER_BY_FORMAT:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
+    case ORDER_BY_PRICE:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
+    case ORDER_BY_TITLE:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
 //     case ORDER_BY_AUTHOR:
 //       return {
 //         ...state,
@@ -107,7 +107,7 @@ const reducer = (state = initialState, action) => {
 //         loading: false,
 //       };
 
-//     // Actions relacionadas con el carrito
+//------------------------------------cart actions-----------------------------------//
 //     case GET_CART:
 //       return {
 //         ...state,
@@ -138,11 +138,11 @@ const reducer = (state = initialState, action) => {
 //         cart: action.payload,
 //         loading: false,
 //       };
-      case SET_GRIDVIEW:
-        return {
-          ...state,
-          grid_view: true
-        }
+    // case SET_GRIDVIEW:
+    //   return {
+    //     ...state,
+    //     grid_view: true
+    //   }
 //     case POST_PAYMENT:
 //       // Agregar la lógica relacionada con la acción de pago si es necesario
 //       return state;
@@ -193,23 +193,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         userProfile: action.payload,
       };
-case GET_USER_ID:
-  return {
-    ...state,
-    userInfo: action.payload,
-  }
+    case GET_USER_ID:
+      return {
+        ...state,
+        userInfo: action.payload,
+      }
     case UPDATE_USER:
-   return {
-    ...state,
-    userProfile: action.payload,
-  }
-  case SET_USER_ID:
-    return {
-      ...state,
-      userId: action.payload,
-    };
+      return {
+        ...state,
+        userProfile: action.payload,
+      }
+    case SET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
 
-//     // Actions relacionadas con el formulario de suscripció
+//------------------------------------suscription form-----------------------------------
 
     default:
       return state;
