@@ -207,87 +207,73 @@
 }
 
 
-/*====>>>responsive hamburger menu will go here<<<====*/
+/*====>>>acá va ir responsivo hamburguesa<<<====*/
+/* @media screen and (max-width: 968px) {
 
-
-/* 
-:root {
-	--mainColor: #29335c;
-	--mainColorLight: #5767aa;
-	--secondaryColor: #db2b39;
-	--textColor: #eee;
-} */
-
-/* header {
-    background-color: #29335c;
-    color: #eee;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 80px;
-	padding: 0 2rem;
-}
-
-nav a {
-	margin: 0 1rem;
-	color: #eee;
-	text-decoration: none;
-}
-
-nav a:hover {
-	color: #db2b39;
-}
-
-header .nav-btn {
-	padding: 5px;
-	cursor: pointer;
-	background: transparent;
-	border: none;
-	outline: none;
-	color: var(--textColor);
-	visibility: hidden;
-	opacity: 0;
-	font-size: 1.8rem;
-}
-
-header div,
-nav {
-	display: flex;
-	align-items: center;
-}
-
-@media only screen and (max-width: 1024px) {
-	header .nav-btn {
-		visibility: visible;
-		opacity: 1;
-	}
-
-	header nav {
-		position: fixed;
-		top: -100vh;
+  .navCtndr {
+    position: fixed;
 		left: 0;
-		height: 100%;
+		height: 50%;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 1.5rem;
-		background-color: #29335c;
 		transition: 1s;
-	}
+  }
 
-	header .responsive_nav {
-		transform: translateY(100vh);
-	}
+  .LeftSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
 
-	nav .nav-close-btn {
-		position: absolute;
+  .link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+  }
+
+  .navCtndr .menuBtn {
+    display: flex;
+    padding: 5px;
+    z-index: 1;
+    position: absolute;
 		top: 2rem;
-		right: 2rem;
-	}
+		left: 2rem;
+  }
+  .btnOpen{
+    position: absolute;
+    top: 2rem;
+		left: 2rem;
+    padding: 5px;
+    visibility: visible;
+		opacity: 1;
+  }
 
-	nav a {
-		font-size: 1.5rem;
-	}
+  .dropdownContainer {
+    flex-direction: column;
+    position: static;
+  }
+
+  .dropdownContent {
+    display: none;
+    position: static;
+    min-width: auto;
+    top: 0;
+    background-color: transparent;
+  }
+
+  .active + .LeftSection .link {
+    display: block;
+  }
+
+  .btnOpen .active + .LeftSection .dropdownContent {
+    display: block;
+    position: static;
+    background-color: rgb(247, 9, 9);
+    width: 100%; 
+  }
 } */
