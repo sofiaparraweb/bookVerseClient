@@ -85,11 +85,12 @@ export const getDetailBooks = (id) =>{
 // };
 
 //------------------------------------filtros y ordenamiento
-export const searchByName = () => {
+export const searchByName = (name) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/`);
-      dispatch({ type: SEARCH_BY_NAME, payload: response.data });
+      const response = await axios.get(`${url}/filter/name?name=${name}`);
+      console.log(response.data.filteredName)
+      dispatch({ type: SEARCH_BY_NAME, payload: response.data.filteredName });
     } catch (error) {
       console.log(error);
     }
