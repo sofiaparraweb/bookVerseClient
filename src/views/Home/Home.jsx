@@ -16,7 +16,6 @@ const Home = ( ) => {
   const dispatch = useDispatch();
     const { user, isAuthenticated, isLoading } = useAuth0();
     const userInfo = useSelector(state => state.LocalPersist.userInfo?.id);
-    console.log(userInfo)
     const isProfileCreatedRef = useRef(false);
   
     useEffect(() => {

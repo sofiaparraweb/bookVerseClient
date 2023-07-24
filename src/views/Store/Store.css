@@ -8,23 +8,19 @@
 
 /* --------------------------------------------------------Side Bar-------------------------------------------------------- */
 .FilterStore{
-  border: 1px solid red;
+  margin-top: 2rem;
 }
 
 
 /* --------------------------------------------------------Contenido-------------------------------------------------------- */
 .BooksView{
-  border: 1px solid red;
 }
 
 .OrderStore{
-  position: absolute;
-  left:15%;
-  display: flex;justify-content: space-around;
-  flex-direction: row;
-  text-align: center;
+  display: flex;
+  justify-content: flex-end;
   width: 80%;
-  margin-bottom: 1px;
+  margin: 1rem 0;
 }
 
 .PaginationConteinerTienda{
