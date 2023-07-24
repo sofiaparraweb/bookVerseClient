@@ -10,6 +10,8 @@ import Footer from "./views/Footer/Footer";
 import Store from "./views/Store/Store";
 import BookDetail from "./views/Detail/BookDetail";
 import Profile from './views/Profile/Profile';
+import About from './views/About/About';
+import Equipo from './views/About/Equipo/Equipo';
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -33,11 +35,11 @@ const App = () => {
         <NavBar isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/about" element={<About/>}/>
-          <Route path="/equipo" element={<Equipo/>}/> */}
+          <Route path="/about" element={<About/>}/>
+          <Route path="/equipo" element={<Equipo/>}/>
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:id" element={<BookDetail />} /> 
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
         <Footer />
       </div>

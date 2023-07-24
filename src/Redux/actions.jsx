@@ -85,11 +85,13 @@ export const getDetailBooks = (id) =>{
 // };
 
 //------------------------------------filtros y ordenamiento
-export const searchByName = () => {
+export const searchByName = (name) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/`);
-      dispatch({ type: SEARCH_BY_NAME, payload: response.data });
+      const response = await axios.get(`${url}/filter/name?name=${name}`);
+      dispatch({ type: SEARCH_BY_NAME, payload: response.data.filteredName });
+      console.log('se jecuta')
+      console.log(response.data.filteredName)
     } catch (error) {
       console.log(error);
     }
@@ -283,7 +285,7 @@ export const getUser = (userId) => {
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/mail/${email}`);
+      const response = await axios.get(`${url}/user/email/${email}`);
       console.log(response);
       dispatch({
         type: GET_USER_ID,
@@ -308,6 +310,7 @@ export const createUser = (newUser) => {
         type: CREATE_USER,
         payload: response.data,
       });
+      console.log('USUARIO CREADO!!!')
       dispatch(getProfile(userId));
     } catch (error) {
       console.log(error);
@@ -393,7 +396,7 @@ export const updateUser = (data) => {
 export const formSuscription = (formData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}`, formData);
+      const response = await axios.post(`${url}/form/formFooter`, formData);
       dispatch({
         type: FORM_SUSCRIPTION,
         payload: response.data,
