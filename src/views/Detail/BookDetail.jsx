@@ -134,7 +134,7 @@ const Detail = () => {
                                 <span className="innerTextStyle"> {book.Formats?.map((f) => f.name).join(' , ')}</span>
                             </p>
                             {/* <div style={{display:"flex", flexDirection:"row"}}>    
-                                <Stars stars={ebooks[0].stars} reviews={book.reviews} />
+                                <Stars stars={book.stars} reviews={book.reviews} />
                             </div> */}
                             <p style={{color:"grey"}}>USD {book.price},00</p>
                             <p >{book.description}</p>

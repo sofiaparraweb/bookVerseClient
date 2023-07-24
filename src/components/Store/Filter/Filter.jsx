@@ -8,6 +8,7 @@ const Filter = ({ setCurrentPage }) => {
 
   const dispatch = useDispatch();
   //const allProductTypes = useSelector(state => state.LocalPersist.allProductTypes);
+  const books = useSelector(state => state.LocalPersist.books);
   const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
@@ -35,7 +36,7 @@ const Filter = ({ setCurrentPage }) => {
       <ul className="ContainerButtonFilter">
         <li className="FilterLI">
           <button onClick={handleReset} className={activeFilter === null ? "ActiveButtonNull" : ''}>All books</button>
-          <button onClick={() => handleFilter("Ficción")} className={activeFilter === "Ficción" ? "ActiveButton" : ''}> Ficción</button>
+          <button onClick={() => handleFilter("Ficción")} className={activeFilter === "Ficción" ? "ActiveButton" : ''}> Ficción </button>
           <button onClick={() => handleFilter("Novela")} className={activeFilter === "Novela" ? "ActiveButton" : ''}> Novela</button>
           <button onClick={() => handleFilter("Ciencia ficción")} className={activeFilter === "Ciencia ficción" ? "ActiveButton" : ''}> Ciencia ficción</button>
           <button onClick={() => handleFilter("Fantasía")} className={activeFilter === "Fantasía" ? "ActiveButton" : ''}> Fantasía</button>
