@@ -376,7 +376,7 @@ export const updateUser = (data) => {
 export const formSuscription = (formData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}`, formData);
+      const response = await axios.post(`${url}/form/formFooter`, formData);
       dispatch({
         type: FORM_SUSCRIPTION,
         payload: response.data,
