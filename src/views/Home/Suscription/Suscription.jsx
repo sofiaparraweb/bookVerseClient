@@ -24,7 +24,7 @@ const Suscription = () => {
         reset();
         Swal.fire({
           icon: 'success',
-          title: 'Formulario enviado',
+          title: 'Your email has been sent!',
           text: 'Muchas gracias! Nos comunicaremos en breve',
           background: '#f3f3f3',
           confirmButtonColor: '#B9362C',
