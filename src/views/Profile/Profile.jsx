@@ -11,6 +11,8 @@ const Profile = () => {
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   
+  console.log(user);
+  
   const [initialProfile, setInitialProfile] = useState({
     // image: userInfo.image,
     name: userInfo.name,
