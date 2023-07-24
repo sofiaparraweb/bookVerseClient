@@ -25,7 +25,7 @@ const Suscription = () => {
         Swal.fire({
           icon: 'success',
           title: 'Your email has been sent!',
-          text: 'Muchas gracias! Nos comunicaremos en breve',
+          text: 'Thank you! We will comunicate soon!',
           background: '#f3f3f3',
           confirmButtonColor: '#B9362C',
           customClass: {
