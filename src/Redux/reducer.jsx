@@ -8,7 +8,7 @@ import {
   ORDER_BY_PRICE,
   ORDER_BY_TITLE,
 //   ORDER_BY_AUTHOR,
-//   SEARCH_BY_NAME,
+   SEARCH_BY_NAME,
 //   GET_CART,
 //   ADD_TO_CART,
 //   DELETE_PRODUCT_CART,
@@ -49,8 +49,8 @@ const initialState = {
 // // Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-
 //------------------------------------book actions-----------------------------------
+
     case GET_ALL_BOOKS:
       return {
         ...state,
@@ -100,12 +100,12 @@ const reducer = (state = initialState, action) => {
 //         books: action.payload,
 //         loading: false,
 //       };
-//     case SEARCH_BY_NAME:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
+    case SEARCH_BY_NAME:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
 
 //------------------------------------cart actions-----------------------------------//
 //     case GET_CART:

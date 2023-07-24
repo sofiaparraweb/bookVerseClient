@@ -14,7 +14,7 @@ export const ORDER_BY_TITLE = "ORDER_BY_TITLE"
 // export const ADD_BOOK_TO_WISHLIST = "ADD_BOOK_TO_WISHLIST";
 // export const REMOVE_BOOK_FROM_WISHLIST = "REMOVE_BOOK_FROM_WISHLIST";
 // export const CLEAR_WISHLIST = "CLEAR_WISHLIST";
-// export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
+ export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
 
 //actions carrito
 export const GET_CART = "GET_CART";
@@ -84,18 +84,17 @@ export const getDetailBooks = (id) =>{
 //   };
 // };
 
-
 //------------------------------------filtros y ordenamiento
-// export const searchByName = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}`);
-//       dispatch({ type: SEARCH_BY_NAME, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const searchByName = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/`);
+      dispatch({ type: SEARCH_BY_NAME, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const filterByGenre = (name) => {
   return async (dispatch) => {

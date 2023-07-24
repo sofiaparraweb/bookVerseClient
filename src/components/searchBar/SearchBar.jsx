@@ -1,14 +1,15 @@
-//import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
-//import { searchByName, getAllBooks } from "../../../Redux/actions";
+import { searchByName, getAllBooks } from "../../Redux/actions";
 import { FaSearch } from 'react-icons/fa';
 import style from "./SearchBar.module.css";
 
 
 
 const SearchBar = () => {
-  //const dispatch = useDispatch()
- // const products = useSelector(state => state.LocalPersist.allProducts);
+  const dispatch = useDispatch()
+  //const products = useSelector(state => state.LocalPersist.getAllBooks);
+  const products = useSelector(state => state.getAllBooks);
   const [ productName, setProductName ] = useState("")
 
   const handleChange = (event) =>{
