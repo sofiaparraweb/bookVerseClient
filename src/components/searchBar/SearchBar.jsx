@@ -4,10 +4,9 @@ import { searchByName, getAllBooks } from "../../Redux/actions";
 import { FaSearch } from 'react-icons/fa';
 import style from "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = ({ebooks}) => {
+
   const dispatch = useDispatch()
-  //const products = useSelector(state => state.LocalPersist.getAllBooks);
-  const products = useSelector(state => state.LocalPersist.books);
   const [ productName, setProductName ] = useState("");
 
   const handleChange = (event) =>{
@@ -18,8 +17,10 @@ const SearchBar = () => {
   const handleSubmit = (event) =>{
     event.preventDefault();
     if (productName.length > 0) {
-        dispatch(searchByName(productName));
-        setProductName('');
+      dispatch(searchByName(productName));
+      setProductName('');
+    } else {
+      alert("Book not found")
     }
   }
 
@@ -30,20 +31,18 @@ const SearchBar = () => {
 
   return (
     <div className={style.SearchBar}>
-        <form onSubmit={handleSubmit}>
-            <input
-              className={style.SearchInput}
-              type="search"
-              placeholder="Find your next story..."
-              value={productName}
-              onChange={handleChange}
-            />
-        
-          <div className={style.DivButton}>
-            <button type="submit" className={style.SearchBarButton}><FaSearch /></button>
-            {/* <button className={style.ResetButton} onClick={handleReset}>Resetear</button> */}
-          </div>
-        </form> 
+      <form onSubmit={handleSubmit}>
+        <input
+          className={style.SearchInput}
+          type="search"
+          placeholder="Find your next story..."
+          value={productName}
+          onChange={handleChange}
+        />
+        <div className={style.DivButton}>
+          <button type="submit" className={style.SearchBarButton}><FaSearch /></button>
+        </div>
+      </form> 
     </div>
   )
 }

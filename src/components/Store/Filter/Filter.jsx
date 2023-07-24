@@ -36,7 +36,7 @@ const Filter = ({ setCurrentPage }) => {
       <ul className="ContainerButtonFilter">
         <li className="FilterLI">
           <button onClick={handleReset} className={activeFilter === null ? "ActiveButtonNull" : ''}>All books</button>
-          <button onClick={() => handleFilter("Ficción")} className={activeFilter === "Ficción" ? "ActiveButton" : ''}> Ficción {books.count}</button>
+          <button onClick={() => handleFilter("Ficción")} className={activeFilter === "Ficción" ? "ActiveButton" : ''}> Ficción </button>
           <button onClick={() => handleFilter("Novela")} className={activeFilter === "Novela" ? "ActiveButton" : ''}> Novela</button>
           <button onClick={() => handleFilter("Ciencia ficción")} className={activeFilter === "Ciencia ficción" ? "ActiveButton" : ''}> Ciencia ficción</button>
           <button onClick={() => handleFilter("Fantasía")} className={activeFilter === "Fantasía" ? "ActiveButton" : ''}> Fantasía</button>

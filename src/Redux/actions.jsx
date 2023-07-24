@@ -90,7 +90,6 @@ export const searchByName = (name) => {
     try {
       const response = await axios.get(`${url}/filter/name?name=${name}`);
       dispatch({ type: SEARCH_BY_NAME, payload: response.data.filteredName });
-      console.log('se jecuta')
       console.log(response.data.filteredName)
     } catch (error) {
       console.log(error);
