@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState} from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import logoBook from "../../assets/imgNavbar/logoBook.svg";
-//import {HamburgerIcon} from '@chakra-ui/icons'
+import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
 import style from "./NavBar.module.css";
 import SearchBar from "../../components/searchBar/SearchBar";
 import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
@@ -13,11 +13,10 @@ const NavBar = ({ isAuthenticated }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isNavVisible, setNavVisible] = useState(false);
-  const navRef = useRef();
+  const [isNavVisible, setIsNavVisible] = useState(false);
 
-  const showNavbar = () => {
-    setNavVisible(!isNavVisible);
+  const toggleNavbar = () => {
+    setIsNavVisible(!isNavVisible);
   };
 
   const handleLogout = () => {
@@ -51,8 +50,8 @@ const NavBar = ({ isAuthenticated }) => {
 
   const isAdmin = isAuthenticated && user.email === "lagrutacdi@gmail.com";
   return (
-    <header className={style.header}>
-      <nav className={style.navContainer} ref={navRef}>
+    <>
+      <nav className={style.navContainer} >
         <div className={style.LeftSection}>
           {/* <h1 style={{ color: "#000804", margin: "50px" }}>Logo BookVerse</h1> */}
           <Link to="/">
@@ -159,10 +158,10 @@ const NavBar = ({ isAuthenticated }) => {
           <FaTimes />
         </button> */}
       </nav>
-      <button className={style["nav-btn"]} onClick={showNavbar}>
+      {/* <button className={style["nav-btn"]} onClick={toggleNavbar}>
         <FaBars />
-      </button>
-    </header>
+      </button> */}
+    </>
   );
 };
 
@@ -171,41 +170,4 @@ export default NavBar;
 
 
 
-// import { useRef } from "react";
-// import { FaBars, FaTimes } from "react-icons/fa";
-// import "./NavBar.css";
-
-// function NavBar() {
-// 	const navRef = useRef();
-
-// 	const showNavbar = () => {
-// 		navRef.current.classList.toggle(
-// 			"responsive_nav"
-// 		);
-// 	};
-
-// 	return (
-// 		<header>
-// 			<h3>LOGO</h3>
-// 			<nav ref={navRef}>
-// 				<a href="/#">Home</a>
-// 				<a href="/footer">My work</a>
-// 				<a href="/#">Blog</a>
-// 				<a href="/#">About me</a>
-// 				<button
-// 					className="nav-btn nav-close-btn"
-// 					onClick={showNavbar}>
-// 					<FaTimes />
-// 				</button>
-// 			</nav>
-// 			<button
-// 				className="nav-btn"
-// 				onClick={showNavbar}>
-// 				<FaBars />
-// 			</button>
-// 		</header>
-// 	);
-// }
-
-// export default NavBar;
 
