@@ -27,7 +27,7 @@ const SearchBar = () => {
 
   const handleReset = (event) => {
     event.preventDefault()
-    dispatch(getAllProducts())
+    dispatch(getAllBooks())
   }
 
   return (

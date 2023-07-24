@@ -15,14 +15,15 @@ const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
               title={book.title}
               price={book.price}
               description={book.description}
-              publisher={book.publisher}
+              publisher={book.Publishers?.map((p) => p.name).join(' , ')}
               pages={book.pages}
-              language={book.language}
-              category={book.category}
-              reviews={book.reviews}
+              language={book.Languages?.map((l) => l.name).join(' , ')}
+              genres={book.Genres?.map((g) => g.name).join(' , ')}
+              reviews={book.Reviews}
               stars={book.stars}
               publicationDate={book.publicationDate}
               image={book.image}
+              format={book.Formats?.map((f) => f.name).join(' , ')}
               // Reviews={prod.Reviews?.map((r) =>({
                 //     content: r.content,
                 //     rating: r.rating,

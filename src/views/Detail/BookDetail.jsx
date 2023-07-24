@@ -1,52 +1,43 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from 'react';
 import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule} from "react-icons/ai";
 import Stars from "./Stars"
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./BookDetail.css";
 
-const BookDetail = () => {
 
-    const ebooks = [
-        {
-          "id": 1,
-          "author": "John Doe",
-          "title": "The Adventures of Wonderland",
-          "price": 9.99,
-          "description": "Follow Alice as she enters a magical world filled with curious creatures and enchanting adventures.",
-          "publisher": "Adventure Books Ltd.",
-          "pages": 320,
-          "format": "PDF",
-          "language": "English",
-          "category": "Adventure",
-          "reviews": 23,
-          "stars": 4.4,
-          "publicationDate": "2023-07-15",
-          "image":[
-            {
-              "url": "https://m.media-amazon.com/images/I/51QqAHWPH7L._SY346_.jpg",
-              "title": "image1"
-            },
-            {
-              "url": "https://m.media-amazon.com/images/I/61RqoZLpaJL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
-              "title": "image2"
-            },
-            {
-              "url": "https://m.media-amazon.com/images/I/51cuIOKdL4L._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
-              "title": "image3"
-            },
-            {
-              "url": "https://m.media-amazon.com/images/I/51kYdfdd4WL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
-              "title": "image4"
-            },
-            {
-              "url": "https://m.media-amazon.com/images/I/51HiS06teZL._PJku-sticker-v7,TopRight,0,-50._SY300__CACHEBUSTER_.jpg",
-              "title": "image5"
-            },
-          ]
-        },
-    ]
+const Detail = () => {
+    
+    const { id } = useParams();
+    const { isAuthenticated } = useAuth0();
+    const [book, setBook] = useState({});
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get(`http://localhost:3001/books/${id}`);
+                setBook(response.data);
+            } catch (error) {
+                console.error("Error fetching book details:", error);
+            }
+        }
+        fetchData(); // Llamar a la función para que realice la solicitud
+    }, [id]);
+
+    //const dispatch = useDispatch();
+    // console.log(bookDetail);
 
     // const [currentImage, setCurrentImage] = useState(images[0]);
+    // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    // const userName = useSelector(state => state.LocalPersist.userInfo.name);
+    // const email = useSelector(state => state.LocalPersist.userInfo.email);
+
+    // useEffect(()=>{
+    //     dispatch(getCarrito(id_books))
+    // },[dispatch])
 
     // const handleImageChange = (imageUrl) => {
     //     setCurrentImage(imageUrl);
@@ -109,11 +100,11 @@ const BookDetail = () => {
         <form>
         {/* <form onSubmit={handleSubmit}> */}
             <div className="DetailContainer">
-                <PageNavigation title={ebooks[0].title}/>
+                <PageNavigation title={book?.title}/>
                 <div className="ContainerContainer">
-                    <div className="GridTwoColumns">
+                    <div className="GridTwoColumns" >
                         <div className="DetailImages">
-                            <img src="https://m.media-amazon.com/images/I/517l4WXFFhL.jpg" alt="bookImage"></img>
+                            <img src={book.image} alt="bookImage"></img>
                         </div>
 
                         {/* <div className="images-column">
@@ -134,40 +125,40 @@ const BookDetail = () => {
                         </div> */}
 
                         <div className="DetailData">
-                            <h2>{ebooks[0].title}</h2>
+                            <h2>{book.title}</h2>
                             <p>
                                 <span className="outerTextStyle">by</span> 
-                                <span className="innerTextStyle"> {ebooks[0].author}</span> 
+                                <span className="innerTextStyle"> {book.author}</span> 
                                 <span className="outerTextStyle" style={{padding:"0 1rem"}}>|</span> 
                                 <span className="outerTextStyle">Format </span> 
-                                <span className="innerTextStyle"> {ebooks[0].format}</span>
+                                <span className="innerTextStyle"> {book.Formats?.map((f) => f.name).join(' , ')}</span>
                             </p>
-                            <div style={{display:"flex", flexDirection:"row"}}>    
-                                <Stars stars={ebooks[0].stars} reviews={ebooks[0].reviews} />
-                            </div>
-                            <p style={{color:"grey"}}>$ {ebooks[0].price}</p>
-                            <p >{ebooks[0].description}</p>
+                            {/* <div style={{display:"flex", flexDirection:"row"}}>    
+                                <Stars stars={ebooks[0].stars} reviews={book.reviews} />
+                            </div> */}
+                            <p style={{color:"grey"}}>USD {book.price},00</p>
+                            <p >{book.description}</p>
                             <hr className="hrStyle"></hr>
                             <div className="DetailDetail">
                                 <div className="DetailIcons">
                                     <p>pages</p>
                                     <AiTwotoneContainer className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{ebooks[0].pages}</p>
+                                    <p style={{fontWeight:"bold"}}>{book.pages}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Language</p>
                                     <AiOutlineGlobal className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{ebooks[0].language}</p>
+                                    <p style={{fontWeight:"bold"}}>{book.Languages?.map((l) => l.name).join(' , ')}</p>
                                 </div>
                                 <div className="DetailIcons">
-                                    <p>Publisher</p>
+                                    <p>publisher</p>
                                     <AiOutlineRead className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{ebooks[0].publisher}</p>
+                                    <p style={{fontWeight:"bold"}}>{book.Publishers?.map((p) => p.name).join(' , ')}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Publication date</p>
                                     <AiOutlineSchedule className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{ebooks[0].publicationDate}</p>
+                                    <p style={{fontWeight:"bold"}}>{book.publicationDate}</p>
                                 </div>
                             </div>
                             <hr className="hrStyle"></hr>
@@ -180,12 +171,16 @@ const BookDetail = () => {
                                         Cantidad
                                     <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button> */}
                                 </div>
-                                <button className="Buttons" >
-                                    Add to Cart
-                                </button>
-                                {/* <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='20px'>
-                                    Add to Cart
-                                </button> */}
+                                {isAuthenticated ? (
+                                    <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)}>
+                                        Add to Cart
+                                    </button>
+                                ) : (
+                                    <button className="Buttons" disabled>       agregar mensaje error
+                                        Add to Cart
+                                    </button>
+                                )}
+
                             </div>
                         </div>
                     </div>
@@ -195,4 +190,4 @@ const BookDetail = () => {
     )
 }
 
-export default BookDetail;
+export default Detail;
