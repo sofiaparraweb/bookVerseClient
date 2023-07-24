@@ -49,12 +49,8 @@ const initialState = {
 // // Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-<<<<<<<<< Temporary merge branch 1
-//     // Actions relacionadas con libros
-=========
 
 //------------------------------------book actions-----------------------------------
->>>>>>>>> Temporary merge branch 2
     case GET_ALL_BOOKS:
       return {
         ...state,

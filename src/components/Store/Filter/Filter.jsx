@@ -74,6 +74,18 @@ const Filter = ({ setCurrentPage }) => {
           <button onClick={() => handleFilter("CBZ")} className={activeFilter === "CBZ" ? "ActiveButton" : ''}> CBZ</button>
         </li>
       </ul>
+      <h1 className="FilterTitle"> Price</h1>
+      <p>
+          <FormatPrice price={price} />
+        </p>
+        <input
+          type="range"
+          name="price"
+          min={minPrice}
+          max={maxPrice}
+          value={price}
+          onChange={updateFilterValue}
+        />
     </div>
   );
 };
