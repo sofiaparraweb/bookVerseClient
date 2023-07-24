@@ -60,7 +60,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #d28254;
+  background-color: #b38a83;
   transform: perspective(600px) rotateY(0deg);
   box-shadow: 0 5px 5px;
 }

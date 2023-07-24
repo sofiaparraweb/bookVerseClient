@@ -34,7 +34,7 @@ import {
 const initialState = {
   allbooks: [],
   bookTypes: [],
-  filteredBooks: [],
+  books: [],
   cart: [],
   orders: [],
   users: [],

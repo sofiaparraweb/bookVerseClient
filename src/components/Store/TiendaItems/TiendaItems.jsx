@@ -2,7 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 //import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-//import { getCarrito, addToCart } from "../../../Redux/actions"
+//import { getCart, addToCart } from "../../../Redux/actions"
 //import { Toaster, toast } from "react-hot-toast";
 import "./TiendaItems.css"; 
 
@@ -15,7 +15,7 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
   const firstImage = image[0];
   
   // useEffect(()=>{
-  //   dispatch(getCarrito(user_id))
+  //   dispatch(getCart(user_id))
   // },[dispatch])
   
   // const [review, setReview] = useState({  // --------------------------------------------------REVIEWS

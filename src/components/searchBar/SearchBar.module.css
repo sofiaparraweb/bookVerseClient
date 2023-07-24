@@ -9,7 +9,7 @@
 }
 
 .SearchBar {
-  width: 30%;
+  width: 100%;
   display: flex;
   align-content: center;
   justify-content: center;

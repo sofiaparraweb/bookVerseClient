@@ -7,6 +7,7 @@ import Filter from "../../components/Store/Filter/Filter"
 import Order from "../../components/Store/Order/Order";
 //import Search from "../../components/Store/Search/Search";
 import Pagination from "../../components/Store/Pagination/Pagination";
+import SearchBar from '../../components/searchBar/SearchBar';
 
 const Store = () => {
   
@@ -34,7 +35,8 @@ const Store = () => {
   return (
     <div className="ContainerGridFilterColumn">
       <div className="FilterStore">
-        <Filter />
+      <SearchBar />
+      <Filter />
       </div>
       <section className="BooksView">
         <div className="OrderStore">   

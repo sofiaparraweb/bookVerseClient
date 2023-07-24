@@ -1,10 +1,9 @@
 import { useState} from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import logoBook from "../../assets/imgNavbar/logoBook.svg";
+import bookVerse from "../../assets/imgNavbar/logoBook.svg";
 import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
 import style from "./NavBar.module.css";
-import SearchBar from "../../components/searchBar/SearchBar";
 import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -56,7 +55,7 @@ const NavBar = ({ isAuthenticated }) => {
           {/* <h1 style={{ color: "#000804", margin: "50px" }}>Logo BookVerse</h1> */}
           <Link to="/">
             <img
-              src={logoBook}
+              src={bookVerse}
               alt="logo"
               className={style.logoNavBar}
               onClick={handleClick}
@@ -64,14 +63,15 @@ const NavBar = ({ isAuthenticated }) => {
           </Link>
 
           <div className={style.dropdownContainer}>
-            <div
-              className={`${style.link} ${isHovered ? "active" : ""}`}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              id="conocenosNav"
-            >
-              ABOUT US
-            </div>
+          <NavLink
+            to="/about" // Ruta a la que redirige el enlace
+            className={style.link}
+            activeClassName="active"
+            id="conocenosNav"
+          >
+            ABOUT US
+          </NavLink>
+
             {(isHovered || isOptionHovered) && (
               <div
                 className={style.dropdownContent}
@@ -102,11 +102,9 @@ const NavBar = ({ isAuthenticated }) => {
             OUR BOOKS
           </NavLink>
 
-          <SearchBar />
-
-          {isAuthenticated ? (
+          {/* {isAuthenticated ? (
             <NavLink
-              to="/perfil"
+              to="/profile"
               className={`${style.linkContainer} ${style.link}`}
               activeClassName={style.activeLink}
               id="perfilNav"
@@ -114,7 +112,7 @@ const NavBar = ({ isAuthenticated }) => {
             >
               PROFILE
             </NavLink>
-          ) : null}
+          ) : null} */}
           {isAdmin && (
             <NavLink
               to="/dashboard"
