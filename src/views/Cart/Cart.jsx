@@ -142,7 +142,7 @@ const [showForm, setShowForm] = useState(false);
                 </div>
 
                 <div>
-                    <AiOutlineDelete className="remove_icon"/>
+                    <AiOutlineDelete className="remove_icon" />
                     {/* <button onClick={()=>handleDeleteFromCart(userId, id)} className="remove_icon" value="less" ><AiOutlineDelete /></button> */}
                 </div>
             </div>
@@ -159,7 +159,7 @@ const [showForm, setShowForm] = useState(false);
                 <Link to="/store"> 
                     <button className="Buttons" style={{padding:"1rem 1.5rem"}}> CONTINUE SHOPPING </button>
                 </Link>
-                <button className="Buttons" style={{padding:"1rem 1.5rem"}}>Clear Cart</button>
+                <button className="Buttons" style={{padding:"1rem 1.5rem", backgroundColor:"#b38a83"}}>Clear Cart</button>
                 {/* <button onClick={() => handleDeleteCart(userId)} className="Buttons">x</button> */}
             </div>
             <div className="ContenedorDetallePago">

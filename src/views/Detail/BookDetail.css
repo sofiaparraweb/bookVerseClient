@@ -34,6 +34,10 @@
 
 
 /* -----------------------------------------------DATA---------------------------------------------------- */
+.HeartFav{
+    border: none;
+    background-color: transparent;
+}
 
 .DetailData h2{
     text-transform: capitalize;

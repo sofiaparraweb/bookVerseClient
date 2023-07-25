@@ -6,12 +6,12 @@ import { enviarDataTienda } from "../../../Redux/actions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const FormPago = ({total}) => {
+const Checkout = ({total}) => {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const Cart = useSelector((state) => state.LocalPersist.Cart);
-    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    // const Cart = useSelector((state) => state.LocalPersist.Cart);
+    // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
 
     const { register, reset, handleSubmit, formState: { errors }} = useForm();
     const [loading, setLoading] = useState(false);
@@ -152,4 +152,4 @@ const FormPago = ({total}) => {
 };
 
 
-export default FormPago;
+export default Checkout;

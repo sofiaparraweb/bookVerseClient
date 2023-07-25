@@ -13,6 +13,7 @@ import Cart from "./views/Cart/Cart";
 import Profile from './views/Profile/Profile';
 import About from './views/About/About';
 import Equipo from './views/About/Equipo/Equipo';
+import Wishlist from "./views/Wishlist/Wishlist";
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:id" element={<BookDetail />} /> 
           <Route path="/cart" element={<Cart />} /> 
+          <Route path="/wishlist" element={<Wishlist />} /> 
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
         <Footer />
