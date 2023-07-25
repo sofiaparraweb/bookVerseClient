@@ -1,0 +1,33 @@
+.CartContainerContainer{
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 15rem;
+  margin-top: 7%;;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+/* ----------------------------------CARRITO VACIO---------------------------------- */
+.MessageEmptyCart{
+  margin-top: 5%;
+  color: #17424b;
+  font-size: 3rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+/* Responsive para menos de 768px */
+@media (max-width: 767px) {
+    .ContenedorCartProductosTitulo {
+      font-size: 30px;
+    }
+  }
+  
+  /* Responsive para menos de 480px */
+  @media (max-width: 479px) {
+    .ContenedorCartProductosTitulo {
+      font-size: 25px;
+    }
+  }

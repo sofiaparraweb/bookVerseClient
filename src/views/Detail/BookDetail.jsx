@@ -28,7 +28,6 @@ const Detail = () => {
     }, [id]);
 
     //const dispatch = useDispatch();
-    // console.log(bookDetail);
 
     // const [currentImage, setCurrentImage] = useState(images[0]);
     // const user_id = useSelector(state => state.LocalPersist.userInfo.id);

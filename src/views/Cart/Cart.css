@@ -1,0 +1,91 @@
+/* ----------------------------------------GENERALS---------------------------------------- */
+.CartContainer{
+    padding: 4rem 15rem;
+    margin-top: 7%;
+}
+.hrCart {
+    margin: 0.6rem 0;
+}
+
+/* ----------------------------------------TOP---------------------------------------- */
+.cart-heading {
+    text-align: center;
+    text-transform: uppercase;
+}
+.cart_heading p{
+    color: grey;
+    font-size: 0.9rem;
+}
+
+/* ----------------------------------------BOOKS---------------------------------------- */
+.cart-image--name {
+    /* background-color: red; */
+    align-items: center;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 0.4fr 1fr;
+    text-transform: capitalize;
+    text-align: left;
+}
+    
+.cart-image--name img {
+    max-width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+    color: transparent;
+}
+
+.remove_icon{
+  color: #17424b;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+
+/* ----------------------------------------BUTTONS---------------------------------------- */
+.CartButtonsContainer{
+    display:flex;
+    justify-content: space-between;
+}
+
+/* ----------------------------------------Payment---------------------------------------- */
+.ContenedorDetallePago{
+    margin-top: 2rem;
+    background-color: rgb(240, 239, 239);
+    border-radius: 0.3rem;
+    padding: 1rem;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.ContenedorDetallePago div{
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+@media (max-width: 980px ) {
+    .grid-five-column {
+      grid-template-columns: 1.5fr 1fr 0.5fr;
+    }
+    .cart-hide {
+      display: none;
+    }
+
+    .CartContainer{
+        padding: 8rem 2rem;
+    }
+
+    .CartButtonsContainer {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 2.2rem;
+      }
+}

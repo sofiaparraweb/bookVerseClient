@@ -142,11 +142,13 @@ const NavBar = ({ isAuthenticated }) => {
                 isLoggingIn ? style.loggingIn : style.loginButton
               }`}
             >
-              <BiSolidUser className='iconPerson' /> 
+              <BiSolidUser className='iconPerson' style={{color: "#17424b", width:"1.4rem", height:"1.4rem", margin:"0 2rem"}}/> 
             </button>
           )}
-          <h1 style={{ color: "#000804", margin: "20px", textAlign: "center" }}>
-            <BiSolidCartAdd />
+          <h1>
+            <NavLink to="/cart">
+              <BiSolidCartAdd style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem"}}/>
+            </NavLink>
           </h1>
         </div>
         {/* <button
