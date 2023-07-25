@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .infoCon {
+    background: #b38a83;
+    background-size: cover;
+    padding: 60px 0;
+    margin-top: 30px;
+  }
+
+  .infoCon span {
+    font-weight: bold;
+  }
+  
+  .innerContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    overflow: hidden;
+    
+  }
+  .customFont {
+    font-style: italic;
+  }  
+
+  .sectionTitle {
+    text-align: center;
+    color: #191b1d;
+    font-size: 30px;
+  }
+  
+  .border {
+    width: 160px;
+    height: 2px;
+    margin: 30px auto;
+  }
+  
+  .serviceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  }
+  
+  .infobox {
+    max-width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    color: #191b1d;
+    cursor: pointer;
+    
+  }
+  
+  .infoicon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #24272b;
+    transform: rotate(45deg);
+    margin-bottom: 20px;
+    margin-top: 6px;
+  }
+  
+  .infoicon i {
+    line-height: 50px;
+    transform: rotate(-45deg);
+    font-size: 16px;
+  }
+  
+  .infoTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 2px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .footerSection {
+    width: 100%;
+    height: 180px;
+    margin: 2px;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .suscriptioninput {
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .suscriptioninput::placeholder{
+    color: #bcbec3;
+  }
+
+  .footerSection .btnSuscripcion {
+    background-color: #17424b;
+    padding: 6px;
+    width: 50%;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    transition: background-color .3s;
+    color: wheat;
+  }
+  .footerSection .btnSuscripcion:hover {
+    background-color: #c2bd98;
+    cursor: pointer;
+    color: #17424b;
+  }
+
+  .suscriptiontitle {
+    color: #17424b;
+    font-size: 18px;
+    align-items: center;
+  }
+  
+  .suscriptionfail{
+    color: rgb(20, 17, 17);
+    margin-bottom: 10px;
+  }
+
+  @media screen and (max-width:960px) {
+    .infobox {
+      max-width: 45%;
+    }
+    .buttoninfo {
+        max-width: 45%;
+      }
+  }
+  
+  @media screen and (max-width:768px) {
+    .infobox {
+      max-width: 50%;
+    }
+    .buttoninfo {
+        max-width: 50%;
+      }
+  }
+  
+  @media screen and (max-width:480px) {
+    .infobox {
+      max-width: 100%;
+    }
+
+    .buttoninfo {
+        max-width: 100%;
+      }
+  }
+
+ 

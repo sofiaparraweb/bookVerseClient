@@ -1,24 +1,24 @@
 .ReleaseNowContainer{
+    padding-top: 2rem;
     background-color: white;
     width: 100%;
 }
 
 .ReleaseNowHomeTitle{
-    padding: 0 6rem;
+    padding: 0 9.2rem;
     display: flex;
     flex-direction: column;
 }
 
 .ReleaseNowHomeTitle p{
     margin-bottom: 0.5rem;
-    color: #13363e;
+    color: #17424b;
 }
 
 .ReleaseNowHomeTitle h1{
     margin-top: 0;
-    font-size: 1.9rem;
-    font-family: "Work Sans", sans-serif;
-    font-weight: 100;
+    font-size: 1.7rem;
+    font-weight: 400;
 }
 
 
@@ -36,10 +36,10 @@
 }
 
 .ImagenesCarrusel h1 {
-    color: #13363e;
+    color: #17424b;
+    padding: 0 0.5rem;
     font-size: 16px;
-    font-family: "Work Sans", sans-serif;
-    font-weight: 100;
+    font-weight: 500;
     margin-bottom: 4rem;
 }
 
@@ -50,11 +50,11 @@
 }
   
 .scrollContainer::-webkit-scrollbar-thumb {
-    background-color: #13363e; /* Color del pulgar (parte móvil) */
+    background-color: #17424b; /* Color del pulgar (parte móvil) */
 }
   
 .scrollContainer::-webkit-scrollbar-thumb:hover {
-    background-color: #13363e; /* Color del pulgar en hover */
+    background-color: #17424b; /* Color del pulgar en hover */
 }
   
 .scrollContainer::-webkit-scrollbar-track {

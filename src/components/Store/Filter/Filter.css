@@ -1,0 +1,54 @@
+.FilterContainer {
+    display: flex;
+    margin-top: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    /* position: fixed;
+    left: 3%; */
+  }
+
+/* --------------------------------TITLE-------------------------------- */
+.FilterTitle{
+    font-size: 1rem;
+    cursor:pointer;
+    left: 23%;
+    top: 16%;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: #17424b;
+    padding: 1rem;
+}
+
+/* --------------------------------SubCategorias-------------------------------- */
+.ContenedorBotonesFiltro {
+    list-style: none;
+}
+
+.FilterLI{
+    list-style: none;
+    margin-bottom: 1rem;
+    border: none;
+}
+
+.FilterLI button {
+    border: none;
+    background-color: transparent;
+    color: grey;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: block;
+    transition: background-color 0.5s ease;
+}
+.FilterLI button:hover {
+    color: black;
+    transition: background-color 0.5s ease;
+}
+  
+  /* Estilos para los botones activos */
+.ActiveButton {
+    color: black;
+}
+
+.ActiveButtonNull {
+    color: black;
+}

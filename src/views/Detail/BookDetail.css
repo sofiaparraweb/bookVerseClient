@@ -1,36 +1,88 @@
 .DetailContainer{
-    padding: 8rem 6rem;
+    padding: 3.5rem 1rem;
+    font-weight: 400;
+    margin-top: 4%;
 }
 
-.DetailImages{
-    margin: auto;
+.ContainerContainer{
+    padding: 3rem 6rem;
 }
+
+.hrStyle{ 
+    margin: 0.5rem 0;
+}
+
+/* -----------------------------------------------IMAGENES---------------------------------------------------- */
+.DetailImages{
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+}
+
+/* .GridFourColumns{
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+} */
+
+
+/* -----------------------------------------------DATA---------------------------------------------------- */
 
 .DetailData h2{
     text-transform: capitalize;
-    font-family: "Work Sans", sans-serif;
-    font-weight: 100;
+    font-weight: 400;
+    white-space: normal;
+}
+.DetailData p{
+    padding: 0.5rem 0;
     text-align: left;
 }
 
+.innerTextStyle{
+    font-weight: bold;
+    color: #17424b;
+}
+
+.outerTextStyle{
+    color: grey;
+}
+
+
+/* -----------------------------------------------SECTOR ICONOS */
 .DetailDetail{
     display: flex;
+    text-transform: capitalize;
+    justify-content: space-between;
     flex-direction: row;
+    padding: 0.5rem; 
 }
 
 .DetailIcons{
-    padding: 0 1rem;
     text-align: center;
     display: flex;
     flex-direction: column;
+    flex: 1;
+}
+
+.DetailIcons p{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: #17424b;
+    font-size: 13px;
+    overflow-wrap: break-word;
 }
 
 .IconStyleDetail{
-    color: #13363e;
+    color: #17424b;
     margin: auto;
     font-size: 1.3rem;
 }
 
+
+/* -----------------------------------------------SECTOR BOTONES */
 .Botonera{
     display: flex;
     flex-direction: column;
@@ -42,7 +94,7 @@
     flex-direction: row;
     margin: auto;
     align-items: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 .ButtonsSumaResta{
@@ -52,3 +104,32 @@
     background-color: transparent;
     padding: 0 1.5rem;
 }
+
+/* -----------------------------------------------IMAGENES---------------------------------------------------- */
+/* .images-column {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.thumbnail {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+  
+.current-image-column {
+    flex: 1; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+  
+.current-image {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+} */

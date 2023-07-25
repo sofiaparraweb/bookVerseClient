@@ -1,0 +1,42 @@
+.Card{
+  background-color: rgb(240, 239, 239);
+  border-radius: 0.3rem;
+}
+
+
+/* -------------------------imagen------------------------- */
+.figureStore{
+  margin: auto;
+  margin-top: 0.4rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18rem;
+  width: 12.6rem;
+  overflow:hidden;
+  transition: all 0.5s linear;
+}
+
+.figureStore img {
+  transition: 1s ease;
+  border: none;
+  max-width: 100%; /* Establecer el ancho máximo para ajustar la imagen */
+  max-height: 100%; 
+}
+.figureStore img:hover {
+  transition: 1s ease;
+  -webkit-transform:scale(1.05);transform:scale(1.05);
+}
+
+/* -------------------------data------------------------- */
+.BookCard-data {
+  padding: 0 1rem;
+}
+  
+.BookCard-data-flex {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,15 +1,13 @@
-//import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
-//import { searchByName, getAllBooks } from "../../../Redux/actions";
+import { searchByName, getAllBooks } from "../../Redux/actions";
 import { FaSearch } from 'react-icons/fa';
 import style from "./SearchBar.module.css";
 
+const SearchBar = ({ebooks}) => {
 
-
-const SearchBar = () => {
-  //const dispatch = useDispatch()
- // const products = useSelector(state => state.LocalPersist.allProducts);
-  const [ productName, setProductName ] = useState("")
+  const dispatch = useDispatch()
+  const [ productName, setProductName ] = useState("");
 
   const handleChange = (event) =>{
     event.preventDefault();
@@ -19,32 +17,32 @@ const SearchBar = () => {
   const handleSubmit = (event) =>{
     event.preventDefault();
     if (productName.length > 0) {
-        dispatch(searchByName(productName));
-        setProductName('');
+      dispatch(searchByName(productName));
+      setProductName('');
+    } else {
+      alert("Book not found")
     }
   }
 
   const handleReset = (event) => {
     event.preventDefault()
-    dispatch(getAllProducts())
+    dispatch(getAllBooks())
   }
 
   return (
     <div className={style.SearchBar}>
-        <form onSubmit={handleSubmit}>
-            <input
-              className={style.SearchInput}
-              type="search"
-              placeholder="Buscar..."
-              value={productName}
-              onChange={handleChange}
-            />
-        
-          <div className={style.DivButton}>
-            <button type="submit" className={style.SearchBarButton}><FaSearch /></button>
-            {/* <button className={style.ResetButton} onClick={handleReset}>Resetear</button> */}
-          </div>
-        </form> 
+      <form onSubmit={handleSubmit}>
+        <input
+          className={style.SearchInput}
+          type="search"
+          placeholder="Find your next story..."
+          value={productName}
+          onChange={handleChange}
+        />
+        <div className={style.DivButton}>
+          <button type="submit" className={style.SearchBarButton}><FaSearch /></button>
+        </div>
+      </form> 
     </div>
   )
 }

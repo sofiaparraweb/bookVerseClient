@@ -5,11 +5,7 @@ import style from "./TiendaItemsContenedor.module.css";
 const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
 
   return ( 
-    <div className={style.ContenedorTienda}>
-      {/* <div className={style.TiendaSideBar}>
-        <SideBar setCurrentPage={setCurrentPage}/>
-      </div>  */}
-      <div className={style.TiendaItemsContainer}> 
+      <div className="GridThreeColumns" style={{padding:"3rem"}}> 
         {ebooks?.length > 0 && ebooks?.map((book) => {
           return (
             <TiendaItems
@@ -19,12 +15,15 @@ const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
               title={book.title}
               price={book.price}
               description={book.description}
-              publisher={book.publisher}
+              publisher={book.Publishers?.map((p) => p.name).join(' , ')}
               pages={book.pages}
-              language={book.language}
-              category={book.category}
+              language={book.Languages?.map((l) => l.name).join(' , ')}
+              genres={book.Genres?.map((g) => g.name).join(' , ')}
+              reviews={book.Reviews}
+              stars={book.stars}
               publicationDate={book.publicationDate}
               image={book.image}
+              format={book.Formats?.map((f) => f.name).join(' , ')}
               // Reviews={prod.Reviews?.map((r) =>({
                 //     content: r.content,
                 //     rating: r.rating,
@@ -34,7 +33,6 @@ const TiendaItemsContenedor = ({ ebooks, setCurrentPage }) => {
           ); 
         })}
       </div>
-    </div>
   );
 }
 

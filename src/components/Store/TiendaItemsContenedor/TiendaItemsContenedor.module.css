@@ -1,10 +1,4 @@
-.ContenedorTienda{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.TiendaSideBar{
+/* .TiendaSideBar{
     position: fixed;
     top: 0;
     left: 0;
@@ -14,8 +8,8 @@
     width: 15%;
     background-color:#EB5D0B;
     overflow-x: hidden;
-}
-
+} */
+/* 
 .TiendaItemsContainer{
     display: flex;
     margin-top: 50px;
@@ -26,4 +20,4 @@
     width: 80%;
     height: fit-content;
     background-color: transparent;
-}
+} */

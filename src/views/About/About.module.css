@@ -1,0 +1,76 @@
+/* @import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+@import url('https://fonts.cdnfonts.com/css/qanelas-soft'); */
+
+.Introduccion{
+  padding: 45px;
+}
+
+.headerAboutLaGruta {
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 20px;
+  background-color: white;
+  margin-top: 10%;
+}
+
+.headerAboutLaGruta h1 {
+  font-size: 65px;
+  margin-bottom: 8px;
+  font-family: 'Wicked Grit', sans-serif;
+  color: #124476;
+}
+
+.headerAboutLaGruta p {
+  font-size: 35px;
+  color: #b38a83;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+}
+
+.TextoAbout {
+  padding-bottom: 20px;
+  background-color: rgb(242, 217, 152, 0.77);
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: black;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+}
+
+.TextoAbout p {
+  font-size: 25px;
+  line-height: 1.5;
+  padding: 20px 50px;
+  text-align: justify;
+  text-indent: 30px;
+  color: black;
+}
+
+.TextoAbout h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.donationButton {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.donationButton:hover {
+  background-color: #e64a19;
+}
+
+.imgBV{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80vh;
+  margin: 0 auto;
+  flex-direction: row;
+}

@@ -1,8 +1,47 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
+import axios from "axios";
+import { useState, useEffect } from 'react';
 import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule} from "react-icons/ai";
+import Stars from "./Stars"
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./BookDetail.css";
 
-const BookDetail = () => {
+
+const Detail = () => {
+    
+    const { id } = useParams();
+    const { isAuthenticated } = useAuth0();
+    const [book, setBook] = useState({});
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get(`http://localhost:3001/books/${id}`);
+                setBook(response.data);
+            } catch (error) {
+                console.error("Error fetching book details:", error);
+            }
+        }
+        fetchData(); // Llamar a la función para que realice la solicitud
+    }, [id]);
+
+    //const dispatch = useDispatch();
+    // console.log(bookDetail);
+
+    // const [currentImage, setCurrentImage] = useState(images[0]);
+    // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    // const userName = useSelector(state => state.LocalPersist.userInfo.name);
+    // const email = useSelector(state => state.LocalPersist.userInfo.email);
+
+    // useEffect(()=>{
+    //     dispatch(getCarrito(id_books))
+    // },[dispatch])
+
+    // const handleImageChange = (imageUrl) => {
+    //     setCurrentImage(imageUrl);
+    // };
 
       // const handleSubmit = async (event) => {
   //   event.preventDefault()
@@ -57,63 +96,72 @@ const BookDetail = () => {
   //   }
   // }
 
-    const title = "hola"
     return (
         <form>
         {/* <form onSubmit={handleSubmit}> */}
             <div className="DetailContainer">
-                <PageNavigation title={title}/>
-                Este es el detalle de los productos
+                <PageNavigation title={book?.title}/>
                 <div className="ContainerContainer">
-                    <div className="GridTwoColumns">
+                    <div className="GridTwoColumns" >
                         <div className="DetailImages">
-                            <img src="https://m.media-amazon.com/images/I/517l4WXFFhL.jpg" alt="bookImage"></img>
+                            <img src={book.image} alt="bookImage"></img>
                         </div>
 
-                        {/* <div className="GridFourColumns">
-                            {Image.map((currEl, index) => {
+                        {/* <div className="images-column">
+                            {Image.map((imageUrl, index) => {
                                 return(
-                                    <figure>
-                                        <img src={currEl.image} alt={currEl.title} className="BoxImageStyle" key={index} onClick={() => setMainImage(curElm)}></img>
-                                    </figure>
+                                    <img>
+                                        key={index} 
+                                        src={imageUrl} 
+                                        alt={imageUrl} 
+                                        className={`thumbnail ${currentImage === imageUrl ? "selected" : ""}`} 
+                                        onClick={() => handleImageChange(imageUrl)}
+                                    </img>
                                 )
                             })}
                         </div>
-                        <div className="main-screen">
-                            <img src={mainImage.url} alt={mainImage.filename} />
+                        <div className="current-image-column">
+                            <img src={currentImage} alt="Current Product" className="current-image"/>
                         </div> */}
 
                         <div className="DetailData">
-                            <h2>title</h2>
-                            <p>by author | Format</p>
-                            <p>stars</p>
-                            <p>reviews</p>
-                            <p className="DetailPrice">$ price</p>
-                            <p>description</p>
-                            <hr></hr>
+                            <h2>{book.title}</h2>
+                            <p>
+                                <span className="outerTextStyle">by</span> 
+                                <span className="innerTextStyle"> {book.author}</span> 
+                                <span className="outerTextStyle" style={{padding:"0 1rem"}}>|</span> 
+                                <span className="outerTextStyle">Format </span> 
+                                <span className="innerTextStyle"> {book.Formats?.map((f) => f.name).join(' , ')}</span>
+                            </p>
+                            {/* <div style={{display:"flex", flexDirection:"row"}}>    
+                                <Stars stars={book.stars} reviews={book.reviews} />
+                            </div> */}
+                            <p style={{color:"grey"}}>USD {book.price},00</p>
+                            <p >{book.description}</p>
+                            <hr className="hrStyle"></hr>
                             <div className="DetailDetail">
                                 <div className="DetailIcons">
                                     <p>pages</p>
                                     <AiTwotoneContainer className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{book.pages}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Language</p>
                                     <AiOutlineGlobal className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{book.Languages?.map((l) => l.name).join(' , ')}</p>
                                 </div>
                                 <div className="DetailIcons">
-                                    <p>Publisher</p>
+                                    <p>publisher</p>
                                     <AiOutlineRead className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{book.Publishers?.map((p) => p.name).join(' , ')}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Publication date</p>
                                     <AiOutlineSchedule className="IconStyleDetail"/>
-                                    <p></p>
+                                    <p style={{fontWeight:"bold"}}>{book.publicationDate}</p>
                                 </div>
                             </div>
-                            <hr></hr>
+                            <hr className="hrStyle"></hr>
                             <div className="Botonera">
                                 <div className="BotoneraSumaResta">
                                     <button className="ButtonsSumaResta" value="less" >-</button>
@@ -123,12 +171,16 @@ const BookDetail = () => {
                                         Cantidad
                                     <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button> */}
                                 </div>
-                                <button className="Buttons" >
-                                    Add to Cart
-                                </button>
-                                {/* <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='20px'>
-                                    Add to Cart
-                                </button> */}
+                                {isAuthenticated ? (
+                                    <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)}>
+                                        Add to Cart
+                                    </button>
+                                ) : (
+                                    <button className="Buttons" disabled>       agregar mensaje error
+                                        Add to Cart
+                                    </button>
+                                )}
+
                             </div>
                         </div>
                     </div>
@@ -138,4 +190,4 @@ const BookDetail = () => {
     )
 }
 
-export default BookDetail;
+export default Detail;
