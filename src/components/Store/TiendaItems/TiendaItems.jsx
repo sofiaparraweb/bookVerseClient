@@ -11,8 +11,6 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
   // const dispatch = useDispatch();
   // const books = useSelector((state) => state.LocalPersist.Carrito.books);
   // const [quantity, setQuantity] = useState(0);
-
-  const firstImage = image[0];
   
   // useEffect(()=>{
   //   dispatch(getCart(user_id))

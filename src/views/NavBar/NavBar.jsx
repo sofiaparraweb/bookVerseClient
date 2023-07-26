@@ -157,7 +157,7 @@ const NavBar = ({ isAuthenticated }) => {
             </NavLink>
 
             <div className="wishlistNav">
-              <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
+              <NavLink to="/Wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
                 {isWishlistPage ? (
                   <img src={iconbookopen} alt="open" style={{width:"1.8rem", height:"1.8rem", margin:"0 2rem"}}/>
                 ) : (  

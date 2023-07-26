@@ -14,13 +14,6 @@
 
 
 /* --------------------------------------------------------Contenido-------------------------------------------------------- */
-.booksAvailable {
-  display: flex;
-  align-items: center;
-  color: grey;
-  font-size: 0.8rem;
-}
-
 .OrderStore{
   display: flex;
   justify-content: flex-end;

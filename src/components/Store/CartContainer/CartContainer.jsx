@@ -25,7 +25,7 @@ const CarritoContainer = () => {
                                 key={prod.id} 
                                 id={prod.id}
                                 image={prod.image}
-                                name={prod.name}
+                                title={prod.title}
                                 price={prod.price}
                                 quantityProd={prod.Cart_Products.quantity}
                             />
