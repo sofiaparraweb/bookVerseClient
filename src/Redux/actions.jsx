@@ -4,8 +4,9 @@ import axios from "axios";
 //actions books
 export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
-// export const GET_BOOK_TYPE = "GET_BOOK_TYPE";
-// export const GET_ALL_BOOKS_TYPES = "GET_ALL_BOOKS_TYPES";
+export const GET_BOOK_GENRE = "GET_BOOK_GENRE";
+export const GET_BOOK_LANGUAGE = "GET_BOOK_LANGUAGE";
+export const GET_BOOK_PUBLISHER = "GET_BOOK_PUBLISHER";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const FILTER_BY_FORMAT = "FILTER_BY_FORMAT";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
@@ -71,19 +72,27 @@ export const getDetailBooks = (id) =>{
   }
 }
 
-// export const getBookType = () => {
-//   return async (dispatch) => {
-//     const resp = await axios(`${url}/books/`);
-//     return dispatch({ type: GET_BOOK_TYPE, payload: resp.data });
-//   };
-// };
+export const getBookGenre = () => {
+  return async (dispatch) => {
+    const resp = await axios(`${url}/genre/`);
+    return dispatch({ type: GET_BOOK_GENRE, payload: resp.data });
+  };
+};
 
-// export const getAllBooksTypes = () => {
-//   return async (dispatch) => {
-//     const resp = await axios(`${url}/books/`);
-//     return dispatch({ type: GET_ALL_BOOKS_TYPES, payload: resp.data });
-//   };
-// };
+export const getBookLanguage = () => {
+  return async (dispatch) => {
+    const resp = await axios(`${url}/language/`);
+    return dispatch({ type: GET_BOOK_LANGUAGE, payload: resp.data });
+  };
+};
+
+export const getBookPublisher = () => {
+  return async (dispatch) => {
+    const resp = await axios(`${url}/publisher/`);
+    return dispatch({ type: GET_BOOK_PUBLISHER, payload: resp.data });
+  };
+};
+
 
 //------------------------------------filtros y ordenamiento
 export const searchByName = (name) => {

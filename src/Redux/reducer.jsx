@@ -1,8 +1,9 @@
 // Importamos las acciones
 import {
   GET_ALL_BOOKS,
-//   GET_BOOK_TYPE,
-//   GET_ALL_BOOKS_TYPES,
+  GET_BOOK_GENRE,
+  GET_BOOK_LANGUAGE,
+  GET_BOOK_PUBLISHER,
   FILTER_BY_GENRE,
   FILTER_BY_FORMAT,
   ORDER_BY_PRICE,
@@ -33,7 +34,9 @@ import {
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-  bookTypes: [],
+  bookGenres: [],
+  bookLanguage: [],
+  bookPublisher: [],
   books: [],
   cart: [],
   orders: [],
@@ -58,18 +61,26 @@ const reducer = (state = initialState, action) => {
         books: action.payload,
         loading: false,
       };
-//     case GET_BOOK_TYPE:
-//       return {
-//         ...state,
-//         bookTypes: action.payload,
-//         loading: false,
-//       };
-//     case GET_ALL_BOOKS_TYPES:
-//       return {
-//         ...state,
-//         bookTypes: action.payload,
-//         loading: false,
-//       };
+    case GET_BOOK_GENRE:
+      return {
+        ...state,
+        bookGenres: action.payload,
+        loading: false,
+      };
+    case GET_BOOK_LANGUAGE:
+      return {
+        ...state,
+        bookLanguage: action.payload,
+        loading: false,
+      };
+    case GET_BOOK_PUBLISHER:
+      return {
+        ...state,
+        bookPublisher: action.payload,
+        loading: false,
+      };
+
+
     case FILTER_BY_GENRE:
       return {
         ...state,
