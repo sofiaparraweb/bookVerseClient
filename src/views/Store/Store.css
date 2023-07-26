@@ -14,13 +14,17 @@
 
 
 /* --------------------------------------------------------Contenido-------------------------------------------------------- */
-.BooksView{
+.booksAvailable {
+  display: flex;
+  align-items: center;
+  color: grey;
+  font-size: 0.8rem;
 }
 
 .OrderStore{
   display: flex;
   justify-content: flex-end;
-  width: 80%;
+  width: 100%;
   margin: 1rem 0;
 }
 
@@ -32,6 +36,11 @@
 }
 
 /* Responsive para menos de 768px */
+@media (max-width: 1080px) {
+    .ContainerGridFilterColumn {
+      padding: 6rem 2rem;
+    }
+  }
 @media (max-width: 767px) {
     .SearchOrder {
       position: static;
@@ -40,11 +49,17 @@
       width: 100%;
       left: 0;
     }
+    .ContainerGridFilterColumn {
+      padding: 7rem 2rem;
+    }
   }
-  
+
   /* Responsive para menos de 480px */
   @media (max-width: 479px) {
     .SearchOrder {
       padding: 10px;
+    }
+    .ContainerGridFilterColumn {
+      padding: 9rem 2rem;
     }
   }

@@ -1,18 +1,25 @@
 import { useState} from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation  } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import bookVerse from "../../assets/imgNavbar/logoBook.svg";
 import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
 import style from "./NavBar.module.css";
 import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
 import { FaBars, FaTimes } from "react-icons/fa";
+import iconbookclose from "../../assets/imgNavbar/iconbookclose.png"
+import iconbookopen from "../../assets/imgNavbar/iconbookopen.png"
+
 
 const NavBar = ({ isAuthenticated }) => {
+
+  const location = useLocation();
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(false);
+  
+  const isWishlistPage = location.pathname === '/wishlist';
 
   const toggleNavbar = () => {
     setIsNavVisible(!isNavVisible);
@@ -66,7 +73,7 @@ const NavBar = ({ isAuthenticated }) => {
           <NavLink
             to="/about" // Ruta a la que redirige el enlace
             className={style.link}
-            activeClassName="active"
+            activenlassname="active"
             id="conocenosNav"
           >
             ABOUT US
@@ -82,7 +89,7 @@ const NavBar = ({ isAuthenticated }) => {
                   <NavLink
                     to="/historia"
                     className={style.dropdownOption}
-                    activeclassname="active"
+                    activenlassname="active"
                     id="nuestraHistoria"
                     onClick={handleClick}
                   >
@@ -95,7 +102,7 @@ const NavBar = ({ isAuthenticated }) => {
           <NavLink
             to="/store"
             className={style.link}
-            activeclassname="active"
+            activenlassname="active"
             id="tiendaNav"
             onClick={handleClick}
           >
@@ -106,7 +113,7 @@ const NavBar = ({ isAuthenticated }) => {
             <NavLink
               to="/profile"
               className={`${style.linkContainer} ${style.link}`}
-              activeClassName={style.activeLink}
+              activenlassname={style.activeLink}
               id="perfilNav"
               onClick={handleClick}
             >
@@ -117,7 +124,7 @@ const NavBar = ({ isAuthenticated }) => {
             <NavLink
               to="/dashboard"
               className={`${style.linkContainer} ${style.link}`}
-              activeClassName={style.activeLink}
+              activenlassname={style.activeLink}
               id="administradorNav"
               onClick={handleClick}
             >
@@ -142,12 +149,23 @@ const NavBar = ({ isAuthenticated }) => {
                 isLoggingIn ? style.loggingIn : style.loginButton
               }`}
             >
-              <BiSolidUser className='iconPerson' /> 
+              <BiSolidUser className='iconPerson' style={{color: "#17424b", width:"1.4rem", height:"1.4rem", margin:"0 2rem"}}/> 
             </button>
           )}
-          <h1 style={{ color: "#000804", margin: "20px", textAlign: "center" }}>
-            <BiSolidCartAdd />
-          </h1>
+            <NavLink to="/cart">
+              <BiSolidCartAdd style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem"}}/>
+            </NavLink>
+
+            <div className="wishlistNav">
+              <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
+                {isWishlistPage ? (
+                  <img src={iconbookopen} alt="open" style={{width:"1.8rem", height:"1.8rem", margin:"0 2rem"}}/>
+                ) : (  
+                  <img src={iconbookclose} alt="close" style={{width:"1.6rem", height:"1.6rem", margin:"0 2rem"}}/>
+                )}
+                <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
+              </NavLink>
+            </div>
         </div>
         {/* <button
           className={`${style["nav-btn"]} ${style["nav-close-btn"]}`}

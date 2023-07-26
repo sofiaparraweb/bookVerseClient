@@ -1,7 +1,7 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
 import axios from "axios";
 import { useState, useEffect } from 'react';
-import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule} from "react-icons/ai";
+import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule, AiOutlineHeart, AiFillHeart} from "react-icons/ai";
 import Stars from "./Stars"
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,11 +14,32 @@ const Detail = () => {
     const { id } = useParams();
     const { isAuthenticated } = useAuth0();
     const [book, setBook] = useState({});
+    const [isFav, setIsFav] = useState(false);
 
+    const handleFavorite = () => {
+        if (isFav) {
+            setIsFav(false);
+            // removeFavorite(id);
+        } else {
+            setIsFav(true);
+            // addFavorites({ id, title, genres, image });
+        }
+    };
+
+    // useEffect(() => {
+    //     myFavorites.forEach((fav) => {
+    //       if (fav.id === id) {
+    //         setIsFav(true);
+    //       }
+    //     });
+    //   }, [myFavorites, id]);
+
+    const url = "https://bookverse-m36k.onrender.com";
+    // const url = "http://localhost:3001";
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`http://localhost:3001/books/${id}`);
+                const response = await axios.get(`${url}/books/${id}`);
                 setBook(response.data);
             } catch (error) {
                 console.error("Error fetching book details:", error);
@@ -28,9 +49,7 @@ const Detail = () => {
     }, [id]);
 
     //const dispatch = useDispatch();
-    // console.log(bookDetail);
 
-    // const [currentImage, setCurrentImage] = useState(images[0]);
     // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
     // const userName = useSelector(state => state.LocalPersist.userInfo.name);
     // const email = useSelector(state => state.LocalPersist.userInfo.email);
@@ -38,10 +57,6 @@ const Detail = () => {
     // useEffect(()=>{
     //     dispatch(getCarrito(id_books))
     // },[dispatch])
-
-    // const handleImageChange = (imageUrl) => {
-    //     setCurrentImage(imageUrl);
-    // };
 
       // const handleSubmit = async (event) => {
   //   event.preventDefault()
@@ -125,7 +140,21 @@ const Detail = () => {
                         </div> */}
 
                         <div className="DetailData">
-                            <h2>{book.title}</h2>
+                            <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}} >
+                                <h2>{book.title}</h2>
+                                <div style={{display:"flex", flexDirection:"row"}}>
+                                    {isFav ? (
+                                        <button onClick={handleFavorite} className="HeartFav">
+                                            <AiFillHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
+                                        </button>
+                                    ) : (
+                                        <button onClick={handleFavorite} className="HeartFav">
+                                            <AiOutlineHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
+                                        </button>
+                                    )}
+                                    <p style={{color:"grey", paddingLeft:"1rem"}}>Add to wishlist</p>
+                                </div>
+                            </div>
                             <p>
                                 <span className="outerTextStyle">by</span> 
                                 <span className="innerTextStyle"> {book.author}</span> 

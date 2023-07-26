@@ -13,6 +13,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
+  const allbooks = useSelector((state) => state.LocalPersist.allbooks);
   const [isLoading, setIsLoading] = useState(false);
   const isProfileCreatedRef = useRef(false);
 
@@ -52,7 +53,7 @@ const Home = () => {
   return (
     <div className="homeContainer">
       <Header />
-      <NewReleases />
+      <NewReleases allbooks={allbooks}/>
       <PreOrder />
       <Services />
       <Suscription />
