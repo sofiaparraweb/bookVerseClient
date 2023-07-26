@@ -9,9 +9,11 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
 import Store from "./views/Store/Store";
 import BookDetail from "./views/Detail/BookDetail";
+import Cart from "./views/Cart/Cart";
 import Profile from './views/Profile/Profile';
 import About from './views/About/About';
 import Equipo from './views/About/Equipo/Equipo';
+import Wishlist from "./views/Wishlist/Wishlist";
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -39,6 +41,8 @@ const App = () => {
           <Route path="/equipo" element={<Equipo/>}/>
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:id" element={<BookDetail />} /> 
+          <Route path="/cart" element={<Cart />} /> 
+          <Route path="/wishlist" element={<Wishlist />} /> 
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
         <Footer />

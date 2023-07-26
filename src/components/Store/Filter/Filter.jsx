@@ -32,6 +32,7 @@ const Filter = ({ setCurrentPage }) => {
   return (
     <div className="FilterContainer">
       {/* <AiOutlineFilter className="IconFilter" /> */}
+      <h1>{activeFilter}</h1>
       <h1 className="FilterTitle"> Genres</h1>
       <ul className="ContainerButtonFilter">
         <li className="FilterLI">
@@ -54,29 +55,87 @@ const Filter = ({ setCurrentPage }) => {
           )
         })}         */}
       </ul>
-      <h1 className="FilterTitle"> Format</h1>
-      {/* <form action="#">
-        <select name="BookFormat" id="BookFormat" className="BookFormat">
-          <option onClick={handleReset} key={0} value="All Formats">All Formats</option>
-          <option onClick={() => handleFilter("EPUB")} key={0} value="EPUB">EPUB</option>
-          <option onClick={() => handleFilter("PDF")} key={1} value="PDF">PDF</option>
-          <option onClick={() => handleFilter("MOBI")} key={1} value="MOBI">MOBI</option>
-          <option onClick={() => handleFilter("AZW3")} key={1} value="AZW3">AZW3</option>
-          <option onClick={() => handleFilter("CBZ")} key={1} value="CBZ">CBZ</option>
+      <h1 className="FilterTitle"> Language</h1>
+      <h1 className="FilterTitle"> Author</h1>
+      <form action="#" className="BookFormatContainer">
+        <select 
+          name="BookFormat" 
+          id="BookFormat" 
+          className="BookFormat"
+          value={activeFilter}
+          onChange={(e) => handleFilter(e.target.value)}
+        >
+          <option value="EPUB">EPUB</option>
+          <option value="PDF">PDF</option>
+          <option value="MOBI">MOBI</option>
+          <option value="AZW3">AZW3</option>
+          <option value="CBZ">CBZ</option>
         </select>
-      </form> */}
-      <ul className="ContainerButtonFilter">
-        <li className="FilterLI">
-          <button onClick={handleReset} className={activeFilter === null ? "ActiveButton" : ''}>All Formats</button>
-          <button onClick={() => handleFilter("EPUB")} className={activeFilter === "EPUB" ? "ActiveButton" : ''}> EPUB</button>
-          <button onClick={() => handleFilter("PDF")} className={activeFilter === "PDF" ? "ActiveButton" : ''}> PDF</button>
-          <button onClick={() => handleFilter("MOBI")} className={activeFilter === "MOBI" ? "ActiveButton" : ''}> MOBI</button>
-          <button onClick={() => handleFilter("AZW3")} className={activeFilter === "AZW3" ? "ActiveButton" : ''}> AZW3</button>
-          <button onClick={() => handleFilter("CBZ")} className={activeFilter === "CBZ" ? "ActiveButton" : ''}> CBZ</button>
-        </li>
-      </ul>
+      </form>
+      <h1 className="FilterTitle"> Format</h1>
+      <div className="FilterFormatContainer">
+        <button
+          onClick={() => handleFilter("EPUB")}
+          className={activeFilter === "EPUB" ? "FormatActive" : "FilterOption"}
+          style={{marginRight:"0.5rem"}}
+        > EPUB
+        </button>
+        <button
+          onClick={() => handleFilter("PDF")}
+          className={activeFilter === "PDF" ? "FormatActive" : "FilterOption"}
+          style={{marginRight:"0.5rem"}}
+        > PDF
+        </button>
+        <button
+          onClick={() => handleFilter("MOBI")}
+          className={activeFilter === "MOBI" ? "FormatActive" : "FilterOption"}
+          style={{marginRight:"0.5rem"}}
+        > MOBI
+        </button>
+        <button
+          onClick={() => handleFilter("AZW3")}
+          className={activeFilter === "AZW3" ? "FormatActive" : "FilterOption"}
+          style={{marginRight:"0.5rem"}}
+        > AZW3
+        </button>
+        <button
+          onClick={() => handleFilter("CBZ")}
+          className={activeFilter === "CBZ" ? "FormatActive" : "FilterOption"}
+        > CBZ
+        </button>
+      </div>
+      <button onClick={handleReset} className="Buttons" style={{margin:"auto", marginTop:"2rem", padding:"1rem 1.5rem"}} > Clear Filters </button>
     </div>
   );
 };
 
 export default Filter;
+
+// FORMAT
+// {colorsData.map((curColor, index) => {
+//   if (curColor === "all") {
+//     return (
+//       <button
+//         key={index}
+//         type="button"
+//         value={curColor}
+//         name="color"
+//         className="color-all--style"
+//         onClick={updateFilterValue}>
+//         all
+//       </button>
+//     );
+//   }
+//   return (
+//     <button
+//       key={index}
+//       type="button"
+//       value={curColor}
+//       name="color"
+//       style={{ backgroundColor: curColor }}
+//       className={color === curColor ? "btnStyle active" : "btnStyle"}
+//       onClick={updateFilterValue}>
+//       {color === curColor ? <FaCheck className="checkStyle" /> : null}
+//     </button>
+//   );
+// })}

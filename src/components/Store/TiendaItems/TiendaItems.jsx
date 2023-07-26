@@ -31,12 +31,18 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
   //   setReview({ ...review, [property]: value});
   // }
 
+  
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  
+
   return (
     <div className="Card" >
       <Link to={`/detail/${id}`} style={{textDecoration:"none", fontWeight:"400", color:"#17424b"}}>
         <div className="BookCard">
           <figure className="figureStore">
-            <img src={image} alt="image"/>
+            <img src={image} alt="image" onClick={handleClick}/>
           </figure>
         </div>
         <div className="BookCard-data">
