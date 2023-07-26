@@ -181,32 +181,32 @@ return (
           {...register("country", { required: true })}
         />
         {errors.country && <span className="error-message">Required field</span>}
-     <div className="button-group">
-          {!editing && (
-            <Button
-              type="button"
-              className="edit-button"
-              onClick={() => setEditing(true)}
-            >
-              Edit
-            </Button>
-          )} 
-           {editing && ( 
-            <div>
-              <Button type="submit" className="save-button">
-                Save
-              </Button>
+        <div className="button-group">
+            {!editing && (
               <Button
                 type="button"
-                className="cancel-button"
-                onClick={() => setEditing(false)}
+                className="edit-button"
+                onClick={handleEditProfile}
               >
-                Cancel
+                Edit
               </Button>
-            </div>
-           )}
-        </div>
-      </form>
+            )}
+            {editing && (
+              <div>
+                <Button type="submit" className="save-button">
+                  Save
+                </Button>
+                <Button
+                  type="button"
+                  className="cancel-button"
+                  onClick={handleCancelEdit}
+                >
+                  Cancel
+                </Button>
+              </div>
+            )}
+          </div>
+        </form>
     </div>
   </div>
 </ChakraProvider>

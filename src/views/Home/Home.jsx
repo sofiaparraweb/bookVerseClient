@@ -16,6 +16,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isProfileCreatedRef = useRef(false);
 
+  
   useEffect(() => {
     if (isAuthenticated && user && !isProfileCreatedRef.current) {
       setIsLoading(true);
@@ -34,8 +35,9 @@ const Home = () => {
             return dispatch(getUser(existingUser.userId));
           }
         })
-        .then(() => {
+        .then((userInfo) => {
           setIsLoading(false);
+          console.log(userInfo)
         })
         .catch((error) => {
           setIsLoading(false);
@@ -45,6 +47,7 @@ const Home = () => {
       isProfileCreatedRef.current = true;
     }
   }, [dispatch, isAuthenticated, user]);
+
 
   return (
     <div className="homeContainer">

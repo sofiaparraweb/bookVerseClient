@@ -35,16 +35,17 @@ const Filter = ({ setCurrentPage }) => {
       <h1 className="FilterTitle"> Genres</h1>
       <ul className="ContainerButtonFilter">
         <li className="FilterLI">
-          <button onClick={handleReset} className={activeFilter === null ? "ActiveButtonNull" : ''}>All books</button>
-          <button onClick={() => handleFilter("Ficción")} className={activeFilter === "Ficción" ? "ActiveButton" : ''}> Fiction </button>
-          <button onClick={() => handleFilter("Novela")} className={activeFilter === "Novela" ? "ActiveButton" : ''}> Novels</button>
-          <button onClick={() => handleFilter("Ciencia ficción")} className={activeFilter === "Ciencia ficción" ? "ActiveButton" : ''}> Science fiction</button>
-          <button onClick={() => handleFilter("Fantasía")} className={activeFilter === "Fantasía" ? "ActiveButton" : ''}> Fantasy</button>
-          <button onClick={() => handleFilter("Misterio")} className={activeFilter === "Misterio" ? "ActiveButton" : ''}> Mystery</button>
-          <button onClick={() => handleFilter("Romance")} className={activeFilter === "Romance" ? "ActiveButton" : ''}> Romance</button>
-          <button onClick={() => handleFilter("Aventura")} className={activeFilter === "Aventura" ? "ActiveButton" : ''}> Adventure</button>
-          <button onClick={() => handleFilter("Historia")} className={activeFilter === "Historia" ? "ActiveButton" : ''}> History</button>
-          <button onClick={() => handleFilter("Poesía")} className={activeFilter === "Poesía" ? "ActiveButton" : ''}> Poetry</button>
+        <button onClick={handleReset} className={activeFilter === null ? "ActiveButtonNull" : ''}>All books</button>
+<button onClick={() => handleFilter("Fiction")} className={activeFilter === "Fiction" ? "ActiveButton" : ''}>Fiction</button>
+<button onClick={() => handleFilter("Novel")} className={activeFilter === "Novel" ? "ActiveButton" : ''}>Novel</button>
+<button onClick={() => handleFilter("Science Fiction")} className={activeFilter === "Science Fiction" ? "ActiveButton" : ''}>Science fiction</button>
+<button onClick={() => handleFilter("Fantasy")} className={activeFilter === "Fantasy" ? "ActiveButton" : ''}>Fantasy</button>
+<button onClick={() => handleFilter("Mystery")} className={activeFilter === "Mystery" ? "ActiveButton" : ''}>Mystery</button>
+<button onClick={() => handleFilter("Romance")} className={activeFilter === "Romance" ? "ActiveButton" : ''}>Romance</button>
+<button onClick={() => handleFilter("Adventure")} className={activeFilter === "Adventure" ? "ActiveButton" : ''}>Adventure</button>
+<button onClick={() => handleFilter("History")} className={activeFilter === "History" ? "ActiveButton" : ''}>History</button>
+<button onClick={() => handleFilter("Poetry")} className={activeFilter === "Poetry" ? "ActiveButton" : ''}>Poetry</button>
+
         </li>
         {/* {allProductTypes && allProductTypes?.map((p)=>{
           return (

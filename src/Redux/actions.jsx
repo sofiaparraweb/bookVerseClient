@@ -402,7 +402,7 @@ export const formSuscription = (formData) => {
       });
       console.log('funcion email footer')
     } catch (error) {
-      console.log("estoy en las actions", error);
+      console.log(error);
     }
   };
 };

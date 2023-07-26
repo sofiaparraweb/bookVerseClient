@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./About.module.css";
-import Equipo from "./Equipo/Equipo";
+import Team from "./Team/Team";
 import imgabout from "../../assets/imgGral/sobreNosotros.webp"
 
 
@@ -8,8 +8,7 @@ const About = () => {
   return (
     <div className={style.container}>
       <header className={style.headerAboutLaGruta}>
-        <h1>Sobre Nosotros</h1>
-        <p>Un espacio para construir juntos</p>
+        <h1>About us</h1>
       </header>
       <img
             src={imgabout}
@@ -31,7 +30,7 @@ const About = () => {
           Maecenas maximus, odio id posuere convallis, purus tellus euismod ligula, eget euismod libero risus et eros. Sed nec risus ultricies, tincidunt orci nec, sollicitudin odio. Mauris nec semper metus.
         </p>
       </div>
-      <Equipo />
+      <Team />
     </div>
   );
 };

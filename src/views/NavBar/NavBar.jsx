@@ -47,7 +47,7 @@ const NavBar = ({ isAuthenticated }) => {
     window.scrollTo({ top: 0 });
   };
 
-  const isAdmin = isAuthenticated && user.email === "lagrutacdi@gmail.com";
+  const isAdmin = isAuthenticated && user.email === "bookverseweb@gmail.com";
   return (
     <>
       <nav className={style.navContainer} >
@@ -102,7 +102,7 @@ const NavBar = ({ isAuthenticated }) => {
             OUR BOOKS
           </NavLink>
 
-          {/* {isAuthenticated ? (
+          {isAuthenticated ? (
             <NavLink
               to="/profile"
               className={`${style.linkContainer} ${style.link}`}
@@ -112,7 +112,7 @@ const NavBar = ({ isAuthenticated }) => {
             >
               PROFILE
             </NavLink>
-          ) : null} */}
+          ) : null}
           {isAdmin && (
             <NavLink
               to="/dashboard"
