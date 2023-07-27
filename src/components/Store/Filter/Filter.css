@@ -20,7 +20,7 @@
     margin-top: 0.5rem;
 }
 
-/* --------------------------------SubCategorias-------------------------------- */
+/* --------------------------------GENRES-------------------------------- */
 .ContenedorBotonesFiltro {
     list-style: none;
 }
@@ -35,7 +35,7 @@
     border: none;
     background-color: transparent;
     color: grey;
-    padding: 8px 15px;
+    padding: 4px 15px;
     cursor: pointer;
     display: block;
     transition: background-color 0.5s ease;
@@ -53,6 +53,32 @@
 .ActiveButtonNull {
     color: black;
 }
+
+/* --------------------------------PUBLISHER-------------------------------- */
+.BookPublisherContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.BookPublisher{
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    color: grey;
+    background-color: transparent;
+    outline: none;
+    margin-bottom: 1rem;
+}
+.BookPublisher:hover {
+    border: none;
+}
+
+.BookPublisher option{
+    padding: 1rem 0;
+    background-color: white;
+    border:none;
+}
+
 
 /* --------------------------------FORMAT-------------------------------- */
 .BookFormatContainer {
