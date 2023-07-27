@@ -38,8 +38,12 @@ const Store = () => {
         <Filter />
       </div>
       <section className="BooksView">
-        <div className="OrderStore">   
-          <Order setCurrentPage={setCurrentPage}/>
+        <div className="GridThreeColumns" style={{gridTemplateColumns:"1fr auto 1fr"}}>
+          <div>{' '}</div>
+          <div className="booksAvailable">{ebooks.length} {' '} books available</div>   
+          <div className="OrderStore">
+            <Order setCurrentPage={setCurrentPage}/>
+          </div>
         </div>
         <div>
           <TiendaItemsContenedor ebooks={currentBooks} setCurrentPage={setCurrentPage}/>

@@ -17,9 +17,10 @@
     text-transform: uppercase;
     color: #17424b;
     padding: 1rem;
+    margin-top: 0.5rem;
 }
 
-/* --------------------------------SubCategorias-------------------------------- */
+/* --------------------------------GENRES-------------------------------- */
 .ContenedorBotonesFiltro {
     list-style: none;
 }
@@ -34,7 +35,7 @@
     border: none;
     background-color: transparent;
     color: grey;
-    padding: 8px 15px;
+    padding: 4px 15px;
     cursor: pointer;
     display: block;
     transition: background-color 0.5s ease;
@@ -51,4 +52,71 @@
 
 .ActiveButtonNull {
     color: black;
+}
+
+/* --------------------------------PUBLISHER-------------------------------- */
+.BookPublisherContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.BookPublisher{
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    color: grey;
+    background-color: transparent;
+    outline: none;
+    margin-bottom: 1rem;
+}
+.BookPublisher:hover {
+    border: none;
+}
+
+.BookPublisher option{
+    padding: 1rem 0;
+    background-color: white;
+    border:none;
+}
+
+
+/* --------------------------------FORMAT-------------------------------- */
+.BookFormatContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1rem;
+}
+
+.BookFormat{
+    font-size: 0.8rem;
+    padding: 0.3rem 1.2rem;
+    border: none;
+    color: grey;
+    background-color: transparent;
+    outline: none;
+}
+.BookFormat:hover {
+    border: none;
+}
+
+.BookFormat option{
+    padding: 1rem 0;
+    background-color: white;
+    border:none;
+}
+
+
+
+
+.FilterOption{
+    font-size: 0.6rem;
+    height: 2.1rem;
+    width: 2.1rem;
+    border-radius: 50px;
+    border: 2px solid #17424b;
+}
+.FilterOption:hover,
+.FormatActive {
+    background-color: #17424b !important;
+    color:white !important;
 }

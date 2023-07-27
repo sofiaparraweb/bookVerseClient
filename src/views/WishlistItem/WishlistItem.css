@@ -1,0 +1,57 @@
+.WishlistContainer{
+    padding: 4rem 10rem;
+    margin-bottom: 10rem;
+}
+
+/* ------------------------------------CONTENT------------------------------------ */
+.WishlistContent{
+    padding: 1.5rem;
+    border-left: 1px solid silver;
+}
+
+.MyWishlist{
+    font-size: 1.5rem;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 400;
+    border-bottom: 1px solid silver;
+    padding-bottom: 1.5rem; 
+}
+
+/* ------------------------------------Image */
+.figureStoreWish{
+    margin: auto;
+    margin-top: 0.4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18rem;
+    width: 12.6rem;
+    overflow:hidden;
+    transition: all 0.5s linear;
+}
+  
+.figureStoreWish img {
+    transition: 1s ease;
+    border: none;
+    max-width: 100%; /* Establecer el ancho máximo para ajustar la imagen */
+    max-height: 100%; 
+}
+.figureStoreWish img:hover {
+    transition: 1s ease;
+    -webkit-transform:scale(1.05);transform:scale(1.05);
+}
+
+/* ------------------------------------middle */
+.WishlistInfoContent{
+    padding: 2rem; 
+}
+.WishlistInfoContent h2{
+    max-width: 100%;
+    word-wrap: break-word;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+
+/* ------------------------------------delete */
