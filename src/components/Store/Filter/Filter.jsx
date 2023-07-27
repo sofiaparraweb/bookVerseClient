@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {filterByGenre, filterByFormat, getAllBooks} from "../../../Redux/actions";
+import {filterByGenre, filterByFormat, getAllBooks, getBookGenre, getBookLanguage, getBookPublisher} from "../../../Redux/actions";
 import { AiOutlineFilter } from "react-icons/ai";
 import "./Filter.css"
 
 const Filter = ({ setCurrentPage }) => {
 
   const dispatch = useDispatch();
-  //const allProductTypes = useSelector(state => state.LocalPersist.allProductTypes);
   const books = useSelector(state => state.LocalPersist.books);
+  const allGenres = useSelector(state => state.LocalPersist.bookGenres);
+  const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
+
+  const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
   const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
@@ -25,9 +28,11 @@ const Filter = ({ setCurrentPage }) => {
     setCurrentPage(1);
   }
 
-  // useEffect(() => {
-  //   dispatch(getAllProductTypes());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getBookGenre());
+    dispatch(getBookLanguage());
+    dispatch(getBookPublisher());
+  }, [dispatch]);
 
   return (
     <div className="FilterContainer">
@@ -37,39 +42,44 @@ const Filter = ({ setCurrentPage }) => {
       <ul className="ContainerButtonFilter">
         <li className="FilterLI">
           <button onClick={handleReset} className={activeFilter === null ? "ActiveButtonNull" : ''}>All books</button>
-          <button onClick={() => handleFilter("Ficción")} className={activeFilter === "Ficción" ? "ActiveButton" : ''}> Ficción </button>
-          <button onClick={() => handleFilter("Novela")} className={activeFilter === "Novela" ? "ActiveButton" : ''}> Novela</button>
-          <button onClick={() => handleFilter("Ciencia ficción")} className={activeFilter === "Ciencia ficción" ? "ActiveButton" : ''}> Ciencia ficción</button>
-          <button onClick={() => handleFilter("Fantasía")} className={activeFilter === "Fantasía" ? "ActiveButton" : ''}> Fantasía</button>
-          <button onClick={() => handleFilter("Misterio")} className={activeFilter === "Misterio" ? "ActiveButton" : ''}> Misterio</button>
-          <button onClick={() => handleFilter("Romance")} className={activeFilter === "Romance" ? "ActiveButton" : ''}> Romance</button>
-          <button onClick={() => handleFilter("Aventura")} className={activeFilter === "Aventura" ? "ActiveButton" : ''}> Aventura</button>
-          <button onClick={() => handleFilter("Historia")} className={activeFilter === "Historia" ? "ActiveButton" : ''}> Historia</button>
-          <button onClick={() => handleFilter("Poesía")} className={activeFilter === "Poesía" ? "ActiveButton" : ''}> Poesía</button>
         </li>
-        {/* {allProductTypes && allProductTypes?.map((p)=>{
+        {allGenres && allGenres?.map((p)=>{
           return (
-            <li className={style.FilterLI} key={p.id}>
+            <li className="FilterLI" key={p.id}>
               <button onClick={() => handleFilter(p.name)} className={activeFilter === p.name ? "ActiveButton" : ''}> {p.name}</button>
             </li>
           )
-        })}         */}
+        })}        
       </ul>
+
       <h1 className="FilterTitle"> Language</h1>
-      <h1 className="FilterTitle"> Author</h1>
-      <form action="#" className="BookFormatContainer">
+      <ul className="ContainerButtonFilter">
+        {allLanguages && allLanguages?.map((p)=>{
+          return (
+            <li className="FilterLI" key={p.id}>
+              <button onClick={() => handleFilter(p.name)} className={activeFilter === p.name ? "ActiveButton" : ''}> {p.name}</button>
+            </li>
+          )
+        })}        
+      </ul>
+      
+      <h1 className="FilterTitle"> Publisher</h1>
+      <form action="#" className="BookPublisherContainer">
         <select 
           name="BookFormat" 
           id="BookFormat" 
-          className="BookFormat"
+          className="BookPublisher"
           value={activeFilter}
           onChange={(e) => handleFilter(e.target.value)}
         >
-          <option value="EPUB">EPUB</option>
-          <option value="PDF">PDF</option>
-          <option value="MOBI">MOBI</option>
-          <option value="AZW3">AZW3</option>
-          <option value="CBZ">CBZ</option>
+          {allPublishers && allPublishers?.map((a)=>{
+            return(
+              <option key={a.id} value={a.name} name={a.id}>
+                {a.name}
+              </option>
+            )
+          })}
+
         </select>
       </form>
       <h1 className="FilterTitle"> Format</h1>

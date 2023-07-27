@@ -12,7 +12,7 @@ const WishlistContainer = () =>{
 
     const wish = [
         {
-            "id": "0a73337d-8f43-44de-b59e-88ad30ce2c25",
+            "id": "43956c20-a845-4e34-8fb1-84f55b340733",
             "title": "Harry Potter y la Orden del Fénix",
             "author": "J.K. Rowling",
             "price": 59,
@@ -124,7 +124,7 @@ const WishlistContainer = () =>{
                 <h1 className="titleContainerTexto">Your Wishlist</h1>
             </div>
             <div className="WishlistContent">   
-                <h1 className="MyWishlist">My Wishlist</h1>
+                <h1 className="MyWishlist">Hi NOMBREEEE, this is your selection</h1>
                 <div className="booksAvailable" style={{paddingTop:"1rem"}}>{wish.length} {' '} books available</div>  
                 {wish?.length === 0 ? (
                     <>

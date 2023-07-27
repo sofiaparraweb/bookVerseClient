@@ -54,6 +54,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
 //------------------------------------book actions-----------------------------------
+//------------------------------------book actions GET
     case GET_ALL_BOOKS:
       return {
         ...state,
@@ -80,7 +81,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
 
-
+//------------------------------------book actions FILTER
     case FILTER_BY_GENRE:
       return {
         ...state,
