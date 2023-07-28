@@ -1,11 +1,12 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import { getCart, addToCart } from "../../Redux/actions"
 import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule, AiOutlineHeart, AiFillHeart} from "react-icons/ai";
 import Stars from "./Stars"
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./BookDetail.css";
 
 
@@ -13,6 +14,13 @@ const Detail = () => {
     
     const { id } = useParams();
     const { isAuthenticated } = useAuth0();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const Cart = useSelector((state) => state.LocalPersist.cart);
+    // const userName = useSelector(state => state.LocalPersist.userInfo.name);
+    // const email = useSelector(state => state.LocalPersist.userInfo.email);
+    const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [isFav, setIsFav] = useState(false);
 
@@ -50,68 +58,49 @@ const Detail = () => {
         fetchData(); // Llamar a la función para que realice la solicitud
     }, [id]);
 
-    //const dispatch = useDispatch();
 
-    // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-    // const userName = useSelector(state => state.LocalPersist.userInfo.name);
-    // const email = useSelector(state => state.LocalPersist.userInfo.email);
+    useEffect(()=>{
+        dispatch(getCart(id))
+    },[dispatch])
 
-    // useEffect(()=>{
-    //     dispatch(getCarrito(id_books))
-    // },[dispatch])
+    // const handleSubmit = async (event) => {
+    //   event.preventDefault()
+    //   try {
+    //     console.log(holis)
+    //     await axios.post('https://lagruta.onrender.com/review/post', review)
+    //     //await axios.post('http://localhost:3001/review/post', review)
+    //     .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
+    //     .catch((error) => alert(error))
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // } 
 
-      // const handleSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     console.log(holis)
-  //     await axios.post('https://lagruta.onrender.com/review/post', review)
-  //     //await axios.post('http://localhost:3001/review/post', review)
-  //     .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
-  //     .catch((error) => alert(error))
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // } 
+    const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
+      event.preventDefault()
+      setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
+    };
 
-      // const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
-  //   event.preventDefault()
-  //   if (quantity < stock) {
-  //     setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
-  //   } else {
-  //     setQuantity(stock);
-  //     toast.error("La cantidad deseada supera el stock disponible", {
-  //       duration: 3000
-  //     })
-  //   }
-  // };
+    const handleDelete = (event) => {  // --------------------------------------------------BOTON SUMAR
+      event.preventDefault()
+      if (quantity > 0) {
+        setQuantity(quantity - 1); // Resta 1 a la cantidad actual
+      }
+    };
 
-  // const handleDelete = (event) => {  // --------------------------------------------------BOTON SUMAR
-  //   event.preventDefault()
-  //   if (quantity > 0) {
-  //     setQuantity(quantity - 1); // Resta 1 a la cantidad actual
-  //   }
-  // };
+    const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
+      const cartItems = Cart;
+      const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
 
-  // const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
-  //   const cartItems = Cart;
-  //   const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
-
-  //   if (productInCart) {
-  //     toast.error("El producto ya está en el carrito", {
-  //       duration: 3000
-  //     });
-  //   } else if(quantity>stock) {
-  //     toast.error("La cantidad deseada supera el stock disponible", {
-  //       duration: 3000
-  //     })    
-  //   } else {
-  //     dispatch(addToCart(user_id, id, quantity));
-  //     toast.success("Producto agregado al carrito", {
-  //       duration: 3000
-  //     })
-  //     dispatch(getCarrito(user_id))
-  //   }
-  // }
+      if (productInCart) {
+        alert("El producto ya está en el carrito") 
+      } else {
+        dispatch(addToCart(user_id, id, quantity));
+        alert("Producto agregado al carrito")
+        dispatch(getCart(user_id))
+        navigate("/cart")
+      }
+    }
 
     return (
         <form>
@@ -123,23 +112,6 @@ const Detail = () => {
                         <div className="DetailImages">
                             <img src={book.image} alt="bookImage"></img>
                         </div>
-
-                        {/* <div className="images-column">
-                            {Image.map((imageUrl, index) => {
-                                return(
-                                    <img>
-                                        key={index} 
-                                        src={imageUrl} 
-                                        alt={imageUrl} 
-                                        className={`thumbnail ${currentImage === imageUrl ? "selected" : ""}`} 
-                                        onClick={() => handleImageChange(imageUrl)}
-                                    </img>
-                                )
-                            })}
-                        </div>
-                        <div className="current-image-column">
-                            <img src={currentImage} alt="Current Product" className="current-image"/>
-                        </div> */}
 
                         <div className="DetailData">
                             <div className="GridTwoColumns" style={{ gridTemplateColumns: "72% 28%"}} >
@@ -195,20 +167,18 @@ const Detail = () => {
                             <hr className="hrStyle"></hr>
                             <div className="Botonera">
                                 <div className="BotoneraSumaResta">
-                                    <button className="ButtonsSumaResta" value="less" >-</button>
-                                        Cantidad
-                                    <button className="ButtonsSumaResta" value="add" >+</button>
-                                    {/* <button className="ButtonsSumaResta" onClick={handleDelete} value="less" >-</button>
-                                        Cantidad
-                                    <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button> */}
+                                <button className="ButtonsSumaResta" onClick={handleDelete} value="less" >-</button>
+                                    {quantity}
+                                <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button>
+
                                 </div>
                                 {isAuthenticated ? (
                                     <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)}>
                                         Add to Cart
                                     </button>
                                 ) : (
-                                    <button className="Buttons" disabled>       agregar mensaje error
-                                        Add to Cart
+                                    <button className="Buttons" onClick={() => alert('Debe iniciar sesión para agregar productos.')} disabled>
+                                        Agregar al carrito
                                     </button>
                                 )}
 

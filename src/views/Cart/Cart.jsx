@@ -1,100 +1,101 @@
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-// import { getCarrito, changeQuantity, deleteAllCarrito, deleteCarrito } from "../../../Redux/actions";
+import { getCart } from "../../Redux/actions";
+// import { getCart, changeQuantity, deleteAllCarrito, deleteCarrito } from "../../Redux/actions";
 import {AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom"
 import "./Cart.css"
 
-const Cart = () =>{
-// const Cart = ({ id, name, image, price, stock, quantityProd}) =>{
+const Cart = ({ id, title, author, image, price, quantityProd}) =>{
 
-// const dispatch = useDispatch();
-// const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-// const userId = useSelector(state => state.LocalPersist.userInfo.id);
-// const [quantitys, setQuantity] = useState(1);
-// const [subTotal, setSubTotal] = useState(0);
-const [showForm, setShowForm] = useState(false);
+    const dispatch = useDispatch();
+    const Cart = useSelector((state) => state.LocalPersist.cart);
+    console.log(Cart)
+    const userId = useSelector(state => state.LocalPersist.userInfo.id);
+    // const [quantitys, setQuantity] = useState(1);
+    // const [subTotal, setSubTotal] = useState(0);
+    const [showForm, setShowForm] = useState(false);
 
-// useEffect(() => {
-//   dispatch(getCarrito(userId));
-// },[dispatch]);
+    useEffect(() => {
+    dispatch(getCart(userId));
+    },[dispatch]);
 
-// useEffect(() => {
-//   let newSubTotal = 0;
-//   Cart?.forEach((product) => {
-//     newSubTotal += product.price * parseInt(product.Cart_Products.quantity, 10);
-//   });
-//   setSubTotal(newSubTotal);
-// }, [Cart]);
+    // useEffect(() => {
+    //   let newSubTotal = 0;
+    //   Cart?.forEach((product) => {
+    //     newSubTotal += product.price * parseInt(product.Cart_Products.quantity, 10);
+    //   });
+    //   setSubTotal(newSubTotal);
+    // }, [Cart]);
 
-// const cartQuantity = Cart?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);  
-// let servicio = subTotal * 0.10;
-// let total = subTotal + servicio;
-
-
-// const handleClickAdd = (user_id, id, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
-//   if(parseInt(quantityProd) < stock) {
-//     quantity = parseInt(quantityProd) + 1;
-//     dispatch(changeQuantity(user_id, id, quantity));
-//     toast.success("Se agrego una unidad al carrito", {
-//       duration: 3000
-//     })
-//   } else {
-//     toast.error("La cantidad supera el stock disponible", {
-//       duration: 3000
-//     })    
-//   }
-//   dispatch(getCarrito(user_id));
-// }
+    // const cartQuantity = Cart?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);  
+    // let servicio = subTotal * 0.10;
+    // let total = subTotal + servicio;
 
 
-// const handleClickDelete = (user_id, id, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
-//   if(parseInt(quantityProd) > 1) {
-//     quantity = parseInt(quantityProd) - 1;
-//     dispatch(changeQuantity(user_id, id, quantity));
-//     toast.success("Se quito una unidad del carrito", {
-//       duration: 3000
-//     })
-//   } else {
-//     toast.error("No se pueden quitar mas unidades de este producto", {
-//       duration: 3000
-//     })    
-//   }
-//   dispatch(getCarrito(user_id));
-// }
+    // const handleClickAdd = (user_id, id, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+    //   if(parseInt(quantityProd) < stock) {
+    //     quantity = parseInt(quantityProd) + 1;
+    //     dispatch(changeQuantity(user_id, id, quantity));
+    //     toast.success("Se agrego una unidad al carrito", {
+    //       duration: 3000
+    //     })
+    //   } else {
+    //     toast.error("La cantidad supera el stock disponible", {
+    //       duration: 3000
+    //     })    
+    //   }
+    //   dispatch(getCarrito(user_id));
+    // }
 
 
-// const handleDeleteFromCart = async (userId, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
-//   await dispatch(deleteCarrito(userId, id));
-//   setQuantity(0);
-//   toast.success("Se ha eliminado un producto del carrito", {
-//     duration: 3000
-//   });
-//   dispatch(getCarrito(userId));
-// };
+    // const handleClickDelete = (user_id, id, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+    //   if(parseInt(quantityProd) > 1) {
+    //     quantity = parseInt(quantityProd) - 1;
+    //     dispatch(changeQuantity(user_id, id, quantity));
+    //     toast.success("Se quito una unidad del carrito", {
+    //       duration: 3000
+    //     })
+    //   } else {
+    //     toast.error("No se pueden quitar mas unidades de este producto", {
+    //       duration: 3000
+    //     })    
+    //   }
+    //   dispatch(getCarrito(user_id));
+    // }
 
 
-// const handleDeleteCart = async (userId) =>{   //PARA VACIAR EL CARRITO
-//   await dispatch(deleteAllCarrito(userId));
-//   setQuantity(0);
-//   toast.success("Carrito vaciado correctamente", {
-//     duration: 3000
-//   })
-//   dispatch(getCarrito(userId));
-// }
+    // const handleDeleteFromCart = async (userId, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
+    //   await dispatch(deleteCarrito(userId, id));
+    //   setQuantity(0);
+    //   toast.success("Se ha eliminado un producto del carrito", {
+    //     duration: 3000
+    //   });
+    //   dispatch(getCarrito(userId));
+    // };
 
 
-// const handlePay = (event) => {   //PARA PROCEDER AL PAGO
-//   event.preventDefault();
-//   if (Cart) {
-//     setShowForm(true);
-//   } else {
-//     toast.error("Debe seleccionar productos", {
-//       duration: 3000
-//     })
-//     return;
-//   }
-// } 
+    // const handleDeleteCart = async (userId) =>{   //PARA VACIAR EL CARRITO
+    //   await dispatch(deleteAllCarrito(userId));
+    //   setQuantity(0);
+    //   toast.success("Carrito vaciado correctamente", {
+    //     duration: 3000
+    //   })
+    //   dispatch(getCarrito(userId));
+    // }
+
+
+    // const handlePay = (event) => {   //PARA PROCEDER AL PAGO
+    //   event.preventDefault();
+    //   if (Cart) {
+    //     setShowForm(true);
+    //   } else {
+    //     toast.error("Debe seleccionar productos", {
+    //       duration: 3000
+    //     })
+    //     return;
+    //   }
+    // } 
 
     return (       
         <div className="CartContainer"> 
