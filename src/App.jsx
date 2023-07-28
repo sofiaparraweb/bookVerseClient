@@ -11,8 +11,7 @@ import Store from "./views/Store/Store";
 import BookDetail from "./views/Detail/BookDetail";
 import Cart from "./views/Cart/Cart";
 import Profile from './views/Profile/Profile';
-import About from './views/About/About';
-import Team from './views/About/Team/Team';
+import Qa from './views/Q&A/Q&A';
 import Wishlist from "./views/Wishlist/Wishlist";
 
 const App = () => {
@@ -37,11 +36,12 @@ const App = () => {
         <NavBar isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About/>}/>
-          <Route path="/team" element={<Team/>}/>
+          <Route path="/qa" element={<Qa/>}/>
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:id" element={<BookDetail />} /> 
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/cart" element={<Cart />} /> 
+          <Route path="/wishlist" element={<Wishlist />} /> 
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>

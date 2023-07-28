@@ -12,43 +12,29 @@ import { useRef } from 'react';
 const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
-  const userInfo = useSelector((state) => state.LocalPersist.userInfo);
+  const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const allbooks = useSelector((state) => state.LocalPersist.allbooks);
   const [isLoading, setIsLoading] = useState(false);
   const isProfileCreatedRef = useRef(false);
 
-  
   useEffect(() => {
     if (isAuthenticated && user && !isProfileCreatedRef.current) {
-      setIsLoading(true);
-      // Verificar si el correo electrónico ya existe en la base de datos
-      dispatch(getUserId(user.email))
-        .then((existingUser) => {
-          if (!existingUser) {
-            // Si el correo electrónico no existe, crear el usuario en la base de datos
-            const newUser = {
-              name: user.name,
-              email: user.email,
-            };
-            return dispatch(createUser(newUser));
-          } else {
-            // Si el correo electrónico ya existe, obtener el usuario
-            return dispatch(getUser(existingUser.userId));
-          }
-        })
-        .then((userInfo) => {
-          setIsLoading(false);
-          console.log(userInfo)
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          console.log(error);
-        });
-
+      const newUser = {
+        name: user.name,
+        email: user.email,
+      };
+      dispatch(createUser(newUser));
       isProfileCreatedRef.current = true;
     }
   }, [dispatch, isAuthenticated, user]);
 
+  useEffect(() => {
+    if (isAuthenticated && user && isProfileCreatedRef.current) {
+      dispatch(getUser(user.email));
+      dispatch(getUserId(user.email));
+      console.log(user.email);
+    }
+  }, [dispatch, isAuthenticated, user]);
 
   return (
     <div className="homeContainer">

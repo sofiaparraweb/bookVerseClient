@@ -40,7 +40,7 @@ const initialState = {
   users: [],
   userProfile: null,
   userId: null,
-  userInfo: [],
+  userInfo: {},
   loading: true,
   error: null,
   grid_view: true,
@@ -186,7 +186,7 @@ const reducer = (state = initialState, action) => {
     case GET_USER:
       return {
         ...state,
-        userInfo: action.payload,
+        userProfile: action.payload,
       }
     case CREATE_USER:
       return {
@@ -196,7 +196,7 @@ const reducer = (state = initialState, action) => {
     case GET_USER_ID:
       return {
         ...state,
-        userInfo: action.payload,
+        userProfile: action.payload,
       }
     case UPDATE_USER:
       return {

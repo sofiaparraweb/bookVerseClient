@@ -44,8 +44,8 @@ export const SET_USER_ID = "SET_USER_ID";
 //actions footer
 export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
-export const url = "https://bookverse-m36k.onrender.com";
-// export const url = "http://localhost:3001";
+// export const url = "https://bookverse-m36k.onrender.com";
+export const url = "http://localhost:3001";
 
 //------------------------------------books-----------------------------------
 export function getAllBooks() {
@@ -286,7 +286,7 @@ export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/email/${email}`);
-      console.log(response);
+      console.log(response.data, 'function getUserId');
       dispatch({
         type: GET_USER_ID,
         payload: response.data,
@@ -298,7 +298,7 @@ export const getUserId = (email) =>{
 }
 
 export const createUser = (newUser) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
@@ -319,6 +319,7 @@ export const createUser = (newUser) => {
 };
 
 export const updateUser = (data) => {
+  console.log(data)
   return async (dispatch) => {
     try {
       const response = await axios.put(`${url}/user/edit`, data);

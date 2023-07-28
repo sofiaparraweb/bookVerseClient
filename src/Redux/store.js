@@ -30,17 +30,30 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import BookPersist from "./reducer"
+import { configureStore, combineReducers, getDefaultMiddleware } from "@reduxjs/toolkit";
+import BookPersist from "./reducer";
+
 const persistConfig = {
   key: 'root',
   storage,
 };
+
 const rootReducer = combineReducers({
   LocalPersist: BookPersist,
 });
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const middleware = [...getDefaultMiddleware({
+  serializableCheck: {
+    ignoredActions: ['register'], // Agrega aquí el nombre de la acción no serializable si es necesario
+  },
+}), thunk];
+
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware,
+  devTools: process.env.NODE_ENV !== 'production',
 });
+
 export const persistor = persistStore(store);
