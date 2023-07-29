@@ -9,12 +9,7 @@ import "./TiendaItems.css";
 const TiendaItems = ({ id, author, title, price, description, publisher, pages, language, genres, reviews, stars, publicationDate, image, format, Reviews }) => {
   
   // const dispatch = useDispatch();
-  // const books = useSelector((state) => state.LocalPersist.Carrito.books);
-  // const [quantity, setQuantity] = useState(0);
-  
-  // useEffect(()=>{
-  //   dispatch(getCart(user_id))
-  // },[dispatch])
+  // const books = useSelector((state) => state.LocalPersist.cart.Books);
   
   // const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
   //   user_id:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
