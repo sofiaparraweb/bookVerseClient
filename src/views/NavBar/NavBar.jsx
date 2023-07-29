@@ -8,6 +8,7 @@ import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
 import { FaBars, FaTimes } from "react-icons/fa";
 import iconbookclose from "../../assets/imgNavbar/iconbookclose.png"
 import iconbookopen from "../../assets/imgNavbar/iconbookopen.png"
+import Profile from '../../views/Profile/Profile'
 
 
 const NavBar = ({ isAuthenticated }) => {
@@ -155,6 +156,7 @@ const NavBar = ({ isAuthenticated }) => {
             <NavLink to="/cart">
               <BiSolidCartAdd style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem"}}/>
             </NavLink>
+            <div><Profile></Profile></div>
 
             <div className="wishlistNav">
               <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
