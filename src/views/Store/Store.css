@@ -9,18 +9,11 @@
 
 /* --------------------------------------------------------Side Bar-------------------------------------------------------- */
 .FilterStore{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 
 /* --------------------------------------------------------Contenido-------------------------------------------------------- */
-.booksAvailable {
-  display: flex;
-  align-items: center;
-  color: grey;
-  font-size: 0.8rem;
-}
-
 .OrderStore{
   display: flex;
   justify-content: flex-end;

@@ -34,12 +34,14 @@ const Detail = () => {
     //     });
     //   }, [myFavorites, id]);
 
-    const url = "https://bookverse-m36k.onrender.com";
-    // const url = "http://localhost:3001";
+    // const url = "https://bookverse-m36k.onrender.com";
+    const url = "http://localhost:3001";
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get(`${url}/books/${id}`);
+                console.log(response)
+                console.log(response.data)
                 setBook(response.data);
             } catch (error) {
                 console.error("Error fetching book details:", error);
@@ -140,9 +142,9 @@ const Detail = () => {
                         </div> */}
 
                         <div className="DetailData">
-                            <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}} >
+                            <div className="GridTwoColumns" style={{ gridTemplateColumns: "72% 28%"}} >
                                 <h2>{book.title}</h2>
-                                <div style={{display:"flex", flexDirection:"row"}}>
+                                <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
                                     {isFav ? (
                                         <button onClick={handleFavorite} className="HeartFav">
                                             <AiFillHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
