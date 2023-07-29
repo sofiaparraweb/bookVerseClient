@@ -23,12 +23,12 @@ const ReviewForm = ({ bookId }) => {
     event.preventDefault();
 
     if (rating === 0) {
-        alert('Por favor, califica al menos una estrella antes de enviar tu reseña.');
+        alert("Por favor, califica al menos una estrella antes de enviar tu reseña.");
         return;
       }
 
       if (comment.trim().split(/\s+/).length < 2) {
-        alert('Por favor, ingresa al menos dos palabras en tu reseña.');
+        alert("Por favor, ingresa al menos dos palabras en tu reseña.");
         return;
       }
 
