@@ -47,6 +47,11 @@ export const GET_USER_ID = "GET_USER_ID";
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_USER_ID = "SET_USER_ID";
 
+//actions reviews
+export const ADD_REVIEW_REQUEST = 'ADD_REVIEW_REQUEST';
+export const ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
+export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
+
 //actions footer
 export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
@@ -339,7 +344,7 @@ export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/email/${email}`);
-      console.log(response);
+      console.log(response.data, 'function getUserId');
       dispatch({
         type: GET_USER_ID,
         payload: response.data,
@@ -351,7 +356,7 @@ export const getUserId = (email) =>{
 }
 
 export const createUser = (newUser) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
@@ -372,9 +377,14 @@ export const createUser = (newUser) => {
 };
 
 export const updateUser = (data) => {
+  console.log(data)
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, data);
+      const response = await axios.put(`${url}/user/edit`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       dispatch({
         type: UPDATE_USER,
         payload: response.data,
@@ -456,7 +466,23 @@ export const formSuscription = (formData) => {
       });
       console.log('funcion email footer')
     } catch (error) {
-      console.log("estoy en las actions", error);
+      console.log(error);
     }
   };
+};
+
+
+//------------------------------------REVIEWS-----------------------------------
+
+
+export const addReview = (review) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_REVIEW_REQUEST });
+
+    const response = await axios.post(`${url}/review/post`, review);
+
+    dispatch({ type: ADD_REVIEW_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ADD_REVIEW_FAILURE, payload: error.message });
+  }
 };
