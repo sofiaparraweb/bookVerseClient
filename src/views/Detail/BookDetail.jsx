@@ -196,7 +196,7 @@ const Detail = () => {
                             <div className="Botonera">
                                 <div className="BotoneraSumaResta">
                                     <button className="ButtonsSumaResta" value="less" >-</button>
-                                        Cantidad
+                                        Quantity
                                     <button className="ButtonsSumaResta" value="add" >+</button>
                                     {/* <button className="ButtonsSumaResta" onClick={handleDelete} value="less" >-</button>
                                         Cantidad
