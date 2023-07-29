@@ -29,7 +29,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
-// export const POST_PAYMENT = "POST_PAYMENT";
+export const POST_PAYMENT = "POST_PAYMENT";
 
 //actions dashboard
 // export const ADD_PRODUCT = "ADD_PRODUCT";
@@ -308,20 +308,23 @@ export const deleteAllCart = (user_id) => {
   };
 };
 
-// export const postPayment = (user_id) => {
-//   return async (dispatch) => {
-//     try {
-//       console.log(user_id)
-//       const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
-//       if (response) {
-//         dispatch({ type: POST_PAYMENT, payload: response.data })
-//         return response.data;
-//       } 
-//     }catch (error) {
-//       console.log("Error al enviar la información al backend", error)
-//     }
-//   }
-// };
+
+// ----------Payment Form
+export const postPayment = (user_id) => {
+  return async (dispatch) => {
+    try {
+      console.log(user_id)
+      const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
+      console.log(response.data)
+      if (response) {
+        dispatch({ type: POST_PAYMENT, payload: response.data })
+        return response.data;
+      } 
+    }catch (error) {
+      console.log("Error al enviar la información al backend", error)
+    }
+  }
+};
 
 
 //------------------------------------user-----------------------------------

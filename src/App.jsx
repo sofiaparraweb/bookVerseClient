@@ -12,7 +12,8 @@ import BookDetail from "./views/Detail/BookDetail";
 import CartContainer from "./components/Store/CartContainer/CartContainer"
 import Profile from './views/Profile/Profile';
 import Qa from './views/Q&A/Q&A';
-import WishlistItem from "./views/WishlistItem/WishlistItem";
+import WishlistItem from "./components/WishlistContainer/WishlistContainer";
+import Confirmation from "./views/Confirmation/Confirmation"
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/cart" element={<CartContainer />} /> 
           <Route path="/wishlist" element={<WishlistItem />} /> 
           <Route path="/profile" element={<Profile />} />
+          <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
         <Footer />
       </div>

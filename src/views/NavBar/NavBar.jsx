@@ -1,5 +1,5 @@
 import { useState} from "react";
-import { Link, NavLink, useLocation  } from "react-router-dom";
+import { NavLink, useLocation  } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import bookVerse from "../../assets/imgNavbar/logoBook.svg";
 import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
@@ -38,21 +38,21 @@ const NavBar = ({ isAuthenticated }) => {
     setIsLoggingIn(true);
   };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+  // const handleMouseEnter = () => {
+  //   setIsHovered(true);
+  // };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  // const handleMouseLeave = () => {
+  //   setIsHovered(false);
+  // };
 
-  const handleOptionMouseEnter = () => {
-    setIsOptionHovered(true);
-  };
+  // const handleOptionMouseEnter = () => {
+  //   setIsOptionHovered(true);
+  // };
 
-  const handleOptionMouseLeave = () => {
-    setIsOptionHovered(false);
-  };
+  // const handleOptionMouseLeave = () => {
+  //   setIsOptionHovered(false);
+  // };
 
   const handleClick = () => {
     window.scrollTo({ top: 0 });
@@ -63,122 +63,76 @@ const NavBar = ({ isAuthenticated }) => {
     <>
       <nav className={style.navContainer} >
         <div className={style.LeftSection}>
-          <Link to="/">
+          <NavLink to="/">
             <img
               src={bookVerse}
               alt="logo"
               className={style.logoNavBar}
               onClick={handleClick}
             />
-          </Link>
+          </NavLink>
 
-          <div className={style.dropdownContainer}>
             <NavLink
               to="/about" // Ruta a la que redirige el enlace
-              className={style.link}
-              activenlassname="active"
-              id="conocenosNav"
+              className={style.linkNavBar}
+              id="tiendaNav"
+              onClick={handleClick}
             >
               ABOUT US
             </NavLink>
 
-            {/* {(isHovered || isOptionHovered) && (
-              <div
-                className={style.dropdownContent}
-                onMouseEnter={handleOptionMouseEnter}
-                onMouseLeave={handleOptionMouseLeave}
-              >
-                <div className={style.sectionOption}>
-                  <NavLink
-                    to="/historia"
-                    className={style.dropdownOption}
-                    activenlassname="active"
-                    id="nuestraHistoria"
-                    onClick={handleClick}
-                  >
-                    POPULARS
-                  </NavLink>
-                </div>
-              </div>
-            )} */}
-          </div>
-          <NavLink
-            to="/store"
-            className={style.link}
-            activeclassname="active"
-            id="tiendaNav"
-            onClick={handleClick}
-          >
-            OUR BOOKS
-          </NavLink>
+            <NavLink
+              to="/store"
+              className={style.linkNavBar}
+              id="tiendaNav"
+              onClick={handleClick}
+            >
+              OUR BOOKS
+            </NavLink>
 
-          {isAuthenticated ? (
-            <NavLink
-              to="/profile"
-              className={`${style.linkContainer} ${style.link}`}
-              activenlassname={style.activeLink}
-              id="perfilNav"
-              onClick={handleClick}
-            >
-              PROFILE
-            </NavLink>
-          ) : null}
-          {isAdmin && (
-            <NavLink
-              to="/dashboard"
-              className={`${style.linkContainer} ${style.link}`}
-              activeclassname={style.activeLink}
-              id="administradorNav"
-              onClick={handleClick}
-            >
-              DASHBOARD
-            </NavLink>
-          )}
+            {isAuthenticated ? (
+              <NavLink
+                to="/profile"
+                className={style.linkNavBar}
+                id="perfilNav"
+                onClick={handleClick}
+              >
+                PROFILE
+              </NavLink>
+            ) : null}
+            {isAdmin && (
+              <NavLink
+                to="/dashboard"
+                className={style.linkNavBar}
+                id="administradorNav"
+                onClick={handleClick}
+              >
+                DASHBOARD
+              </NavLink>
+            )}
         </div>
         <div className={style.rightSection}>
           {isAuthenticated ? (
-            <button
-              onClick={handleLogout}
-              className={style.link}
-              id="conocenosNav"
-              style={{border:"none", backgroundColor:"transparent", cursor:"pointer"}}
-              onMouseEnter={(e) => e.target.style.backgroundColor = "silver"}
-              onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
-            >
-              LOG OUT
-            </button>
+            <div className={style.linkNavBar} id="tiendaNav" >
+              <button onClick={handleLogout} style={{ fontWeight:"500", border:"none", backgroundColor:"transparent"}}> LOG OUT </button>
+            </div>
           ) : (
-            <button
-              onClick={handleLogin}
-              className={style.link}
-              style={{border:"none", backgroundColor:"transparent"}}
-            >
-              <BiSolidUser 
-                className='iconPerson' 
-                style={{color: "#17424b", width:"1.4rem", height:"1.4rem", margin:"0 2rem", transition: "transform 0.3s"}}
-                onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
-                onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/> 
+            <button onClick={handleLogin} className={style.linkNavBar} style={{ border:"none", backgroundColor:"transparent"}}>
+              <BiSolidUser className={style.IconRightNavBar} /> 
             </button>
           )}
           {isAuthenticated ? (  
             <>
             <NavLink to="/cart">
-              <BiSolidCartAdd 
-                style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
-                onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
-                onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+              <BiSolidCartAdd className={style.IconRightNavBar}/>
             </NavLink>
 
-            <div className="wishlistNav">
+            <div className={style.wishlistNav}>
               <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
                 {isWishlistPage ? (
-                  <img src={iconbookopen} alt="open" style={{width:"1.8rem", height:"1.8rem", margin:"0 2rem", transition: "transform 0.3s"}}
-                    onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
-                    onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+                  <img src={iconbookopen} className={style.IconRightNavBar} alt="open" id="OpenBook"/>
                 ) : (  
-                  <img src={iconbookclose} alt="close" style={{width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
-                    onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
-                    onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+                  <img src={iconbookclose} alt="close" className={style.IconRightNavBar} />
                 )}
                 <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
               </NavLink>
@@ -187,15 +141,11 @@ const NavBar = ({ isAuthenticated }) => {
           ) : (  
             <>
             <button onClick={handleLoginAlert} style={{border:"none", backgroundColor:"transparent"}}>
-              <BiSolidCartAdd style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
-                onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
-                onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+              <BiSolidCartAdd className={style.IconRightNavBar}/>
             </button>
-            <div className="wishlistNav">
+            <div className={style.wishlistNav}>
               <button onClick={handleLoginAlert} style={{border:"none", backgroundColor:"transparent"}}>
-                <img src={iconbookclose} alt="close" style={{width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
-                  onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
-                  onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+                <img src={iconbookclose} alt="close" className={style.IconRightNavBar}/>
                 <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
               </button>
             </div>
