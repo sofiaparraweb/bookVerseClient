@@ -4,18 +4,21 @@ import {
   GET_BOOK_GENRE,
   GET_BOOK_LANGUAGE,
   GET_BOOK_PUBLISHER,
+  GET_BOOK_FORMAT,
   FILTER_BY_GENRE,
   FILTER_BY_FORMAT,
+  FILTER_BY_LANGUAGE,
+  FILTER_BY_PUBLISHER,
+  FILTER_COMBINED,
   ORDER_BY_PRICE,
   ORDER_BY_TITLE,
 //   ORDER_BY_AUTHOR,
    SEARCH_BY_NAME,
-//   GET_CART,
-//   ADD_TO_CART,
-//   DELETE_PRODUCT_CART,
-//   DELETE_ALL_CART,
-//   CHANGE_QUANTITY,
-//   SET_GRIDVIEW,
+  GET_CART,
+  ADD_TO_CART,
+  DELETE_PRODUCT_CART,
+  DELETE_ALL_CART,
+  CHANGE_QUANTITY,
 //   POST_PAYMENT,
 //   ADD_PRODUCT,
 //   DELETE_PRODUCT,
@@ -40,6 +43,7 @@ const initialState = {
   bookGenres: [],
   bookLanguage: [],
   bookPublisher: [],
+  bookFormat: [],
   books: [],
   cart: [],
   orders: [],
@@ -49,8 +53,6 @@ const initialState = {
   userInfo: {},
   loading: true,
   error: null,
-  grid_view: true,
-  reviews: []
 };
 
 // // Reducer
@@ -84,6 +86,12 @@ const reducer = (state = initialState, action) => {
         bookPublisher: action.payload,
         loading: false,
       };
+    case GET_BOOK_FORMAT:
+      return {
+        ...state,
+        bookFormat: action.payload,
+        loading: false,
+      };
 
 //------------------------------------book actions FILTER
     case FILTER_BY_GENRE:
@@ -93,6 +101,24 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
     case FILTER_BY_FORMAT:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
+    case FILTER_BY_LANGUAGE:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
+    case FILTER_BY_PUBLISHER:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
+    case FILTER_COMBINED:
       return {
         ...state,
         books: action.payload,
@@ -124,41 +150,37 @@ const reducer = (state = initialState, action) => {
       };
 
 //------------------------------------cart actions-----------------------------------//
-//     case GET_CART:
-//       return {
-//         ...state,
-//         cart: action.payload,
-//         loading: false,
-//       };
-//     case ADD_TO_CART:
-//       return {
-//         ...state,
-//         cart: action.payload,
-//         loading: false,
-//       };
-//     case DELETE_PRODUCT_CART:
-//       return {
-//         ...state,
-//         cart: state.cart.filter((item) => item.id !== action.payload),
-//         loading: false,
-//       };
-//     case DELETE_ALL_CART:
-//       return {
-//         ...state,
-//         cart: [],
-//         loading: false,
-//       };
-//     case CHANGE_QUANTITY:
-//       return {
-//         ...state,
-//         cart: action.payload,
-//         loading: false,
-//       };
-    // case SET_GRIDVIEW:
-    //   return {
-    //     ...state,
-    //     grid_view: true
-    //   }
+    case GET_CART:
+      return {
+        ...state,
+        cart: action.payload,
+        loading: false,
+      };
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cart: action.payload,
+        loading: false,
+      };
+    case DELETE_PRODUCT_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+        loading: false,
+      };
+    case DELETE_ALL_CART:
+      return {
+        ...state,
+        cart: [],
+        loading: false,
+      };
+    case CHANGE_QUANTITY:
+      return {
+        ...state,
+        cart: action.payload,
+        loading: false,
+      };
+
 //     case POST_PAYMENT:
 //       // Agregar la lógica relacionada con la acción de pago si es necesario
 //       return state;
@@ -183,6 +205,8 @@ const reducer = (state = initialState, action) => {
 //         ...state,
 //         // books: action.payload,
 //       };
+
+//------------------------------------USER actions-----------------------------------
 //     case GET_ALL_USERS:
 //       return {
 //         ...state,

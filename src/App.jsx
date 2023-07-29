@@ -9,7 +9,7 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
 import Store from "./views/Store/Store";
 import BookDetail from "./views/Detail/BookDetail";
-import Cart from "./views/Cart/Cart";
+import CartContainer from "./components/Store/CartContainer/CartContainer"
 import Profile from './views/Profile/Profile';
 import Qa from './views/Q&A/Q&A';
 import WishlistItem from "./views/WishlistItem/WishlistItem";
@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/qa" element={<Qa/>}/>
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:id" element={<BookDetail />} /> 
-          <Route path="/cart" element={<Cart />} /> 
+          <Route path="/cart" element={<CartContainer />} /> 
           <Route path="/wishlist" element={<WishlistItem />} /> 
           <Route path="/profile" element={<Profile />} />
         </Routes>

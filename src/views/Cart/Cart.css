@@ -1,7 +1,7 @@
 /* ----------------------------------------GENERALS---------------------------------------- */
 .CartContainer{
     padding: 4rem 15rem;
-    margin-top: 7%;
+    margin-top: 5%;
 }
 .hrCart {
     margin: 0.6rem 0;
@@ -16,10 +16,8 @@
     color: grey;
     font-size: 0.9rem;
 }
-
 /* ----------------------------------------BOOKS---------------------------------------- */
 .cart-image--name {
-    /* background-color: red; */
     align-items: center;
     display: grid;
     gap: 1rem;
@@ -29,17 +27,18 @@
 }
     
 .cart-image--name img {
-    max-width: 5rem;
-    height: 5rem;
+    max-width: 10rem;
+    height: 10rem;
     object-fit: contain;
     color: transparent;
 }
 
-.remove_icon{
-  color: #b38a83;
-  /* color: #17424b; */
-  width: 1.2rem;
-  height: 1.2rem;
+.remove_icon_Cart{
+    color: #b38a83;
+    border: none;
+    background-color: transparent;
+    width: 1.3rem;
+    height: 1.3rem;
 }
 
 
