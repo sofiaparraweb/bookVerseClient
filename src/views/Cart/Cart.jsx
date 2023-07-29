@@ -65,18 +65,22 @@ const Cart = ({ Carrito }) =>{
     }
 
 
-    // const handlePay = (event) => {   //PARA PROCEDER AL PAGO
-    //   event.preventDefault();
-    //   if (Carrito) {
-    //     setShowForm(true);
-    //   } else {
-    //     alert("Debe seleccionar productos")
-    //     return;
-    //   }
-    // } 
+    const handlePay = (event) => {   //PARA PROCEDER AL PAGO
+      event.preventDefault();
+      if (Carrito) {
+        setShowForm(true);
+      } else {
+        alert("Debe seleccionar productos")
+        return;
+      }
+    } 
 
     return (       
-        <div className="CartContainer"> 
+        <div className="CartContainer">
+            <div className="titleContainerCart">
+                <p className="titleContainerCartLine"></p>
+                <h1 className="titleContainerCartText">My Shopping Cart</h1>
+            </div> 
             <div className="cart_heading grid-five-column" style={{gridTemplateColumns: "3fr 1fr 1fr 1fr 0.3fr"}}>
                 <p>Item</p>
                 <p className="cart-hide">Price</p>
@@ -148,10 +152,12 @@ const Cart = ({ Carrito }) =>{
                 </div>
                 <hr style={{ width: '95%', margin: '1% auto', border: '1px solid grey', paddingRight: '20%'}}></hr>
                 <div style={{paddingTop: '1rem'}} className="GridThreeColumns">
-                    <span style={{color:"grey"}}>Order Total: </span>
+                    <span style={{color:"grey"}}>Total Order: </span>
                     <span style={{fontWeight:"bold"}}>USD{' '}{total}</span>
                 </div>
-                {/* <button className="Buttons" style={{padding:"1rem"}} onClick={handlePay}>Pay</button> */}
+                <div style={{marginTop:"2rem", display:"flex", justifyContent:"center"}}>
+                    <button className="Buttons" style={{padding:"1rem"}} onClick={handlePay}>Checkout</button>
+                </div>
             </div>
         </div>
     )

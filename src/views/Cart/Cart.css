@@ -1,11 +1,43 @@
 /* ----------------------------------------GENERALS---------------------------------------- */
 .CartContainer{
     padding: 4rem 15rem;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 .hrCart {
     margin: 0.6rem 0;
 }
+
+/* ------------------------------------TITLE------------------------------------ */
+.titleContainerCart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .titleContainerCartText{
+    text-align: center;
+    padding: 0 1rem;
+    color: #17424b;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family:'Times New Roman', Times, serif;
+    letter-spacing: 0.5rem;
+    z-index: 1;
+    background-color: rgb(246, 245, 245)
+  }
+  
+  .titleContainerCartLine {
+    position: absolute; 
+    top: 50%;
+    left: 0;
+    right: 0;
+    border: 0.1px solid silver;
+    z-index: 0;
+  }
 
 /* ----------------------------------------TOP---------------------------------------- */
 .cart-heading {
