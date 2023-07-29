@@ -21,6 +21,10 @@ const NavBar = ({ isAuthenticated }) => {
   
   const isWishlistPage = location.pathname === '/wishlist';
 
+  const handleLoginAlert = () => {
+    alert('You need to log in to access this function.');
+  };
+
   const toggleNavbar = () => {
     setIsNavVisible(!isNavVisible);
   };
@@ -54,12 +58,11 @@ const NavBar = ({ isAuthenticated }) => {
     window.scrollTo({ top: 0 });
   };
 
-  const isAdmin = isAuthenticated && user.email === "lagrutacdi@gmail.com";
+  const isAdmin = isAuthenticated && user.email === "bookverseweb@gmail.com";
   return (
     <>
       <nav className={style.navContainer} >
         <div className={style.LeftSection}>
-          {/* <h1 style={{ color: "#000804", margin: "50px" }}>Logo BookVerse</h1> */}
           <Link to="/">
             <img
               src={bookVerse}
@@ -70,16 +73,16 @@ const NavBar = ({ isAuthenticated }) => {
           </Link>
 
           <div className={style.dropdownContainer}>
-          <NavLink
-            to="/about" // Ruta a la que redirige el enlace
-            className={style.link}
-            activenlassname="active"
-            id="conocenosNav"
-          >
-            ABOUT US
-          </NavLink>
+            <NavLink
+              to="/about" // Ruta a la que redirige el enlace
+              className={style.link}
+              activenlassname="active"
+              id="conocenosNav"
+            >
+              ABOUT US
+            </NavLink>
 
-            {(isHovered || isOptionHovered) && (
+            {/* {(isHovered || isOptionHovered) && (
               <div
                 className={style.dropdownContent}
                 onMouseEnter={handleOptionMouseEnter}
@@ -97,19 +100,19 @@ const NavBar = ({ isAuthenticated }) => {
                   </NavLink>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
           <NavLink
             to="/store"
             className={style.link}
-            activenlassname="active"
+            activeclassname="active"
             id="tiendaNav"
             onClick={handleClick}
           >
             OUR BOOKS
           </NavLink>
 
-          {/* {isAuthenticated ? (
+          {isAuthenticated ? (
             <NavLink
               to="/profile"
               className={`${style.linkContainer} ${style.link}`}
@@ -119,12 +122,12 @@ const NavBar = ({ isAuthenticated }) => {
             >
               PROFILE
             </NavLink>
-          ) : null} */}
+          ) : null}
           {isAdmin && (
             <NavLink
               to="/dashboard"
               className={`${style.linkContainer} ${style.link}`}
-              activenlassname={style.activeLink}
+              activeclassname={style.activeLink}
               id="administradorNav"
               onClick={handleClick}
             >
@@ -136,36 +139,68 @@ const NavBar = ({ isAuthenticated }) => {
           {isAuthenticated ? (
             <button
               onClick={handleLogout}
-              id="cerrariniciarNav"
-              className={`${style.buttonContainer} ${style.link} ${style.logoutButton}`}
+              className={style.link}
+              id="conocenosNav"
+              style={{border:"none", backgroundColor:"transparent", cursor:"pointer"}}
+              onMouseEnter={(e) => e.target.style.backgroundColor = "silver"}
+              onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
             >
               LOG OUT
             </button>
           ) : (
             <button
               onClick={handleLogin}
-              id="cerrariniciarNav"
-              className={`${style.buttonContainer} ${style.link} ${
-                isLoggingIn ? style.loggingIn : style.loginButton
-              }`}
+              className={style.link}
+              style={{border:"none", backgroundColor:"transparent"}}
             >
-              <BiSolidUser className='iconPerson' style={{color: "#17424b", width:"1.4rem", height:"1.4rem", margin:"0 2rem"}}/> 
+              <BiSolidUser 
+                className='iconPerson' 
+                style={{color: "#17424b", width:"1.4rem", height:"1.4rem", margin:"0 2rem", transition: "transform 0.3s"}}
+                onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
+                onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/> 
             </button>
           )}
+          {isAuthenticated ? (  
+            <>
             <NavLink to="/cart">
-              <BiSolidCartAdd style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem"}}/>
+              <BiSolidCartAdd 
+                style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
+                onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
+                onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
             </NavLink>
 
             <div className="wishlistNav">
               <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
                 {isWishlistPage ? (
-                  <img src={iconbookopen} alt="open" style={{width:"1.8rem", height:"1.8rem", margin:"0 2rem"}}/>
+                  <img src={iconbookopen} alt="open" style={{width:"1.8rem", height:"1.8rem", margin:"0 2rem", transition: "transform 0.3s"}}
+                    onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
+                    onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
                 ) : (  
-                  <img src={iconbookclose} alt="close" style={{width:"1.6rem", height:"1.6rem", margin:"0 2rem"}}/>
+                  <img src={iconbookclose} alt="close" style={{width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
+                    onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
+                    onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
                 )}
                 <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
               </NavLink>
             </div>
+            </>
+          ) : (  
+            <>
+            <button onClick={handleLoginAlert} style={{border:"none", backgroundColor:"transparent"}}>
+              <BiSolidCartAdd style={{color: "#17424b", width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
+                onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
+                onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+            </button>
+            <div className="wishlistNav">
+              <button onClick={handleLoginAlert} style={{border:"none", backgroundColor:"transparent"}}>
+                <img src={iconbookclose} alt="close" style={{width:"1.6rem", height:"1.6rem", margin:"0 2rem", transition: "transform 0.3s"}}
+                  onMouseEnter={(e) => e.target.style.transform = "scale(1.2)"}
+                  onMouseLeave={(e) => e.target.style.transform = "scale(1)"}/>
+                <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
+              </button>
+            </div>
+            </>
+          )}
         </div>
         {/* <button
           className={`${style["nav-btn"]} ${style["nav-close-btn"]}`}
