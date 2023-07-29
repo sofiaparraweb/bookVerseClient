@@ -1,0 +1,76 @@
+.contentPrincipalTienda{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: center;
+    width: 100%;
+    color: #124476;
+    position: relative;
+  }
+  
+  .formReactTienda {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 40%;
+    margin: 0 auto;
+  }
+  
+  .formControlTienda {  
+    width: 90%;
+    height: 100px;
+  }
+  
+  .formControlTienda .labelesTienda {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .formControlTienda .inputsTienda {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .formControlTienda .inputsTienda:focus {
+    outline: none;
+  }
+  
+  .failTienda {
+    color: red;
+  }
+  
+  /*========>>>responsivos<<<========*/
+  @media screen and (max-width: 800px) {
+    .formReactTienda {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;  
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .formReactTienda {
+      width: 80%;
+    }
+  
+    .formControlTienda {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 460px) {
+    .formReactTienda {
+      width: 90%;
+    }
+  
+    .formControlTienda {
+      width: 100%;
+    }
+  }

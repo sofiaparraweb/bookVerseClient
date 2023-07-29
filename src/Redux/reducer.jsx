@@ -19,7 +19,7 @@ import {
   DELETE_PRODUCT_CART,
   DELETE_ALL_CART,
   CHANGE_QUANTITY,
-//   POST_PAYMENT,
+  POST_PAYMENT,
 //   ADD_PRODUCT,
 //   DELETE_PRODUCT,
 //   EDIT_PRODUCT,
@@ -46,6 +46,7 @@ const initialState = {
   bookFormat: [],
   books: [],
   cart: [],
+  CartBooks: [],
   orders: [],
   users: [],
   userProfile: null,
@@ -181,9 +182,11 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
 
-//     case POST_PAYMENT:
-//       // Agregar la lógica relacionada con la acción de pago si es necesario
-//       return state;
+    case POST_PAYMENT:
+      return {
+        ...state,
+        CartBooks: action.payload,
+      };
 
 //     case ADD_PRODUCT:
 //       return {
