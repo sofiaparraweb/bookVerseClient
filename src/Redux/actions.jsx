@@ -322,7 +322,11 @@ export const updateUser = (data) => {
   console.log(data)
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, data);
+      const response = await axios.put(`${url}/user/edit`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       dispatch({
         type: UPDATE_USER,
         payload: response.data,
