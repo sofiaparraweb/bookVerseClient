@@ -16,9 +16,9 @@ import {
    SEARCH_BY_NAME,
   GET_CART,
   ADD_TO_CART,
-//   DELETE_PRODUCT_CART,
-//   DELETE_ALL_CART,
-//   CHANGE_QUANTITY,
+  DELETE_PRODUCT_CART,
+  DELETE_ALL_CART,
+  CHANGE_QUANTITY,
 //   POST_PAYMENT,
 //   ADD_PRODUCT,
 //   DELETE_PRODUCT,
@@ -159,24 +159,24 @@ const reducer = (state = initialState, action) => {
         cart: action.payload,
         loading: false,
       };
-//     case DELETE_PRODUCT_CART:
-//       return {
-//         ...state,
-//         cart: state.cart.filter((item) => item.id !== action.payload),
-//         loading: false,
-//       };
-//     case DELETE_ALL_CART:
-//       return {
-//         ...state,
-//         cart: [],
-//         loading: false,
-//       };
-//     case CHANGE_QUANTITY:
-//       return {
-//         ...state,
-//         cart: action.payload,
-//         loading: false,
-//       };
+    case DELETE_PRODUCT_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+        loading: false,
+      };
+    case DELETE_ALL_CART:
+      return {
+        ...state,
+        cart: [],
+        loading: false,
+      };
+    case CHANGE_QUANTITY:
+      return {
+        ...state,
+        cart: action.payload,
+        loading: false,
+      };
 
 //     case POST_PAYMENT:
 //       // Agregar la lógica relacionada con la acción de pago si es necesario

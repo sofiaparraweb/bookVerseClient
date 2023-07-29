@@ -10,9 +10,11 @@
 
 /* ----------------------------------CARRITO VACIO---------------------------------- */
 .MessageEmptyCart{
-  margin-top: 5%;
+  margin-top: 7%;
+  padding: 7rem 0;
+  padding-bottom: 10rem;
   color: #17424b;
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
   text-decoration: none;
 }

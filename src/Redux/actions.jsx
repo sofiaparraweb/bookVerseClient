@@ -26,9 +26,9 @@ export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
 //actions carrito
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
-// export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
-// export const DELETE_ALL_CART = "DELETE_ALL_CART";
-// export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
+export const DELETE_ALL_CART = "DELETE_ALL_CART";
+export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 // export const POST_PAYMENT = "POST_PAYMENT";
 
 //actions dashboard
@@ -248,6 +248,7 @@ export const getCart = (user_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/cart/${user_id}`);
+      console.log(response.data)
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -258,7 +259,8 @@ export const getCart = (user_id) => {
 export const addToCart = (user_id, id, quantity) => {
   return async (dispatch) =>{
     try {
-      const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
+      const response = await axios.post(`${url}/cart/add?user_id=${user_id}&book_id=${id}&quantity=${quantity}`)
+      console.log(response.data)
       dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -266,40 +268,40 @@ export const addToCart = (user_id, id, quantity) => {
   }
 }
 
-// export const deleteAllCart = (user_id) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
-//       dispatch({ type: DELETE_ALL_CART, payload: [] });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const deleteCart = (user_id, id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(`${url}/cart/remove?user_id=${user_id}&book_id=${id}`);
+      console.log(response)
+      console.log(response.data)
+      dispatch({ type: DELETE_PRODUCT_CART, payload: id });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const deleteCart = (user_id, id) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(
-//         `${url}/cart/remove?user_id=${user_id}&product_id=${id}`
-//       );
-//       dispatch({ type: DELETE_PRODUCT_CART, payload: id });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const changeQuantity = (user_id, id, quantity) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${url}/cart?user_id=${user_id}&book_id=${id}&quantity=${quantity}`);
+      dispatch({ type: CHANGE_QUANTITY, payload: response.data });
+    } catch (error) {
+      console.log(error);  
+    }
+  };
+};
 
-// export const changeQuantity = (user_id, id, quantity) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(`${url}/cart?user_id=${user_id}&product_id=${id}&quantity=${quantity}`);
-//       dispatch({ type: CHANGE_QUANTITY, payload: response.data });
-//     } catch (error) {
-//       console.log(error);  
-//     }
-//   };
-// };
+export const deleteAllCart = (user_id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
+      dispatch({ type: DELETE_ALL_CART, payload: [] });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 // export const postPayment = (user_id) => {
 //   return async (dispatch) => {

@@ -17,13 +17,13 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-    const Cart = useSelector((state) => state.LocalPersist.cart);
+    const Cart = useSelector((state) => state.LocalPersist.cart.Books);
     // const userName = useSelector(state => state.LocalPersist.userInfo.name);
     // const email = useSelector(state => state.LocalPersist.userInfo.email);
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [isFav, setIsFav] = useState(false);
-
+ 
     const handleFavorite = () => {
         if (isFav) {
             setIsFav(false);
@@ -48,8 +48,6 @@ const Detail = () => {
         async function fetchData() {
             try {
                 const response = await axios.get(`${url}/books/${id}`);
-                console.log(response)
-                console.log(response.data)
                 setBook(response.data);
             } catch (error) {
                 console.error("Error fetching book details:", error);
@@ -57,11 +55,6 @@ const Detail = () => {
         }
         fetchData(); // Llamar a la función para que realice la solicitud
     }, [id]);
-
-
-    useEffect(()=>{
-        dispatch(getCart(id))
-    },[dispatch])
 
     // const handleSubmit = async (event) => {
     //   event.preventDefault()
@@ -89,17 +82,20 @@ const Detail = () => {
     };
 
     const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
-      const cartItems = Cart;
-      const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
-
-      if (productInCart) {
-        alert("El producto ya está en el carrito") 
-      } else {
-        dispatch(addToCart(user_id, id, quantity));
-        alert("Producto agregado al carrito")
-        dispatch(getCart(user_id))
-        navigate("/cart")
-      }
+        const cartItems = Cart;
+        const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
+        if (isAuthenticated) {
+            if (productInCart) {
+                alert("Book is already in the shopping cart.");
+            } else {
+                dispatch(addToCart(user_id, id, quantity));
+                alert("Book has been added to the shopping cart.");
+                dispatch(getCart(user_id));
+                navigate("/cart");
+            }
+        } else {
+            alert('You need to log in to buy books.');
+        }
     }
 
     return (
@@ -110,12 +106,12 @@ const Detail = () => {
                 <div className="ContainerContainer">
                     <div className="GridTwoColumns" >
                         <div className="DetailImages">
-                            <img src={book.image} alt="bookImage"></img>
+                            <img src={book?.image} alt="bookImage"></img>
                         </div>
 
                         <div className="DetailData">
                             <div className="GridTwoColumns" style={{ gridTemplateColumns: "72% 28%"}} >
-                                <h2>{book.title}</h2>
+                                <h2>{book?.title}</h2>
                                 <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
                                     {isFav ? (
                                         <button onClick={handleFavorite} className="HeartFav">
@@ -131,37 +127,37 @@ const Detail = () => {
                             </div>
                             <p>
                                 <span className="outerTextStyle">by</span> 
-                                <span className="innerTextStyle"> {book.author}</span> 
+                                <span className="innerTextStyle"> {book?.author}</span> 
                                 <span className="outerTextStyle" style={{padding:"0 1rem"}}>|</span> 
                                 <span className="outerTextStyle">Format </span> 
-                                <span className="innerTextStyle"> {book.Formats?.map((f) => f.name).join(' , ')}</span>
+                                <span className="innerTextStyle"> {book?.Formats?.map((f) => f.name).join(' , ')}</span>
                             </p>
                             {/* <div style={{display:"flex", flexDirection:"row"}}>    
                                 <Stars stars={book.stars} reviews={book.reviews} />
                             </div> */}
-                            <p style={{color:"grey"}}>USD {book.price},00</p>
-                            <p >{book.description}</p>
+                            <p style={{color:"grey"}}>USD {book?.price},00</p>
+                            <p >{book?.description}</p>
                             <hr className="hrStyle"></hr>
                             <div className="DetailDetail">
                                 <div className="DetailIcons">
                                     <p>pages</p>
                                     <AiTwotoneContainer className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{book.pages}</p>
+                                    <p style={{fontWeight:"bold"}}>{book?.pages}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Language</p>
                                     <AiOutlineGlobal className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{book.Languages?.map((l) => l.name).join(' , ')}</p>
+                                    <p style={{fontWeight:"bold"}}>{book?.Languages?.map((l) => l.name).join(' , ')}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>publisher</p>
                                     <AiOutlineRead className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{book.Publishers?.map((p) => p.name).join(' , ')}</p>
+                                    <p style={{fontWeight:"bold"}}>{book?.Publishers?.map((p) => p.name).join(' , ')}</p>
                                 </div>
                                 <div className="DetailIcons">
                                     <p>Publication date</p>
                                     <AiOutlineSchedule className="IconStyleDetail"/>
-                                    <p style={{fontWeight:"bold"}}>{book.publicationDate}</p>
+                                    <p style={{fontWeight:"bold"}}>{book?.publicationDate}</p>
                                 </div>
                             </div>
                             <hr className="hrStyle"></hr>
@@ -173,12 +169,12 @@ const Detail = () => {
 
                                 </div>
                                 {isAuthenticated ? (
-                                    <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)}>
+                                    <button className="Buttons" onClick={()=>{handleAddToCart(user_id, id, quantity)}}>
                                         Add to Cart
                                     </button>
                                 ) : (
-                                    <button className="Buttons" onClick={() => alert('Debe iniciar sesión para agregar productos.')} disabled>
-                                        Agregar al carrito
+                                    <button className="Buttons" onClick={() => alert('You need to log in to buy books.')} >
+                                        Add to Cart
                                     </button>
                                 )}
 
