@@ -12,7 +12,7 @@ import BookDetail from "./views/Detail/BookDetail";
 import Cart from "./views/Cart/Cart";
 import Profile from './views/Profile/Profile';
 import Qa from './views/Q&A/Q&A';
-import Wishlist from "./views/Wishlist/Wishlist";
+import WishlistItem from "./views/WishlistItem/WishlistItem";
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/store" element={<Store />} />
           <Route path="/detail/:id" element={<BookDetail />} /> 
           <Route path="/cart" element={<Cart />} /> 
-          <Route path="/wishlist" element={<Wishlist />} /> 
+          <Route path="/wishlist" element={<WishlistItem />} /> 
           <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />

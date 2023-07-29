@@ -1,0 +1,35 @@
+.qaContainer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .question {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .arrowDown,
+  .arrowUp {
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  
+  .arrowDown {
+    transform: rotate(45deg);
+  }
+  
+  .arrowUp {
+    transform: rotate(-135deg);
+  }
+  
+  .answer {
+    margin-top: 10px;
+    display: block;
+  }
+  

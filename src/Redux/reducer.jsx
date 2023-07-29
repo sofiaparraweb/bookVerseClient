@@ -29,6 +29,9 @@ import {
   GET_USER_ID,
   UPDATE_USER,
   SET_USER_ID,
+  ADD_REVIEW_REQUEST,
+  ADD_REVIEW_SUCCESS,
+  ADD_REVIEW_FAILURE
 } from "./actions";
 
 // Estado inicial del reducer
@@ -47,6 +50,7 @@ const initialState = {
   loading: true,
   error: null,
   grid_view: true,
+  reviews: []
 };
 
 // // Reducer
@@ -220,7 +224,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         userId: action.payload,
       };
-
+      case ADD_REVIEW_REQUEST:
+        return { ...state, loading: true, error: null };
+      case ADD_REVIEW_SUCCESS:
+        return { ...state, loading: false, reviews: [...state.reviews, action.payload] };
+      case ADD_REVIEW_FAILURE:
+        return { ...state, loading: false, error: action.payload };
+      
 //------------------------------------suscription form-----------------------------------
 
     default:

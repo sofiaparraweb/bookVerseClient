@@ -43,6 +43,11 @@ export const GET_USER_ID = "GET_USER_ID";
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_USER_ID = "SET_USER_ID";
 
+//actions reviews
+export const ADD_REVIEW_REQUEST = 'ADD_REVIEW_REQUEST';
+export const ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
+export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
+
 //actions footer
 export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
@@ -421,4 +426,20 @@ export const formSuscription = (formData) => {
       console.log(error);
     }
   };
+};
+
+
+//------------------------------------REVIEWS-----------------------------------
+
+
+export const addReview = (review) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_REVIEW_REQUEST });
+
+    const response = await axios.post(`${url}/review/post`, review);
+
+    dispatch({ type: ADD_REVIEW_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ADD_REVIEW_FAILURE, payload: error.message });
+  }
 };

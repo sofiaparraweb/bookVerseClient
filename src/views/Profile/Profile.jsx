@@ -33,17 +33,9 @@ const Profile = () => {
   const dispatch = useDispatch();
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
-  const email = user.email;
+  const email = userProfile.email;
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // useEffect(() => {
-  //   if (!isProfileFetchedRef.current && isAuthenticated && user) {
-  //     dispatch(getUser(email));
-  //     isProfileFetchedRef.current = true;
-  //   }
-  // }, [dispatch, isAuthenticated, email]);
-
-  
   useEffect(() => {
     if (userProfile) {
       setInitialProfile(userProfile);
@@ -100,8 +92,8 @@ const Profile = () => {
   useEffect(() => {
     // Resetear los estados después de la solicitud PUT
     if (!editing) {
-      setInitialProfile(editedProfile);
-      reset(editedProfile);
+      setInitialProfile(initialProfile);
+      reset(initialProfile);
     }
   }, [editing, editedProfile, reset]);
 
