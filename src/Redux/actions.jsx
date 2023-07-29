@@ -46,6 +46,11 @@ export const SET_USER_ID = "SET_USER_ID";
 //actions footer
 export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
+//actions reviews
+export const ADD_REVIEW_REQUEST = 'ADD_REVIEW_REQUEST';
+export const ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
+export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
+
 // export const url = "https://bookverse-m36k.onrender.com";
 export const url = "http://localhost:3001";
 
@@ -416,4 +421,19 @@ export const formSuscription = (formData) => {
       console.log("estoy en las actions", error);
     }
   };
+};
+
+//------------------------------------REVIEWS-----------------------------------
+
+
+export const addReview = (review) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_REVIEW_REQUEST });
+
+    const response = await axios.post(`${url}/review/post`, review);
+
+    dispatch({ type: ADD_REVIEW_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ADD_REVIEW_FAILURE, payload: error.message });
+  }
 };
