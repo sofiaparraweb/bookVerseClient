@@ -35,7 +35,7 @@ const Checkout = ({total}) => {
            
         dispatch(postPayment(user_id)).then((response) => {
         if (response) {
-            window.open(response.init_point, "_blank");
+            window.open(response.url, "_blank");
         } else {
             Swal.fire("Error", "Hubo un error al enviar la información", "error");
         }
