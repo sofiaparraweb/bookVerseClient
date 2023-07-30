@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import "./BookDetail.css";
+import ReviewForm from "../reviewForm/ReviewForm";
 
 
 const Detail = () => {
@@ -23,7 +24,8 @@ const Detail = () => {
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [isFav, setIsFav] = useState(false);
- 
+    const [userRating, setUserRating] = useState(null);
+
     const handleFavorite = () => {
         if (isFav) {
             setIsFav(false);
@@ -182,6 +184,8 @@ const Detail = () => {
                         </div>
                     </div>
                 </div>
+           
+               <ReviewForm bookId={id} />
             </div>
         </form>
     )

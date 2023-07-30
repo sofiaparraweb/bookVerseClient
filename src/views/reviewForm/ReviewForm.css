@@ -1,0 +1,55 @@
+/*=============>>>reviews<<<=================*/
+.DeetailContainer {
+  background-color: red;
+}
+
+.ReviewContainer {
+  background-color: #efefdc;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.RatingContainer {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.CommentContainer textarea {
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.SubmitContainer {
+  text-align: right;
+}
+
+.SubmitContainer button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.SubmitContainer button:hover {
+  background-color: #0056b3;
+  transform: translate(0, 5px); 
+}
+
+.SubmitContainer button[disabled] {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+  
