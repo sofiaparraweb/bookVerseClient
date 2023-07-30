@@ -73,12 +73,12 @@ const NavBar = ({ isAuthenticated }) => {
           </NavLink>
 
             <NavLink
-              to="/about" // Ruta a la que redirige el enlace
+              to="/qa" // Ruta a la que redirige el enlace
               className={style.linkNavBar}
               id="tiendaNav"
               onClick={handleClick}
             >
-              ABOUT US
+              Q&A
             </NavLink>
 
             <NavLink

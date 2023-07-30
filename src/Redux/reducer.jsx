@@ -67,8 +67,8 @@ const reducer = (state = initialState, action) => {
     case GET_ALL_BOOKS:
       return {
         ...state,
-        allbooks: action.payload,
         books: action.payload,
+        allbooks: action.payload,
         loading: false,
       };
     case GET_BOOK_GENRE:
