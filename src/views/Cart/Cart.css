@@ -1,11 +1,43 @@
 /* ----------------------------------------GENERALS---------------------------------------- */
 .CartContainer{
     padding: 4rem 15rem;
-    margin-top: 7%;
+    margin-top: 3%;
 }
 .hrCart {
     margin: 0.6rem 0;
 }
+
+/* ------------------------------------TITLE------------------------------------ */
+.titleContainerCart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .titleContainerCartText{
+    text-align: center;
+    padding: 0 1rem;
+    color: #17424b;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family:'Times New Roman', Times, serif;
+    letter-spacing: 0.5rem;
+    z-index: 1;
+    background-color: rgb(246, 245, 245)
+  }
+  
+  .titleContainerCartLine {
+    position: absolute; 
+    top: 50%;
+    left: 0;
+    right: 0;
+    border: 0.1px solid silver;
+    z-index: 0;
+  }
 
 /* ----------------------------------------TOP---------------------------------------- */
 .cart-heading {
@@ -16,10 +48,8 @@
     color: grey;
     font-size: 0.9rem;
 }
-
 /* ----------------------------------------BOOKS---------------------------------------- */
 .cart-image--name {
-    /* background-color: red; */
     align-items: center;
     display: grid;
     gap: 1rem;
@@ -29,17 +59,18 @@
 }
     
 .cart-image--name img {
-    max-width: 5rem;
-    height: 5rem;
+    max-width: 10rem;
+    height: 10rem;
     object-fit: contain;
     color: transparent;
 }
 
-.remove_icon{
-  color: #b38a83;
-  /* color: #17424b; */
-  width: 1.2rem;
-  height: 1.2rem;
+.remove_icon_Cart{
+    color: #b38a83;
+    border: none;
+    background-color: transparent;
+    width: 1.3rem;
+    height: 1.3rem;
 }
 
 

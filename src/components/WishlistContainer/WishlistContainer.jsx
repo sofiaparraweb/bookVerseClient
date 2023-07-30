@@ -1,14 +1,11 @@
-// import { useEffect } from 'react';
-// import { getCarrito } from '../../../Redux/actions';
-// import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import WishlistItem from "../../views/WishlistItem/WishlistItem";
 import "./WishlistContainer.css";
 
 const WishlistContainer = () =>{
 
-    //onst Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-    // const userId = useSelector(state => state.LocalPersist.userInfo.id);
+    const userName = useSelector(state => state.LocalPersist.userInfo.name);
 
     const wish = [
         {
@@ -116,7 +113,7 @@ const WishlistContainer = () =>{
             ]
         },
     ]
-          
+       
     return (
         <div className="WishlistContainer2">
             <div className="titleContainer">
@@ -124,7 +121,7 @@ const WishlistContainer = () =>{
                 <h1 className="titleContainerTexto">Your Wishlist</h1>
             </div>
             <div className="WishlistContent">   
-                <h1 className="MyWishlist">Hi NOMBREEEE, this is your selection</h1>
+                <h1 className="MyWishlist">Hi {userName}, this is your book selection</h1>
                 <div className="booksAvailable" style={{paddingTop:"1rem"}}>{wish.length} {' '} books available</div>  
                 {wish?.length === 0 ? (
                     <>
@@ -136,7 +133,7 @@ const WishlistContainer = () =>{
                     <>
                     {wish?.length > 0 && wish?.map((b) => {
                         return (
-                            <WishlistItem style={{borderBottom:"1px solid silver", padding:"1rem 0"}}
+                            <WishlistItem style={{borderBottom:"1px solid silver", padding:"0.5rem 0"}}
                                 key={b.id} 
                                 id={b.id}
                                 image={b.image}

@@ -2,34 +2,13 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 //import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-//import { getCart, addToCart } from "../../../Redux/actions"
-//import { Toaster, toast } from "react-hot-toast";
 import "./TiendaItems.css"; 
 
 const TiendaItems = ({ id, author, title, price, description, publisher, pages, language, genres, reviews, stars, publicationDate, image, format, Reviews }) => {
   
   // const dispatch = useDispatch();
-  // const books = useSelector((state) => state.LocalPersist.Carrito.books);
-  // const [quantity, setQuantity] = useState(0);
-  
-  // useEffect(()=>{
-  //   dispatch(getCart(user_id))
-  // },[dispatch])
-  
-  // const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
-  //   user_id:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
-  //   rating: 0,
-  //   content: "",
-  //   product_id: `${id}`, 
-  // })
-  
-  // const changeHandler = (event) => {
-  //   const property = event.target.name;
-  //   const value = event.target.value;
-  //   setReview({ ...review, [property]: value});
-  // }
-
-  
+  // const books = useSelector((state) => state.LocalPersist.cart.Books);
+    
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

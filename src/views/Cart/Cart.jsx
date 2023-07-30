@@ -1,185 +1,164 @@
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-// import { getCarrito, changeQuantity, deleteAllCarrito, deleteCarrito } from "../../../Redux/actions";
+import { getCart, deleteCart, changeQuantity, deleteAllCart } from "../../Redux/actions";
 import {AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Checkout from "../Checkout/Checkout";
 import "./Cart.css"
 
-const Cart = () =>{
-// const Cart = ({ id, name, image, price, stock, quantityProd}) =>{
+const Cart = ({ Carrito }) =>{
+    
+    const dispatch = useDispatch();
+    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const [quantitys, setQuantity] = useState(1);
+    const [subTotal, setSubTotal] = useState(0);
+    const [showForm, setShowForm] = useState(false);
 
-// const dispatch = useDispatch();
-// const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-// const userId = useSelector(state => state.LocalPersist.userInfo.id);
-// const [quantitys, setQuantity] = useState(1);
-// const [subTotal, setSubTotal] = useState(0);
-const [showForm, setShowForm] = useState(false);
+    useEffect(() => {
+    dispatch(getCart(user_id));
+    },[dispatch]);
 
-// useEffect(() => {
-//   dispatch(getCarrito(userId));
-// },[dispatch]);
+    useEffect(() => {
+      let newSubTotal = 0;
+      Carrito?.forEach((product) => {
+        newSubTotal += product.price * parseInt(product.Cart_Books.quantity, 10);
+      });
+      setSubTotal(newSubTotal);
+    }, [Carrito]);
 
-// useEffect(() => {
-//   let newSubTotal = 0;
-//   Cart?.forEach((product) => {
-//     newSubTotal += product.price * parseInt(product.Cart_Products.quantity, 10);
-//   });
-//   setSubTotal(newSubTotal);
-// }, [Cart]);
-
-// const cartQuantity = Cart?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);  
-// let servicio = subTotal * 0.10;
-// let total = subTotal + servicio;
+    const cartQuantity = Carrito?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Books.quantity, 10), 0);  
+    let servicio = parseFloat((subTotal * 0.10).toFixed(2));
+    let total = subTotal + servicio;
 
 
-// const handleClickAdd = (user_id, id, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
-//   if(parseInt(quantityProd) < stock) {
-//     quantity = parseInt(quantityProd) + 1;
-//     dispatch(changeQuantity(user_id, id, quantity));
-//     toast.success("Se agrego una unidad al carrito", {
-//       duration: 3000
-//     })
-//   } else {
-//     toast.error("La cantidad supera el stock disponible", {
-//       duration: 3000
-//     })    
-//   }
-//   dispatch(getCarrito(user_id));
-// }
+    const handleClickAdd = (user_id, id, title, image, price, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+        quantity = parseInt(quantity) + 1;
+        dispatch(changeQuantity(user_id, id, quantity));
+        alert("One unit has been added to the cart.");
+        dispatch(getCart(user_id));
+    }
 
 
-// const handleClickDelete = (user_id, id, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
-//   if(parseInt(quantityProd) > 1) {
-//     quantity = parseInt(quantityProd) - 1;
-//     dispatch(changeQuantity(user_id, id, quantity));
-//     toast.success("Se quito una unidad del carrito", {
-//       duration: 3000
-//     })
-//   } else {
-//     toast.error("No se pueden quitar mas unidades de este producto", {
-//       duration: 3000
-//     })    
-//   }
-//   dispatch(getCarrito(user_id));
-// }
+    const handleClickDelete = (user_id, id, title, image, price, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+        if(parseInt(quantity) > 1) {
+            quantity = parseInt(quantity) - 1;
+            dispatch(changeQuantity(user_id, id, quantity));
+            alert("One unit has been removed from the cart.");
+        } else {
+            alert("Cannot remove more units of this product.");  
+        }
+        dispatch(getCart(user_id));
+    }
 
 
-// const handleDeleteFromCart = async (userId, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
-//   await dispatch(deleteCarrito(userId, id));
-//   setQuantity(0);
-//   toast.success("Se ha eliminado un producto del carrito", {
-//     duration: 3000
-//   });
-//   dispatch(getCarrito(userId));
-// };
+    const handleDeleteFromCart = async (user_id, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
+      await dispatch(deleteCart(user_id, id));
+      setQuantity(0);
+      alert("Book has been removed from cart.");
+      dispatch(getCart(user_id));
+    };
+
+    const handleDeleteCart = async (user_id) =>{   //PARA VACIAR EL CARRITO
+      await dispatch(deleteAllCart(user_id));
+      setQuantity(0);
+      alert("Carrito vaciado correctamente")
+      dispatch(getCart(user_id));
+    }
 
 
-// const handleDeleteCart = async (userId) =>{   //PARA VACIAR EL CARRITO
-//   await dispatch(deleteAllCarrito(userId));
-//   setQuantity(0);
-//   toast.success("Carrito vaciado correctamente", {
-//     duration: 3000
-//   })
-//   dispatch(getCarrito(userId));
-// }
-
-
-// const handlePay = (event) => {   //PARA PROCEDER AL PAGO
-//   event.preventDefault();
-//   if (Cart) {
-//     setShowForm(true);
-//   } else {
-//     toast.error("Debe seleccionar productos", {
-//       duration: 3000
-//     })
-//     return;
-//   }
-// } 
+    const handlePay = (event) => {   //PARA PROCEDER AL PAGO
+      event.preventDefault();
+      if (Carrito) {
+        setShowForm(true);
+      } else {
+        alert("Debe seleccionar productos")
+        return;
+      }
+    } 
 
     return (       
-        <div className="CartContainer"> 
-            <div className="cart_heading grid-five-column">
-                <p>Item</p>
-                <p className="cart-hide">Price</p>
-                <p>Quantity</p>
-                <p className="cart-hide">Subtotal</p>
-                <p>Remove</p>
-            </div >
-            <hr className="hrCart"/>
+        <div className="CartContainer">
+            <div className="titleContainerCart">
+                <p className="titleContainerCartLine"></p>
+                <h1 className="titleContainerCartText">My Shopping Cart</h1>
+            </div> 
 
-            <div className="cart_heading grid-five-column">
-                <div className="cart-image--name">
-                    <div>
-                        <figure>
-                            <p>imagen</p>
-                            {/* <img src={image} alt={id} /> */}
-                        </figure>
+            {showForm ? (
+                <Checkout total={total}/>
+            ) : (
+                <>
+                <div className="cart_heading grid-five-column" style={{gridTemplateColumns: "3fr 1fr 1fr 1fr 0.3fr"}}>
+                    <p>Item</p>
+                    <p className="cart-hide">Price</p>
+                    <p>Quantity</p>
+                    <p className="cart-hide">Subtotal</p>
+                    <p>Remove</p>
+                </div >
+                <hr className="hrCart"/>
+
+                {Carrito?.length > 0 && Carrito?.map((prod) => {
+                    return (
+                        <div className="cart_heading grid-five-column" style={{padding:"0.6rem 0", gridTemplateColumns: "3fr 1fr 1fr 1fr 0.3fr"}}>
+                            <div className="cart-image--name">
+                                <div>
+                                    <figure>
+                                        <img src={prod.image} alt={prod.id} />
+                                    </figure>
+                                </div>
+                                <div>
+                                    <p style={{color:"black", fontWeight:"bold", padding:"0.5rem 0"}}>{prod.title}</p>
+                                    <p>{prod.author}</p>
+                                </div>
+                            </div>
+                            <div className="cart-hide">
+                                <p>USD{' '}{prod.price} </p>
+                            </div>
+
+                            <div className="BotoneraSumaResta" style={{color:"grey"}}>
+                                <button className="ButtonsSumaResta" onClick={()=> handleClickDelete(user_id, prod.id, prod.title, prod.image, prod.price, prod.Cart_Books.quantity)} value="less" disabled={parseInt(prod.Cart_Books.quantity) === 1}>-</button>
+                                    {prod.Cart_Books.quantity}
+                                <button className="ButtonsSumaResta" onClick={() => handleClickAdd(user_id, prod.id, prod.title, prod.image, prod.price, prod.Cart_Books.quantity)} style={{color:"grey"}} value="add" >+</button>
+                            </div>
+
+                            <div className="cart-hide">
+                                <p> USD{' '}{prod.price * prod.Cart_Books.quantity} </p>
+                            </div>
+
+                            <div>
+                                <button onClick={()=>handleDeleteFromCart(user_id, prod.id)} value="less" className="remove_icon_Cart" ><AiOutlineDelete className="remove_icon_Cart" /></button>
+                            </div>
+                        </div>
+                    ); 
+                })}
+
+                <hr className="hrCart"/>
+                
+                <div className="CartButtonsContainer">
+                    <button onClick={() => handleDeleteCart(user_id)} className="Buttons" style={{padding:"1rem 1.5rem", backgroundColor:"#b38a83"}}>Clear Cart</button>
+                    <Link to="/store"> 
+                        <button className="Buttons" style={{padding:"1rem 1.5rem"}}> CONTINUE SHOPPING </button>
+                    </Link>
+                </div>
+                <div className="ContenedorDetallePago">
+                    <div style={{paddingBottom: '1rem'}} className="GridThreeColumns">
+                        <span style={{color:"grey"}}>Subtotal: </span>
+                        <span style={{fontWeight:"bold"}}>USD{' '}{subTotal}</span>
                     </div>
-                    <div>
-                        <p>title</p>
-                        {/* <p>{title}</p> */}
-                        <p>Author</p>
-                        {/* <p>{author}</p> */}
+                    <div style={{paddingBottom: '1rem'}} className="GridThreeColumns">
+                        <span style={{color:"grey"}}>Shopping Fee: </span>
+                        <span style={{fontWeight:"bold"}}>USD{' '}{servicio}</span>
+                    </div>
+                    <hr style={{ width: '95%', margin: '1% auto', border: '1px solid grey', paddingRight: '20%'}}></hr>
+                    <div style={{paddingTop: '1rem'}} className="GridThreeColumns">
+                        <span style={{color:"grey"}}>Total Order: </span>
+                        <span style={{fontWeight:"bold"}}>USD{' '}{total}</span>
+                    </div>
+                    <div style={{marginTop:"2rem", display:"flex", justifyContent:"center"}}>
+                        <button className="Buttons" style={{padding:"1rem"}} onClick={handlePay}>Checkout</button>
                     </div>
                 </div>
-                <div className="cart-hide">
-                    <p> USD{' '}price </p>
-                    {/* <p>USD{' '}{price},00 </p> */}
-                </div>
-
-                <div className="BotoneraSumaResta">
-                    <button className="ButtonsSumaResta" style={{color:"grey"}} value="less" >-</button>
-                        <p>cantidad</p>
-                    <button className="ButtonsSumaResta" style={{color:"grey"}} value="add" >+</button>
-                    {/* <button className="ButtonsSumaResta" onClick={()=> handleClickDelete(userId, id, name, image, price, stock)} style={{color:"grey"}} value="less" disabled={parseInt(quantityProd) === 1}>-</button>
-                        {quantityProd}
-                    <button className="ButtonsSumaResta" onClick={() => handleClickAdd(userId, id, name, image, price, stock)} style={{color:"grey"}} value="add" disabled={parseInt(quantityProd) === stock}>+</button> */}
-                </div>
-
-                <div className="cart-hide">
-                    <p> USD{' '}subtotal </p>
-                    {/* <p> USD{' '}{price * quantityProd},00 </p> */}
-                </div>
-
-                <div>
-                    <AiOutlineDelete className="remove_icon" />
-                    {/* <button onClick={()=>handleDeleteFromCart(userId, id)} className="remove_icon" value="less" ><AiOutlineDelete /></button> */}
-                </div>
-            </div>
-            <hr className="hrCart"/>
-
-    {/* //{showForm ? (
-        //     <FormPago total={total}/>
-        // ) : (
-            )} */}
-            {/* 
-            //       <Card
-    //     */}
-            <div className="CartButtonsContainer">
-                <Link to="/store"> 
-                    <button className="Buttons" style={{padding:"1rem 1.5rem"}}> CONTINUE SHOPPING </button>
-                </Link>
-                <button className="Buttons" style={{padding:"1rem 1.5rem", backgroundColor:"#b38a83"}}>Clear Cart</button>
-                {/* <button onClick={() => handleDeleteCart(userId)} className="Buttons">x</button> */}
-            </div>
-            <div className="ContenedorDetallePago">
-                <div style={{paddingBottom: '1rem'}} className="GridThreeColumns">
-                    <span style={{color:"grey"}}>Subtotal: </span>
-                    <span style={{fontWeight:"bold"}}>USD{' '}subTotal</span>
-                </div>
-                <div style={{paddingBottom: '1rem'}} className="GridThreeColumns">
-                    <span style={{color:"grey"}}>Shopping Fee: </span>
-                    <span style={{fontWeight:"bold"}}>USD{' '}servicio</span>
-                    {/* <span style={{fontWeight:"bold"}}>USD{' '}{servicio},00</span> */}
-                </div>
-                <hr style={{ width: '95%', margin: '1% auto', border: '1px solid grey', paddingRight: '20%'}}></hr>
-                <div style={{paddingTop: '1rem'}} className="GridThreeColumns">
-                    <span style={{color:"grey"}}>Order Total: </span>
-                    <span style={{fontWeight:"bold"}}>USD{' '}total</span>
-                    {/* <span style={{fontWeight:"bold"}}>USD{' '}{total},00</span> */}
-                </div>
-                {/* <button className="Buttons" style={{padding:"1rem"}} onClick={handlePay}>Pay</button> */}
-            </div>
+                </>
+            )}
         </div>
     )
 }   

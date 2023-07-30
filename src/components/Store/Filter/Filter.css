@@ -11,8 +11,6 @@
 .FilterTitle{
     font-size: 1rem;
     cursor:pointer;
-    left: 23%;
-    top: 16%;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
     color: #17424b;
@@ -38,6 +36,7 @@
     padding: 4px 15px;
     cursor: pointer;
     display: block;
+    outline: none;
     transition: background-color 0.5s ease;
 }
 .FilterLI button:hover {
@@ -87,36 +86,20 @@
     padding: 0 1rem;
 }
 
-.BookFormat{
-    font-size: 0.8rem;
-    padding: 0.3rem 1.2rem;
-    border: none;
-    color: grey;
-    background-color: transparent;
-    outline: none;
-}
-.BookFormat:hover {
-    border: none;
-}
-
-.BookFormat option{
-    padding: 1rem 0;
-    background-color: white;
-    border:none;
-}
-
-
-
-
 .FilterOption{
     font-size: 0.6rem;
     height: 2.1rem;
     width: 2.1rem;
     border-radius: 50px;
     border: 2px solid #17424b;
+    outline: none;
 }
 .FilterOption:hover,
 .FormatActive {
     background-color: #17424b !important;
+    font-size: 0.6rem;
     color:white !important;
+    height: 2.1rem;
+    width: 2.1rem;
+    border-radius: 50px;
 }

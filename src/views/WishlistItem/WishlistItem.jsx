@@ -1,16 +1,54 @@
-
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { getCart, addToCart } from "../../Redux/actions"
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "./WishlistItem.css"
 
 const WishlistItem = ({ id, image, title, author, price, format }) => {
 
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated } = useAuth0(); 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const Cart = useSelector((state) => state.LocalPersist.cart.Books);
+    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const [quantity, setQuantity] = useState(1);
+
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-      };
+    };
+
+    const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
+        event.preventDefault()
+        setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
+    };
+  
+    const handleDelete = (event) => {  // --------------------------------------------------BOTON SUMAR
+        event.preventDefault()
+        if (quantity > 0) {
+            setQuantity(quantity - 1); // Resta 1 a la cantidad actual
+        }
+    };
+  
+    const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
+        const cartItems = Cart;
+        const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
+        if (isAuthenticated) {
+            if (productInCart) {
+                alert("Book is already in the shopping cart.");
+            } else {
+                dispatch(addToCart(user_id, id, quantity));
+                alert("Book has been added to the shopping cart.");
+                dispatch(getCart(user_id));
+                navigate("/cart");
+            }
+        } else {
+            alert('You need to log in to buy books.');
+        }
+    }
 
     return (                    
         <div>
@@ -32,25 +70,16 @@ const WishlistItem = ({ id, image, title, author, price, format }) => {
                         <span className="outerTextStyle">Format </span> 
                         <span className="innerTextStyle"> {format}</span>
                     </p>
-                    <p style={{color:"grey", margin:"1rem 0"}}>USD {price},00</p>
+                    <p style={{color:"grey", margin:"0.5rem 0"}}>USD {price},00</p>
                     <div className="Botonera">
                         <div className="BotoneraSumaResta">
-                            <button className="ButtonsSumaResta" value="less" >-</button>
-                                Cantidad
-                            <button className="ButtonsSumaResta" value="add" >+</button>
-                            {/* <button className="ButtonsSumaResta" onClick={handleDelete} value="less" >-</button>
-                                Cantidad
-                            <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button> */}
+                            <button className="ButtonsSumaResta" onClick={handleDelete} value="less" >-</button>
+                                {quantity}
+                            <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button>
                         </div>
-                        {isAuthenticated ? (
-                            <button className="Buttons" onClick={()=>handleAddToCart(user_id, id, quantity)} style={{padding:"1rem"}}>
-                                Add to Cart
-                            </button>
-                        ) : (
-                            <button className="Buttons" disabled style={{padding:"1rem"}}>       agregar mensaje error
-                                Add to Cart
-                            </button>
-                        )}
+                        <button className="Buttons" style={{padding:"1rem"}} onClick={()=>{handleAddToCart(user_id, id, quantity)}}>
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
 
