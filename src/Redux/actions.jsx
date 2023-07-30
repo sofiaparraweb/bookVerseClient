@@ -253,7 +253,6 @@ export const getCart = (user_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/cart/${user_id}`);
-      console.log(response.data)
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -265,7 +264,6 @@ export const addToCart = (user_id, id, quantity) => {
   return async (dispatch) =>{
     try {
       const response = await axios.post(`${url}/cart/add?user_id=${user_id}&book_id=${id}&quantity=${quantity}`)
-      console.log(response.data)
       dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -277,8 +275,6 @@ export const deleteCart = (user_id, id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(`${url}/cart/remove?user_id=${user_id}&book_id=${id}`);
-      console.log(response)
-      console.log(response.data)
       dispatch({ type: DELETE_PRODUCT_CART, payload: id });
     } catch (error) {
       console.log(error);
@@ -313,9 +309,8 @@ export const deleteAllCart = (user_id) => {
 export const postPayment = (user_id) => {
   return async (dispatch) => {
     try {
-      console.log(user_id)
-      const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
-      console.log(response.data)
+      const response = await axios.post(`${url}/payment/create-checkout-session/${user_id}`)
+      console.log(response)
       if (response) {
         dispatch({ type: POST_PAYMENT, payload: response.data })
         return response.data;
