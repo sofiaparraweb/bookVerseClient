@@ -479,7 +479,8 @@ export const addReview = (review) => async (dispatch) => {
     dispatch({ type: ADD_REVIEW_REQUEST });
 
     const response = await axios.post(`${url}/review/post`, review);
-     console.log("estoy en actions", response);
+    console.log(response.data)
+    console.log("estoy en actions", response);
     dispatch({ type: ADD_REVIEW_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: ADD_REVIEW_FAILURE, payload: error.message });
