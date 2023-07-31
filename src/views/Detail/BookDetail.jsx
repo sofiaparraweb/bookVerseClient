@@ -180,17 +180,23 @@ const Detail = () => {
                     </div>
                 </div>
            
-                <ReviewForm id={id} />
-                <div className="ComentariosDetail">
-                    {book.Reviews?.map((con)=>{
-                        return(
-                            <div>
-                                <p style={{paddingBottom:"1rem"}}>{con.email}:</p>
-                                <p style={{color:"grey"}}>{con.content} </p>
-                                <hr style={{margin:"2rem"}} />
-                            </div>
-                        )
-                    })}
+                <div className="titleContainer" style={{marginBottom:"0"}}>
+                    <p className="titleContainerLine"></p>
+                    <h1 className="titleContainerTexto">Customer Reviews</h1>
+                </div>
+                <div style={{padding:"1rem 6rem"}}>
+                    <ReviewForm id={id} />
+                    <div className="ComentariosDetail">
+                        {book.Reviews?.map((con)=>{
+                            return(
+                                <div>
+                                    <p style={{paddingBottom:"0.5rem"}}>{con.email} | {con.rating} of 5</p>
+                                    <p style={{color:"grey"}}>{con.content} </p>
+                                    <hr style={{margin:"2rem"}} />
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </form>

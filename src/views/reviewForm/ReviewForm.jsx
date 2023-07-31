@@ -73,16 +73,38 @@ const ReviewForm = ({ id }) => {
 
   return (
     <div className="ReviewContainer">
-      <h3>Your Review</h3>
-      <div className="RatingContainer">
-      <textarea
+      <p style={{fontSize:"1.2rem"}}>Your Review</p>
+      <ol class="rating-list">
+        <li>
+          <input type="radio" name="rating" id="rating1" value="1" onChange={handleCommentChange}/>
+          <label for="rating1">⭑</label>
+        </li>
+        <li>
+          <input type="radio" name="rating" id="rating2" value="2" onChange={handleCommentChange}/>
+          <label for="rating2">⭑</label>
+        </li>
+        <li>
+          <input type="radio" name="rating" id="rating3" value="3" onChange={handleCommentChange}/>
+          <label for="rating3">⭑</label>
+        </li>
+        <li>
+          <input type="radio" name="rating" id="rating4" value="4" onChange={handleCommentChange}/>
+          <label for="rating4">⭑</label>
+        </li>
+        <li>
+          <input type="radio" name="rating" id="rating5" value="5" onChange={handleCommentChange}/>
+          <label for="rating5">⭑</label>
+        </li>
+      </ol>
+      {/* <div className="RatingContainer">
+        <input
           type="range" min="0" max="5"
           name="rating"
           onChange={handleCommentChange}
           value={review.rating}
-        ></textarea>
+        ></input>
 
-      </div>
+      </div> */}
       <div className="CommentContainer">
         <textarea
           value={review.content}
