@@ -36,6 +36,11 @@ const Detail = () => {
         }
     };
 
+    const totalRatings = book.Reviews?.reduce((total, review) => total + review.rating, 0);
+    const averageRating = totalRatings / book.Reviews?.length;
+
+    const contentCount = book.Reviews?.length;
+
     // useEffect(() => {
     //     myFavorites.forEach((fav) => {
     //       if (fav.id === id) {
@@ -58,18 +63,6 @@ const Detail = () => {
         fetchData(); // Llamar a la función para que realice la solicitud
     }, [id]);
 
-    // const handleSubmit = async (event) => {
-    //   event.preventDefault()
-    //   try {
-    //     console.log(holis)
-    //     await axios.post('https://lagruta.onrender.com/review/post', review)
-    //     //await axios.post('http://localhost:3001/review/post', review)
-    //     .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
-    //     .catch((error) => alert(error))
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // } 
 
     const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
       event.preventDefault()
@@ -134,9 +127,11 @@ const Detail = () => {
                                 <span className="outerTextStyle">Format </span> 
                                 <span className="innerTextStyle"> {book?.Formats?.map((f) => f.name).join(' , ')}</span>
                             </p>
-                            {/* <div style={{display:"flex", flexDirection:"row"}}>    
-                                <Stars stars={book.stars} reviews={book.reviews} />
-                            </div> */}
+
+                            <div style={{display:"flex", flexDirection:"row"}}>    
+                                <Stars stars={averageRating} reviews={contentCount}/>
+                            </div>
+
                             <p style={{color:"grey"}}>USD {book?.price},00</p>
                             <p >{book?.description}</p>
                             <hr className="hrStyle"></hr>
@@ -185,7 +180,24 @@ const Detail = () => {
                     </div>
                 </div>
            
-               <ReviewForm bookId={id} />
+                <div className="titleContainer" style={{marginBottom:"0"}}>
+                    <p className="titleContainerLine"></p>
+                    <h1 className="titleContainerTexto">Customer Reviews</h1>
+                </div>
+                <div style={{padding:"1rem 6rem"}}>
+                    <ReviewForm id={id} />
+                    <div className="ComentariosDetail">
+                        {book.Reviews?.map((con)=>{
+                            return(
+                                <div>
+                                    <p style={{paddingBottom:"0.5rem"}}>{con.email} | {con.rating} of 5</p>
+                                    <p style={{color:"grey"}}>{con.content} </p>
+                                    <hr style={{margin:"2rem"}} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
         </form>
     )
