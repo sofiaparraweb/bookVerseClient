@@ -19,6 +19,8 @@ const Detail = () => {
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userInfo.id);
     const Cart = useSelector((state) => state.LocalPersist.cart.Books);
+    console.log(user_id)
+    console.log(Cart)
     // const userName = useSelector(state => state.LocalPersist.userInfo.name);
     // const email = useSelector(state => state.LocalPersist.userInfo.email);
     const [quantity, setQuantity] = useState(1);
@@ -35,20 +37,15 @@ const Detail = () => {
             // addFavorites({ id, title, genres, image });
         }
     };
-
-    const totalRatings = book.Reviews?.reduce((total, review) => total + review.rating, 0);
-    const averageRating = totalRatings / book.Reviews?.length;
-
-    const contentCount = book.Reviews?.length;
-
+    
     // useEffect(() => {
-    //     myFavorites.forEach((fav) => {
+        //     myFavorites.forEach((fav) => {
     //       if (fav.id === id) {
     //         setIsFav(true);
     //       }
     //     });
     //   }, [myFavorites, id]);
-
+    
     // const url = "https://bookverse-m36k.onrender.com";
     const url = "http://localhost:3001";
     useEffect(() => {
@@ -62,6 +59,12 @@ const Detail = () => {
         }
         fetchData(); // Llamar a la función para que realice la solicitud
     }, [id]);
+    
+
+    const totalRatings = book.Review && book.Reviews?.reduce((total, review) => total + review.rating, 0);
+    const averageRating = totalRatings / book.Reviews?.length;
+
+    const contentCount = book.Reviews?.length;
 
 
     const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
@@ -78,7 +81,9 @@ const Detail = () => {
 
     const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
         const cartItems = Cart;
-        const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
+        const productInCart = cartItems.find((item) => item.id === id); //Verificamos si el producto ya esta en el carrito
+        console.log(cartItems)
+        console.log(productInCart)
         if (isAuthenticated) {
             if (productInCart) {
                 alert("Book is already in the shopping cart.");

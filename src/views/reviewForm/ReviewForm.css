@@ -7,14 +7,34 @@
   border-radius: 4px;
 }
 
-/* .RatingContainer {
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  margin-bottom: 10px;
-  padding: 5px;
-} */
 
+/*=============>>>rating<<<=================*/
+.rating-list {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.1rem;
+}
+
+/* Estilos para los inputs ocultos */
+.rating-list input[type="radio"] {
+  display: none;
+}
+
+/* Estilos para los labels (circulos o corazones) */
+.rating-list label {
+  font-size: 3.5rem;
+  cursor: pointer;
+  color: #ccc;
+}
+
+/* Estilos para los labels cuando el input está seleccionado */
+.rating-list input[type="radio"]:checked + label {
+  color: #ffcc00; /* Color cuando está seleccionado */
+}
+
+
+/*=============>>>Coments<<<=================*/
 .CommentContainer textarea {
   width: 100%;
   height: 100px;
@@ -46,59 +66,4 @@
 .SubmitContainer button[disabled] {
   background-color: #ddd;
   cursor: not-allowed;
-}
-
-
-
-/* input[type="range"] {
-  /* Eliminar los estilos predeterminados */
-  /* margin-top: 0.5rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 0.21rem;
-  border-radius: 50px;
-  outline: none;
-} */
-
-/* Estilos para el "track" o riel del input range */
-/* input[type="range"]::-webkit-slider-runnable-track {
-  border-radius: 20px;
-  height: 0.3rem;
-} */
-
-/* Estilos para el "thumb" o círculo del input range */
-/* input[type="range"]::-webkit-slider-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #17424b;
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  transform: translateY(calc(25% - 8px));
-}  */
-
-.rating-list {
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.1rem;
-}
-
-/* Estilos para los inputs ocultos */
-.rating-list input[type="radio"] {
-  display: none;
-}
-
-/* Estilos para los labels (circulos o corazones) */
-.rating-list label {
-  font-size: 3.5rem;
-  cursor: pointer;
-  color: #ccc;
-}
-
-/* Estilos para los labels cuando el input está seleccionado */
-.rating-list input[type="radio"]:checked + label {
-  color: #ffcc00; /* Color cuando está seleccionado */
 }
