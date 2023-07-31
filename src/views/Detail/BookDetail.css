@@ -99,6 +99,15 @@
     align-items: center;
 }
 
+/* -----------------------------------------------COMENTARIOS */
+.ComentariosDetail{
+    background-color: #efefdc;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
 /* -----------------------------------------------IMAGENES---------------------------------------------------- */
 /* .images-column {
     flex: 1; 
