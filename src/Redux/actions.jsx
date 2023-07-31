@@ -7,9 +7,14 @@ export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 export const GET_BOOK_GENRE = "GET_BOOK_GENRE";
 export const GET_BOOK_LANGUAGE = "GET_BOOK_LANGUAGE";
 export const GET_BOOK_PUBLISHER = "GET_BOOK_PUBLISHER";
+export const GET_BOOK_FORMAT = "GET_BOOK_FORMAT";
+
 //actions FILTER books
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const FILTER_BY_FORMAT = "FILTER_BY_FORMAT";
+export const FILTER_BY_LANGUAGE = "FILTER_BY_LANGUAGE";
+export const FILTER_BY_PUBLISHER = "FILTER_BY_PUBLISHER";
+export const FILTER_COMBINED = "FILTER_COMBINED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const ORDER_BY_TITLE = "ORDER_BY_TITLE"
 // export const ORDER_BY_AUTHOR = "ORDER_BY_AUTHOR"
@@ -20,12 +25,11 @@ export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
 
 //actions carrito
 export const GET_CART = "GET_CART";
-// export const ADD_TO_CART = "ADD_TO_CART";
-// export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
-// export const DELETE_ALL_CART = "DELETE_ALL_CART";
-// export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
-export const SET_GRIDVIEW = "SET_GRIDVIEW"
-// export const POST_PAYMENT = "POST_PAYMENT";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
+export const DELETE_ALL_CART = "DELETE_ALL_CART";
+export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+export const POST_PAYMENT = "POST_PAYMENT";
 
 //actions dashboard
 // export const ADD_PRODUCT = "ADD_PRODUCT";
@@ -43,8 +47,15 @@ export const GET_USER_ID = "GET_USER_ID";
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_USER_ID = "SET_USER_ID";
 
+//actions reviews
+export const ADD_REVIEW_REQUEST = 'ADD_REVIEW_REQUEST';
+export const ADD_REVIEW_SUCCESS = 'ADD_REVIEW_SUCCESS';
+export const ADD_REVIEW_FAILURE = 'ADD_REVIEW_FAILURE';
+
 //actions footer
 export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
+
+
 
 // export const url = "https://bookverse-m36k.onrender.com";
 export const url = "http://localhost:3001";
@@ -94,6 +105,13 @@ export const getBookPublisher = () => {
   };
 };
 
+export const getBookFormat = () => {
+  return async (dispatch) => {
+    const resp = await axios(`${url}/format/`);
+    return dispatch({ type: GET_BOOK_FORMAT, payload: resp.data });
+  };
+};
+
 
 //------------------------------------filtros y ordenamiento
 export const searchByName = (name) => {
@@ -124,6 +142,40 @@ export const filterByFormat = (name) => {
     try {
       const response = await axios.get(`${url}/filter/format?name=${name}`);
       dispatch({ type: FILTER_BY_FORMAT, payload: response.data.filteredByFormat});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const filterByLanguage = (name) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/filter/language?name=${name}`);
+      dispatch({ type: FILTER_BY_LANGUAGE, payload: response.data.filteredLanguage});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const filterByPublisher = (name) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/filter/publisher?name=${name}`);
+      dispatch({ type: FILTER_BY_PUBLISHER, payload: response.data.filteredPublisher});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const filterCombined = (name) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/filter/combined?name=${name}`);
+      console.log(response.data.books)
+      dispatch({ type: FILTER_COMBINED, payload: response.data.books});
     } catch (error) {
       console.log(error);
     }
@@ -196,10 +248,6 @@ export const orderByTitle = (title) => {
 //   };
 // };
 
-//------------------------------------store view-----------------------------------
-const setGridView = () =>{
-  return dispatch({type: SET_GRIDVIEW})
-}
 
 // ------------------------------------Cart-----------------------------------
 
@@ -214,66 +262,66 @@ export const getCart = (user_id) => {
   };
 };
 
-// export const addToCart = (user_id, id, quantity) => {
-//   return async (dispatch) =>{
-//     try {
-//       const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
-//       dispatch({ type: ADD_TO_CART, payload: response.data})
-//     } catch (error){
-//       console.log(error);
-//     }
-//   }
-// }
+export const addToCart = (user_id, id, quantity) => {
+  return async (dispatch) =>{
+    try {
+      const response = await axios.post(`${url}/cart/add?user_id=${user_id}&book_id=${id}&quantity=${quantity}`)
+      dispatch({ type: ADD_TO_CART, payload: response.data})
+    } catch (error){
+      console.log(error);
+    }
+  }
+}
 
-// export const deleteAllCart = (user_id) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
-//       dispatch({ type: DELETE_ALL_CART, payload: [] });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const deleteCart = (user_id, id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(`${url}/cart/remove?user_id=${user_id}&book_id=${id}`);
+      dispatch({ type: DELETE_PRODUCT_CART, payload: id });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const deleteCart = (user_id, id) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(
-//         `${url}/cart/remove?user_id=${user_id}&product_id=${id}`
-//       );
-//       dispatch({ type: DELETE_PRODUCT_CART, payload: id });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const changeQuantity = (user_id, id, quantity) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${url}/cart?user_id=${user_id}&book_id=${id}&quantity=${quantity}`);
+      dispatch({ type: CHANGE_QUANTITY, payload: response.data });
+    } catch (error) {
+      console.log(error);  
+    }
+  };
+};
 
-// export const changeQuantity = (user_id, id, quantity) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(`${url}/cart?user_id=${user_id}&product_id=${id}&quantity=${quantity}`);
-//       dispatch({ type: CHANGE_QUANTITY, payload: response.data });
-//     } catch (error) {
-//       console.log(error);  
-//     }
-//   };
-// };
+export const deleteAllCart = (user_id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
+      dispatch({ type: DELETE_ALL_CART, payload: [] });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const postPayment = (user_id) => {
-//   return async (dispatch) => {
-//     try {
-//       console.log(user_id)
-//       const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
-//       if (response) {
-//         dispatch({ type: POST_PAYMENT, payload: response.data })
-//         return response.data;
-//       } 
-//     }catch (error) {
-//       console.log("Error al enviar la información al backend", error)
-//     }
-//   }
-// };
+
+// ----------Payment Form
+export const postPayment = (user_id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/payment/create-checkout-session/${user_id}`)
+      console.log(response)
+      if (response) {
+        dispatch({ type: POST_PAYMENT, payload: response.data })
+        return response.data;
+      } 
+    }catch (error) {
+      console.log("Error al enviar la información al backend", error)
+    }
+  }
+};
 
 
 //------------------------------------user-----------------------------------
@@ -296,7 +344,7 @@ export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/email/${email}`);
-      console.log(response);
+      console.log(response.data, 'function getUserId');
       dispatch({
         type: GET_USER_ID,
         payload: response.data,
@@ -308,7 +356,7 @@ export const getUserId = (email) =>{
 }
 
 export const createUser = (newUser) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
@@ -329,9 +377,14 @@ export const createUser = (newUser) => {
 };
 
 export const updateUser = (data) => {
+  console.log(data)
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, data);
+      const response = await axios.put(`${url}/user/edit`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       dispatch({
         type: UPDATE_USER,
         payload: response.data,
@@ -413,7 +466,23 @@ export const formSuscription = (formData) => {
       });
       console.log('funcion email footer')
     } catch (error) {
-      console.log("estoy en las actions", error);
+      console.log(error);
     }
   };
+};
+
+//------------------------------------REVIEWS-----------------------------------
+
+
+export const addReview = (review) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_REVIEW_REQUEST });
+
+    const response = await axios.post(`${url}/review/post`, review);
+    console.log(response.data)
+    console.log("estoy en actions", response);
+    dispatch({ type: ADD_REVIEW_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ADD_REVIEW_FAILURE, payload: error.message });
+  }
 };

@@ -35,7 +35,7 @@ const Store = () => {
     <div className="ContainerGridFilterColumn">
       <div className="FilterStore">
         <SearchBar ebooks={currentBooks}/>
-        <Filter />
+        <Filter setCurrentPage={setCurrentPage}/>
       </div>
       <section className="BooksView">
         <div className="GridThreeColumns" style={{gridTemplateColumns:"1fr auto 1fr"}}>
