@@ -34,6 +34,7 @@ const Profile = () => {
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
   const email = userProfile?.email || '';
+
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
