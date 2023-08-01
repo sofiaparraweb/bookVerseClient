@@ -15,20 +15,27 @@ import Pie from './scenes/pie'
 import Line from './scenes/line'
 import Geography from './scenes/geography' 
 
-function DashBoard1() {
 
-  const [theme,colorMode] = useMode()
+
+export default DashBoard1;
+function DashBoard1() {
+  const [theme, colorMode] = useMode();
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <CssBaseline /> 
-        <div className="app">
-          <Sidebar />
-    <main className="content">
-      <Topbar />
-      <Routes>
-        <Route path='/' element={<Dashboard />}/>
+        <CssBaseline />
+        <div className="app" style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ width: '20%' }}> 
+            <Sidebar />
+          </div>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          
+            <Topbar />
+            
+            <main className="content">
+              <Routes>
+              <Route path='/' element={<Dashboard />}/>
         <Route path='/team' element={<Team />}/>
         <Route path='/contacts' element={<Contacts />}/>
         <Route path='/invoices' element={<Invoices />}/>
@@ -39,13 +46,13 @@ function DashBoard1() {
         <Route path='/pie' element={<Pie />}/>
         <Route path='/line' element={<Line />}/>
         <Route path='/geography' element={<Geography />}/>
-      </Routes>
-
-    </main>
-    </div>
-    </ThemeProvider>
+        
+              </Routes>
+            </main>
+          </div>
+        </div>
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
 }
 
-export default DashBoard1;

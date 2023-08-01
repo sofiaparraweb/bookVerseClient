@@ -33,8 +33,8 @@ const Form= () => {
     }
 
     return (
-        <Box m='20px'>
-            <Header title='CREATE USER' subtitle='Create a New User Profile' />
+        <Box m='0px'>
+            <Header title='New Book' subtitle='Create a new book' />
             <Formik
             onSubmit={handleFormSubmit}
             initialValues={initialValues}
@@ -56,7 +56,7 @@ const Form= () => {
                     fullWidth
                     variant="filled"
                     type="text"
-                    label= 'First Name'
+                    label= 'Book Name'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.firstName}
@@ -69,7 +69,7 @@ const Form= () => {
                     fullWidth
                     variant="filled"
                     type="text"
-                    label= 'Last Name'
+                    label= 'Author'
                     onBlur={handleBlur}
                     onChange={handleChange} 
                     value={values.lastName}
@@ -81,21 +81,20 @@ const Form= () => {
                     <TextField
                     fullWidth
                     variant="filled"
-                    type="text"
-                    label= 'Email'
+                    type="number"
+                    label= 'price'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.email}
                     name='email'
-                    error={!!touched.email && !!errors.email}
-                    helperText={touched.email && errors.email}
+                   
                     sx={{gridColumn: 'span 4'}}
                     />
                     <TextField
                     fullWidth
                     variant="filled"
                     type="text"
-                    label= 'Contact Number'
+                    label= 'Publication Date'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.contact}
@@ -117,22 +116,10 @@ const Form= () => {
                     helperText={touched.address1 && errors.address1}
                     sx={{gridColumn: 'span 4'}}
                     />
-                    <TextField
-                    fullWidth
-                    variant="filled"
-                    type="text"
-                    label= 'Adress 2'
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.address2}
-                    name='address2'
-                    error={!!touched.address2 && !!errors.address2}
-                    helperText={touched.address2 && errors.address2}
-                    sx={{gridColumn: 'span 4'}}
-                    />
+                    
 
                     <Box display='flex' justifyContent='end' mt='20px'> 
-                        <Button type='submit' color='secondary' variant='contained'>
+                        <Button type='submit' color='secondary' variant='contained' mb='200px'>
                             Create New User
                         </Button>
                     </Box>
