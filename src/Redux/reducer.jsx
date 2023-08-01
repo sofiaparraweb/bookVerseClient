@@ -51,7 +51,6 @@ const initialState = {
   users: [],
   userProfile: null,
   userId: null,
-  userInfo: {},
   loading: true,
   error: null,
   grid_view: true,

@@ -326,14 +326,15 @@ export const postPayment = (user_id) => {
 
 //------------------------------------user-----------------------------------
 
-export const getUser = (userId) => {
+export const getUser = (email) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/${userId}`);
+      const response = await axios.get(`${url}/user/email/${email}`);
       dispatch({
         type: GET_USER,
         payload: response.data,
       });
+      console.log("se trajo el usuario")
     } catch (error) {
       console.log(error);
     }
@@ -359,6 +360,7 @@ export const createUser = (newUser) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
+      console.log(newUser, 'este es el new user')
       const userId = response.data.newUser.id;
       dispatch({
         type: SET_USER_ID,
@@ -369,7 +371,7 @@ export const createUser = (newUser) => {
         payload: response.data,
       });
       console.log('USUARIO CREADO!!!')
-      dispatch(getProfile(userId));
+      dispatch(getUser(email));
     } catch (error) {
       console.log(error);
     }
@@ -377,9 +379,9 @@ export const createUser = (newUser) => {
 };
 
 export const updateUser = (data) => {
-  console.log(data)
   return async (dispatch) => {
-    try {
+    console.log(data)
+     try {
       const response = await axios.put(`${url}/user/edit`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -387,7 +389,7 @@ export const updateUser = (data) => {
       });
       dispatch({
         type: UPDATE_USER,
-        payload: response.data,
+        payload: data,
       });
       console.log('se ejecuto con exitot bbbb')
     } catch (error) {

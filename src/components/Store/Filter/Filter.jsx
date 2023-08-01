@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAllBooks, filterByGenre, filterByFormat, filterByLanguage, filterByPublisher, filterCombined, getBookGenre, getBookLanguage, getBookPublisher, getBookFormat} from "../../../Redux/actions";
+import { 
+  getAllBooks, filterByGenre, filterByFormat, filterByLanguage, filterByPublisher, 
+  filterCombined, 
+  getBookGenre, getBookLanguage, getBookPublisher, getBookFormat
+}   from "../../../Redux/actions";
 import { AiOutlineFilter } from "react-icons/ai";
 import "./Filter.css"
 
@@ -35,6 +39,7 @@ const Filter = ({ setCurrentPage }) => {
     setActiveFilter(name);
   };
 
+  
   const handleReset = (event) => {  //Reseteamos cuando queremos volver a traer todos los productos a la tienda
     event.preventDefault()
     dispatch(getAllBooks())

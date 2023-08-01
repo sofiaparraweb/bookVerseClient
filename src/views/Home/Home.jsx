@@ -30,9 +30,9 @@ const Home = () => {
 
   useEffect(() => {
     if (isAuthenticated && user && isProfileCreatedRef.current) {
-      dispatch(getUser(user.email));
-      dispatch(getUserId(user.email));
       console.log(user.email);
+      dispatch(getUser(user.email));
+      // dispatch(getUserId(user.email));
     }
   }, [dispatch, isAuthenticated, user]);
 

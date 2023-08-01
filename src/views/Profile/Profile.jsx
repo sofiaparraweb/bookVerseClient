@@ -8,9 +8,9 @@ import "./Profile.css";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
-  const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
+  const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
 
   const [initialProfile, setInitialProfile] = useState({
     name: userProfile?.name || "",
@@ -33,7 +33,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
-  const email = userProfile.email;
+  const email = userProfile?.email || '';
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const Profile = () => {
   };
 
   const handleDeleteImage = () => {
-    setSelectedImage(null);
+    setSelectedImage(defaultImageURL);
   };
 
   const handleSaveProfile = (data) => {
@@ -85,12 +85,12 @@ const Profile = () => {
 
     console.log(selectedImage)
     console.log(data)
-    console.log(formData)
     dispatch(updateUser(data));
+    setInitialProfile(userProfile);
+    setEditing(false);
   };
 
   useEffect(() => {
-    // Resetear los estados después de la solicitud PUT
     if (!editing) {
       setInitialProfile(userProfile);
       reset(userProfile);
@@ -105,7 +105,7 @@ const Profile = () => {
           <form method="POST" className="profile-form" onSubmit={handleSubmit(handleSaveProfile)} enctype="multipart/form-data">
           <div className="perfil-image">
               <img
-                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image}
+                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image || defaultImageURL }
                 alt="profile"
                 className="profile-image"
               />
@@ -120,7 +120,7 @@ const Profile = () => {
                       accept="image/*"
                     />
                   </label>
-                  <button className="delete-button" onClick={() => setSelectedImage(null)}>
+                  <button className="delete-button" onClick={handleDeleteImage}>
                     Delete Image
                   </button>
   </div>
@@ -195,7 +195,10 @@ const Profile = () => {
               )}
               {editing && (
                 <div>
-                  <Button type="submit" className="save-button">
+                  <Button 
+                  type="submit" 
+                  className="save-button"
+                  onClick={handleSaveProfile}>
                     Save
                   </Button>
                   <Button
