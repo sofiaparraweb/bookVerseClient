@@ -19,10 +19,6 @@ const Detail = () => {
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userInfo.id);
     const Cart = useSelector((state) => state.LocalPersist.cart.Books);
-    console.log(user_id)
-    console.log(Cart)
-    // const userName = useSelector(state => state.LocalPersist.userInfo.name);
-    // const email = useSelector(state => state.LocalPersist.userInfo.email);
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [isFav, setIsFav] = useState(false);
@@ -61,7 +57,7 @@ const Detail = () => {
     }, [id]);
     
 
-    const totalRatings = book.Review && book.Reviews?.reduce((total, review) => total + review.rating, 0);
+    const totalRatings = book.Reviews && book.Reviews?.reduce((total, review) => total + review.rating, 0);
     const averageRating = totalRatings / book.Reviews?.length;
 
     const contentCount = book.Reviews?.length;
@@ -82,8 +78,6 @@ const Detail = () => {
     const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
         const cartItems = Cart;
         const productInCart = cartItems.find((item) => item.id === id); //Verificamos si el producto ya esta en el carrito
-        console.log(cartItems)
-        console.log(productInCart)
         if (isAuthenticated) {
             if (productInCart) {
                 alert("Book is already in the shopping cart.");
@@ -192,12 +186,13 @@ const Detail = () => {
                 <div style={{padding:"1rem 6rem"}}>
                     <ReviewForm id={id} />
                     <div className="ComentariosDetail">
+                    <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
                         {book.Reviews?.map((con)=>{
                             return(
                                 <div>
                                     <p style={{paddingBottom:"0.5rem"}}>{con.email} | {con.rating} of 5</p>
                                     <p style={{color:"grey"}}>{con.content} </p>
-                                    <hr style={{margin:"2rem"}} />
+                                    <hr style={{margin:"1.5rem"}} />
                                 </div>
                             )
                         })}

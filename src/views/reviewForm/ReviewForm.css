@@ -14,7 +14,7 @@
   display: flex;
   justify-content: flex-start;
   gap: 0.1rem;
-}
+} 
 
 /* Estilos para los inputs ocultos */
 .rating-list input[type="radio"] {
@@ -30,7 +30,7 @@
 
 /* Estilos para los labels cuando el input está seleccionado */
 .rating-list input[type="radio"]:checked + label {
-  color: #ffcc00; /* Color cuando está seleccionado */
+  color: orange; /* Color cuando está seleccionado */
 }
 
 
