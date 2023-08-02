@@ -17,10 +17,12 @@ export const FILTER_BY_PUBLISHER = "FILTER_BY_PUBLISHER";
 export const FILTER_COMBINED = "FILTER_COMBINED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const ORDER_BY_TITLE = "ORDER_BY_TITLE"
-// export const ORDER_BY_AUTHOR = "ORDER_BY_AUTHOR"
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
-// export const ADD_BOOK_TO_WISHLIST = "ADD_BOOK_TO_WISHLIST";
-// export const REMOVE_BOOK_FROM_WISHLIST = "REMOVE_BOOK_FROM_WISHLIST";
+
+//actions Wishlist
+export const GET_WISHLIST = "GET_WISHLIST"
+export const ADD_BOOK_TO_WISHLIST = "ADD_BOOK_TO_WISHLIST";
+export const REMOVE_BOOK_FROM_WISHLIST = "REMOVE_BOOK_FROM_WISHLIST";
 // export const CLEAR_WISHLIST = "CLEAR_WISHLIST";
 
 //actions carrito
@@ -204,38 +206,42 @@ export const orderByTitle = (title) => {
   };
 };
 
-// export const orderByAuthor = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}`);
-//       dispatch({ type: ORDER_BY_AUTHOR, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+// ------------------------------------WISHLIST-----------------------------------
+export const getWishlist = (user_id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/wishlist/${user_id}`);
+      console.log(response.data)
+      dispatch({ type: GET_WISHLIST, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const addWishlist = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}`);
-//       dispatch({ type: ADD_BOOK_TO_WISHLIST, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const addWishlist = (user_id, id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/wishlist/add?user_id=${user_id}&book_id=${id}`);
+      console.log(response.data)
+      dispatch({ type: ADD_BOOK_TO_WISHLIST, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-// export const removeWishlist = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}`);
-//       dispatch({ type: REMOVE_BOOK_FROM_WISHLIST, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const removeWishlist = (user_id, id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(`${url}/wishlist/remove?user_id=${user_id}&book_id=${id}`);
+      console.log(response);
+      dispatch({ type: REMOVE_BOOK_FROM_WISHLIST, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 // export const clearWishlist = () => {
 //   return async (dispatch) => {
@@ -266,6 +272,7 @@ export const addToCart = (user_id, id, quantity) => {
   return async (dispatch) =>{
     try {
       const response = await axios.post(`${url}/cart/add?user_id=${user_id}&book_id=${id}&quantity=${quantity}`)
+      console.log(response.data)
       dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -385,6 +392,7 @@ export const updateUser = (data) => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log(response)
       dispatch({
         type: UPDATE_USER,
         payload: response.data,
