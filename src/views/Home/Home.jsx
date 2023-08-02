@@ -18,23 +18,24 @@ const Home = () => {
   const isProfileCreatedRef = useRef(false);
 
   useEffect(() => {
-    if (isAuthenticated && user && !isProfileCreatedRef.current) {
-      const newUser = {
-        name: user.name,
-        email: user.email,
-      };
-      dispatch(createUser(newUser));
-      isProfileCreatedRef.current = true;
-    }
-  }, [dispatch, isAuthenticated, user]);
-
-  useEffect(() => {
-    if (isAuthenticated && user && isProfileCreatedRef.current) {
-      console.log(user.email);
+    console.log(userProfile)
+    if (isAuthenticated && user && userProfile==null) {
+      console.log("se cumple primer if", user.email)
       dispatch(getUser(user.email));
-      // dispatch(getUserId(user.email));
-    }
-  }, [dispatch, isAuthenticated, user]);
+      if (userProfile!==null) {
+        isProfileCreatedRef = true;
+      }
+    } 
+    if (isAuthenticated && user && !isProfileCreatedRef) {
+      console.log("se cumple segundo if", user.email)
+          const newUser = {
+            name: user.name,
+            email: user.email,
+          };
+          dispatch(createUser(newUser));
+          isProfileCreatedRef = true;
+        }
+  }, [dispatch, isAuthenticated, user, userProfile]);
 
   return (
     <div className="homeContainer">

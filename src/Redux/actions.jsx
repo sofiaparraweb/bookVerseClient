@@ -32,7 +32,7 @@ export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 export const POST_PAYMENT = "POST_PAYMENT";
 
 //actions dashboard
-// export const ADD_PRODUCT = "ADD_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
 // export const DELETE_PRODUCT = "DELETE_PRODUCT";
 // export const EDIT_PRODUCT = "EDIT_PRODUCT"
 // export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
@@ -57,8 +57,8 @@ export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
 
 
-export const url = "https://bookverse-m36k.onrender.com";
-//export const url = "http://localhost:3001";
+// export const url = "https://bookverse-m36k.onrender.com";
+export const url = "http://localhost:3001";
 
 //------------------------------------books-----------------------------------
 export function getAllBooks() {
@@ -387,6 +387,7 @@ export const updateUser = (data) => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log(response)
       dispatch({
         type: UPDATE_USER,
         payload: data,
@@ -400,12 +401,29 @@ export const updateUser = (data) => {
 
 //------------------------------------dashboard-----------------------------------
 
-// export const addProduct = (product) => {
-//   return {
-//     type: ADD_PRODUCT,
-//     payload: product,
-//   };
-// };
+export const addProduct = (data) => {
+  console.log(data)
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/books/create`, data
+      // , {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // }
+      );
+      console.log(data, 'este es el new Book')
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: response.data,
+      });
+      console.log('LIBRO CREADO!!!')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 
 // export const deleteProduct = (product) => {
 //   return {

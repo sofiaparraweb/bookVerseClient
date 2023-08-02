@@ -74,30 +74,31 @@ const Profile = () => {
     setSelectedImage(defaultImageURL);
   };
 
-  const handleSaveProfile = (data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("birthDate", data.birthDate);
-    formData.append("file", selectedImage);
-    formData.append("phone", data.phone);
-    formData.append("email", data.email);
-    formData.append("country", data.country);
-    data.image = selectedImage;
+  // useEffect(() => {
+  //   if (!editing) {
+  //     setInitialProfile(userProfile);
+  //     reset(userProfile);
+  //   }
+  // }, [editing, editedProfile, reset]);
 
-    console.log(selectedImage)
-    console.log(data)
+  const handleSaveProfile = (formData) => {
+   console.log(formData)
+    const data = {
+      name: formData.name,
+      birthDate: formData.birthDate,
+      file: selectedImage,
+      phone: formData.phone,
+      email: formData.email,
+      country: formData.country,
+    };
+  
+    console.log(selectedImage);
+    console.log(data, 'esto mando al back');
     dispatch(updateUser(data));
-    setInitialProfile(userProfile);
+    setInitialProfile(data); // Opcionalmente, si quieres actualizar el estado initialProfile con los datos del formulario enviado
     setEditing(false);
   };
-
-  useEffect(() => {
-    if (!editing) {
-      setInitialProfile(userProfile);
-      reset(userProfile);
-    }
-  }, [editing, editedProfile, reset]);
-
+  
   return (
     <ChakraProvider>
       <div className="profile-container">
@@ -117,6 +118,7 @@ const Profile = () => {
                     <Input
                       type="file"
                       id="image"
+                      name="image"
                       onChange={handleProfileImageChange}
                       accept="image/*"
                     />
@@ -133,6 +135,7 @@ const Profile = () => {
             <Input
               type="text"
               id="name"
+              name="name"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.name}
@@ -145,6 +148,7 @@ const Profile = () => {
             <Input
               type="email"
               id="email"
+              name="email"
               className="profile-input"
               isDisabled
               defaultValue={editedProfile.email}
@@ -157,6 +161,7 @@ const Profile = () => {
             <Input
               type="date"
               id="birthDate"
+              name="birthDate"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.birthDate}
@@ -169,6 +174,7 @@ const Profile = () => {
             <Input
               type="tel"
               id="phone"
+              name="phone"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.phone}
@@ -182,6 +188,7 @@ const Profile = () => {
             <Input
               type="text"
               id="country"
+              name="country"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.country}
@@ -199,7 +206,8 @@ const Profile = () => {
                   <Button 
                   type="submit" 
                   className="save-button"
-                  onClick={handleSaveProfile}>
+                  onClick={handleSubmit(handleSaveProfile)}
+                  >
                     Save
                   </Button>
                   <Button

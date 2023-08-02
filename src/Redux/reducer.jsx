@@ -20,7 +20,7 @@ import {
   DELETE_ALL_CART,
   CHANGE_QUANTITY,
   POST_PAYMENT,
-//   ADD_PRODUCT,
+  ADD_PRODUCT,
 //   DELETE_PRODUCT,
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
@@ -188,12 +188,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         CartBooks: action.payload,
       };
-
-//     case ADD_PRODUCT:
-//       return {
-//         ...state,
-//         books: action.payload,
-//       };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        allbooks: action.payload,
+        books: action.payload,
+      };
 //     case DELETE_PRODUCT:
 //       return {
 //         ...state,
