@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getCart, addToCart } from "../../Redux/actions"
+import { getCart, addToCart, getWishlist, removeWishlist} from "../../Redux/actions"
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom"
@@ -12,10 +12,14 @@ const WishlistItem = ({ id, image, title, author, price, format }) => {
     const { isAuthenticated } = useAuth0(); 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const Cart = useSelector((state) => state.LocalPersist.cart.Books);
-    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
+    const wish = useSelector((state) => state.LocalPersist.wish);
+    console.log(wish)
     const [quantity, setQuantity] = useState(1);
 
+    useEffect(() => {
+        dispatch(getWishlist(user_id));
+    },[dispatch]);
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -53,6 +57,14 @@ const WishlistItem = ({ id, image, title, author, price, format }) => {
     return (                    
         <div>
             <div className="GridThreeColumns" style={{ padding: "1.5rem 0", borderBottom:"1px solid silver", gridTemplateColumns: "20% 60% 20%", gap:"3rem" }}>
+            {/* {wish?.length === 0 ? (
+                    <>
+                        <h3 className="emptyWishlist">USUARIO, you need some items for this Wishlist.</h3>
+                        <h3 className="emptyWishlist">Explore our store or search for something new you'd like to add.</h3>
+                        <Link to="/store" className="Buttons">Store</Link>
+                    </>
+                ) : ( */}
+                    <>
                 <Link to={`/detail/${id}`} style={{ textDecoration: "none", fontWeight: "400", color: "#17424b" }}>
                     <figure className="figureStoreWish">
                         <img src={image} alt="image" />
@@ -85,9 +97,11 @@ const WishlistItem = ({ id, image, title, author, price, format }) => {
 
                 <div style={{display:"flex", alignItems: "center", justifyContent: "center"}}>
                     <p >
-                        Remove Item <button style={{fontSize:"1.3rem", border:"none", paddingLeft:"1rem", backgroundColor:"transparent"}}> X </button>
+                        Remove Item <button style={{fontSize:"1.3rem", border:"none", paddingLeft:"1rem", backgroundColor:"transparent"}} onClick={removeWishlist}> X </button>
                     </p>
                 </div>
+                </>
+                                {/* )} */}
             </div>
         </div>
     )

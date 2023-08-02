@@ -12,8 +12,10 @@ import {
   FILTER_COMBINED,
   ORDER_BY_PRICE,
   ORDER_BY_TITLE,
-//   ORDER_BY_AUTHOR,
-   SEARCH_BY_NAME,
+  GET_WISHLIST,
+  ADD_BOOK_TO_WISHLIST,
+  REMOVE_BOOK_FROM_WISHLIST,
+  SEARCH_BY_NAME,
   GET_CART,
   ADD_TO_CART,
   DELETE_PRODUCT_CART,
@@ -46,6 +48,7 @@ const initialState = {
   bookFormat: [],
   books: [],
   cart: [],
+  wish: [],
   CartBooks: [],
   orders: [],
   users: [],
@@ -139,18 +142,32 @@ const reducer = (state = initialState, action) => {
         books: action.payload,
         loading: false,
       };
-//     case ORDER_BY_AUTHOR:
-//       return {
-//         ...state,
-//         books: action.payload,
-//         loading: false,
-//       };
     case SEARCH_BY_NAME:
       return {
         ...state,
         books: action.payload,
         loading: false,
       };
+
+//------------------------------------Wishlist-----------------------------------//
+    case GET_WISHLIST:
+      return {
+        ...state,
+        wish: action.payload,
+        loading: false,
+      }
+    case ADD_BOOK_TO_WISHLIST:
+      return {
+        ...state,
+        wish: action.payload,
+        loading: false,
+      };
+    case REMOVE_BOOK_FROM_WISHLIST:
+      return {
+        ...state,
+        wish: state.cart.filter((item) => item.id !== action.payload),
+        loading: false,
+      }
 
 //------------------------------------cart actions-----------------------------------//
     case GET_CART:

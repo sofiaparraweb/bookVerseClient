@@ -1,7 +1,7 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
 import axios from "axios";
 import { useState, useEffect } from 'react';
-import { getCart, addToCart } from "../../Redux/actions"
+import { getCart, addToCart, getWishlist, addWishlist, removeWishlist } from "../../Redux/actions"
 import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule, AiOutlineHeart, AiFillHeart} from "react-icons/ai";
 import Stars from "./Stars"
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,30 +17,14 @@ const Detail = () => {
     const { isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
+    console.log(user_id)
     const Cart = useSelector((state) => state.LocalPersist.cart.Books);
+    const wish = useSelector((state) => state.LocalPersist.wish);
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
-    const [isFav, setIsFav] = useState(false);
     const [userRating, setUserRating] = useState(null);
-
-    const handleFavorite = () => {
-        if (isFav) {
-            setIsFav(false);
-            // removeFavorite(id);
-        } else {
-            setIsFav(true);
-            // addFavorites({ id, title, genres, image });
-        }
-    };
-    
-    // useEffect(() => {
-        //     myFavorites.forEach((fav) => {
-    //       if (fav.id === id) {
-    //         setIsFav(true);
-    //       }
-    //     });
-    //   }, [myFavorites, id]);
+    const [isFav, setIsFav] = useState(false);
     
     // const url = "https://bookverse-m36k.onrender.com";
     const url = "http://localhost:3001";
@@ -55,29 +39,51 @@ const Detail = () => {
         }
         fetchData(); // Llamar a la función para que realice la solicitud
     }, [id]);
-    
 
+
+    const handleFavorite = (event) => {
+        event.preventDefault()
+        if (isFav) {
+            setIsFav(false);
+            dispatch(removeWishlist(user_id, id));
+        } else {
+            setIsFav(true);
+            dispatch(addWishlist(user_id, id));
+            dispatch(getWishlist(user_id));
+        }
+    };
+    
+    useEffect(() => {
+        wish && wish?.forEach((fav) => {
+            if (fav.id === id) {
+                setIsFav(true);
+            }
+        });
+    }, [wish, id]);
+    
+    
     const totalRatings = book.Reviews && book.Reviews?.reduce((total, review) => total + review.rating, 0);
     const averageRating = totalRatings / book.Reviews?.length;
 
     const contentCount = book.Reviews?.length;
 
 
-    const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
+    const handleAdd = (event) => {  // --------------------------------------------------ADD BUTTON
       event.preventDefault()
-      setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
+      setQuantity(quantity + 1); // + 1 book
     };
 
-    const handleDelete = (event) => {  // --------------------------------------------------BOTON SUMAR
+    const handleDelete = (event) => {  // --------------------------------------------------DELETE BUTTON
       event.preventDefault()
       if (quantity > 0) {
-        setQuantity(quantity - 1); // Resta 1 a la cantidad actual
+        setQuantity(quantity - 1); // - 1 book
       }
     };
 
-    const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
+    const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
+        event.preventDefault()
         const cartItems = Cart;
-        const productInCart = cartItems.find((item) => item.id === id); //Verificamos si el producto ya esta en el carrito
+        const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
         if (isAuthenticated) {
             if (productInCart) {
                 alert("Book is already in the shopping cart.");
@@ -91,6 +97,22 @@ const Detail = () => {
             alert('You need to log in to buy books.');
         }
     }
+
+    // const handleAddToWish = (user_id, id) => {  // --------------------------------------------------ADD BOOKS TO WISHLIST
+    //     const wishL = wish;
+    //     console.log(wishL)
+    //     const productInWish = wishL.find((item) => item.id === id); 
+    //     if (isAuthenticated) {
+    //         if (productInWish) {
+    //             alert("Book is already in Wishlist.");
+    //         } else {
+    //             dispatch(addWishlist(user_id, id));
+    //             alert("Book has been added to your wishlist.");
+    //         }
+    //     } else {
+    //         alert('You need to log in to add books to the wishlist.');
+    //     }
+    // }
 
     return (
         <form>
@@ -165,7 +187,7 @@ const Detail = () => {
 
                                 </div>
                                 {isAuthenticated ? (
-                                    <button className="Buttons" onClick={()=>{handleAddToCart(user_id, id, quantity)}}>
+                                    <button className="Buttons" onClick={()=>{handleAddToCart(event, user_id, id, quantity)}}>
                                         Add to Cart
                                     </button>
                                 ) : (
