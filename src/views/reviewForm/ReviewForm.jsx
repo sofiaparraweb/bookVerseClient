@@ -10,7 +10,7 @@ const ReviewForm = ({ id }) => {
   // const [rating, setRating] = useState(0);
   // const [comment, setComment] = useState('');
   // const [isSubmitting, setIsSubmitting] = useState(false);
-  const user_id = useSelector(state => state.LocalPersist.userInfo.email);
+  const user_id = useSelector(state => state.LocalPersist.userProfile.email);
 
   const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
     email:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
@@ -23,6 +23,7 @@ const ReviewForm = ({ id }) => {
     const property = event.target.name;
     const value = event.target.value;
     setReview({ ...review, [property]: value});
+    console.log(user_id)
   }
 
   const url =  "http://localhost:3001";
@@ -32,6 +33,7 @@ const ReviewForm = ({ id }) => {
       await axios.post(`${url}/review/post`, review)
       .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
       .catch((error) => alert(error))
+      console.log(user_id)
     } catch (error) {
       console.log(error);
     }

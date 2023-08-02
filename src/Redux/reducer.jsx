@@ -40,10 +40,10 @@ import {
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-  bookGenres: [],
+/*   bookGenres: [],
   bookLanguage: [],
   bookPublisher: [],
-  bookFormat: [],
+  bookFormat: [], */
   books: [],
   cart: [],
   CartBooks: [],
@@ -97,7 +97,7 @@ const reducer = (state = initialState, action) => {
       };
 
 //------------------------------------book actions FILTER
-    case FILTER_BY_GENRE:
+/*     case FILTER_BY_GENRE:
       return {
         ...state,
         books: action.payload,
@@ -115,12 +115,12 @@ const reducer = (state = initialState, action) => {
         books: action.payload,
         loading: false,
       };
-    case FILTER_BY_PUBLISHER:
+    case FILTER_BY_PUBLISHER: 
       return {
         ...state,
         books: action.payload,
         loading: false,
-      };
+      };*/
     case FILTER_COMBINED:
       return {
         ...state,

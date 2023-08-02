@@ -67,6 +67,7 @@ const Profile = () => {
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
+    console.log(file)
   };
 
   const handleDeleteImage = () => {
