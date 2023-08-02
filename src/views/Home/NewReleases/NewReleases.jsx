@@ -6,7 +6,7 @@ const NewReleases = ({allbooks}) => {
     const currentDate = new Date();
 
     const sixMonthsAgoDate = new Date();
-    sixMonthsAgoDate.setMonth(currentDate.getMonth() - 6);
+    sixMonthsAgoDate.setMonth(currentDate.getMonth() - 3);
 
     const filteredData = allbooks.filter((item) => {
         const publicationDate = new Date(item.publicationDate);
