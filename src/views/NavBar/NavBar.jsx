@@ -1,25 +1,18 @@
-import { useState} from "react";
-import { NavLink, useLocation  } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import bookVerse from "../../assets/imgNavbar/logoBook.svg";
-import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
-import style from "./NavBar.module.css";
 import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
-import { FaBars, FaTimes } from "react-icons/fa";
-import iconbookclose from "../../assets/imgNavbar/iconbookclose.png"
-import iconbookopen from "../../assets/imgNavbar/iconbookopen.png"
-
+import iconbookclose from "../../assets/imgNavbar/iconbookclose.png";
+import iconbookopen from "../../assets/imgNavbar/iconbookopen.png";
+import style from "./NavBar.module.css";
 
 const NavBar = ({ isAuthenticated }) => {
-
   const location = useLocation();
   const { loginWithRedirect, logout, user } = useAuth0();
-  const [isHovered, setIsHovered] = useState(false);
-  const [isOptionHovered, setIsOptionHovered] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(false);
-  
   const isWishlistPage = location.pathname === '/wishlist';
+  const isDashboardPage = location.pathname === '/dashboard1';
 
   const handleLoginAlert = () => {
     alert('You need to log in to access this function.');
@@ -35,33 +28,21 @@ const NavBar = ({ isAuthenticated }) => {
 
   const handleLogin = () => {
     loginWithRedirect({ appState: { targetUrl: "/perfil" } });
-    setIsLoggingIn(true);
   };
-
-  // const handleMouseEnter = () => {
-  //   setIsHovered(true);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setIsHovered(false);
-  // };
-
-  // const handleOptionMouseEnter = () => {
-  //   setIsOptionHovered(true);
-  // };
-
-  // const handleOptionMouseLeave = () => {
-  //   setIsOptionHovered(false);
-  // };
 
   const handleClick = () => {
     window.scrollTo({ top: 0 });
   };
 
   const isAdmin = isAuthenticated && user.email === "bookverseweb@gmail.com";
+  
+  if (isDashboardPage) {
+    return null; // No renderiza nada si estás en la página del panel de control
+  }
+
   return (
     <>
-      <nav className={style.navContainer} >
+      <nav className={style.navContainer}>
         <div className={style.LeftSection}>
           <NavLink to="/">
             <img
@@ -71,103 +52,67 @@ const NavBar = ({ isAuthenticated }) => {
               onClick={handleClick}
             />
           </NavLink>
-
-            <NavLink
-              to="/qa" // Ruta a la que redirige el enlace
-              className={style.linkNavBar}
-              id="tiendaNav"
-              onClick={handleClick}
-            >
-              Q&A
+          <NavLink to="/qa" className={style.linkNavBar} id="tiendaNav" onClick={handleClick}>
+            Q&A
+          </NavLink>
+          <NavLink to="/store" className={style.linkNavBar} id="tiendaNav" onClick={handleClick}>
+            OUR BOOKS
+          </NavLink>
+          {isAuthenticated ? (
+            <NavLink to="/profile" className={style.linkNavBar} id="perfilNav" onClick={handleClick}>
+              PROFILE
             </NavLink>
-
-            <NavLink
-              to="/store"
-              className={style.linkNavBar}
-              id="tiendaNav"
-              onClick={handleClick}
-            >
-              OUR BOOKS
-            </NavLink>
-
-            {isAuthenticated ? (
-              <NavLink
-                to="/profile"
-                className={style.linkNavBar}
-                id="perfilNav"
-                onClick={handleClick}
-              >
-                PROFILE
-              </NavLink>
-            ) : null}
-            {isAdmin && (
-              <NavLink
-                to="/dashboard"
-                className={style.linkNavBar}
-                id="administradorNav"
-                onClick={handleClick}
-              >
-                DASHBOARD
-              </NavLink>
-            )}
+          ) : null}
+          <NavLink to="/dashboard1" className={style.linkNavBar} id="administradorNav" onClick={handleClick}>
+            DASHBOARD
+          </NavLink>
         </div>
         <div className={style.rightSection}>
           {isAuthenticated ? (
-            <div className={style.linkNavBar} id="tiendaNav" >
-              <button onClick={handleLogout} style={{ fontWeight:"500", border:"none", backgroundColor:"transparent"}}> LOG OUT </button>
+            <div className={style.linkNavBar} id="tiendaNav">
+              <button onClick={handleLogout} style={{ fontWeight: "500", border: "none", backgroundColor: "transparent" }}> LOG OUT </button>
             </div>
           ) : (
-            <button onClick={handleLogin} className={style.linkNavBar} style={{ border:"none", backgroundColor:"transparent"}}>
-              <BiSolidUser className={style.IconRightNavBar} /> 
+            <button onClick={handleLogin} className={style.linkNavBar} style={{ border: "none", backgroundColor: "transparent" }}>
+              <BiSolidUser className={style.IconRightNavBar} />
             </button>
           )}
-          {isAuthenticated ? (  
+          {isAuthenticated ? (
             <>
-            <NavLink to="/cart">
-              <BiSolidCartAdd className={style.IconRightNavBar}/>
-            </NavLink>
-
-            <div className={style.wishlistNav}>
-              <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign:"center" }}>
-                {isWishlistPage ? (
-                  <img src={iconbookopen} className={style.IconRightNavBar} alt="open" id="OpenBook"/>
-                ) : (  
-                  <img src={iconbookclose} alt="close" className={style.IconRightNavBar} />
-                )}
-                <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
+              <NavLink to="/cart">
+                <BiSolidCartAdd className={style.IconRightNavBar} />
               </NavLink>
-            </div>
+              <div className={style.wishlistNav}>
+                <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign: "center" }}>
+                  {isWishlistPage ? (
+                    <img src={iconbookopen} className={style.IconRightNavBar} alt="open" id="OpenBook" />
+                  ) : (
+                    <img src={iconbookclose} alt="close" className={style.IconRightNavBar} />
+                  )}
+                  <p style={{ fontSize: "0.8rem" }}>Wishlist</p>
+                </NavLink>
+              </div>
             </>
-          ) : (  
+          ) : (
             <>
-            <button onClick={handleLoginAlert} style={{border:"none", backgroundColor:"transparent"}}>
-              <BiSolidCartAdd className={style.IconRightNavBar}/>
-            </button>
-            <div className={style.wishlistNav}>
-              <button onClick={handleLoginAlert} style={{border:"none", backgroundColor:"transparent"}}>
-                <img src={iconbookclose} alt="close" className={style.IconRightNavBar}/>
-                <p style={{ fontSize:"0.8rem" }}>Wishlist</p>
+              <button onClick={handleLoginAlert} style={{ border: "none", backgroundColor: "transparent" }}>
+                <BiSolidCartAdd className={style.IconRightNavBar} />
               </button>
-            </div>
+              <div className={style.wishlistNav}>
+                <button onClick={handleLoginAlert} style={{ border: "none", backgroundColor: "transparent" }}>
+                  <img src={iconbookclose} alt="close" className={style.IconRightNavBar} />
+                  <p style={{ fontSize: "0.8rem" }}>Wishlist</p>
+                </button>
+              </div>
             </>
           )}
         </div>
-        {/* <button
-          className={`${style["nav-btn"]} ${style["nav-close-btn"]}`}
-          onClick={showNavbar}
-        >
-          <FaTimes />
-        </button> */}
       </nav>
-      {/* <button className={style["nav-btn"]} onClick={toggleNavbar}>
-        <FaBars />
-      </button> */}
     </>
   );
 };
 
 export default NavBar;
-
 
 
 
