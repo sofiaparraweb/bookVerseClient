@@ -165,7 +165,7 @@ const reducer = (state = initialState, action) => {
     case REMOVE_BOOK_FROM_WISHLIST:
       return {
         ...state,
-        wish: state.cart.filter((item) => item.id !== action.payload),
+        wish: state.wish?.filter((item) => item.id !== action.payload),
         loading: false,
       }
 

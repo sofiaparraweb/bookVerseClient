@@ -18,9 +18,10 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userProfile.id);
-    console.log(user_id)
     const Cart = useSelector((state) => state.LocalPersist.cart.Books);
     const wish = useSelector((state) => state.LocalPersist.wish);
+    const wishBook = useSelector((state) => state.LocalPersist.wish.Books);
+    console.log(wish)
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [userRating, setUserRating] = useState(null);
@@ -38,29 +39,8 @@ const Detail = () => {
             }
         }
         fetchData(); // Llamar a la función para que realice la solicitud
-    }, [id]);
-
-
-    const handleFavorite = (event) => {
-        event.preventDefault()
-        if (isFav) {
-            setIsFav(false);
-            dispatch(removeWishlist(user_id, id));
-        } else {
-            setIsFav(true);
-            dispatch(addWishlist(user_id, id));
-            dispatch(getWishlist(user_id));
-        }
-    };
-    
-    useEffect(() => {
-        wish && wish?.forEach((fav) => {
-            if (fav.id === id) {
-                setIsFav(true);
-            }
-        });
     }, [wish, id]);
-    
+
     
     const totalRatings = book.Reviews && book.Reviews?.reduce((total, review) => total + review.rating, 0);
     const averageRating = totalRatings / book.Reviews?.length;
@@ -79,7 +59,7 @@ const Detail = () => {
         setQuantity(quantity - 1); // - 1 book
       }
     };
-
+    
     const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
         event.preventDefault()
         const cartItems = Cart;
@@ -97,23 +77,46 @@ const Detail = () => {
             alert('You need to log in to buy books.');
         }
     }
+    
+    useEffect(() => {
+        dispatch(getWishlist(user_id));
+    }, [dispatch]);
+    
 
-    // const handleAddToWish = (user_id, id) => {  // --------------------------------------------------ADD BOOKS TO WISHLIST
-    //     const wishL = wish;
-    //     console.log(wishL)
-    //     const productInWish = wishL.find((item) => item.id === id); 
-    //     if (isAuthenticated) {
-    //         if (productInWish) {
-    //             alert("Book is already in Wishlist.");
-    //         } else {
-    //             dispatch(addWishlist(user_id, id));
-    //             alert("Book has been added to your wishlist.");
-    //         }
-    //     } else {
-    //         alert('You need to log in to add books to the wishlist.');
-    //     }
-    // }
+    const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
+        event.preventDefault();
+        try {
+            if (!wish || typeof wish !== 'object') {
+                return;
+            }
+            const productInWish = Object.values(wishBook)?.find((item) => item.id === id);
+            if (productInWish) {
+                setIsFav(false);
+                await dispatch(removeWishlist(user_id, id));
+                dispatch(getWishlist(user_id));
+                alert("Book has been removed from your wishlist.");
+            } else {
+                setIsFav(true);
+                await dispatch(addWishlist(user_id, id));
+                dispatch(getWishlist(user_id));
+                alert("Book has been added to your wishlist.");
+            }
+        } catch (error) {
+                console.error("Error adding/removing book to/from wishlist:", error);
+        }
+    };
 
+    useEffect(() => {
+        wishBook?.forEach((fav) => {
+            if (fav.id === id) {
+                setIsFav(true);
+            } else {
+                setIsFav(false);
+            }
+        });
+    }, [wishBook, id]);
+    
+    
     return (
         <form>
         {/* <form onSubmit={handleSubmit}> */}
@@ -130,11 +133,11 @@ const Detail = () => {
                                 <h2>{book?.title}</h2>
                                 <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
                                     {isFav ? (
-                                        <button onClick={handleFavorite} className="HeartFav">
+                                        <button onClick={()=>{handleFavorite(event, user_id, id)}} className="HeartFav">
                                             <AiFillHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
                                         </button>
                                     ) : (
-                                        <button onClick={handleFavorite} className="HeartFav">
+                                        <button onClick={()=>{handleFavorite(event, user_id, id)}} className="HeartFav">
                                             <AiOutlineHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
                                         </button>
                                     )}

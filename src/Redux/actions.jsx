@@ -231,10 +231,11 @@ export const addWishlist = (user_id, id) => {
   };
 };
 
-export const removeWishlist = () => {
+export const removeWishlist = (user_id, id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(`${url}/wishlist/remove?user_id=${user_id}&book_id=${id}`);
+      console.log(response);
       dispatch({ type: REMOVE_BOOK_FROM_WISHLIST, payload: response.data });
     } catch (error) {
       console.log(error);
