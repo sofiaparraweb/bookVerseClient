@@ -6,7 +6,7 @@ import "./CartContainer.css";
 const CarritoContainer = () => {
 
     const Carrito = useSelector(state => state.LocalPersist.cart.Books);
-    const userId = useSelector(state => state.LocalPersist.userInfo.id);
+    const userId = useSelector(state => state.LocalPersist.userProfile.id);
           
     return (
         <div className="CartContainerContair"> 

@@ -101,10 +101,10 @@ const Profile = () => {
   return (
     <ChakraProvider>
       <div className="profile-container">
-          <h1 className="profile-title">My profile</h1>
+        <h1 className="profile-title">My profile</h1>
         <div className="profile-content">
-          <form method="POST" className="profile-form" onSubmit={handleSubmit(handleSaveProfile)} enctype="multipart/form-data">
-          <div className="perfil-image">
+          <form method="POST" className="profile-form" onSubmit={handleSubmit(handleSaveProfile)} encType="multipart/form-data">
+            <div className="perfil-image">
               <img
                 src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image}
                 alt="profile"
@@ -124,10 +124,10 @@ const Profile = () => {
                   <button className="delete-button" onClick={() => setSelectedImage(null)}>
                     Delete Image
                   </button>
-  </div>
-)}
-      </div> 
-       <label htmlFor="name" className="profile-label">
+                </div>
+              )}
+            </div> 
+            <label htmlFor="name" className="profile-label">
               Full name
             </label>
             <Input

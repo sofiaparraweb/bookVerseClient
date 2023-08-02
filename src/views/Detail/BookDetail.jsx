@@ -1,7 +1,7 @@
 import PageNavigation from "../../components/PageNavigation/PageNavigation";
 import axios from "axios";
 import { useState, useEffect } from 'react';
-import { getCart, addToCart } from "../../Redux/actions"
+import { getCart, addToCart, getWishlist, addWishlist, removeWishlist } from "../../Redux/actions"
 import { AiTwotoneContainer, AiOutlineGlobal, AiOutlineRead, AiOutlineSchedule, AiOutlineHeart, AiFillHeart} from "react-icons/ai";
 import Stars from "./Stars"
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,38 +17,16 @@ const Detail = () => {
     const { isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
     const Cart = useSelector((state) => state.LocalPersist.cart.Books);
-    // const userName = useSelector(state => state.LocalPersist.userInfo.name);
-    // const email = useSelector(state => state.LocalPersist.userInfo.email);
+    const wish = useSelector((state) => state.LocalPersist.wish);
+    const wishBook = useSelector((state) => state.LocalPersist.wish.Books);
+    console.log(wish)
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
-    const [isFav, setIsFav] = useState(false);
     const [userRating, setUserRating] = useState(null);
-
-    const handleFavorite = () => {
-        if (isFav) {
-            setIsFav(false);
-            // removeFavorite(id);
-        } else {
-            setIsFav(true);
-            // addFavorites({ id, title, genres, image });
-        }
-    };
-
-    const totalRatings = book.Reviews?.reduce((total, review) => total + review.rating, 0);
-    const averageRating = totalRatings / book.Reviews?.length;
-
-    const contentCount = book.Reviews?.length;
-
-    // useEffect(() => {
-    //     myFavorites.forEach((fav) => {
-    //       if (fav.id === id) {
-    //         setIsFav(true);
-    //       }
-    //     });
-    //   }, [myFavorites, id]);
-
+    const [isFav, setIsFav] = useState(false);
+    
     // const url = "https://bookverse-m36k.onrender.com";
     const url = "http://localhost:3001";
     useEffect(() => {
@@ -61,24 +39,31 @@ const Detail = () => {
             }
         }
         fetchData(); // Llamar a la función para que realice la solicitud
-    }, [id]);
+    }, [wish, id]);
+
+    
+    const totalRatings = book.Reviews && book.Reviews?.reduce((total, review) => total + review.rating, 0);
+    const averageRating = totalRatings / book.Reviews?.length;
+
+    const contentCount = book.Reviews?.length;
 
 
-    const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
+    const handleAdd = (event) => {  // --------------------------------------------------ADD BUTTON
       event.preventDefault()
-      setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
+      setQuantity(quantity + 1); // + 1 book
     };
 
-    const handleDelete = (event) => {  // --------------------------------------------------BOTON SUMAR
+    const handleDelete = (event) => {  // --------------------------------------------------DELETE BUTTON
       event.preventDefault()
       if (quantity > 0) {
-        setQuantity(quantity - 1); // Resta 1 a la cantidad actual
+        setQuantity(quantity - 1); // - 1 book
       }
     };
-
-    const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
+    
+    const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
+        event.preventDefault()
         const cartItems = Cart;
-        const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
+        const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
         if (isAuthenticated) {
             if (productInCart) {
                 alert("Book is already in the shopping cart.");
@@ -92,7 +77,46 @@ const Detail = () => {
             alert('You need to log in to buy books.');
         }
     }
+    
+    useEffect(() => {
+        dispatch(getWishlist(user_id));
+    }, [dispatch]);
+    
 
+    const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
+        event.preventDefault();
+        try {
+            if (!wish || typeof wish !== 'object') {
+                return;
+            }
+            const productInWish = Object.values(wishBook)?.find((item) => item.id === id);
+            if (productInWish) {
+                setIsFav(false);
+                await dispatch(removeWishlist(user_id, id));
+                dispatch(getWishlist(user_id));
+                alert("Book has been removed from your wishlist.");
+            } else {
+                setIsFav(true);
+                await dispatch(addWishlist(user_id, id));
+                dispatch(getWishlist(user_id));
+                alert("Book has been added to your wishlist.");
+            }
+        } catch (error) {
+                console.error("Error adding/removing book to/from wishlist:", error);
+        }
+    };
+
+    useEffect(() => {
+        wishBook?.forEach((fav) => {
+            if (fav.id === id) {
+                setIsFav(true);
+            } else {
+                setIsFav(false);
+            }
+        });
+    }, [wishBook, id]);
+    
+    
     return (
         <form>
         {/* <form onSubmit={handleSubmit}> */}
@@ -109,11 +133,11 @@ const Detail = () => {
                                 <h2>{book?.title}</h2>
                                 <div style={{display:"flex", flexDirection:"row", alignItems: "center"}}>
                                     {isFav ? (
-                                        <button onClick={handleFavorite} className="HeartFav">
+                                        <button onClick={()=>{handleFavorite(event, user_id, id)}} className="HeartFav">
                                             <AiFillHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
                                         </button>
                                     ) : (
-                                        <button onClick={handleFavorite} className="HeartFav">
+                                        <button onClick={()=>{handleFavorite(event, user_id, id)}} className="HeartFav">
                                             <AiOutlineHeart style={{color:"#b38a83", fontSize:"1.5rem"}}/>
                                         </button>
                                     )}
@@ -166,7 +190,7 @@ const Detail = () => {
 
                                 </div>
                                 {isAuthenticated ? (
-                                    <button className="Buttons" onClick={()=>{handleAddToCart(user_id, id, quantity)}}>
+                                    <button className="Buttons" onClick={()=>{handleAddToCart(event, user_id, id, quantity)}}>
                                         Add to Cart
                                     </button>
                                 ) : (
@@ -187,12 +211,13 @@ const Detail = () => {
                 <div style={{padding:"1rem 6rem"}}>
                     <ReviewForm id={id} />
                     <div className="ComentariosDetail">
+                    <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
                         {book.Reviews?.map((con)=>{
                             return(
                                 <div>
                                     <p style={{paddingBottom:"0.5rem"}}>{con.email} | {con.rating} of 5</p>
                                     <p style={{color:"grey"}}>{con.content} </p>
-                                    <hr style={{margin:"2rem"}} />
+                                    <hr style={{margin:"1.5rem"}} />
                                 </div>
                             )
                         })}

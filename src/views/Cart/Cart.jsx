@@ -9,13 +9,13 @@ import "./Cart.css"
 const Cart = ({ Carrito }) =>{
     
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
     const [quantitys, setQuantity] = useState(1);
     const [subTotal, setSubTotal] = useState(0);
     const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-    dispatch(getCart(user_id));
+        dispatch(getCart(user_id));
     },[dispatch]);
 
     useEffect(() => {
