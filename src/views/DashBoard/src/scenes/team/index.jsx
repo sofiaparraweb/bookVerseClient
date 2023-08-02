@@ -19,7 +19,7 @@ const Team = () =>{
     const columns = [
         {field:'id', headerName: 'ID'},
         {field:'name', headerName:'Name', flex:1, cellClassName:'name-column--cell'},
-        {field:'age', headerName:'Age', type: 'number',headerAlign:"left",aling: 'left'},
+        {field:'country', headerName:'country', type: 'text',headerAlign:"left",aling: 'left'},
         {field:'phone', headerName:'Phone Number', flex:1},
         {field:'email', headerName:'Email', flex:1},
         {field:'access', headerName:'Access Level', flex:1, renderCell: ({row:{access}})=> {
@@ -54,7 +54,8 @@ const Team = () =>{
       const fetchTeamData = async () => {
         try {
           // Realizar la solicitud GET al endpoint en el backend
-          const url = "http://localhost:3001";
+          const url = "https://bookverse-m36k.onrender.com";
+          //const url = "http://localhost:3001";
           const response = await Axios.get(`${url}/user`);
           console.log('Respuesta del backend:', response.data);
           setTeamData(response.data);
@@ -97,7 +98,7 @@ const Team = () =>{
             }}
             >
                 <DataGrid 
-                rows={mockDataTeam}
+                rows={teamData}
                 columns={columns}
                 />
 
