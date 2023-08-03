@@ -240,8 +240,7 @@ const data = {
                   }}
                 />
               </FormControl>
-
-              {/* Código para mostrar la imagen */}
+{/* // si el image esta cargado q muetsre y si no q no muestre. ternario. On chgange booleano true cuando s ecargue*/}
               <Box className="perfil-image">
                 <img
                   src={selectedImage}
