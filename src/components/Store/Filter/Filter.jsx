@@ -17,10 +17,10 @@ const Filter = ({ setCurrentPage }) => {
 
 
   const [filters, setFilters] = useState({
-    format: null,
-    genre: null,
-    language: null,
-    publisher: null
+    format: "",
+    genre: "",
+    language: "",
+    publisher: ""
   })
 
   const url = `${filters.format}${filters.genre}${filters.language}${filters.publisher}`
@@ -33,15 +33,13 @@ const Filter = ({ setCurrentPage }) => {
       }));
     } else {
       setFilters(prevFilters => ({
-        format: null,
-        genre: null,
-        language: null,
-        publisher: null
+        ...prevFilters,
+        format: ""
       }));
     }
     /* setFilters(updatedFilters); */
     setCurrentPage(1);
-    setActiveFilter(name);
+    setActiveFilter(prevFilters => (name));
   };
 
   const handleFilterG = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
@@ -52,16 +50,14 @@ const Filter = ({ setCurrentPage }) => {
       }));
     } else {
       setFilters(prevFilters => ({
-        format: null,
-        genre: null,
-        language: null,
-        publisher: null
+        ...prevFilters,
+        genre: ""
       }));
     }
     // Actualizar el estado con el nuevo objeto
     /*  setFilters(updatedFilters); */
     setCurrentPage(1);
-    setActiveFilter(name);
+    setActiveFilter(prevFilters => (name));
   };
 
 
@@ -73,15 +69,13 @@ const Filter = ({ setCurrentPage }) => {
       }));
     } else {
       setFilters(prevFilters => ({
-        format: null,
-        genre: null,
-        language: null,
-        publisher: null
+        ...prevFilters,
+        language: ""
       }));
     }
     /* setFilters(updatedFilters); */
     setCurrentPage(1);
-    setActiveFilter(name);
+    setActiveFilter(prevFilters => (name))
   };
   const handleFilterP = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
     if (name) {
@@ -91,22 +85,26 @@ const Filter = ({ setCurrentPage }) => {
       }));
     } else {
       setFilters(prevFilters => ({
-        format: null,
-        genre: null,
-        language: null,
-        publisher: null
+        ...prevFilters,
+        publisher: ""
       }));
     }
     // Actualizar el estado con el nuevo objeto
     /* setFilters(updatedFilters); */
     /* dispatch(filterByPublisher(name)); */
     setCurrentPage(1);
-    setActiveFilter(name);
+    setActiveFilter(prevFilters => (name));
   };
 
   const handleReset = (event) => {  //Reseteamos cuando queremos volver a traer todos los productos a la tienda
     event.preventDefault()
     dispatch(getAllBooks())
+    setFilters(prevFilters => ({
+      format: "",
+      genre: "",
+      language: "",
+      publisher: ""
+    }))
     setActiveFilter(null);
     setCurrentPage(1);
   }
@@ -137,7 +135,7 @@ const Filter = ({ setCurrentPage }) => {
           className="BookPublisher"
           value={activeFilter}
           onChange={(e) => handleFilterG(e.target.value)}
-        > <option defaultChecked name={null}>All</option>
+        > <option defaultChecked value="">All</option>
           {allGenres && allGenres?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
         </select>
       </form>
@@ -150,7 +148,7 @@ const Filter = ({ setCurrentPage }) => {
           value={activeFilter}
           onChange={(e) => handleFilterL(e.target.value)}
         >
-          <option defaultChecked name={null}>All</option>
+          <option defaultChecked value="">All</option>
           {allLanguages && allLanguages?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
         </select>
       </form>
@@ -163,7 +161,7 @@ const Filter = ({ setCurrentPage }) => {
           value={activeFilter}
           onChange={(e) => handleFilterP(e.target.value)}
         >
-          <option defaultChecked name={null}>All</option>
+          <option defaultChecked value="">All</option>
           {allPublishers && allPublishers?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
 
         </select>
@@ -178,7 +176,7 @@ const Filter = ({ setCurrentPage }) => {
           value={activeFilter}
           onChange={(e) => handleFilterF(e.target.value)}
         >
-          <option defaultChecked name= {null} >All</option>
+          <option defaultChecked value="" >All</option>
           {allFormats && allFormats?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
 
         </select>
