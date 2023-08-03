@@ -26,7 +26,7 @@ const Store = () => {
 
   const indexOfLastBook = currentPage * booksPerPage; 
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = ebooks?.length > 0 && ebooks.slice(
+  const currentBooks = ebooks?.length > 0 && ebooks?.slice(
     indexOfFirstBook,
     indexOfLastBook
   ); 
