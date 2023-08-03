@@ -17,7 +17,7 @@ const Detail = () => {
     const { isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
     const [quantity, setQuantity] = useState(1);
@@ -61,8 +61,7 @@ const Detail = () => {
     const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
         event.preventDefault()
         try {
-            if (!Cart.Books) {
-                console.log(Cart.Books)
+            if (!Cart || typeof Cart !== 'object') {
                 return;
             }
             const cartItems = Cart.Books;
