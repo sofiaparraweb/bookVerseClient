@@ -17,7 +17,7 @@ const Detail = () => {
     const { isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
     console.log(wish)
@@ -28,6 +28,7 @@ const Detail = () => {
     
     // const url = "https://bookverse-m36k.onrender.com";
     const url = "http://localhost:3001";
+
     useEffect(() => {
         async function fetchData() {
             try {

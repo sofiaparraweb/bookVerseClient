@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Select, MenuItem, FormControl, InputLabel, Input } from "@mui/material";
+import { Box, Button, TextField, Select, MenuItem, FormControl, InputLabel, Input, Avatar } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from 'yup';
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -37,7 +37,7 @@ const Form = () => {
   const allFormats = useSelector(state => state.LocalPersist.bookFormat);
   const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
   const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
-  const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
+  const defaultImageURL = "https://cdn-icons-png.flaticon.com/512/4298/4298086.png";
  
   useEffect(() => {
     dispatch(getBookGenre());
@@ -82,8 +82,8 @@ const data = {
   
    
   return (
-    <Box m='0px'>
-      <Header title='New Book' subtitle='Upload a new book!' />
+    <Box m='0px' width='100vw' marginLeft="20px"  marginRight="20px" marginTop="70px">
+      <Header title='UPLOAD A NEW BOOK!' />
       <Formik
         onSubmit={handleSaveBook}
         initialValues={initialValues}
@@ -228,47 +228,36 @@ const data = {
                   ))}
                 </Select>
               </FormControl>
-              <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                <InputLabel>Upload Image</InputLabel>
-                <Input
-                  type="file"
-                  id="image"
-                  name="image"
-                  onChange={handleProfileImageChange}
-                  inputProps={{
-                    accept: "image/*"
-                  }}
-                />
-              </FormControl>
-{/* // si el image esta cargado q muetsre y si no q no muestre. ternario. On chgange booleano true cuando s ecargue*/}
-              <Box className="perfil-image">
-                <img
-                  src={selectedImage}
-                  alt="profile"
-                  className="profile-image"
-                />
-                  <Box className="image-buttons">
-                    <label htmlFor="image" className="upload-button">
-                      Upload Image
-                      <Input
-                        type="file"
-                        id="image"
-                        name="image"
-                        onChange={handleProfileImageChange}
-                        accept="image/*"
-                      />
-                    </label>
-                    <Button className="delete-button" onClick={handleDeleteImage}>
-                      Delete Image
-                    </Button>
-                  </Box>
-              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: "50px", width: "100vw" }}>
+              <Avatar
+        src={selectedImage ? URL.createObjectURL(selectedImage) : defaultImageURL}
+        alt="profile"
+        sx={{
+          width: 300,
+          height: 300,
+          objectFit: "cover",
+          borderRadius: "10%",
+          boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)",
+          maxWidth: "100%", // Ajustar la imagen al ancho máximo del contenedor
+          maxHeight: "100%", // Ajustar la imagen al alto máximo del contenedor
+        }}
+      />
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+          <InputLabel htmlFor="image">Upload Image</InputLabel>
+          <Input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleProfileImageChange}
+            accept="image/*"
+            inputProps={{ language: "en" }}
+          />
+        </Box>
+      </Box>
             </Box>
-            <Box display='flex' justifyContent='end' mt='20px'>
-              <Button type='submit' color='secondary' variant='contained' mb='200px'>
+              <Button type='submit' color='secondary' variant='contained' borderBottom="20px" mb='300px'>
                 Create New Book
               </Button>
-            </Box>
           </form>
         )}
       </Formik>

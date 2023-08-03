@@ -12,10 +12,12 @@ const Filter = ({ setCurrentPage }) => {
   const allFormats = useSelector(state => state.LocalPersist.bookFormat);
   const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
   const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
-  const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
-
-
-
+ 
+  const [activeGenre, setActiveGenre] = useState(null);
+  const [activeLanguage, setActiveLanguage] = useState(null);
+  const [activePublisher, setActivePublisher] = useState(null);
+  const [activeFormat, setActiveFormat] = useState(null);
+  
   const [filters, setFilters] = useState({
     format: "",
     genre: "",
@@ -39,7 +41,7 @@ const Filter = ({ setCurrentPage }) => {
     }
     /* setFilters(updatedFilters); */
     setCurrentPage(1);
-    setActiveFilter(prevFilters => (name));
+    setActiveFormat(prevFilters => (name));
   };
 
   const handleFilterG = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
@@ -57,7 +59,7 @@ const Filter = ({ setCurrentPage }) => {
     // Actualizar el estado con el nuevo objeto
     /*  setFilters(updatedFilters); */
     setCurrentPage(1);
-    setActiveFilter(prevFilters => (name));
+    setActiveGenre(prevFilters => (name));
   };
 
 
@@ -75,8 +77,9 @@ const Filter = ({ setCurrentPage }) => {
     }
     /* setFilters(updatedFilters); */
     setCurrentPage(1);
-    setActiveFilter(prevFilters => (name))
+    setActiveLanguage(prevFilters => (name))
   };
+
   const handleFilterP = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
     if (name) {
       setFilters(prevFilters => ({
@@ -89,24 +92,25 @@ const Filter = ({ setCurrentPage }) => {
         publisher: ""
       }));
     }
-    // Actualizar el estado con el nuevo objeto
-    /* setFilters(updatedFilters); */
-    /* dispatch(filterByPublisher(name)); */
     setCurrentPage(1);
-    setActiveFilter(prevFilters => (name));
+    setActivePublisher(prevFilters => (name));
   };
 
-  const handleReset = (event) => {  //Reseteamos cuando queremos volver a traer todos los productos a la tienda
+  const handleReset = (event) => {  
     event.preventDefault()
-    dispatch(getAllBooks())
-    setFilters(prevFilters => ({
+    setActiveFormat(null);
+    setActivePublisher(null);
+    setActiveLanguage(null);
+    setActiveGenre(null);
+    setFilters({
       format: "",
       genre: "",
       language: "",
-      publisher: ""
-    }))
-    setActiveFilter(null);
+      publisher: "",
+    });
     setCurrentPage(1);
+    console.log(activeGenre)
+    dispatch(getAllBooks())
   }
 
   const handleSubmit = () => {
@@ -114,26 +118,17 @@ const Filter = ({ setCurrentPage }) => {
     dispatch(filterCombined(url))
   }
 
-  useEffect(() => {
-    /*     dispatch(getBookGenre());
-        dispatch(getBookFormat());
-        dispatch(getBookLanguage());
-        dispatch(getBookPublisher()); 
-      
-    dispatch(filterCombined(url))*/
-  }, [dispatch]);
-
   return (
     <div className="FilterContainer">
       {/* <AiOutlineFilter className="IconFilter" /> */}
-      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.8rem", margin: "auto" }}>{activeFilter}</h1>
+      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.8rem", margin: "auto" }}>{activeGenre}</h1>
       <h1 className="FilterTitle"> Genres</h1>
       <form action="#" className="BookPublisherContainer">
         <select
           name="BookFormat"
           id="BookFormat"
           className="BookPublisher"
-          value={activeFilter}
+          value={activeGenre}
           onChange={(e) => handleFilterG(e.target.value)}
         > <option defaultChecked value="">All</option>
           {allGenres && allGenres?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
@@ -145,7 +140,7 @@ const Filter = ({ setCurrentPage }) => {
           name="BookFormat"
           id="BookFormat"
           className="BookPublisher"
-          value={activeFilter}
+          value={activeLanguage}
           onChange={(e) => handleFilterL(e.target.value)}
         >
           <option defaultChecked value="">All</option>
@@ -158,7 +153,7 @@ const Filter = ({ setCurrentPage }) => {
           name="BookFormat"
           id="BookFormat"
           className="BookPublisher"
-          value={activeFilter}
+          value={activePublisher}
           onChange={(e) => handleFilterP(e.target.value)}
         >
           <option defaultChecked value="">All</option>
@@ -173,7 +168,7 @@ const Filter = ({ setCurrentPage }) => {
           name="BookFormat"
           id="BookFormat"
           className="BookPublisher"
-          value={activeFilter}
+          value={activeFormat}
           onChange={(e) => handleFilterF(e.target.value)}
         >
           <option defaultChecked value="" >All</option>
@@ -183,7 +178,10 @@ const Filter = ({ setCurrentPage }) => {
       </form>
       <button onClick={handleSubmit} className="Buttons" style={{ margin: "auto", marginTop: "2rem", padding: "1rem 1.5rem" }} > Apply filters </button>
       <button onClick={handleReset} className="Buttons" style={{ margin: "auto", marginTop: "2rem", padding: "1rem 1.5rem" }} > Clear Filters </button>
-    </div>
+      {books.length === 0 && (
+        <p style={{ textAlign: "center", marginTop: "2rem" }}>No books found with these filters.</p>
+      )}
+       </div>
   );
 };
 

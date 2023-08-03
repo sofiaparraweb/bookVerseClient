@@ -418,7 +418,7 @@ export const addBook = (data) => {
       console.log(data, 'este es el new Book')
       dispatch({
         type: ADD_PRODUCT,
-        payload: response.data,
+        payload: data,
       });
       console.log('LIBRO CREADO!!!')
     } catch (error) {

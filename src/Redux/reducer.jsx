@@ -42,10 +42,10 @@ import {
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-/*   bookGenres: [],
+bookGenres: [],
   bookLanguage: [],
   bookPublisher: [],
-  bookFormat: [], */
+  bookFormat: [], 
   books: [],
   cart: [],
   wish: [],
@@ -208,8 +208,8 @@ const reducer = (state = initialState, action) => {
     case ADD_PRODUCT:
       return {
         ...state,
-        allbooks: action.payload,
-        books: action.payload,
+        // allbooks: [...allBooks, action.payload],
+        books: [...state.books, action.payload],
       };
 //     case DELETE_PRODUCT:
 //       return {
