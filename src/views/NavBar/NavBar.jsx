@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 import bookVerse from "../../assets/imgNavbar/logoBook.svg";
 import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
 import iconbookclose from "../../assets/imgNavbar/iconbookclose.png";
@@ -11,6 +12,7 @@ const NavBar = ({ isAuthenticated }) => {
   const location = useLocation();
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isNavVisible, setIsNavVisible] = useState(false);
+  const Cart = useSelector((state) => state.LocalPersist.cart);
   const isWishlistPage = location.pathname === '/wishlist';
   const isDashboardPage = location.pathname === '/dashboard1';
 
@@ -79,9 +81,12 @@ const NavBar = ({ isAuthenticated }) => {
           )}
           {isAuthenticated ? (
             <>
-              <NavLink to="/cart">
-                <BiSolidCartAdd className={style.IconRightNavBar} />
-              </NavLink>
+              <div className={style.cartNavContainer}>
+                <NavLink to="/cart">
+                  <BiSolidCartAdd className={style.IconRightNavBar} />
+                  <p className={style.NumeroChango}>{Cart.Books?.length || 0}</p> 
+                </NavLink>
+              </div>
               <div className={style.wishlistNav}>
                 <NavLink to="/wishlist" style={{ textDecoration: "none", color: "#17424b", textAlign: "center" }}>
                   {isWishlistPage ? (

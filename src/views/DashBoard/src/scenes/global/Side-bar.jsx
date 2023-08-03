@@ -8,6 +8,7 @@ import {tokens} from '../../theme'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
@@ -145,6 +146,14 @@ const Sidebar = () => {
                         title='Contacts'
                         to='/contacts'
                         icon={<ContactsOutlinedIcon />}
+                        selected={selected}
+                        setSelected={setSelected}
+                        isCollapsed={isCollapsed}
+                        />
+                        <Item 
+                        title='Products'
+                        to='/products'
+                        icon={<MenuBookIcon />}
                         selected={selected}
                         setSelected={setSelected}
                         isCollapsed={isCollapsed}

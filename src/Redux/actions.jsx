@@ -211,7 +211,6 @@ export const getWishlist = (user_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/wishlist/${user_id}`);
-      console.log(response.data)
       dispatch({ type: GET_WISHLIST, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -223,7 +222,6 @@ export const addWishlist = (user_id, id) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/wishlist/add?user_id=${user_id}&book_id=${id}`);
-      console.log(response.data)
       dispatch({ type: ADD_BOOK_TO_WISHLIST, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -235,7 +233,6 @@ export const removeWishlist = (user_id, id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(`${url}/wishlist/remove?user_id=${user_id}&book_id=${id}`);
-      console.log(response);
       dispatch({ type: REMOVE_BOOK_FROM_WISHLIST, payload: response.data });
     } catch (error) {
       console.log(error);
