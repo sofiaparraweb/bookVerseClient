@@ -130,6 +130,28 @@
   scale:1.2;
 }
 
+/* -------------------------------------CART ICON */
+.cartNavContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.NumeroChango {
+  position: absolute;
+  top: -0.3rem; 
+  right: 1.2rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  width: 1rem; 
+  text-decoration: none;
+  border-radius: 50px;
+  background-color:#b38a83;
+  color: #efefdc;
+}
+
 /* -------------------------------------Administrator */
 .linkContainer[id="administradorNav"] { 
   border-bottom: 6px solid #3c67a4;

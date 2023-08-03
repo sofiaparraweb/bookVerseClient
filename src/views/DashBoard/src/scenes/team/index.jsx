@@ -1,25 +1,42 @@
-import { Box, Typography, useTheme} from '@mui/material'
+import { Box, Typography, useTheme, Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import { tokens } from '../../theme'
-import {mockDataTeam} from '../../data/mockData'
+//import {mockDataTeam} from '../../data/mockData'
 import AdminPanelSettingsOutlinedIcon from  '@mui/icons-material/AdminPanelSettingsOutlined'
 import LockOpenOutlinedIcon from  '@mui/icons-material/LockOpenOutlined'
 import SecurityOutlinedIcon from  '@mui/icons-material/SecurityOutlined'
 import Header from '../../components/Header'
 //import { aD } from '@fullcalendar/core/internal-common'
+import Axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const Team = () =>{
+    const [teamData, setTeamData] = useState([]);
+    const [enabledUsers, setEnabledUsers] = useState({});
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
 
+    const handleToggleUser = (userId) => {
+        setEnabledUsers((prevEnabledUsers) => ({
+          ...prevEnabledUsers,
+          [userId]: !prevEnabledUsers[userId],
+        }));
+      };
+
     const columns = [
         {field:'id', headerName: 'ID'},
         {field:'name', headerName:'Name', flex:1, cellClassName:'name-column--cell'},
-        {field:'age', headerName:'Age', type: 'number',headerAlign:"left",aling: 'left'},
+        {field:'country', headerName:'Country', type: 'text',headerAlign:"left",aling: 'left'},
         {field:'phone', headerName:'Phone Number', flex:1},
         {field:'email', headerName:'Email', flex:1},
-        {field:'access', headerName:'Access Level', flex:1, renderCell: ({row:{access}})=> {
+        {field:'access', 
+        headerName:'Access Level', 
+        flex:1, 
+        renderCell: ({row:{access, id, isBanned} })=> {
+            const isEnabled = enabledUsers[id];
+            const buttonColor = isEnabled ? 'primary' : 'secondary';
+
             return(
                 <Box
                 width='60%'
@@ -38,10 +55,42 @@ const Team = () =>{
                     <Typography color={colors.grey[100]} sx={{ml:'5px'}}>
                         {access}
                     </Typography>
+                    <Button
+                        variant='contained'
+                        disableElevation
+                        color={buttonColor}
+                        onClick={() => handleToggleUser(id)}
+                        >
+                        {isEnabled ? 'Off' : 'On'}
+                    </Button>
+                    {isBanned && (
+                      <Typography color={colors.error} sx={{ ml: '5px' }}>
+                        Banned
+                      </Typography>
+                    )}
                 </Box>
             )
         }},
     ]
+
+    useEffect(() => {
+        
+        fetchTeamData();
+      }, []);
+
+      const fetchTeamData = async () => {
+        try {
+          // Realizar la solicitud GET al endpoint en el backend
+          const url = "https://bookverse-m36k.onrender.com";
+          //const url = "http://localhost:3001";
+          const response = await Axios.get(`${url}/user`);
+          console.log('Respuesta del backend:', response.data);
+          setTeamData(response.data);
+        } catch (error) {
+          console.error('Error al obtener los datos del equipo:', error);
+        }
+      };
+
 
     return(
         <Box m='20px'>
@@ -76,7 +125,7 @@ const Team = () =>{
             }}
             >
                 <DataGrid 
-                rows={mockDataTeam}
+                rows={teamData}
                 columns={columns}
                 />
 
@@ -85,5 +134,4 @@ const Team = () =>{
         </Box>
     )
 }
-
 export default Team

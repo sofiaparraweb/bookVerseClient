@@ -8,6 +8,7 @@ import {tokens} from '../../theme'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
@@ -80,7 +81,7 @@ const Sidebar = () => {
                             alignItems='center' 
                             ml='15px'>
                                 <Typography variant='h3' color={colors.grey[100]}>
-                                    ADMINIS
+                                    DASHBOARD
                                 </Typography>
                                 <IconButton onClick={()=> setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
@@ -109,11 +110,11 @@ const Sidebar = () => {
                                 <Typography variant='h2'
                                  color={colors.grey[100]} 
                                  fontWeight='bold'
-                                sx={{m:'10px 0 0 0'}}>BOOK VERSE</Typography>
+                                sx={{m:'10px 0 0 0'}}>Profile</Typography>
                                 <Typography 
                                 variant='h5'
                                 color={colors.greenAccent[500]}
-                                >Fancy Admin</Typography>
+                                >Admin</Typography>
                             </Box>
                         </Box>
                     ) }
@@ -121,7 +122,7 @@ const Sidebar = () => {
                     {/*Menu Items */}
                     <Box paddingLeft={isCollapsed ? undefined : '10%'}>
                         <Item 
-                        title='Dashboard'
+                        title='Home'
                         to='/'
                         icon={<HomeOutlinedIcon />}
                         selected={selected}
@@ -134,7 +135,7 @@ const Sidebar = () => {
                         sx={{m: '15px 0 5px 20px'}}
                         >Data</Typography>
                         <Item 
-                        title='Manage Team'
+                        title="Users"
                         to='/team'
                         icon={<PeopleOutlinedIcon />}
                         selected={selected}
@@ -145,6 +146,14 @@ const Sidebar = () => {
                         title='Contacts'
                         to='/contacts'
                         icon={<ContactsOutlinedIcon />}
+                        selected={selected}
+                        setSelected={setSelected}
+                        isCollapsed={isCollapsed}
+                        />
+                        <Item 
+                        title='Products'
+                        to='/products'
+                        icon={<MenuBookIcon />}
                         selected={selected}
                         setSelected={setSelected}
                         isCollapsed={isCollapsed}

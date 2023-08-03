@@ -5,9 +5,9 @@ import "./WishlistContainer.css";
 
 const WishlistContainer = () =>{
 
-    const userName = useSelector(state => state.LocalPersist.userProfile.name);
+    const userName = useSelector(state => state.LocalPersist.userProfile?.name);
     console.log(userName)
-    const wish = useSelector((state) => state.LocalPersist.wish.Books);
+    const wish = useSelector((state) => state.LocalPersist.wish?.Books);
 
        
     return (
@@ -20,8 +20,8 @@ const WishlistContainer = () =>{
                 {wish?.length === 0 ? (
                     <>
                         <h3 className="emptyWishlist">{userName}, your Wishlist is empty.</h3>
-                        <h3 className="emptyWishlist">Explore our store or search for something new you'd like to add.</h3>
-                        <Link to="/store" className="Buttons">Store</Link>
+                        <h3 className="emptyWishlist" style={{paddingBottom:"1rem", fontSize:"1.4rem"}}>We are sure the wishlist is already in your mind, just add it here and make it real!</h3>
+                        <Link to="/store" className="Buttons" style={{padding:"1rem"}}>Store</Link>
                     </>
                 ) : (
                     wish?.length > 0 
@@ -29,8 +29,8 @@ const WishlistContainer = () =>{
                         :   (
                             <>
                                 <h3 className="emptyWishlist">{userName}, your Wishlist is empty.</h3>
-                                <h3 className="emptyWishlist">Explore our store or search for something new you'd like to add.</h3>
-                                <Link to="/store" className="Buttons">Store</Link>
+                                <h3 className="emptyWishlist" style={{paddingBottom:"1rem", fontSize:"1.4rem"}}>We are sure the wishlist is already in your mind, just add it here and make it real!</h3>
+                                <Link to="/store" className="Buttons" style={{padding:"1rem"}}>Store</Link>
                             </>)
                 )
                 }  

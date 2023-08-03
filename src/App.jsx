@@ -11,6 +11,7 @@ import Dashboard from "./views/DashBoard/src/scenes/dashboard";
 import Sidebar from "./views/DashBoard/src/scenes/global/Side-bar"
 import Team from './views/DashBoard/src/scenes/team'
 import Contacts from './views/DashBoard/src/scenes/contacts'
+import Products from './views/DashBoard/src/scenes/books'
 import Invoices from './views/DashBoard/src/scenes/invoices'
 import Form from './views/DashBoard/src/scenes/form'
 import Calendar from "./views/DashBoard/src/scenes/calendar" 
@@ -57,6 +58,7 @@ const App = () => {
         <Route path='/' element={<Dashboard />}/>
         <Route path='/team' element={<Team />}/>
         <Route path='/contacts' element={<Contacts />}/>
+        <Route path='/products' element={<Products />}/>
         <Route path='/invoices' element={<Invoices />}/>
         <Route path='/form' element={<Form />}/>
         <Route path='/calendar' element={<Calendar />}/>

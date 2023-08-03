@@ -20,6 +20,7 @@ const Detail = () => {
     const user_id = useSelector(state => state.LocalPersist.userProfile.id);
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
+    console.log(wish)
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [userRating, setUserRating] = useState(null);
@@ -60,7 +61,7 @@ const Detail = () => {
     
     const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
         event.preventDefault()
-        const cartItems = Cart;
+        const cartItems = Cart.Books;
         const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
         if (isAuthenticated) {
             if (productInCart) {
@@ -82,11 +83,12 @@ const Detail = () => {
     
 
     const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
+        console.log(user_id, "estoy en user id");
         event.preventDefault();
         try {
-            // if (!wish || typeof wish !== 'object') {
-            //     return;
-            // }
+            if (!wish || typeof wish !== 'object') {
+                return;
+            }
             const productInWish = Object.values(wish.Books)?.find((item) => item.id === id);
             if (productInWish) {
                 setIsFav(false);
