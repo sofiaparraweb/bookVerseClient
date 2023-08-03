@@ -17,11 +17,12 @@ const Detail = () => {
     const { isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
-    const Cart = useSelector((state) => state.LocalPersist.cart.Books);
-    const wish = useSelector((state) => state.LocalPersist.wish);
-    const wishBook = useSelector((state) => state.LocalPersist.wish.Books);
-    console.log(wish)
+    const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
+    const Cart = useSelector((state) => state.LocalPersist.cart?.Books);
+    const wish = useSelector((state) => state.LocalPersist?.wish);
+    const wishBook = useSelector((state) => state.LocalPersist.wish?.Books);
+    console.log(wishBook, "estoy en wishBook");
+    console.log(wish, "estoy en wish");
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [userRating, setUserRating] = useState(null);
@@ -84,6 +85,7 @@ const Detail = () => {
     
 
     const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
+        console.log(user_id, "estoy en user id");
         event.preventDefault();
         try {
             if (!wish || typeof wish !== 'object') {

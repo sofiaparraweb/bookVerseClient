@@ -7,7 +7,7 @@ import "./ReviewForm.css"
 
 const ReviewForm = ({ id }) => {
   const dispatch = useDispatch();
-  const user_id = useSelector(state => state.LocalPersist.userInfo.email);
+  const user_id = useSelector(state => state.LocalPersist.userInfo?.email);
 
   const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
     email:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
@@ -27,6 +27,7 @@ const ReviewForm = ({ id }) => {
   };
 
   const url =  "http://localhost:3001";
+  //const url = "https://bookverse-m36k.onrender.com";
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

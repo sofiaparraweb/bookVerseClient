@@ -5,9 +5,9 @@ import "./WishlistContainer.css";
 
 const WishlistContainer = () =>{
 
-    const userName = useSelector(state => state.LocalPersist.userProfile.name);
+    const userName = useSelector(state => state.LocalPersist.userProfile?.name);
     console.log(userName)
-    const wish = useSelector((state) => state.LocalPersist.wish.Books);
+    const wish = useSelector((state) => state.LocalPersist.wish?.Books);
 
        
     return (

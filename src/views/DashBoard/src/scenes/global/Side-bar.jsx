@@ -80,7 +80,7 @@ const Sidebar = () => {
                             alignItems='center' 
                             ml='15px'>
                                 <Typography variant='h3' color={colors.grey[100]}>
-                                    ADMINIS
+                                    DASHBOARD
                                 </Typography>
                                 <IconButton onClick={()=> setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
@@ -109,11 +109,11 @@ const Sidebar = () => {
                                 <Typography variant='h2'
                                  color={colors.grey[100]} 
                                  fontWeight='bold'
-                                sx={{m:'10px 0 0 0'}}>Fidel Fuentes</Typography>
+                                sx={{m:'10px 0 0 0'}}>Profile</Typography>
                                 <Typography 
                                 variant='h5'
                                 color={colors.greenAccent[500]}
-                                >Fancy Admin</Typography>
+                                >Admin</Typography>
                             </Box>
                         </Box>
                     ) }
@@ -121,7 +121,7 @@ const Sidebar = () => {
                     {/*Menu Items */}
                     <Box paddingLeft={isCollapsed ? undefined : '10%'}>
                         <Item 
-                        title='Dashboard'
+                        title='Home'
                         to='/'
                         icon={<HomeOutlinedIcon />}
                         selected={selected}
@@ -134,7 +134,7 @@ const Sidebar = () => {
                         sx={{m: '15px 0 5px 20px'}}
                         >Data</Typography>
                         <Item 
-                        title='Manage Team'
+                        title="Users"
                         to='/team'
                         icon={<PeopleOutlinedIcon />}
                         selected={selected}
