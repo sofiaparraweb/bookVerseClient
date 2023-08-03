@@ -18,10 +18,8 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userProfile.id);
-    const Cart = useSelector((state) => state.LocalPersist.cart.Books);
+    const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
-    const wishBook = useSelector((state) => state.LocalPersist.wish.Books);
-    console.log(wish)
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [userRating, setUserRating] = useState(null);
@@ -86,10 +84,10 @@ const Detail = () => {
     const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
         event.preventDefault();
         try {
-            if (!wish || typeof wish !== 'object') {
-                return;
-            }
-            const productInWish = Object.values(wishBook)?.find((item) => item.id === id);
+            // if (!wish || typeof wish !== 'object') {
+            //     return;
+            // }
+            const productInWish = Object.values(wish.Books)?.find((item) => item.id === id);
             if (productInWish) {
                 setIsFav(false);
                 await dispatch(removeWishlist(user_id, id));
@@ -107,14 +105,14 @@ const Detail = () => {
     };
 
     useEffect(() => {
-        wishBook?.forEach((fav) => {
+        wish.Books?.forEach((fav) => {
             if (fav.id === id) {
                 setIsFav(true);
             } else {
                 setIsFav(false);
             }
         });
-    }, [wishBook, id]);
+    }, [wish.Books, id]);
     
     
     return (

@@ -17,26 +17,45 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isProfileCreatedRef = useRef(false);
 
-  useEffect(() => {
-    console.log(userProfile)
-    if (isAuthenticated && user && userProfile==null) {
-      console.log("se cumple primer if", user.email)
-      dispatch(getUser(user.email));
-      if (userProfile!==null) {
-        isProfileCreatedRef = true;
-      }
-    } 
-    if (isAuthenticated && user && !isProfileCreatedRef) {
-      console.log("se cumple segundo if", user.email)
-          const newUser = {
-            name: user.name,
-            email: user.email,
-          };
-          dispatch(createUser(newUser));
-          isProfileCreatedRef = true;
-        }
-  }, [dispatch, isAuthenticated, user, userProfile]);
+  // useEffect(() => {
+  //   console.log(userProfile)
+  //   if (isAuthenticated && user && userProfile==null) {
+  //     console.log("se cumple primer if", user.email)
+  //     dispatch(getUser(user.email));
+  //     if (userProfile!==null) {
+  //       isProfileCreatedRef = true;
+  //     }
+  //   } 
+  //   if (isAuthenticated && user && !isProfileCreatedRef) {
+  //     console.log("se cumple segundo if", user.email)
+  //         const newUser = {
+  //           name: user.name,
+  //           email: user.email,
+  //         };
+  //         dispatch(createUser(newUser));
+  //         isProfileCreatedRef = true;
+  //       }
+  // }, [dispatch, isAuthenticated, user, userProfile]);
 
+  useEffect(() => {
+    if (isAuthenticated && user && !isProfileCreatedRef.current) {
+      const newUser = {
+        name: user.name,
+        email: user.email,
+      };
+      dispatch(createUser(newUser));
+      isProfileCreatedRef.current = true;
+    }
+  }, [dispatch, isAuthenticated, user]);
+
+  useEffect(() => {
+    if (isAuthenticated && user && isProfileCreatedRef.current) {
+      dispatch(getUser(user.email));
+      dispatch(getUserId(user.email));
+      console.log(user.email);
+    }
+  }, [dispatch, isAuthenticated, user]);
+  
   return (
     <div className="homeContainer">
       <Header />

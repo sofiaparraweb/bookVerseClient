@@ -109,7 +109,7 @@ const Sidebar = () => {
                                 <Typography variant='h2'
                                  color={colors.grey[100]} 
                                  fontWeight='bold'
-                                sx={{m:'10px 0 0 0'}}>Fidel Fuentes</Typography>
+                                sx={{m:'10px 0 0 0'}}>BOOK VERSE</Typography>
                                 <Typography 
                                 variant='h5'
                                 color={colors.greenAccent[500]}
@@ -163,7 +163,7 @@ const Sidebar = () => {
                         sx={{m: '15px 0 5px 20px'}}
                         >Pages</Typography>
                         <Item 
-                        title='Profile Form'
+                        title='Upload Book'
                         to='/form'
                         icon={<PersonOutlinedIcon />}
                         selected={selected}

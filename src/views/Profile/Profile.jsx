@@ -11,6 +11,7 @@ const Profile = () => {
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
+  const dispatch = useDispatch()
 
   const [initialProfile, setInitialProfile] = useState({
     name: userProfile?.name || "",
@@ -33,7 +34,6 @@ const Profile = () => {
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
   const email = userProfile?.email || '';
-
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {

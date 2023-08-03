@@ -408,16 +408,15 @@ export const updateUser = (data) => {
 
 //------------------------------------dashboard-----------------------------------
 
-export const addProduct = (data) => {
+export const addBook = (data) => {
   console.log(data)
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/books/create`, data
-      // , {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //   },
-      // }
+      const response = await axios.post(`${url}/books/create`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
       );
       console.log(data, 'este es el new Book')
       dispatch({

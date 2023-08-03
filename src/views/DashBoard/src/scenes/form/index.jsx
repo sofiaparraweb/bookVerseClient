@@ -1,49 +1,11 @@
-import { Box, Button, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { Box, Button, TextField, Select, MenuItem, FormControl, InputLabel, Input } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from 'yup';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../../../../Redux/actions";
-import { useState } from "react";
-
-const genreTest = [
-  { "name": "Fiction" },
-  { "name": "Novel" },
-  { "name": "Science Fiction" },
-  { "name": "Fantasy" },
-  { "name": "Mystery" },
-  { "name": "Romance" },
-  { "name": "Adventure" },
-  { "name": "History" },
-  { "name": "Poetry" },
-];
-
-const publisherTest = [
-  { "name": "Alfaguara Publishing" },
-  { "name": "Anagrama Publishing" },
-  { "name": "Planeta Publishing" },
-  { "name": "Penguin Random House Publishing" },
-  { "name": "Gallimard Publishing" },
-  { "name": "Macmillan Publishing" },
-  { "name": "Pantheon Books Publishing" },
-];
-
-const languageTest = [
-  { "name": "Español" },
-  { "name": "Inglés" },
-  { "name": "Francés" },
-  { "name": "Alemán" },
-  { "name": "Italiano" },
-];
-
-const formatTest = [
-  { "name": "EPUB" },
-  { "name": "PDF" },
-  { "name": "MOBI" },
-  { "name": "AZW3" },
-  { "name": "CBZ" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { addBook, getBookGenre, getBookLanguage, getBookPublisher, getBookFormat } from "../../../../../Redux/actions";
+import { useState, useEffect } from "react";
 
 const initialValues = {
   title: '',
@@ -66,15 +28,24 @@ const bookSchema = yup.object().shape({
   price: yup.number().required('Required'),
   description: yup.string().required('Required'),
   publicationDate: yup.string().required('Required'),
-//   gender: yup.string().required('Required'),
-//   language: yup.string().required('Required'),
-//   publisher: yup.string().required('Required'),
-//   format: yup.string().required('Required')
 });
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const dispatch = useDispatch();
+  const allGenres = useSelector(state => state.LocalPersist.bookGenres);
+  const allFormats = useSelector(state => state.LocalPersist.bookFormat);
+  const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
+  const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
+  const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
+ 
+  useEffect(() => {
+    dispatch(getBookGenre());
+    dispatch(getBookLanguage());
+    dispatch(getBookPublisher());
+    dispatch(getBookFormat());
+  }, [dispatch]);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -86,24 +57,30 @@ const Form = () => {
     setSelectedImage(file);
   };
   
-  const handleSaveBook = (formData) => {
-    const data = {
-      title: formData.title,
-      author: formData.author,
-      price: formData.price,
-      description: formData.description,
-      publicationDate: formData.publicationDate,
-      image: selectedImage,
-      gender: selectedGender,
-      language: selectedLanguage,
-      publisher: selectedPublisher,
-      format: selectedFormat
-    };
-
-    console.log(data);
-    dispatch(addProduct(data));
+  const handleDeleteImage = () => {
+    setSelectedImage(defaultImageURL);
   };
 
+  const handleSaveBook = (formData) => {
+const data = { 
+    title: formData.title,
+    author: formData.author,
+    price: formData.price,
+    description: formData.description,
+    publicationDate: formData.publicationDate,
+    gender: selectedGender ? allGenres.find(genre => genre.name === selectedGender).id : null,
+    language: selectedLanguage ? allLanguages.find(lang => lang.name === selectedLanguage).id : null,
+    publisher: selectedPublisher ? allPublishers.find(pub => pub.name === selectedPublisher).id : null,
+    format: selectedFormat ? allFormats.find(format => format.name === selectedFormat).id : null,
+    image: selectedImage,
+    }
+
+    console.log(selectedImage);
+    console.log(data, 'esto mando al back');
+    dispatch(addBook(data));
+   };
+  
+   
   return (
     <Box m='0px'>
       <Header title='New Book' subtitle='Upload a new book!' />
@@ -196,8 +173,8 @@ const Form = () => {
                   name="gender"
                   error={!!touched.gender && !!errors.gender}
                 >
-                  {genreTest.map((genre) => (
-                    <MenuItem key={genre.name} value={genre.name}>
+                  {allGenres && allGenres.map((genre) => (
+                    <MenuItem key={genre.id} value={genre.name}>
                       {genre.name}
                     </MenuItem>
                   ))}
@@ -212,8 +189,8 @@ const Form = () => {
                   name="language"
                   error={!!touched.language && !!errors.language}
                 >
-                  {languageTest.map((language) => (
-                    <MenuItem key={language.name} value={language.name}>
+                  {allLanguages && allLanguages.map((language) => (
+                    <MenuItem key={language.id} value={language.name}>
                       {language.name}
                     </MenuItem>
                   ))}
@@ -228,8 +205,8 @@ const Form = () => {
                   name="publisher"
                   error={!!touched.publisher && !!errors.publisher}
                 >
-                  {publisherTest.map((publisher) => (
-                    <MenuItem key={publisher.name} value={publisher.name}>
+                  {allPublishers && allPublishers.map((publisher) => (
+                    <MenuItem key={publisher.id} value={publisher.name}>
                       {publisher.name}
                     </MenuItem>
                   ))}
@@ -244,14 +221,49 @@ const Form = () => {
                   name="format"
                   error={!!touched.format && !!errors.format}
                 >
-                  {formatTest.map((format) => (
-                    <MenuItem key={format.name} value={format.name}>
+                  {allFormats && allFormats.map((format) => (
+                    <MenuItem key={format.id} value={format.name}>
                       {format.name}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
-              {/* Add image field and any other required fields here */}
+              <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                <InputLabel>Upload Image</InputLabel>
+                <Input
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleProfileImageChange}
+                  inputProps={{
+                    accept: "image/*"
+                  }}
+                />
+              </FormControl>
+
+              {/* Código para mostrar la imagen */}
+              <Box className="perfil-image">
+                <img
+                  src={selectedImage}
+                  alt="profile"
+                  className="profile-image"
+                />
+                  <Box className="image-buttons">
+                    <label htmlFor="image" className="upload-button">
+                      Upload Image
+                      <Input
+                        type="file"
+                        id="image"
+                        name="image"
+                        onChange={handleProfileImageChange}
+                        accept="image/*"
+                      />
+                    </label>
+                    <Button className="delete-button" onClick={handleDeleteImage}>
+                      Delete Image
+                    </Button>
+                  </Box>
+              </Box>
             </Box>
             <Box display='flex' justifyContent='end' mt='20px'>
               <Button type='submit' color='secondary' variant='contained' mb='200px'>
