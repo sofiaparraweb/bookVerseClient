@@ -8,10 +8,10 @@ const Filter = ({ setCurrentPage }) => {
 
   const dispatch = useDispatch();
   const books = useSelector(state => state.LocalPersist.books);
-  // const allGenres = useSelector(state => state.LocalPersist.bookGenres);
-  // const allFormats = useSelector(state => state.LocalPersist.bookFormat);
-  // const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
-  // const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
+  const allGenres = useSelector(state => state.LocalPersist.bookGenres);
+  const allFormats = useSelector(state => state.LocalPersist.bookFormat);
+  const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
+  const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
   const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
 
 
@@ -96,7 +96,6 @@ const Filter = ({ setCurrentPage }) => {
     setActiveFilter(prevFilters => (name));
   };
 
-  
   const handleReset = (event) => {  //Reseteamos cuando queremos volver a traer todos los productos a la tienda
     event.preventDefault()
     dispatch(getAllBooks())
