@@ -175,7 +175,7 @@ export const filterByPublisher = (name) => {
 export const filterCombined = (name) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/filter/combined?name=${name}`);
+      const response = await axios.get(`${url}/filter/combined?${name}`);
       console.log(response.data.books)
       dispatch({ type: FILTER_COMBINED, payload: response.data.books});
     } catch (error) {
