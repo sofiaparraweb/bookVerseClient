@@ -90,6 +90,7 @@ const Detail = () => {
     
 
     const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
+        console.log(user_id, "estoy en user id");
         event.preventDefault();
         try {
             if (!wish || typeof wish !== 'object') {
