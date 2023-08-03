@@ -26,10 +26,12 @@ const NavBar = ({ isAuthenticated }) => {
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
+    localStorage.removeItem('persist:root')
+    console.log()
   };
 
   const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
+    loginWithRedirect({ appState: { targetUrl: "/perfil" } });  
   };
 
   const handleClick = () => {
