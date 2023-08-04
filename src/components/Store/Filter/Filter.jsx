@@ -98,19 +98,18 @@ const Filter = ({ setCurrentPage }) => {
 
   const handleReset = (event) => {  
     event.preventDefault()
-    setActiveFormat(null);
-    setActivePublisher(null);
-    setActiveLanguage(null);
-    setActiveGenre(null);
+    setCurrentPage(1);
+    dispatch(getAllBooks())
+    setActiveFormat("");
+    setActivePublisher("");
+    setActiveLanguage("");
+    setActiveGenre("");
     setFilters({
       format: "",
       genre: "",
       language: "",
       publisher: "",
     });
-    setCurrentPage(1);
-    console.log(activeGenre)
-    dispatch(getAllBooks())
   }
 
   const handleSubmit = () => {
