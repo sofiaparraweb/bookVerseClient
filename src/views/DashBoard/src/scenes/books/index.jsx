@@ -10,7 +10,6 @@ import Header from '../../components/Header'
 const Products = () =>{
 
     const allbooks = useSelector(state => state.LocalPersist.allbooks);
-    console.log(allbooks)
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)

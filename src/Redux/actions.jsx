@@ -74,17 +74,17 @@ export function getAllBooks() {
   };
 }
 
-export const getDetailBooks = (id) =>{
-  return async (dispatch) =>{
-    try {
-      const response = await axios.get(`${url}/books/:id`);
-      console.log(data);
-      return dispatch({type: GET_DETAIL_BOOK, payload: response.data})
-    } catch (err) {
-      console.log(err);
-    }
-  }
-}
+// export const getDetailBooks = (id) =>{
+//   return async (dispatch) =>{
+//     try {
+//       const response = await axios.get(`${url}/books/:id`);
+//       console.log(data);
+//       return dispatch({type: GET_DETAIL_BOOK, payload: response.data})
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// }
 
 export const getBookGenre = () => {
   return async (dispatch) => {
@@ -239,17 +239,6 @@ export const removeWishlist = (user_id, id) => {
     }
   };
 };
-
-// export const clearWishlist = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${url}`);
-//       dispatch({ type: CLEAR_WISHLIST, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
 
 
 // ------------------------------------Cart-----------------------------------
