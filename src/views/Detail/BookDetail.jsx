@@ -27,6 +27,7 @@ const Detail = () => {
     
     // const url = "https://bookverse-m36k.onrender.com";
     const url = "http://localhost:3001";
+
     useEffect(() => {
         async function fetchData() {
             try {

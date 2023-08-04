@@ -7,7 +7,7 @@ import "./ReviewForm.css"
 
 const ReviewForm = ({ id }) => {
   const dispatch = useDispatch();
-  const user_id = useSelector(state => state.LocalPersist.userInfo?.email);
+  const user_id = useSelector(state => state.LocalPersist.userProfile?.email);
 
   const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
     email:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
@@ -30,6 +30,7 @@ const ReviewForm = ({ id }) => {
   //const url = "https://bookverse-m36k.onrender.com";
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(review)
     try {
       await axios.post(`${url}/review/post`, review)
         .then(res => alert("Gracias por opinar sobre nuestro producto!"))

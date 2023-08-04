@@ -22,7 +22,7 @@ import {
   DELETE_ALL_CART,
   CHANGE_QUANTITY,
   POST_PAYMENT,
-//   ADD_PRODUCT,
+  ADD_PRODUCT,
 //   DELETE_PRODUCT,
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
@@ -42,10 +42,10 @@ import {
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-/*   bookGenres: [],
+bookGenres: [],
   bookLanguage: [],
   bookPublisher: [],
-  bookFormat: [], */
+  bookFormat: [], 
   books: [],
   cart: [],
   wish: [],
@@ -54,7 +54,6 @@ const initialState = {
   users: [],
   userProfile: null,
   userId: null,
-  userInfo: {},
   loading: true,
   error: null,
   grid_view: true,
@@ -206,12 +205,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         CartBooks: action.payload,
       };
-
-//     case ADD_PRODUCT:
-//       return {
-//         ...state,
-//         books: action.payload,
-//       };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        // allbooks: [...allBooks, action.payload],
+        books: [...state.books, action.payload],
+      };
 //     case DELETE_PRODUCT:
 //       return {
 //         ...state,
