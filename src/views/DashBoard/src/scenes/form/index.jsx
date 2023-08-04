@@ -8,16 +8,16 @@ import { addBook, getBookGenre, getBookLanguage, getBookPublisher, getBookFormat
 import { useState, useEffect } from "react";
 
 const initialValues = {
+  image: null,
   title: '',
   author: '',
   price: '',
-  description: '',
+  description: '',    //<------------- FALTA PAGES! DESPUES DE DESCRIPTION
   publicationDate: '',
-  image: null,
-  gender: '',
+  format: '',
   language: '',
   publisher: '',
-  format: ''
+  gender: ''
 };
 
 const phoneRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
@@ -38,7 +38,7 @@ const Form = () => {
   const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
   const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
   const defaultImageURL = "https://cdn-icons-png.flaticon.com/512/4298/4298086.png";
- 
+
   useEffect(() => {
     dispatch(getBookGenre());
     dispatch(getBookLanguage());
@@ -56,33 +56,33 @@ const Form = () => {
     const file = e.target.files[0];
     setSelectedImage(file);
   };
-  
+
   const handleDeleteImage = () => {
     setSelectedImage(defaultImageURL);
   };
 
   const handleSaveBook = (formData) => {
-const data = { 
-    title: formData.title,
-    author: formData.author,
-    price: formData.price,
-    description: formData.description,
-    publicationDate: formData.publicationDate,
-    gender: selectedGender ? allGenres.find(genre => genre.name === selectedGender).id : null,
-    language: selectedLanguage ? allLanguages.find(lang => lang.name === selectedLanguage).id : null,
-    publisher: selectedPublisher ? allPublishers.find(pub => pub.name === selectedPublisher).id : null,
-    format: selectedFormat ? allFormats.find(format => format.name === selectedFormat).id : null,
-    image: selectedImage,
+    const data = {
+      image: selectedImage,
+      title: formData.title,
+      author: formData.author,
+      price: formData.price,
+      description: formData.description,
+      publicationDate: formData.publicationDate,
+      format: selectedFormat ? allFormats.find(format => format.name === selectedFormat).id : null,
+      language: selectedLanguage ? allLanguages.find(lang => lang.name === selectedLanguage).id : null,
+      publisher: selectedPublisher ? allPublishers.find(pub => pub.name === selectedPublisher).id : null,
+      genre: selectedGender ? allGenres.find(genre => genre.name === selectedGender).id : null,
     }
 
     console.log(selectedImage);
     console.log(data, 'esto mando al back');
     dispatch(addBook(data));
-   };
-  
-   
+  };
+
+
   return (
-    <Box m='0px' width='100vw' marginLeft="20px"  marginRight="20px" marginTop="70px">
+    <Box m='0px' width='100vw' marginLeft="20px" marginRight="20px" marginTop="70px">
       <Header title='UPLOAD A NEW BOOK!' />
       <Formik
         onSubmit={handleSaveBook}
@@ -90,7 +90,7 @@ const data = {
         validationSchema={bookSchema}
       >
         {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
+          <form method="POST" onSubmit={handleSubmit}  enctype="multipart/form-data" >
             <Box
               display='grid'
               gap='30px'
@@ -229,35 +229,35 @@ const data = {
                 </Select>
               </FormControl>
               <Box sx={{ display: "flex", alignItems: "center", gap: "50px", width: "100vw" }}>
-              <Avatar
-        src={selectedImage ? URL.createObjectURL(selectedImage) : defaultImageURL}
-        alt="profile"
-        sx={{
-          width: 300,
-          height: 300,
-          objectFit: "cover",
-          borderRadius: "10%",
-          boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)",
-          maxWidth: "100%", // Ajustar la imagen al ancho máximo del contenedor
-          maxHeight: "100%", // Ajustar la imagen al alto máximo del contenedor
-        }}
-      />
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-          <InputLabel htmlFor="image">Upload Image</InputLabel>
-          <Input
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleProfileImageChange}
-            accept="image/*"
-            inputProps={{ language: "en" }}
-          />
-        </Box>
-      </Box>
+                <Avatar
+                  src={selectedImage ? URL.createObjectURL(selectedImage) : defaultImageURL}
+                  alt="profile"
+                  sx={{
+                    width: 300,
+                    height: 300,
+                    objectFit: "cover",
+                    borderRadius: "10%",
+                    boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)",
+                    maxWidth: "100%", // Ajustar la imagen al ancho máximo del contenedor
+                    maxHeight: "100%", // Ajustar la imagen al alto máximo del contenedor
+                  }}
+                />
+                <Box sx={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+                  <InputLabel htmlFor="image">Upload Image</InputLabel>
+                  <Input
+                    type="file"
+                    id="image"
+                    name="image"
+                    onChange={handleProfileImageChange}
+                    accept="image/*"
+                    inputProps={{ language: "en" }}
+                  />
+                </Box>
+              </Box>
             </Box>
-              <Button type='submit' color='secondary' variant='contained' borderBottom="20px" mb='300px'>
-                Create New Book
-              </Button>
+            <Button type='submit' color='secondary' variant='contained' borderBottom="20px" mb='300px'>
+              Create New Book
+            </Button>
           </form>
         )}
       </Formik>
