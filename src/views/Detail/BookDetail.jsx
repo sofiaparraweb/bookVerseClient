@@ -17,10 +17,9 @@ const Detail = () => {
     const { isAuthenticated } = useAuth0();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
-    console.log(wish)
     const [quantity, setQuantity] = useState(1);
     const [book, setBook] = useState({});
     const [userRating, setUserRating] = useState(null);
@@ -28,6 +27,7 @@ const Detail = () => {
     
     // const url = "https://bookverse-m36k.onrender.com";
     const url = "http://localhost:3001";
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -61,19 +61,26 @@ const Detail = () => {
     
     const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
         event.preventDefault()
-        const cartItems = Cart.Books;
-        const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
-        if (isAuthenticated) {
-            if (productInCart) {
-                alert("Book is already in the shopping cart.");
-            } else {
-                dispatch(addToCart(user_id, id, quantity));
-                alert("Book has been added to the shopping cart.");
-                dispatch(getCart(user_id));
-                navigate("/cart");
+        try {
+            if (!Cart || typeof Cart !== 'object') {
+                return;
             }
-        } else {
-            alert('You need to log in to buy books.');
+            const cartItems = Cart.Books;
+            const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
+            if (isAuthenticated) {
+                if (productInCart) {
+                    alert("Book is already in the shopping cart.");
+                } else {
+                    dispatch(addToCart(user_id, id, quantity));
+                    alert("Book has been added to the shopping cart.");
+                    dispatch(getCart(user_id));
+                    navigate("/cart");
+                }
+            } else {
+                alert('You need to log in to buy books.');
+            }
+        } catch (error) {
+            console.error("Error adding/removing book to/from Cart:", error);
         }
     }
     

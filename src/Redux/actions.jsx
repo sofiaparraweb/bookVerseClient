@@ -34,7 +34,7 @@ export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 export const POST_PAYMENT = "POST_PAYMENT";
 
 //actions dashboard
-// export const ADD_PRODUCT = "ADD_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
 // export const DELETE_PRODUCT = "DELETE_PRODUCT";
 // export const EDIT_PRODUCT = "EDIT_PRODUCT"
 // export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
@@ -61,7 +61,7 @@ export const FORM_SUSCRIPTION = "FORM_SUBCRIPTION";
 
 
 
-// const url = "https://bookverse-m36k.onrender.com";
+// const URL = "https://bookverse-m36k.onrender.com";
 export const URL = "http://localhost:3001";
 
 //------------------------------------books-----------------------------------
@@ -332,14 +332,15 @@ export const postPayment = (user_id) => {
 
 //------------------------------------user-----------------------------------
 
-export const getUser = (userId) => {
+export const getUser = (email) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${URL}/user/${userId}`);
+      const response = await axios.get(`${URL}/user/email/${email}`);
       dispatch({
         type: GET_USER,
         payload: response.data,
       });
+      console.log("se trajo el usuario")
     } catch (error) {
       console.log(error);
     }
@@ -365,6 +366,8 @@ export const createUser = (newUser) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/user`, newUser);
+      console.log(newUser, 'este es el new user')
+
       const userId = response.data.newUser.id;
       dispatch({
         type: SET_USER_ID,
@@ -375,7 +378,7 @@ export const createUser = (newUser) => {
         payload: response.data,
       });
       console.log('USUARIO CREADO!!!')
-      dispatch(getProfile(userId));
+      dispatch(getUser(email));
     } catch (error) {
       console.log(error);
     }
@@ -383,10 +386,11 @@ export const createUser = (newUser) => {
 };
 
 export const updateUser = (data) => {
-  console.log(data)
   return async (dispatch) => {
-    try {
+    console.log(data)
+     try {
       const response = await axios.put(`${URL}/user/edit`, data, {
+
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -394,7 +398,7 @@ export const updateUser = (data) => {
       console.log(response)
       dispatch({
         type: UPDATE_USER,
-        payload: response.data,
+        payload: data,
       });
       console.log('se ejecuto con exitot bbbb')
     } catch (error) {
@@ -405,12 +409,28 @@ export const updateUser = (data) => {
 
 //------------------------------------dashboard-----------------------------------
 
-// export const addProduct = (product) => {
-//   return {
-//     type: ADD_PRODUCT,
-//     payload: product,
-//   };
-// };
+export const addBook = (data) => {
+  console.log(data)
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/books/create`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+      );
+      console.log(data, 'este es el new Book')
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: data,
+      });
+      console.log('LIBRO CREADO!!!')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 
 // export const deleteProduct = (product) => {
 //   return {

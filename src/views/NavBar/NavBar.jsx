@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import bookVerse from "../../assets/imgNavbar/logoBook.svg";
 import { BiSolidCartAdd, BiSolidUser, BiLogoShopify } from "react-icons/bi";
 import iconbookclose from "../../assets/imgNavbar/iconbookclose.png";
 import iconbookopen from "../../assets/imgNavbar/iconbookopen.png";
+import { getCart } from "../../Redux/actions"
 import style from "./NavBar.module.css";
 
 const NavBar = ({ isAuthenticated }) => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isNavVisible, setIsNavVisible] = useState(false);
   const Cart = useSelector((state) => state.LocalPersist.cart);
+  const user_id = useSelector((state) => state.LocalPersist.userProfile?.id);
   const isWishlistPage = location.pathname === '/wishlist';
   const isDashboardPage = location.pathname === '/dashboard1';
 
@@ -26,12 +29,18 @@ const NavBar = ({ isAuthenticated }) => {
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
+    localStorage.removeItem('persist:root')
+    console.log()
   };
 
   const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
+    loginWithRedirect({ appState: { targetUrl: "/perfil" } }); 
   };
 
+  useEffect(() => {
+    dispatch(getCart(user_id));
+  }, [user_id]);
+  
   const handleClick = () => {
     window.scrollTo({ top: 0 });
   };

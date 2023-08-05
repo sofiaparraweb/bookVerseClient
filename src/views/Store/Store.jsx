@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllBooks } from '../../Redux/actions';
+import { getAllBooks, getBookGenre, getBookFormat, getBookLanguage, getBookPublisher } from '../../Redux/actions';
 import TiendaItemsContenedor from "../../components/Store/TiendaItemsContenedor/TiendaItemsContenedor";
 import { useDispatch, useSelector } from 'react-redux';
 import Filter from "../../components/Store/Filter/Filter"
@@ -12,12 +12,20 @@ const Store = () => {
   
   const dispatch = useDispatch();
   const ebooks = useSelector(state => state.LocalPersist.books);
-  
+  const allGenres = useSelector(state => state.LocalPersist.bookGenres);
+  const allFormats = useSelector(state => state.LocalPersist.bookFormats);
+  const allLanguages = useSelector(state => state.LocalPersist.bookLanguages);
+  const allPublishers = useSelector(state => state.LocalPersist.bookPublishers);
+
   const [currentPage, setCurrentPage] = useState(1); 
   const booksPerPage = 9;
   
   useEffect(() => {
     dispatch(getAllBooks());
+    dispatch(getBookGenre());
+    dispatch(getBookFormat());
+    dispatch(getBookLanguage());
+    dispatch(getBookPublisher());
   }, [dispatch]);
 
   const handlePaginate = (pageNumber) => {
@@ -26,7 +34,7 @@ const Store = () => {
 
   const indexOfLastBook = currentPage * booksPerPage; 
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = ebooks?.length > 0 && ebooks.slice(
+  const currentBooks = ebooks?.length > 0 && ebooks?.slice(
     indexOfFirstBook,
     indexOfLastBook
   ); 
