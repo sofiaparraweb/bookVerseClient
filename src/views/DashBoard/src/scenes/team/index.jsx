@@ -1,29 +1,37 @@
 import { Box, Typography, useTheme, Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import { tokens } from '../../theme'
-//import {mockDataTeam} from '../../data/mockData'
 import AdminPanelSettingsOutlinedIcon from  '@mui/icons-material/AdminPanelSettingsOutlined'
 import LockOpenOutlinedIcon from  '@mui/icons-material/LockOpenOutlined'
 import SecurityOutlinedIcon from  '@mui/icons-material/SecurityOutlined'
 import Header from '../../components/Header'
-//import { aD } from '@fullcalendar/core/internal-common'
-import Axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import {getDashboardUsers, deleteUser} from "../../../../../Redux/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 
 const Team = () =>{
-    const [teamData, setTeamData] = useState([]);
+    const dispatch = useDispatch();
+    const teamData = useSelector((state) => state.LocalPersist?.teamData);
     const [enabledUsers, setEnabledUsers] = useState({});
+    console.log("estoy en teamdata", teamData);
+    console.log("estoy en enabledUsers", enabledUsers);
+
+    const handleToggleBanUser = (userId, isBanned) => {
+        dispatch(deleteUser(userId));
+        setEnabledUsers((prevEnabledUsers) => ({
+            ...prevEnabledUsers,
+            [userId]: !prevEnabledUsers[userId],
+          })); 
+      };
+
+      useEffect(() => {
+        dispatch(getDashboardUsers());
+       
+      }, [dispatch]);
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
-
-    const handleToggleUser = (userId) => {
-        setEnabledUsers((prevEnabledUsers) => ({
-          ...prevEnabledUsers,
-          [userId]: !prevEnabledUsers[userId],
-        }));
-      };
-
     const columns = [
         {field:'id', headerName: 'ID'},
         {field:'name', headerName:'Name', flex:1, cellClassName:'name-column--cell'},
@@ -45,12 +53,12 @@ const Team = () =>{
                 display='flex'
                 justifyContent='center'
                 backgroundColor={
-                    access === 'admin' ? colors.greenAccent[600] : colors.greenAccent[700]
+                    access === 'user' ? colors.greenAccent[600] : colors.greenAccent[700]
                 }
                 borderRadius='4px'
                 >
-                    {access ==='admin' && <AdminPanelSettingsOutlinedIcon />}
-                    {access ==='manager' && <SecurityOutlinedIcon />}
+                    
+                    {/* {access ==='manager' && <SecurityOutlinedIcon />} */}
                     {access ==='user' && <LockOpenOutlinedIcon />}
                     <Typography color={colors.grey[100]} sx={{ml:'5px'}}>
                         {access}
@@ -59,43 +67,21 @@ const Team = () =>{
                         variant='contained'
                         disableElevation
                         color={buttonColor}
-                        onClick={() => handleToggleUser(id)}
+                        onClick={() => {
+                            handleToggleBanUser(id, !isBanned);
+                        }}
                         >
                         {isEnabled ? 'Off' : 'On'}
                     </Button>
-                    {isBanned && (
-                      <Typography color={colors.error} sx={{ ml: '5px' }}>
-                        Banned
-                      </Typography>
-                    )}
+                   
                 </Box>
             )
         }},
     ]
-
-    useEffect(() => {
-        
-        fetchTeamData();
-      }, []);
-
-      const fetchTeamData = async () => {
-        try {
-          // Realizar la solicitud GET al endpoint en el backend
-          const url = "https://bookverse-m36k.onrender.com";
-          //const url = "http://localhost:3001";
-          const response = await Axios.get(`${url}/user`);
-          console.log('Respuesta del backend:', response.data);
-          setTeamData(response.data);
-        } catch (error) {
-          console.error('Error al obtener los datos del equipo:', error);
-        }
-      };
-
-
+      
     return(
         <Box m='20px'>
             <Header title='' subtitle='Managing the Users' />
-
             <Box
             m='40px 0 0 0'
             height='75vh'
@@ -125,7 +111,7 @@ const Team = () =>{
             }}
             >
                 <DataGrid 
-                rows={teamData}
+                rows={teamData || []}
                 columns={columns}
                 />
 

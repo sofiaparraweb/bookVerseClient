@@ -26,7 +26,9 @@ import {
 //   DELETE_PRODUCT,
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
-//   GET_ALL_USERS,
+   GET_DASHBOARD_USERS,
+   DELETE_USER_SUCCESS, 
+   DELETE_USER_FAILURE,
 //   DELETE_USER,
 //   SUSPEND_USER,
   GET_USER,
@@ -59,6 +61,7 @@ const initialState = {
   error: null,
   grid_view: true,
   reviews: [],
+  teamData: [],
 };
 
 // // Reducer
@@ -228,12 +231,20 @@ const reducer = (state = initialState, action) => {
 //         // books: action.payload,
 //       };
 
-//------------------------------------USER actions-----------------------------------
-//     case GET_ALL_USERS:
-//       return {
-//         ...state,
-//         users: action.payload,
-//       };
+//------------------------------------USER actions Dashboard-----------------------------------
+    case GET_DASHBOARD_USERS:
+      return {
+        ...state,
+        teamData: action.payload,
+      };
+
+      case DELETE_USER_SUCCESS:
+        return {
+          ...state,
+          users: state.users.filter((user) => user.id !== action.payload),
+        };
+      case DELETE_USER_FAILURE:
+        return state;
 //     case DELETE_USER:
 //       return {
 //         ...state,
