@@ -18,8 +18,13 @@ import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+// import { useSelector } from 'react-redux';
 
 const Item = ({title, to , icon, selected, setSelected, isCollapsed}) =>{
+
+    // const publisherStats = useSelector(state => state.LocalPersist.publisherStats);
+    // console.log(publisherStats)
+
     const theme = useTheme()
     const colors =tokens(theme.palette.mode)
     return (

@@ -390,7 +390,7 @@ export const geoFeatures = {
             ],
           ],
         },
-        id: "ARG",
+        id: "AR",
       },
       {
         type: "Feature",

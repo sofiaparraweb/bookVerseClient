@@ -18,6 +18,8 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
+    const publisherStats = useSelector(state => state.LocalPersist.publisherStats);
+    console.log(publisherStats)
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
     const [quantity, setQuantity] = useState(1);
@@ -231,7 +233,20 @@ const Detail = () => {
                             })}
                         </div>
                     </div>
-                ) : null 
+                ) : (
+                    <div className="ComentariosDetail">
+                        <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
+                        {book.Reviews?.map((con)=>{
+                            return(
+                                <div>
+                                    <p style={{paddingBottom:"0.5rem"}}>{con.email} | {con.rating} of 5</p>
+                                    <p style={{color:"grey"}}>{con.content} </p>
+                                    <hr style={{margin:"1.5rem"}} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) 
                 }
             </div>
         </form>

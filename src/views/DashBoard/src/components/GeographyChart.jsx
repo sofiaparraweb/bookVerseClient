@@ -3,8 +3,23 @@ import { ResponsiveChoropleth } from "@nivo/geo"
 import { tokens } from "../theme"
 import { mockGeographyData as data} from "../data/mockData"
 import { geoFeatures } from "../data/mockGeoFeatures"
+// import { useDispatch, useSelector } from 'react-redux';
 
 const GeographyChart = ({isDashboard = false}) =>{
+
+//     const transactions = useSelector(state => state.LocalPersist.transactions);
+//     const dispatch = useDispatch();
+
+//     const amountsByCountry = {};
+//     transactions?.forEach((item) => {
+//         const { country, amount } = item;
+//         amountsByCountry[country] = (amountsByCountry[country] || 0) + amount;
+//     });
+
+//     const geographyData = mockGeographyData.map((item) => ({
+//         id: item.id,
+//         value: amountsByCountry[item.id] || 0,
+//     }));    
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
