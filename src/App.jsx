@@ -19,7 +19,8 @@ import FAQ from './views/DashBoard/src/scenes/faq'
 import Bar from './views/DashBoard/src/scenes/bar'
 import Pie from './views/DashBoard/src/scenes/pie'
 import Line from './views/DashBoard/src/scenes/line'
-import Geography from './views/DashBoard/src/scenes/geography/index' 
+import Geography from './views/DashBoard/src/scenes/geography/index'
+/* import { ProtectedRoutes } from './components/protectedRoutes/protectedroutes' */
 
 
 import Home from "./views/Home/Home";
@@ -52,10 +53,75 @@ const App = () => {
           <Route path="/wishlist" element={<WishlistItem />} /> 
           <Route path="/profile" element={<Profile />} />
           <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/dashboard1" element={<DashBoard1 />} />
 
-          {/* RUTAS DASH */}
-        <Route path='/' element={<Dashboard />}/>
+
+{/*           <Route path="dashboard1" element={
+            <ProtectedRoutes redirectTo='/'>
+             <DashBoard1 />
+            </ProtectedRoutes>
+          }/>
+          <Route path="dashboard" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Dashboard />
+            </ProtectedRoutes>
+          }/>  
+          <Route path="Team" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Team />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Contacts" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Contacts />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Products" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Products />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Invoices" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Invoices />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Form" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Form />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Calendar" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Calendar />
+            </ProtectedRoutes>
+          }/>
+          <Route path="FAQ" element={
+            <ProtectedRoutes redirectTo='/'>
+             <FAQ />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Bar" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Bar />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Pie" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Pie />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Line" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Line />
+            </ProtectedRoutes>
+          }/>
+          <Route path="Geography" element={
+            <ProtectedRoutes redirectTo='/'>
+             <Geography />
+            </ProtectedRoutes>
+          }/>   */}
+        <Route path='/dashboard' element={<Dashboard />}/>
+        <Route path="/dashboard1" element={<DashBoard1 />} /> 
         <Route path='/team' element={<Team />}/>
         <Route path='/contacts' element={<Contacts />}/>
         <Route path='/products' element={<Products />}/>

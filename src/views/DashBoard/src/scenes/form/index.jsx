@@ -12,7 +12,8 @@ const initialValues = {
   title: '',
   author: '',
   price: '',
-  description: '',    //<------------- FALTA PAGES! DESPUES DE DESCRIPTION
+  description: '',  
+  pages: '',
   publicationDate: '',
   format: '',
   language: '',
@@ -38,6 +39,7 @@ const Form = () => {
   const allLanguages = useSelector(state => state.LocalPersist.bookLanguage);
   const allPublishers = useSelector(state => state.LocalPersist.bookPublisher);
   const defaultImageURL = "https://cdn-icons-png.flaticon.com/512/4298/4298086.png";
+  const [form, setForm] = useState(initialValues);
 
   useEffect(() => {
     dispatch(getBookGenre());
@@ -68,6 +70,7 @@ const Form = () => {
       author: formData.author,
       price: formData.price,
       description: formData.description,
+      pages: formData.pages,
       publicationDate: formData.publicationDate,
       format: selectedFormat ? allFormats.find(format => format.name === selectedFormat).id : null,
       language: selectedLanguage ? allLanguages.find(lang => lang.name === selectedLanguage).id : null,
@@ -78,6 +81,7 @@ const Form = () => {
     console.log(selectedImage);
     console.log(data, 'esto mando al back');
     dispatch(addBook(data));
+    setForm(initialValues);
   };
 
 
@@ -86,7 +90,7 @@ const Form = () => {
       <Header title='UPLOAD A NEW BOOK!' />
       <Formik
         onSubmit={handleSaveBook}
-        initialValues={initialValues}
+        initialValues={form} 
         validationSchema={bookSchema}
       >
         {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
@@ -151,6 +155,19 @@ const Form = () => {
                 helperText={touched.publicationDate && errors.publicationDate}
                 sx={{ gridColumn: 'span 4' }}
               />
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  type="number"
+                  label='Pages'
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.pages}
+                  name='pages'
+                  error={!!touched.pages && !!errors.pages}
+                  helperText={touched.pages && errors.pages}
+                  sx={{ gridColumn: 'span 4' }}
+                />
               <TextField
                 fullWidth
                 variant="filled"

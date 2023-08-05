@@ -69,14 +69,16 @@ const NavBar = ({ isAuthenticated }) => {
           <NavLink to="/store" className={style.linkNavBar} id="tiendaNav" onClick={handleClick}>
             OUR BOOKS
           </NavLink>
-          {isAuthenticated ? (
+          {isAuthenticated && !isAdmin ? (
             <NavLink to="/profile" className={style.linkNavBar} id="perfilNav" onClick={handleClick}>
               PROFILE
             </NavLink>
           ) : null}
+         {isAuthenticated && isAdmin && (
           <NavLink to="/dashboard1" className={style.linkNavBar} id="administradorNav" onClick={handleClick}>
             DASHBOARD
           </NavLink>
+         )}
         </div>
         <div className={style.rightSection}>
           {isAuthenticated ? (
