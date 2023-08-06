@@ -208,6 +208,8 @@ export const getWishlist = (user_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/wishlist/${user_id}`);
+      console.log(response)
+      console.log(response.data)
       dispatch({ type: GET_WISHLIST, payload: response.data });
     } catch (error) {
       console.log(error);
