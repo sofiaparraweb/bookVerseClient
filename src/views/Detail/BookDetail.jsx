@@ -116,14 +116,14 @@ const Detail = () => {
     };
 
     useEffect(() => {
-        wish?.Books?.forEach((fav) => {
+        wish.Books?.forEach((fav) => {
             if (fav.id === id) {
                 setIsFav(true);
             } else {
                 setIsFav(false);
             }
         });
-    }, [wish?.Books, id]);
+    }, [wish.Books, id]);
     
     
     return (
