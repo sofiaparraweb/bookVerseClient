@@ -5,12 +5,12 @@ import "./CartContainer.css";
 
 const CarritoContainer = () => {
 
-    const Carrito = useSelector(state => state.LocalPersist.cart.Books);
-    const userId = useSelector(state => state.LocalPersist.userInfo.id);
+    const Carrito = useSelector(state => state.LocalPersist.cart);
+    const userId = useSelector(state => state.LocalPersist.userProfile.id);
           
     return (
         <div className="CartContainerContair"> 
-            {Carrito?.length === 0 ? (
+            {Carrito.length === 0 ? (
                 <div className="MessageEmptyCart">
                     <p style={{paddingBottom:"2rem"}}>Empty cart, go back to the store to get your new book</p>
                     <Link to="/store" >
@@ -18,7 +18,7 @@ const CarritoContainer = () => {
                     </Link>
                 </div>
             ) : (
-                Carrito?.length > 0 ? <Cart Carrito={Carrito} /> : "holis"
+                Carrito.Books?.length > 0 ? <Cart Carrito={Carrito.Books} /> : "holis"
             )
             }
         </div>

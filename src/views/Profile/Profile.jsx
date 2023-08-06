@@ -8,9 +8,10 @@ import "./Profile.css";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
-  const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
+  const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
+  const dispatch = useDispatch()
 
   const [initialProfile, setInitialProfile] = useState({
     name: userProfile?.name || "",
@@ -29,11 +30,10 @@ const Profile = () => {
     country: userProfile?.country || "",
     image: userProfile?.image || "",
   });
-
-  const dispatch = useDispatch();
+  
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
-  const email = userProfile.email;
+  const email = userProfile?.email || '';
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -67,36 +67,38 @@ const Profile = () => {
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
+    console.log(file)
   };
 
   const handleDeleteImage = () => {
-    setSelectedImage(null);
+    setSelectedImage(defaultImageURL);
   };
 
-  const handleSaveProfile = (data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("birthDate", data.birthDate);
-    formData.append("file", selectedImage);
-    formData.append("phone", data.phone);
-    formData.append("email", data.email);
-    formData.append("country", data.country);
-    data.image = selectedImage;
+  // useEffect(() => {
+  //   if (!editing) {
+  //     setInitialProfile(userProfile);
+  //     reset(userProfile);
+  //   }
+  // }, [editing, editedProfile, reset]);
 
-    console.log(selectedImage)
-    console.log(data)
-    console.log(formData)
+  const handleSaveProfile = (formData) => {
+   console.log(formData)
+    const data = {
+      name: formData.name,
+      birthDate: formData.birthDate,
+      file: selectedImage,
+      phone: formData.phone,
+      email: formData.email,
+      country: formData.country,
+    };
+  
+    console.log(selectedImage);
+    console.log(data, 'esto mando al back');
     dispatch(updateUser(data));
+    setInitialProfile(data); // Opcionalmente, si quieres actualizar el estado initialProfile con los datos del formulario enviado
+    setEditing(false);
   };
-
-  useEffect(() => {
-    // Resetear los estados después de la solicitud PUT
-    if (!editing) {
-      setInitialProfile(userProfile);
-      reset(userProfile);
-    }
-  }, [editing, editedProfile, reset]);
-
+  
   return (
     <ChakraProvider>
       <div className="profile-container">
@@ -105,7 +107,7 @@ const Profile = () => {
           <form method="POST" className="profile-form" onSubmit={handleSubmit(handleSaveProfile)} enctype="multipart/form-data">
           <div className="perfil-image">
               <img
-                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image}
+                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image || defaultImageURL }
                 alt="profile"
                 className="profile-image"
               />
@@ -116,11 +118,12 @@ const Profile = () => {
                     <Input
                       type="file"
                       id="image"
+                      name="image"
                       onChange={handleProfileImageChange}
                       accept="image/*"
                     />
                   </label>
-                  <button className="delete-button" onClick={() => setSelectedImage(null)}>
+                  <button className="delete-button" onClick={handleDeleteImage}>
                     Delete Image
                   </button>
   </div>
@@ -132,6 +135,7 @@ const Profile = () => {
             <Input
               type="text"
               id="name"
+              name="name"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.name}
@@ -144,6 +148,7 @@ const Profile = () => {
             <Input
               type="email"
               id="email"
+              name="email"
               className="profile-input"
               isDisabled
               defaultValue={editedProfile.email}
@@ -156,6 +161,7 @@ const Profile = () => {
             <Input
               type="date"
               id="birthDate"
+              name="birthDate"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.birthDate}
@@ -168,6 +174,7 @@ const Profile = () => {
             <Input
               type="tel"
               id="phone"
+              name="phone"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.phone}
@@ -181,6 +188,7 @@ const Profile = () => {
             <Input
               type="text"
               id="country"
+              name="country"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.country}
@@ -195,7 +203,11 @@ const Profile = () => {
               )}
               {editing && (
                 <div>
-                  <Button type="submit" className="save-button">
+                  <Button 
+                  type="submit" 
+                  className="save-button"
+                  onClick={handleSubmit(handleSaveProfile)}
+                  >
                     Save
                   </Button>
                   <Button

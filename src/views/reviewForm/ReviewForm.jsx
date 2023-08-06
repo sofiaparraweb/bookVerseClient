@@ -1,74 +1,81 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Stars from '../Detail/Stars';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { addReview } from '../../Redux/actions';
 import "./ReviewForm.css"
 
-const ReviewForm = ({ bookId }) => {
+const ReviewForm = ({ id }) => {
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const user_id = useSelector(state => state.LocalPersist.userProfile?.email);
 
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
+  const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
+    email:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
+    content: "",
+    rating: 0,
+    book_id: `${id}`, 
+  })
 
   const handleCommentChange = (event) => {
-    setComment(event.target.value);
+    const property = event.target.name;
+    const value = event.target.value;
+    setReview({ ...review, [property]: value });
+  }
+
+  const handleStarClick = (rating) => {
+    setReview({ ...review, rating });
   };
 
-  const handleSubmitReview = async (event) => {
+  const url =  "http://localhost:3001";
+  //const url = "https://bookverse-m36k.onrender.com";
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (rating === 0) {
-        alert("Por favor, califica al menos una estrella antes de enviar tu reseña.");
-        return;
-      }
-
-      if (comment.trim().split(/\s+/).length < 2) {
-        alert("Por favor, ingresa al menos dos palabras en tu reseña.");
-        return;
-      }
-
-    // if (rating === 0 || comment.trim() === '') {
-     
-    //   return;
-    // }
-    setIsSubmitting(true);
+    console.log(review)
     try {
-      const reviewData = {
-        user_id: bookId, 
-        content: comment, 
-        rating: rating, 
-        product_id: bookId, 
-      };
-      await dispatch(addReview(reviewData));
-
+      await axios.post(`${url}/review/post`, review)
+        .then(res => alert("Gracias por opinar sobre nuestro producto!"))
+        .catch((error) => alert(error));
     } catch (error) {
-      console.error('Error creating review:', error);
-    } finally {
-      setIsSubmitting(false);
+      console.log(error);
     }
-  };
+  } 
 
   return (
     <div className="ReviewContainer">
-      <h3>Your Review</h3>
-      <div className="RatingContainer">
-       
-        <Stars stars={rating} onStarClick={handleRatingChange} />
-      </div>
+      <p style={{fontSize:"1.2rem"}}>Your Review</p>
+      <ol className="rating-list" >
+        {[1, 2, 3, 4, 5].map((value) => (
+          <li
+            key={value}
+            onClick={() => handleStarClick(value)}
+            style={{ cursor: 'pointer', margin:"0.5rem 0"}}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill={value <= review.rating ? 'orange' : 'none'}
+              stroke="orange"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polygon points="12 2 15.09 8.54 22 9.27 17 13.18 18.18 20 12 16.73 5.82 20 7 13.18 2 9.27 8.91 8.54 12 2"></polygon>
+            </svg>
+          </li>
+        ))}
+      </ol>
+
       <div className="CommentContainer">
         <textarea
-          value={comment}
+          value={review.content}
+          name="content"
           onChange={handleCommentChange}
           placeholder="Write your review here..."
         ></textarea>
       </div>
       <div className="SubmitContainer">
-        <button type="submit" onClick={handleSubmitReview} disabled={isSubmitting}>
+        <button type="submit" onClick={handleSubmit} >
           Submit Review
         </button>
       </div>
