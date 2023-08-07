@@ -22,8 +22,9 @@ import {
   DELETE_ALL_CART,
   CHANGE_QUANTITY,
   POST_PAYMENT,
+  GET_BOOKS_DASHBOARD,
+  DELETE_PRODUCT,
   ADD_PRODUCT,
-//   DELETE_PRODUCT,
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
    GET_DASHBOARD_USERS,
@@ -31,6 +32,13 @@ import {
    DELETE_USER_FAILURE,
 //   DELETE_USER,
 //   SUSPEND_USER,
+  GET_BALANCE,
+  GET_TRANSACTIONS,
+  GET_ALL_SALES,
+  GET_SALES_AMOUNT,
+  GET_SALES_BY_PUBLISHER,
+  GET_SALES_BY_GENRE,
+  GET_SALES_BY_LANGUAGE,
   GET_USER,
   CREATE_USER,
   GET_USER_ID,
@@ -44,7 +52,7 @@ import {
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-bookGenres: [],
+  bookGenres: [],
   bookLanguage: [],
   bookPublisher: [],
   bookFormat: [], 
@@ -59,7 +67,11 @@ bookGenres: [],
   loading: true,
   error: null,
   grid_view: true,
+  products: [],
   reviews: [],
+  balance: [],
+  transactions: [],
+  publisherStats: {},
   teamData: [],
 };
 
@@ -208,17 +220,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         CartBooks: action.payload,
       };
+
+//------------------------------------DASHBOARD actions-----------------------------------//
+    case GET_BOOKS_DASHBOARD:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter((item) => item.id !== action.payload),
+      };
     case ADD_PRODUCT:
       return {
         ...state,
         // allbooks: [...allBooks, action.payload],
         books: [...state.books, action.payload],
       };
-//     case DELETE_PRODUCT:
-//       return {
-//         ...state,
-//         books: action.payload,
-//       };
 //     case EDIT_PRODUCT:
 //       return {
 //         ...state,
@@ -229,6 +248,41 @@ const reducer = (state = initialState, action) => {
 //         ...state,
 //         // books: action.payload,
 //       };
+    case GET_BALANCE:
+      return{
+        ...state,
+        balance: action.payload
+      };
+    case GET_TRANSACTIONS:
+      return{
+        ...state,
+        transactions: action.payload
+      };
+    case GET_ALL_SALES: 
+      return{
+        ...state,
+        stats: action.payload
+      };
+    case GET_SALES_AMOUNT:
+      return{
+        ...state,
+        stats: action.payload
+      };
+    case GET_SALES_BY_PUBLISHER:
+      return{
+        ...state,
+        publisherStats: action.payload
+      };
+    case GET_SALES_BY_GENRE:
+      return{
+        ...state,
+        stats: action.payload
+      };
+    case GET_SALES_BY_LANGUAGE:
+      return{
+        ...state,
+        stats: action.payload
+      };
 
 //------------------------------------USER actions Dashboard-----------------------------------
     case GET_DASHBOARD_USERS:

@@ -18,6 +18,8 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
+    // const publisherStats = useSelector(state => state.LocalPersist.publisherStats);
+    // console.log(publisherStats)
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
     const [quantity, setQuantity] = useState(1);
@@ -96,17 +98,21 @@ const Detail = () => {
             if (!wish || typeof wish !== 'object') {
                 return;
             }
-            const productInWish = Object.values(wish.Books)?.find((item) => item.id === id);
-            if (productInWish) {
-                setIsFav(false);
-                await dispatch(removeWishlist(user_id, id));
-                dispatch(getWishlist(user_id));
-                alert("Book has been removed from your wishlist.");
+            if (isAuthenticated) {
+                const productInWish = Object.values(wish.Books)?.find((item) => item.id === id);
+                if (productInWish) {
+                    setIsFav(false);
+                    await dispatch(removeWishlist(user_id, id));
+                    dispatch(getWishlist(user_id));
+                    alert("Book has been removed from your wishlist.");
+                } else {
+                    setIsFav(true);
+                    await dispatch(addWishlist(user_id, id));
+                    dispatch(getWishlist(user_id));
+                    alert("Book has been added to your wishlist.");
+                }
             } else {
-                setIsFav(true);
-                await dispatch(addWishlist(user_id, id));
-                dispatch(getWishlist(user_id));
-                alert("Book has been added to your wishlist.");
+                alert('You need to log in to add books to your wishlist.');
             }
         } catch (error) {
                 console.error("Error adding/removing book to/from wishlist:", error);
@@ -114,14 +120,14 @@ const Detail = () => {
     };
 
     useEffect(() => {
-        wish?.Books?.forEach((fav) => {
+        wish.Books?.forEach((fav) => {
             if (fav.id === id) {
                 setIsFav(true);
             } else {
                 setIsFav(false);
             }
         });
-    }, [wish?.Books, id]);
+    }, [wish.Books, id]);
     
     
     return (
@@ -201,7 +207,7 @@ const Detail = () => {
                                         Add to Cart
                                     </button>
                                 ) : (
-                                    <button className="Buttons" onClick={() => alert('You need to log in to buy books.')} >
+                                    <button className="Buttons" onClick={()=>{handleAddToCart(event, user_id, id, quantity)}}>
                                         Add to Cart
                                     </button>
                                 )}
@@ -215,10 +221,25 @@ const Detail = () => {
                     <p className="titleContainerLine"></p>
                     <h1 className="titleContainerTexto">Customer Reviews</h1>
                 </div>
-                <div style={{padding:"1rem 6rem"}}>
-                    <ReviewForm id={id} />
+                {isAuthenticated ? (
+                    <div style={{padding:"1rem 6rem"}}>
+                        <ReviewForm id={id} />
+                        <div className="ComentariosDetail">
+                            <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
+                            {book.Reviews?.map((con)=>{
+                                return(
+                                    <div>
+                                        <p style={{paddingBottom:"0.5rem"}}>{con.email} | {con.rating} of 5</p>
+                                        <p style={{color:"grey"}}>{con.content} </p>
+                                        <hr style={{margin:"1.5rem"}} />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                ) : (
                     <div className="ComentariosDetail">
-                    <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
+                        <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
                         {book.Reviews?.map((con)=>{
                             return(
                                 <div>
@@ -229,7 +250,8 @@ const Detail = () => {
                             )
                         })}
                     </div>
-                </div>
+                ) 
+                }
             </div>
         </form>
     )

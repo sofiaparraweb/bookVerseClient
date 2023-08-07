@@ -67,7 +67,7 @@ const WishlistItem = ({ wish }) => {
         <div>
             <h3 className="emptyWishlist">Hi {userName}, this is your wishlist.</h3>
             <hr></hr>
-            <div className="GridThreeColumns" style={{ padding: "1.5rem 0", borderBottom:"1px solid silver", gridTemplateColumns: "20% 60% 20%", gap:"3rem" }}>
+            <div className="GridThreeColumns" style={{ padding: "1.5rem 0", borderBottom:"1px solid silver", gridTemplateColumns: "20% 40% 40%", gap:"3rem" }}>
                 {wish?.length > 0 && wish?.map((w) => {
                     return (
                     <>
@@ -89,21 +89,11 @@ const WishlistItem = ({ wish }) => {
                                 <span className="innerTextStyle"> {w.format}</span>
                             </p>
                             <p style={{color:"grey", margin:"0.5rem 0"}}>USD {w.price},00</p>
-                            <div className="Botonera">
-                                <div className="BotoneraSumaResta">
-                                    <button className="ButtonsSumaResta" onClick={handleDelete} value="less" >-</button>
-                                        {w.quantity}
-                                    <button className="ButtonsSumaResta" onClick={handleAdd} value="add" >+</button>
-                                </div>
-                                <button className="Buttons" style={{padding:"1rem"}} onClick={()=>{handleAddToCart(event, user_id, w.id, w.quantity)}}>
-                                    Add to Cart
-                                </button>
-                            </div>
                         </div>
 
-                        <div style={{display:"flex", alignItems: "center", justifyContent: "center"}}>
+                        <div style={{paddingTop:"1rem"}}>
                             <p >
-                                Remove Item <button style={{fontSize:"1.3rem", border:"none", paddingLeft:"1rem", backgroundColor:"transparent"}} onClick={()=>handleDeleteFromWish(user_id, w.id)}> X </button>
+                                Remove Item <button style={{fontSize:"1.3rem", border:"none", paddingLeft:"0.5rem", backgroundColor:"transparent", color:"#b38a83", fontWeight:"bold"}} onClick={()=>handleDeleteFromWish(user_id, w.id)}> X </button>
                             </p>
                         </div>
                     </>

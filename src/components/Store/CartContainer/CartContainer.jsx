@@ -10,16 +10,16 @@ const CarritoContainer = () => {
           
     return (
         <div className="CartContainerContair"> 
-            {Carrito.length === 0 ? (
-                <div className="MessageEmptyCart">
-                    <p style={{paddingBottom:"2rem"}}>Empty cart, go back to the store to get your new book</p>
-                    <Link to="/store" >
-                        <button className="Buttons" style={{padding:"1rem"}}> Back to Store </button>
-                    </Link>
-                </div>
-            ) : (
-                Carrito.Books?.length > 0 ? <Cart Carrito={Carrito.Books} /> : "holis"
-            )
+            {Carrito.Books?.length > 0 
+                ? <Cart Carrito={Carrito.Books} /> 
+                : (
+                    <div className="MessageEmptyCart">
+                        <p style={{paddingBottom:"2rem"}}>Empty cart, go back to the store to get your new book</p>
+                        <Link to="/store" >
+                            <button className="Buttons" style={{padding:"1rem"}}> Back to Store </button>
+                        </Link>
+                    </div>
+                )
             }
         </div>
     );
