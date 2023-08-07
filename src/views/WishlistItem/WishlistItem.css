@@ -43,6 +43,7 @@
 
 /* ------------------------------------middle */
 .WishlistInfoContent h2{
+    padding-top: 1rem;
     max-width: 100%;
     word-wrap: break-word;
     font-size: 1.1rem;

@@ -116,13 +116,25 @@ const Filter = ({ setCurrentPage }) => {
     console.log(url);
     dispatch(filterCombined(url))
   }
-
+  
   return (
     <div className="FilterContainer">
       {/* <AiOutlineFilter className="IconFilter" /> */}
-      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.8rem", margin: "auto" }}>{activeGenre}</h1>
+      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.7rem", margin: "auto" }}>{activeGenre} </h1>
+      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.7rem", margin: "auto" }}>{activeLanguage} </h1>
+      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.7rem", margin: "auto" }}>{activePublisher}</h1>
+      <h1 className="FilterTitle" style={{ color: "#b38a83", padding: "0 1rem", fontSize: "0.7rem", margin: "auto" }}>{activeFormat}</h1>
+      
+      <div style={{display:"flex", gap:"1rem"}}>
+        <button onClick={handleSubmit} className="Buttons" style={{ margin: "auto", marginTop: "1rem", padding: "0.7rem 1rem" }} > Apply filters </button>
+        <button onClick={handleReset} className="Buttons" style={{ margin: "auto", marginTop: "1rem", padding: "0.7rem 1rem" }} > Clear Filters </button>
+      </div>
+      {books.length === 0 && (
+        <p style={{ textAlign: "center", marginTop: "2rem", color:"red"}}>No books found with these filters.</p>
+      )}
+
       <h1 className="FilterTitle"> Genres</h1>
-      <form action="#" className="BookPublisherContainer">
+      {/* <form action="#" className="BookPublisherContainer">
         <select
           name="BookFormat"
           id="BookFormat"
@@ -132,7 +144,17 @@ const Filter = ({ setCurrentPage }) => {
         > <option defaultChecked value="">All</option>
           {allGenres && allGenres?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
         </select>
-      </form>
+      </form> */}
+      <ul className="ContainerButtonFilter" action="#">
+        {allGenres && allGenres?.map((p)=>{
+          return (
+            <li className="FilterLI" key={p.id} value={activeGenre}>
+              <button onClick={(e) => handleFilterG(e.target.value)} className='ActiveButton' value={p.name} name={p.id}> {p.name}</button>
+            </li>
+          )
+        })}        
+      </ul>
+
       <h1 className="FilterTitle"> Language</h1>
       <form action="#" className="BookPublisherContainer">
         <select
@@ -146,6 +168,7 @@ const Filter = ({ setCurrentPage }) => {
           {allLanguages && allLanguages?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
         </select>
       </form>
+
       <h1 className="FilterTitle"> Publisher</h1>
       <form action="#" className="BookPublisherContainer">
         <select
@@ -162,7 +185,7 @@ const Filter = ({ setCurrentPage }) => {
       </form>
 
       <h1 className="FilterTitle"> Format</h1>
-      <form action="#" className="BookPublisherContainer">
+      {/* <form action="#" className="BookPublisherContainer">
         <select
           name="BookFormat"
           id="BookFormat"
@@ -174,13 +197,26 @@ const Filter = ({ setCurrentPage }) => {
           {allFormats && allFormats?.map(a => <option value={a.name} name={a.id} key={a.id}>{a.name}</option>)}
 
         </select>
-      </form>
-      <button onClick={handleSubmit} className="Buttons" style={{ margin: "auto", marginTop: "2rem", padding: "1rem 1.5rem" }} > Apply filters </button>
-      <button onClick={handleReset} className="Buttons" style={{ margin: "auto", marginTop: "2rem", padding: "1rem 1.5rem" }} > Clear Filters </button>
-      {books.length === 0 && (
-        <p style={{ textAlign: "center", marginTop: "2rem" }}>No books found with these filters.</p>
-      )}
-       </div>
+      </form> */}
+      <div className="FilterFormatContainer" action="#" value={activeFormat}>
+        {allFormats && allFormats?.map((f)=>{
+          return(
+            <button 
+              onClick={(e) => handleFilterF(e.target.value)}
+              className="FilterOption"
+              value={f.name}
+              name={f.id} 
+              key={f.id}
+              style={{marginRight:"0.5rem"}}
+            >
+              {f.name}
+            </button>
+          )
+        })}
+
+      </div>
+
+    </div>
   );
 };
 
