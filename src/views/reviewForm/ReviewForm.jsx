@@ -26,8 +26,9 @@ const ReviewForm = ({ id }) => {
     setReview({ ...review, rating });
   };
 
-  const url =  "http://localhost:3001";
-  //const url = "https://bookverse-m36k.onrender.com";
+  //const url =  "http://localhost:3001";
+  const url = "https://bookverse-m36k.onrender.com";
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(review)
