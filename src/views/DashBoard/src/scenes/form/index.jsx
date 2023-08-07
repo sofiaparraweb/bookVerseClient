@@ -1,6 +1,5 @@
 import { Box, Button, TextField, Select, MenuItem, FormControl, InputLabel, Input, Avatar } from "@mui/material";
 import { Formik } from "formik";
-import * as yup from 'yup';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,16 +19,6 @@ const initialValues = {
   publisher: '',
   gender: ''
 };
-
-const phoneRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-
-const bookSchema = yup.object().shape({
-  title: yup.string().required('Required'),
-  author: yup.string().required('Required'),
-  price: yup.number().required('Required'),
-  description: yup.string().required('Required'),
-  publicationDate: yup.string().required('Required'),
-});
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");

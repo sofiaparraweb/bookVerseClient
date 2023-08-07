@@ -23,14 +23,12 @@ import {
   CHANGE_QUANTITY,
   POST_PAYMENT,
   ADD_PRODUCT,
-//   DELETE_PRODUCT,
-//   EDIT_PRODUCT,
-//   GET_ALL_ORDERS,
-   GET_DASHBOARD_USERS,
-   DELETE_USER_SUCCESS, 
-   DELETE_USER_FAILURE,
-//   DELETE_USER,
-//   SUSPEND_USER,
+  DELETE_PRODUCT,
+  EDIT_PRODUCT,
+  GET_ALL_ORDERS,
+  GET_ALL_USERS,
+  DELETE_USER,
+  SUSPEND_USER,
   GET_USER,
   CREATE_USER,
   GET_USER_ID,
@@ -44,7 +42,7 @@ import {
 // Estado inicial del reducer
 const initialState = {
   allbooks: [],
-bookGenres: [],
+  bookGenres: [],
   bookLanguage: [],
   bookPublisher: [],
   bookFormat: [], 
@@ -60,7 +58,6 @@ bookGenres: [],
   error: null,
   grid_view: true,
   reviews: [],
-  teamData: [],
 };
 
 // // Reducer
@@ -230,20 +227,12 @@ const reducer = (state = initialState, action) => {
 //         // books: action.payload,
 //       };
 
-//------------------------------------USER actions Dashboard-----------------------------------
-    case GET_DASHBOARD_USERS:
-      return {
-        ...state,
-        teamData: action.payload,
-      };
-
-      case DELETE_USER_SUCCESS:
-        return {
-          ...state,
-          users: state.users.filter((user) => user.id !== action.payload),
-        };
-      case DELETE_USER_FAILURE:
-        return state;
+//------------------------------------USER actions-----------------------------------
+//     case GET_ALL_USERS:
+//       return {
+//         ...state,
+//         users: action.payload,
+//       };
 //     case DELETE_USER:
 //       return {
 //         ...state,
