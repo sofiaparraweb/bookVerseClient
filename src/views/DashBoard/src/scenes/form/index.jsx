@@ -17,7 +17,7 @@ const initialValues = {
   format: '',
   language: '',
   publisher: '',
-  gender: ''
+  genre: ''
 };
 
 const Form = () => {
@@ -38,7 +38,7 @@ const Form = () => {
   }, [dispatch]);
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedPublisher, setSelectedPublisher] = useState("");
   const [selectedFormat, setSelectedFormat] = useState("");
@@ -64,25 +64,39 @@ const Form = () => {
       format: selectedFormat ? allFormats.find(format => format.name === selectedFormat).id : null,
       language: selectedLanguage ? allLanguages.find(lang => lang.name === selectedLanguage).id : null,
       publisher: selectedPublisher ? allPublishers.find(pub => pub.name === selectedPublisher).id : null,
-      genre: selectedGender ? allGenres.find(genre => genre.name === selectedGender).id : null,
+      genre: selectedGenre ? allGenres.find(genre => genre.name === selectedGenre).id : null,
     }
 
-    console.log(selectedImage);
     console.log(data, 'esto mando al back');
+    setForm({
+      image: null,
+      title: '',
+      author: '',
+      price: '',
+      description: '',  
+      pages: '',
+      publicationDate: '',
+      format: '',
+      language: '',
+      publisher: '',
+      genre: ''
+    });
+    setSelectedImage(null);
+    setSelectedGenre("");
+    setSelectedLanguage("");
+    setSelectedPublisher("");
+    setSelectedFormat("");
     dispatch(addBook(data));
-    setForm(initialValues);
-  };
-
+};
 
   return (
     <Box m='0px' width='100vw' marginLeft="20px" marginRight="20px" marginTop="70px">
       <Header title='UPLOAD A NEW BOOK!' />
       <Formik
         onSubmit={handleSaveBook}
-        initialValues={form} 
-        validationSchema={bookSchema}
+        initialValues={form}
       >
-        {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
+        {({ values, errors, touched, handleBlur, handleChange, handleSubmit, resetForm }) => (
           <form method="POST" onSubmit={handleSubmit}  enctype="multipart/form-data" >
             <Box
               display='grid'
@@ -171,13 +185,13 @@ const Form = () => {
                 sx={{ gridColumn: 'span 4' }}
               />
               <FormControl fullWidth variant="filled" sx={{ gridColumn: "span 2" }}>
-                <InputLabel>Gender</InputLabel>
+                <InputLabel>Genre</InputLabel>
                 <Select
-                  value={selectedGender}
-                  onChange={(e) => setSelectedGender(e.target.value)}
+                  value={selectedGenre}
+                  onChange={(e) => setSelectedGenre(e.target.value)}
                   onBlur={handleBlur}
-                  name="gender"
-                  error={!!touched.gender && !!errors.gender}
+                  name="genre"
+                  error={!!touched.genre && !!errors.genre}
                 >
                   {allGenres && allGenres.map((genre) => (
                     <MenuItem key={genre.id} value={genre.name}>
@@ -261,7 +275,7 @@ const Form = () => {
                 </Box>
               </Box>
             </Box>
-            <Button type='submit' color='secondary' variant='contained' borderBottom="20px" mb='300px'>
+            <Button type='submit' color='secondary' variant='contained' borderBottom="20px" mb='300px' onClick={resetForm}>
               Create New Book
             </Button>
           </form>

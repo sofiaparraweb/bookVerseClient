@@ -27,7 +27,7 @@ const TiendaItems = ({ id, author, title, price, description, publisher, pages, 
             <p style={{fontSize:"0.9rem"}}>{title}</p>
           </div>
           <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between", paddingBottom:"1rem"}}>
-            <p style={{extTransform:"capitalize", fontSize:"0.8rem"}}>{genres}</p>
+            <p style={{extTransform:"capitalize", fontSize:"0.8rem"}}>{author}</p>
             <p style={{fontSize:"0.8rem"}}>${price}</p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import "./NewReleases.css";
 
-const NewReleases = ({allbooks}) => {
+const NewReleases = ({ allbooks }) => {
 
     const currentDate = new Date();
 
@@ -25,7 +25,7 @@ const NewReleases = ({allbooks}) => {
                 <Link to="/store" style={{textDecoration:"none", color:"#17424b"}} onClick={handleClick}>
                     <p> CHECK NOW! </p>
                 </Link>
-                <h1 style={{marginBottom:"2rem"}}> New Releases </h1>
+                <h1 style={{marginBottom:"2rem", color:"#17424b"}}> New Releases </h1>
             </div>
             <div className="scrollContainer">
                 {filteredData?.map((item) =>{

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { searchByName, getAllBooks } from "../../Redux/actions";
 import { FaSearch } from 'react-icons/fa';
 import style from "./SearchBar.module.css";
+import Swal from 'sweetalert2';
 
 const SearchBar = ({ebooks}) => {
 
@@ -14,15 +15,25 @@ const SearchBar = ({ebooks}) => {
     setProductName(event.target.value);
   }
 
-  const handleSubmit = (event) =>{
+  const handleSubmit = (event) => {
     event.preventDefault();
     if (productName.length > 0) {
       dispatch(searchByName(productName));
       setProductName('');
     } else {
-      alert("Book not found")
+      Swal.fire({
+        icon: 'warning',
+        title: 'Book not found',
+        background: '#f3f3f3',
+        confirmButtonColor: '#B9362C',
+        customClass: {
+          title: 'my-custom-title',
+          content: 'my-custom-content',
+          confirmButton: 'my-custom-button',
+        },
+      });
     }
-  }
+  };
 
   const handleReset = (event) => {
     event.preventDefault()

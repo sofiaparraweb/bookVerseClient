@@ -1,5 +1,7 @@
 import React from 'react';
 import './Footer.css';
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
 
@@ -8,13 +10,13 @@ const Footer = () => {
       <div className="footer__addr">
         <h1 className="footer__logo">Bookverse</h1>
         <h2>Contact</h2>
-        <address>
-          5534 Somewhere In. The World 22193-10212<br />
+        <address> SOMEWHERE IN THE WORLD <br />
           <a className="footer__btn" href="mailto:bookverse@gmail.com">Email Us</a>
         </address>
       </div>
 
       <ul className="footer__nav">
+       
         <li className="nav__item">
           <h2 className="nav__title">Social Media</h2>
           <ul className="nav__ul">
@@ -23,12 +25,17 @@ const Footer = () => {
           </ul>
         </li>
 
-        <li className="nav__item nav__item--extra">
-          <h2 className="nav__title">Technology</h2>
-          <ul className="nav__ul nav__ul--extra">
-            <li><a href="#">Hardware Design</a></li>
-            <li><a href="#">Software Design</a></li>
-            <li><a href="#">Digital Signage</a></li>
+        <li className="nav__item" >
+          <h2 className="nav__title">Have questions?</h2>
+          <ul className="nav__ul">
+          <li> <Link to="/qa">Q&A</Link></li>
+          </ul>
+        </li>
+
+        <li className="nav__item">
+          <h2 className="nav__title">Be part of the CLUB!</h2>
+          <ul className="nav__ul">
+          <li> <Link to="/suscription">Suscribe now</Link></li>
           </ul>
         </li>
 
