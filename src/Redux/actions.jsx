@@ -22,7 +22,6 @@ export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
 export const GET_WISHLIST = "GET_WISHLIST"
 export const ADD_BOOK_TO_WISHLIST = "ADD_BOOK_TO_WISHLIST";
 export const REMOVE_BOOK_FROM_WISHLIST = "REMOVE_BOOK_FROM_WISHLIST";
-// export const CLEAR_WISHLIST = "CLEAR_WISHLIST";
 
 //actions carrito
 export const GET_CART = "GET_CART";
@@ -35,8 +34,7 @@ export const POST_PAYMENT = "POST_PAYMENT";
 //actions dashboard
 export const GET_BOOKS_DASHBOARD = "GET_BOOKS_DASHBOARD";
 export const ADD_PRODUCT = "ADD_PRODUCT";
-export const DELETE_BOOK_SUCCESS = "DELETE_BOOK_SUCCESS";
-export const DELETE_BOOK_FAILURE = "DELETE_BOOK_FAILURE"
+export const DELETE_PRODUCT_DASHBOARD = "DELETE_PRODUCT_DASHBOARD";
 // export const EDIT_PRODUCT = "EDIT_PRODUCT"
 // export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 export const GET_DASHBOARD_USERS = "GET_DASHBOARD_USERS";
@@ -119,7 +117,6 @@ export const searchByName = (name) => {
     try {
       const response = await axios.get(`${URL}/filter/name?name=${name}`);
       dispatch({ type: SEARCH_BY_NAME, payload: response.data.filteredName });
-      console.log(response.data.filteredName)
     } catch (error) {
       console.log(error);
     }
@@ -174,7 +171,6 @@ export const filterCombined = (name) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/filter/combined?${name}`);
-      console.log(response.data.books)
       dispatch({ type: FILTER_COMBINED, payload: response.data.books});
     } catch (error) {
       console.log(error);
@@ -209,8 +205,6 @@ export const getWishlist = (user_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/wishlist/${user_id}`);
-      console.log(response)
-      console.log(response.data)
       dispatch({ type: GET_WISHLIST, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -240,17 +234,6 @@ export const removeWishlist = (user_id, id) => {
   };
 };
 
-// export const clearWishlist = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${URL}`);
-//       dispatch({ type: CLEAR_WISHLIST, payload: response.data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
 
 // ------------------------------------Cart-----------------------------------
 
@@ -269,7 +252,6 @@ export const addToCart = (user_id, id, quantity) => {
   return async (dispatch) =>{
     try {
       const response = await axios.post(`${URL}/cart/add?user_id=${user_id}&book_id=${id}&quantity=${quantity}`)
-      console.log(response.data)
       dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -316,7 +298,6 @@ export const postPayment = (user_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/payment/create-checkout-session/${user_id}`)
-      console.log(response)
       if (response) {
         dispatch({ type: POST_PAYMENT, payload: response.data })
         return response.data;
@@ -334,10 +315,7 @@ export const getUser = (email) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/user/email/${email}`);
-      dispatch({
-        type: GET_USER,
-        payload: response.data,
-      });
+      dispatch({ type: GET_USER, payload: response.data });
       console.log("se trajo el usuario")
     } catch (error) {
       console.log(error);
@@ -406,35 +384,21 @@ export const getBooksDashboard = () => {
 export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${URL}/dashboard/books/delete/${id}`);
-      dispatch(deleteBookSuccess(id));
-      console.log("success delete book", deleteBookSuccess(id)); 
+      const response = await axios.delete(`${URL}/dashboard/books/delete/${id}`);
+      dispatch({ type: DELETE_PRODUCT_DASHBOARD, payload: id });
     } catch (error) {
-      dispatch(deleteBookFailure(error.message));
-      console.log("failure", deleteBookFailure(error.message));
+      console.log(error);
     }
   };
 };
-export const deleteBookSuccess = (id) => ({
-  type: DELETE_BOOK_SUCCESS,
-  payload: id,
-});
-
-export const deleteBookFailure = (error) => ({
-  type: DELETE_BOOK_FAILURE,
-  payload: error,
-});
-
 
 export const addBook = (data) => {
   console.log(data)
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/books/create`, data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      }
+        headers: { 'Content-Type': 'multipart/form-data' }}
       );
-      console.log(data, 'este es el new Book')
       dispatch({ type: ADD_PRODUCT, payload: data });
       console.log('LIBRO CREADO!!!')
     } catch (error) {
@@ -498,7 +462,6 @@ export const getSalesByGenre = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/dashboard/sales/genre/`);
-      console.log(response.data)
       dispatch({ type: GET_SALES_BY_GENRE, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -536,11 +499,7 @@ export const getDashboardUsers = () => async (dispatch) => {
     
     const response = await axios.get(`${URL}/dashboard/user`);
     console.log('Respuesta del backend:', response.data);
-
-    dispatch({
-      type: GET_DASHBOARD_USERS,
-      payload: response.data,
-    });
+    dispatch({ type: GET_DASHBOARD_USERS, payload: response.data });
   } catch (error) {
     console.error('Error al obtener los datos del equipo:', error);
   }
@@ -590,10 +549,7 @@ export const formSuscription = (formData) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/form/formFooter`, formData);
-      dispatch({
-        type: FORM_SUSCRIPTION,
-        payload: response.data,
-      });
+      dispatch({ type: FORM_SUSCRIPTION, payload: response.data });
       console.log('funcion email footer')
     } catch (error) {
       console.log(error);
@@ -602,15 +558,10 @@ export const formSuscription = (formData) => {
 };
 
 //------------------------------------REVIEWS-----------------------------------
-
-
 export const addReview = (review) => async (dispatch) => {
   try {
     dispatch({ type: ADD_REVIEW_REQUEST });
-
     const response = await axios.post(`${URL}/review/post`, review);
-    console.log(response.data)
-    console.log("estoy en actions", response);
     dispatch({ type: ADD_REVIEW_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: ADD_REVIEW_FAILURE, payload: error.message });

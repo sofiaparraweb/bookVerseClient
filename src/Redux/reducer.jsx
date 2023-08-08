@@ -24,14 +24,13 @@ import {
   POST_PAYMENT,
   ADD_PRODUCT,
   GET_BOOKS_DASHBOARD,
-  DELETE_BOOK_SUCCESS,
-  DELETE_BOOK_FAILURE,
+  DELETE_PRODUCT_DASHBOARD,
+  //  RESTORE_PRODUCT, 
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
    GET_DASHBOARD_USERS,
    DELETE_USER_SUCCESS,
-  //  RESTORE_PRODUCT, 
-   DELETE_USER_FAILURE,
+   //DELETE_USER_FAILURE,
 //   DELETE_USER,
 //   SUSPEND_USER,
   GET_BALANCE,
@@ -230,14 +229,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
-    case DELETE_BOOK_SUCCESS:
+    case DELETE_PRODUCT_DASHBOARD:
       return {
         ...state,
         products: state.products.filter((user) => user.id !== action.payload),
       };
-    case DELETE_BOOK_FAILURE:
-      return state;
-
     case ADD_PRODUCT:
       return {
         ...state,
