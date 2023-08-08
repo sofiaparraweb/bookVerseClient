@@ -176,7 +176,7 @@ const Dashboard = () => {
                             Recent Transaction
                         </Typography>
                         </Box>
-                        {mockTransactions.map((transaction, i) => (
+                        {mockTransactions?.map((transaction, i) => (
                             <Box
                             key={`${transaction.txId}-${i}`}
                             display='flex'

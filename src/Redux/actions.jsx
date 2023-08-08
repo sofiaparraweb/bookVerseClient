@@ -35,7 +35,8 @@ export const POST_PAYMENT = "POST_PAYMENT";
 //actions dashboard
 export const GET_BOOKS_DASHBOARD = "GET_BOOKS_DASHBOARD";
 export const ADD_PRODUCT = "ADD_PRODUCT";
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const DELETE_BOOK_SUCCESS = "DELETE_BOOK_SUCCESS";
+export const DELETE_BOOK_FAILURE = "DELETE_BOOK_FAILURE"
 // export const EDIT_PRODUCT = "EDIT_PRODUCT"
 // export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 export const GET_DASHBOARD_USERS = "GET_DASHBOARD_USERS";
@@ -408,14 +409,25 @@ export const getBooksDashboard = () => {
 export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`${URL}/dashboard/books/delete/${id}`);
-      dispatch({ type: DELETE_PRODUCT, payload: id })
+      await axios.delete(`${URL}/dashboard/books/delete/${id}`);
+      dispatch(deleteBookSuccess(id));
+      console.log("success delete book", deleteBookSuccess(id)); 
     } catch (error) {
-      console.log(error);
+      dispatch(deleteBookFailure(error.message));
+      console.log("failure", deleteBookFailure(error.message));
     }
   };
 };
-// post("/books/restore/:id", restoreBooks); //? Restaura el libro
+export const deleteBookSuccess = (id) => ({
+  type: DELETE_BOOK_SUCCESS,
+  payload: id,
+});
+
+export const deleteBookFailure = (error) => ({
+  type: DELETE_BOOK_FAILURE,
+  payload: error,
+});
+
 
 export const addBook = (data) => {
   console.log(data)
@@ -479,7 +491,6 @@ export const getSalesByPublisher = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/dashboard/sales/publisher/`);
-      console.log(response.data)
       dispatch({ type: GET_SALES_BY_PUBLISHER, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -490,6 +501,7 @@ export const getSalesByGenre = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${URL}/dashboard/sales/genre/`);
+      console.log(response.data)
       dispatch({ type: GET_SALES_BY_GENRE, payload: response.data });
     } catch (error) {
       console.log(error);

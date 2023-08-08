@@ -16,7 +16,7 @@ const GeographyChart = ({isDashboard = false}) =>{
 //         amountsByCountry[country] = (amountsByCountry[country] || 0) + amount;
 //     });
 
-//     const geographyData = mockGeographyData.map((item) => ({
+//     const geographyData = mockGeographyData?.map((item) => ({
 //         id: item.id,
 //         value: amountsByCountry[item.id] || 0,
 //     }));    

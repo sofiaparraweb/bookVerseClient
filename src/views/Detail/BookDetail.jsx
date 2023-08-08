@@ -27,8 +27,8 @@ const Detail = () => {
     const [userRating, setUserRating] = useState(null);
     const [isFav, setIsFav] = useState(false);
     
-    // const url = "https://bookverse-m36k.onrender.com";
-    const url = "http://localhost:3001";
+    const url = "https://bookverse-m36k.onrender.com";
+    //const url = "http://localhost:3001";
 
     useEffect(() => {
         async function fetchData() {

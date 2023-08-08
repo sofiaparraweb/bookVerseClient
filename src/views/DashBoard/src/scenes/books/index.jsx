@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import { Box, Typography, useTheme, Button} from '@mui/material'
 import {DataGrid, GridToolbar} from '@mui/x-data-grid'
 import { tokens } from '../../theme'
@@ -8,10 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import LockOpenOutlinedIcon from  '@mui/icons-material/LockOpenOutlined'
 
+
 const Products = () =>{
 
     const dispatch = useDispatch();
     const products = useSelector(state => state.LocalPersist.products);
+    console.log(products)
     const [enabledBooks, setEnabledBooks] = useState({});
 
     const handleToggleBooks = (id, isBanned) => {
@@ -19,12 +20,21 @@ const Products = () =>{
         setEnabledBooks((prevEnabledBooks) => ({
             ...prevEnabledBooks,
             [id]: !prevEnabledBooks[id],
-        }));
+        })); 
     };
-    
+
     useEffect(() => {
         dispatch(getBooksDashboard());
-    }, [dispatch]); 
+    }, [dispatch]);
+
+    useEffect(() => {
+        const initialEnabledBooks = products?.reduce((acc, product) => {
+            acc[product.id] = product.deletedAt !== null;
+            return acc;
+        }, {});
+    
+        setEnabledBooks(initialEnabledBooks);
+    }, [products]);
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
@@ -109,7 +119,6 @@ const Products = () =>{
                 <DataGrid 
                 rows={products || []}
                 columns={columns}
-                components={{Toolbar: GridToolbar}}
                 rowHeight={100}
                 />
 

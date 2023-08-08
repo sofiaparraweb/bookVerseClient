@@ -17,15 +17,30 @@ const PieChart = () =>{
         const theme = useTheme()
         const colors = tokens(theme.palette.mode)
 
-    useEffect(() => {
-        const mappedData = publisherStats.map((item, index) => ({
-            id: item.publisher,
-            label: item.publisher,
-            value: item.sales,
-            color: colors[index % colors.length],
-        }));
-        setData(mappedData);
-    }, [publisherStats]);
+        useEffect(() => {
+            dispatch(getSalesByPublisher())
+        
+            const totalSales = publisherStats?.reduce((total, item) => total + item.sales, 0);
+        
+            if (totalSales === 0) {
+                const equalValue = 1 / publisherStats?.length;
+                const mappedData = publisherStats.map((item, index) => ({
+                    id: item.publisher,
+                    label: item.publisher,
+                    value: equalValue,
+                    color: colors[index % colors.length],
+                }));
+                setData(mappedData);
+            } else {
+                const mappedData = publisherStats?.map((item, index) => ({
+                    id: item.publisher,
+                    label: item.publisher,
+                    value: item.sales,
+                    color: colors[index % colors.length],
+                }));
+                setData(mappedData);
+            }
+        }, [dispatch]);
 
 
     return (
@@ -113,9 +128,9 @@ const PieChart = () =>{
                     anchor: 'bottom',
                     direction: 'column',
                     justify: false,
-                    translateX: 0,
+                    translateX: -450,
                     translateY: 56,
-                    itemsSpacing: 0,
+                    itemsSpacing: 10,
                     itemWidth: 180,
                     itemHeight: 18,
                     itemTextColor: '#999',

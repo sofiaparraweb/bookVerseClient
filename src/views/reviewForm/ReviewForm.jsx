@@ -26,11 +26,9 @@ const ReviewForm = ({ id }) => {
     setReview({ ...review, rating });
   };
 
-  const url =  "http://localhost:3001";
-  //const url = "https://bookverse-m36k.onrender.com";
+  // const url =  "http://localhost:3001";
+  const url = "https://bookverse-m36k.onrender.com";
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(review)
     try {
       await axios.post(`${url}/review/post`, review)
         .then(res => alert("Gracias por opinar sobre nuestro producto!"))
@@ -44,7 +42,7 @@ const ReviewForm = ({ id }) => {
     <div className="ReviewContainer">
       <p style={{fontSize:"1.2rem"}}>Your Review</p>
       <ol className="rating-list" >
-        {[1, 2, 3, 4, 5].map((value) => (
+        {[1, 2, 3, 4, 5]?.map((value) => (
           <li
             key={value}
             onClick={() => handleStarClick(value)}
