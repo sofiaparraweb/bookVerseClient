@@ -5,6 +5,7 @@ import {AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Checkout from "../Checkout/Checkout";
 import "./Cart.css"
+import Swal from 'sweetalert2';
 
 const Cart = ({ Carrito }) =>{
     
@@ -30,51 +31,117 @@ const Cart = ({ Carrito }) =>{
     let servicio = parseFloat((subTotal * 0.10).toFixed(2));
     let total = subTotal + servicio;
 
-
-    const handleClickAdd = (user_id, id, title, image, price, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
-        quantity = parseInt(quantity) + 1;
-        dispatch(changeQuantity(user_id, id, quantity));
-        alert("One unit has been added to the cart.");
-        dispatch(getCart(user_id));
-    }
-
-
-    const handleClickDelete = (user_id, id, title, image, price, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
-        if(parseInt(quantity) > 1) {
-            quantity = parseInt(quantity) - 1;
-            dispatch(changeQuantity(user_id, id, quantity));
-            alert("One unit has been removed from the cart.");
-        } else {
-            alert("Cannot remove more units of this product.");  
-        }
-        dispatch(getCart(user_id));
-    }
-
-
-    const handleDeleteFromCart = async (user_id, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
-      await dispatch(deleteCart(user_id, id));
-      setQuantity(0);
-      alert("Book has been removed from cart.");
+    const handleClickAdd = (user_id, id, title, image, price, quantity) => {
+      quantity = parseInt(quantity) + 1;
+      dispatch(changeQuantity(user_id, id, quantity));
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'One unit has been added to the cart.',
+        background: '#f3f3f3',
+        confirmButtonColor: '#B9362C',
+        customClass: {
+          title: 'my-custom-title',
+          content: 'my-custom-content',
+          confirmButton: 'my-custom-button',
+        },
+      });
+    
       dispatch(getCart(user_id));
     };
+    
 
-    const handleDeleteCart = async (user_id) =>{   //PARA VACIAR EL CARRITO
-      await dispatch(deleteAllCart(user_id));
-      setQuantity(0);
-      alert("Carrito vaciado correctamente")
-      dispatch(getCart(user_id));
-    }
+    const handleClickDelete = (user_id, id, title, image, price, quantity) => {
+        if (parseInt(quantity) > 1) {
+          quantity = parseInt(quantity) - 1;
+          dispatch(changeQuantity(user_id, id, quantity));
+      
+          Swal.fire({
+            icon: 'success',
+            title: 'One unit has been removed from the cart.',
+            background: '#f3f3f3',
+            confirmButtonColor: '#B9362C',
+            customClass: {
+              title: 'my-custom-title',
+              content: 'my-custom-content',
+              confirmButton: 'my-custom-button',
+            },
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Cannot remove more units of this product.',
+            background: '#f3f3f3',
+            confirmButtonColor: '#B9362C',
+            customClass: {
+              title: 'my-custom-title',
+              content: 'my-custom-content',
+              confirmButton: 'my-custom-button',
+            },
+          });
+        }
+        
+        dispatch(getCart(user_id));
+      };
+      
+      const handleDeleteFromCart = async (user_id, id) => {
+        await dispatch(deleteCart(user_id, id));
+        setQuantity(0);
+      
+        Swal.fire({
+          icon: 'success',
+          title: 'Book has been removed from cart.',
+          background: '#f3f3f3',
+          confirmButtonColor: '#B9362C',
+          customClass: {
+            title: 'my-custom-title',
+            content: 'my-custom-content',
+            confirmButton: 'my-custom-button',
+          },
+        });
+      
+        dispatch(getCart(user_id));
+      };
+      
+      const handleDeleteCart = async (user_id) => {
+        await dispatch(deleteAllCart(user_id));
+        setQuantity(0);
+      
+        Swal.fire({
+          icon: 'success',
+          title: 'Cart emptied successfully',
+          background: '#f3f3f3',
+          confirmButtonColor: '#B9362C',
+          customClass: {
+            title: 'my-custom-title',
+            content: 'my-custom-content',
+            confirmButton: 'my-custom-button',
+          },
+        });
+      
+        dispatch(getCart(user_id));
+      };
+      
 
-
-    const handlePay = (event) => {   //PARA PROCEDER AL PAGO
-      event.preventDefault();
-      if (Carrito) {
-        setShowForm(true);
-      } else {
-        alert("Debe seleccionar productos")
-        return;
-      }
-    } 
+      const handlePay = (event) => {
+        event.preventDefault();
+        if (Carrito) {
+          setShowForm(true);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'You must select products',
+            background: '#f3f3f3',
+            confirmButtonColor: '#B9362C',
+            customClass: {
+              title: 'my-custom-title',
+              content: 'my-custom-content',
+              confirmButton: 'my-custom-button',
+            },
+          });
+        }
+      };
+      
 
     return (       
         <div className="CartContainer">

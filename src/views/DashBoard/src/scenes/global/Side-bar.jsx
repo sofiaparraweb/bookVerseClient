@@ -49,22 +49,27 @@ const Sidebar = () => {
         <Box 
         sx={{
             zIndex: 88,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
             "& .pro-sidebar-inner": {
-                background: `${colors.primary[400]} !important`
+              background: `${colors.primary[400]} !important`,
+              width: isCollapsed ? '85px' : '200px', // Ancho más fino cuando está colapsada
+              transition: 'width 0.2s ease-in-out', // Transición suave del ancho
             },
             "& .pro-icon-wrapper": {
-                backgroundColor : "transparent !important"
+              backgroundColor: 'transparent !important',
             },
-            "& .pro-inner-item":{
-                padding: '5px 35px 5px 20px !important'
+            "& .pro-inner-item": {
+              padding: '5px 35px 5px 20px !important',
             },
-            "& .pro-inner-item:hover":{
-                color: '#868dfb !important'
+            "& .pro-inner-item:hover": {
+              color: '#868dfb !important',
             },
-            "& .pro-menu-item.active":{
-                color: "#6870fa !important"
+            "& .pro-menu-item.active": {
+              color: '#6870fa !important',
             },
-        }}
+          }}
         >
             <ProSidebar collapse={isCollapsed.toString()}>
                 <Menu iconShape='square'>
@@ -74,7 +79,7 @@ const Sidebar = () => {
                     onClick={()=>setIsCollapsed(!isCollapsed)}
                     icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                     style={{
-                        margin:' 10px 0 20px 0',
+                        margin:' 10px 0 30px 0',
                         color: colors.grey[100],
 
                     }}
@@ -84,7 +89,7 @@ const Sidebar = () => {
                             display='flex' 
                             justifyContent='space-between'
                             alignItems='center' 
-                            ml='15px'>
+                            ml='-2.5px'>
                                 <Typography variant='h3' color={colors.grey[100]}>
                                     DASHBOARD
                                 </Typography>
@@ -147,14 +152,14 @@ const Sidebar = () => {
                         setSelected={setSelected}
                         isCollapsed={isCollapsed}
                         />
-                        <Item 
+                        {/* <Item 
                         title='Contacts'
                         to='/contacts'
                         icon={<ContactsOutlinedIcon />}
                         selected={selected}
                         setSelected={setSelected}
                         isCollapsed={isCollapsed}
-                        />
+                        /> */}
                         <Item 
                         title='Products'
                         to='/products'
@@ -164,7 +169,7 @@ const Sidebar = () => {
                         isCollapsed={isCollapsed}
                         />
                         <Item 
-                        title='Invoices Balances'
+                        title='Balances'
                         to='/invoices'
                         icon={<ReceiptOutlinedIcon />}
                         selected={selected}
@@ -175,7 +180,7 @@ const Sidebar = () => {
                         variant='h6'
                         color={colors.grey[300]}
                         sx={{m: '15px 0 5px 20px'}}
-                        >Pages</Typography>
+                        >Functions</Typography>
                         <Item 
                         title='Upload Book'
                         to='/form'
@@ -230,7 +235,7 @@ const Sidebar = () => {
                         isCollapsed={isCollapsed}
                         />
                         <Item 
-                        title='Geography Chart'
+                        title='Geo Chart'
                         to='/geography'
                         icon={<MapOutlinedIcon />}
                         selected={selected}
