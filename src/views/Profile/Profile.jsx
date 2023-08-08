@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserId, updateUser, getUser } from "../../Redux/actions";
+import { updateUser, getUser } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Profile.css";
 
@@ -12,6 +12,12 @@ const Profile = () => {
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
   const dispatch = useDispatch()
+  const mail = useSelector((state) => state.LocalPersist.userId.email);
+  
+  useEffect(() => {
+    dispatch(getUser(mail));
+    console.log(userProfile)
+  }, [dispatch]);
 
   const [initialProfile, setInitialProfile] = useState({
     name: userProfile?.name || "",
@@ -70,9 +76,6 @@ const Profile = () => {
     console.log(file)
   };
 
-  const handleDeleteImage = () => {
-    setSelectedImage(defaultImageURL);
-  };
 
   // useEffect(() => {
   //   if (!editing) {
@@ -86,7 +89,7 @@ const Profile = () => {
     const data = {
       name: formData.name,
       birthDate: formData.birthDate,
-      file: selectedImage,
+      image: selectedImage,
       phone: formData.phone,
       email: formData.email,
       country: formData.country,
@@ -107,14 +110,14 @@ const Profile = () => {
           <form method="POST" className="profile-form" onSubmit={handleSubmit(handleSaveProfile)} enctype="multipart/form-data">
           <div className="perfil-image">
               <img
-                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image || defaultImageURL }
+                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image}
                 alt="profile"
                 className="profile-image"
               />
               {editing && (
                 <div className="image-buttons">
                   <label htmlFor="image" className="upload-button">
-                    Upload Image
+                    Change Image
                     <Input
                       type="file"
                       id="image"
@@ -123,9 +126,9 @@ const Profile = () => {
                       accept="image/*"
                     />
                   </label>
-                  <button className="delete-button" onClick={handleDeleteImage}>
+                  {/* <button className="delete-button" onClick={handleDeleteImage}>
                     Delete Image
-                  </button>
+                  </button> */}
   </div>
 )}
       </div> 

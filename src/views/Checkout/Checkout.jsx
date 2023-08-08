@@ -37,7 +37,7 @@ const Checkout = ({total}) => {
         if (response) {
             window.open(response.url, "_blank");
         } else {
-            Swal.fire("Error", "Hubo un error al enviar la información", "error");
+            Swal.fire("Error", "There was an error sending the information", "error");
         }
         setLoading(false);
         reset();

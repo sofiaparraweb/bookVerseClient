@@ -44,12 +44,17 @@ const Dashboard = () => {
 
             <Box
             display='grid'
-            gridTemplateColumns='repeat(12,1fr)'
-            gridAutoRows='140px'
-            gap='20px'
+            gridTemplateColumns={{
+                xs: "1fr",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(4, 1fr)",
+                lg: "repeat(8, 1fr)",
+              }}
+              gridAutoRows="140px"
+              gap="20px"
             >
         {/*ROW 1 */}
-                <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
+                {/* <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
                 display='flex'
                 alignItems='center'
                 justifyContent='center'>
@@ -67,12 +72,14 @@ const Dashboard = () => {
                     }
                     />
 
-                </Box>
-
+                </Box> */}
+{/* 
                 <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
                 display='flex'
                 alignItems='center'
-                justifyContent='center'>
+                justifyContent='center'
+                width="200%">
+                
 
                     <StatBox 
                     
@@ -87,8 +94,9 @@ const Dashboard = () => {
                     }
                     />
 
-                </Box>
-                <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
+                </Box> */}
+
+                {/* <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
                 display='flex'
                 alignItems='center'
                 justifyContent='center'>
@@ -105,15 +113,14 @@ const Dashboard = () => {
                         />
                     }
                     />
+                </Box> */}
 
-                </Box>
-                <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
+                {/* <Box gridColumn='span 3' backgroundColor={colors.primary[400]} 
                 display='flex'
                 alignItems='center'
                 justifyContent='center'>
 
                     <StatBox 
-                    
                     title='9999999'
                     subtitle='Traffic Inbound'
                     progress='0.85'
@@ -125,7 +132,7 @@ const Dashboard = () => {
                     }
                     />
 
-                </Box>
+                </Box> */}
 
                 {/*ROW 2 */}
 

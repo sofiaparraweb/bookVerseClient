@@ -8,54 +8,53 @@ import { createUser, getUser, getUserId } from "../../Redux/actions.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from 'react';
+import axios from "axios";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const allbooks = useSelector((state) => state.LocalPersist.allbooks);
-  const [isLoading, setIsLoading] = useState(false);
-  const isProfileCreatedRef = useRef(false);
+  const [isProfileCreated, setIsProfileCreated] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(userProfile)
-  //   if (isAuthenticated && user && userProfile==null) {
-  //     console.log("se cumple primer if", user.email)
-  //     dispatch(getUser(user.email));
-  //     if (userProfile!==null) {
-  //       isProfileCreatedRef = true;
-  //     }
-  //   } 
-  //   if (isAuthenticated && user && !isProfileCreatedRef) {
-  //     console.log("se cumple segundo if", user.email)
-  //         const newUser = {
-  //           name: user.name,
-  //           email: user.email,
-  //         };
-  //         dispatch(createUser(newUser));
-  //         isProfileCreatedRef = true;
-  //       }
-  // }, [dispatch, isAuthenticated, user, userProfile]);
+  const url = "https://bookverse-m36k.onrender.com";
+//  const url = "http://localhost:3001";
 
   useEffect(() => {
-    if (isAuthenticated && user && !isProfileCreatedRef.current) {
-      const newUser = {
-        name: user.name,
-        email: user.email,
-      };
-      dispatch(createUser(newUser));
-      isProfileCreatedRef.current = true;
-    }
-  }, [dispatch, isAuthenticated, user]);
+    if (isAuthenticated && user && !isProfileCreated) {
+      // Primero veo si el usuario ya existe en la bdd
+      axios.get(`${url}/user/email/${user.email}`)
+        .then(response => {
+          const existingUser = response.data;
+          if (!existingUser) {
+            // Si el usuario no existe en el back crea el perfil
+            const newUser = {
+              name: user.name,
+              email: user.email,
+            };
+            dispatch(createUser(newUser))
+            .then(() => {
+              // LCuando ya esta creado lo traigo asi se ponene los datos en el userprfoile/useriD
+              dispatch(getUser(user.email));
+              dispatch(getUserId(user.email));
+              setIsProfileCreated(true);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          // Si el usuario ya existe traigo los datitos
+          dispatch(getUser(user.email));
+          dispatch(getUserId(user.email));
+          setIsProfileCreated(true);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+}, [dispatch, isAuthenticated, user, isProfileCreated]);
 
-  useEffect(() => {
-    if (isAuthenticated && user && isProfileCreatedRef.current) {
-      dispatch(getUser(user.email));
-      dispatch(getUserId(user.email));
-      console.log(user.email);
-    }
-  }, [dispatch, isAuthenticated, user]);
-  
   return (
     <div className="homeContainer">
       <Header />

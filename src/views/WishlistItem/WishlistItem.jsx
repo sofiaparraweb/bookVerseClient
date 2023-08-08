@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import "./WishlistItem.css"
+import Swal from 'sweetalert2';
 
 const WishlistItem = ({ wish }) => {
 
@@ -38,30 +39,73 @@ const WishlistItem = ({ wish }) => {
         }
     };
   
-    const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
-        event.preventDefault()
+    const handleAddToCart = (event, user_id, id, quantity) => {
+        event.preventDefault();
         const cartItems = Cart;
-        const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
+        const productInCart = cartItems?.find((item) => item.id === id);
+      
         if (isAuthenticated) {
-            if (productInCart) {
-                alert("Book is already in the shopping cart.");
-            } else {
-                dispatch(addToCart(user_id, id, quantity));
-                alert("Book has been added to the shopping cart.");
-                dispatch(getCart(user_id));
-                navigate("/cart");
-            }
+          if (productInCart) {
+            Swal.fire({
+              icon: 'info',
+              title: 'Book is already in the shopping cart.',
+              background: '#f3f3f3',
+              confirmButtonColor: '#B9362C',
+              customClass: {
+                title: 'my-custom-title',
+                content: 'my-custom-content',
+                confirmButton: 'my-custom-button',
+              },
+            });
+          } else {
+            dispatch(addToCart(user_id, id, quantity));
+            Swal.fire({
+              icon: 'success',
+              title: 'Book has been added to the shopping cart.',
+              background: '#f3f3f3',
+              confirmButtonColor: '#B9362C',
+              customClass: {
+                title: 'my-custom-title',
+                content: 'my-custom-content',
+                confirmButton: 'my-custom-button',
+              },
+            }).then(() => {
+              dispatch(getCart(user_id));
+              navigate("/cart");
+            });
+          }
         } else {
-            alert('You need to log in to buy books.');
+          Swal.fire({
+            icon: 'warning',
+            title: 'You need to log in to buy books.',
+            background: '#f3f3f3',
+            confirmButtonColor: '#B9362C',
+            customClass: {
+              title: 'my-custom-title',
+              content: 'my-custom-content',
+              confirmButton: 'my-custom-button',
+            },
+          });
         }
-    }
-
-    const handleDeleteFromWish = async (user_id, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
-        await dispatch(removeWishlist(user_id, id));
-        alert("Book has been removed from wishlist.");
-        dispatch(getWishlist(user_id));
       };
-
+      
+      const handleDeleteFromWish = async (user_id, id) => {
+        await dispatch(removeWishlist(user_id, id));
+        Swal.fire({
+          icon: 'success',
+          title: 'Book has been removed from wishlist.',
+          background: '#f3f3f3',
+          confirmButtonColor: '#B9362C',
+          customClass: {
+            title: 'my-custom-title',
+            content: 'my-custom-content',
+            confirmButton: 'my-custom-button',
+          },
+        }).then(() => {
+          dispatch(getWishlist(user_id));
+        });
+      };
+      
 
     return (                    
         <div>
