@@ -109,7 +109,7 @@ const Cart = ({ Carrito }) =>{
       
         Swal.fire({
           icon: 'success',
-          title: 'Carrito vaciado correctamente',
+          title: 'Cart emptied successfully',
           background: '#f3f3f3',
           confirmButtonColor: '#B9362C',
           customClass: {
@@ -130,7 +130,7 @@ const Cart = ({ Carrito }) =>{
         } else {
           Swal.fire({
             icon: 'error',
-            title: 'Debe seleccionar productos',
+            title: 'You must select products',
             background: '#f3f3f3',
             confirmButtonColor: '#B9362C',
             customClass: {
