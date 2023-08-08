@@ -10,7 +10,7 @@ const Header = () => {
                 <div className="GridTwoColumns">
                     <div className="HeaderSectionData">
                         <p className="IntroData"> Welcome to </p>
-                        <h1> The BookVerse </h1>
+                        <h1> THE BOOKVERSE</h1>
                         <p style={{marginBottom:'1rem'}}>Discover new worlds, uncover hidden mysteries, and embark on unforgettable journeys with our carefully curated selection of ebooks. Our platform offers you the convenience of exploring and purchasing books in digital format, making your reading experience more accessible than ever.</p>
                         {/* <p style={{marginBottom:'1rem'}}>Join our community of book lovers and embark on an adventure through the pages of The BookVerse. Happy reading!</p> */}
                         <NavLink to="/store">

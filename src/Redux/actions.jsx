@@ -375,17 +375,14 @@ export const createUser = (newUser) => {
 
 export const updateUser = (data) => {
   return async (dispatch) => {
-    console.log(data)
      try {
       const response = await axios.put(`${URL}/user/edit`, data, {
-
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(response)
-      dispatch({ type: UPDATE_USER, payload: data });
-      console.log('se ejecuto con exitot bbbb')
+      // dispatch({ type: UPDATE_USER, payload: response.data });
+      console.log('se ejecuto con exitot bbbb', response.data)
     } catch (error) {
       console.log({ error: error.message });
     }

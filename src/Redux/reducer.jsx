@@ -283,7 +283,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         stats: action.payload
       };
-
+      case GET_DASHBOARD_USERS:
+        return {
+          ...state,
+          teamData: action.payload,
+        };
 //------------------------------------USER actions-----------------------------------
 //     case GET_ALL_USERS:
 //       return {
@@ -314,7 +318,7 @@ const reducer = (state = initialState, action) => {
     case GET_USER_ID:
       return {
         ...state,
-        userProfile: action.payload,
+        userId: action.payload,
       }
     case UPDATE_USER:
       return {
