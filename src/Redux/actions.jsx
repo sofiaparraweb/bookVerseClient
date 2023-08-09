@@ -38,11 +38,12 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 // export const EDIT_PRODUCT = "EDIT_PRODUCT"
 // export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+
 export const GET_DASHBOARD_USERS = "GET_DASHBOARD_USERS";
-export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
-export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
-// export const DELETE_USER = "DELETE_USER";
-// export const SUSPEND_USER = "SUSPEND_USER"
+// export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+// export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
+
+
 export const GET_BALANCE = "GET_BALANCE";
 export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
 export const GET_ALL_SALES = "GET_ALL_SALES";
@@ -521,7 +522,7 @@ export const getSalesByLanguage = () => {
 //     }
 //   };
 // }
-
+//*=======================>>>Dashboard Users<<<=========================//
 export const getDashboardUsers = () => async (dispatch) => {
   try {
     
@@ -537,29 +538,29 @@ export const getDashboardUsers = () => async (dispatch) => {
   }
 };
 
-export const deleteUserSuccess = (id) => ({
-  type: DELETE_USER_SUCCESS,
-  payload: id,
-});
+// export const deleteUserSuccess = (id) => ({
+//   type: DELETE_USER_SUCCESS,
+//   payload: id,
+// });
 
-export const deleteUserFailure = (error) => ({
-  type: DELETE_USER_FAILURE,
-  payload: error,
-});
+// export const deleteUserFailure = (error) => ({
+//   type: DELETE_USER_FAILURE,
+//   payload: error,
+// });
 
-export const deleteUser = (id) => {
-  return async (dispatch) => {
-    try {
-      await axios.delete(`${URL}/dashboard/user/delete/${id}`);
-      dispatch(deleteUserSuccess(id));
-      console.log("estoy en success id", deleteUserSuccess(id)); 
-    } catch (error) {
-      dispatch(deleteUserFailure(error.message));
-      console.log("estoy en failure", deleteUserFailure(error.message));
-    }
-  };
-};
-
+// export const deleteUser = (id) => {
+//   return async (dispatch) => {
+//     try {
+//       await axios.delete(`${URL}/dashboard/user/delete/${id}`);
+//       dispatch(deleteUserSuccess(id));
+//       console.log("estoy en success id", deleteUserSuccess(id)); 
+//     } catch (error) {
+//       dispatch(deleteUserFailure(error.message));
+//       console.log("estoy en failure", deleteUserFailure(error.message));
+//     }
+//   };
+// };
+//=========================>>>hasta aca users dashboard<<<=============================//
 
 // export const deleteUser = (id) => {
 //   return {
