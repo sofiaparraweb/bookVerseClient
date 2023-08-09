@@ -19,7 +19,7 @@ export const ProtectedRoutes = ({ children, redirectTo="/Home" }) => {
       }, [isAuthenticated, dispatch, user]);
     
 
-      if (!isAuthenticated || !admin || admin.name !== "admin"/* AQUI IRIA EL MAIL */) {
+      if (!isAuthenticated || !admin || admin !== "bookverseweb@gmail.com"/* AQUI IRIA EL MAIL */) {
         return <Navigate to={redirectTo} />;
       } else {
         return children;

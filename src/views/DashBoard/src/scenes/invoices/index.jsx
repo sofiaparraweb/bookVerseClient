@@ -21,7 +21,7 @@ const Invoices = () =>{
 
   useEffect(() => {
     // Realizar la solicitud al backend para obtener los datos de ventas
-    axios.get('http://localhost:3001/dashboard/sales/all')
+    axios.get('https://bookverse-m36k.onrender.com/dashboard/sales/all')
       .then(response => {
         setSalesData(response.data);
       })
