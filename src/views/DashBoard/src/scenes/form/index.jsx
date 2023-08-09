@@ -68,6 +68,7 @@ const Form = () => {
     }
 
     console.log(data, 'esto mando al back');
+    dispatch(addBook(data));
     setForm({
       image: null,
       title: '',
@@ -86,7 +87,6 @@ const Form = () => {
     setSelectedLanguage("");
     setSelectedPublisher("");
     setSelectedFormat("");
-    dispatch(addBook(data));
 };
 
   return (
