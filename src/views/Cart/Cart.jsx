@@ -31,58 +31,23 @@ const Cart = ({ Carrito }) =>{
     let servicio = parseFloat((subTotal * 0.10).toFixed(2));
     let total = subTotal + servicio;
 
-    const handleClickAdd = (user_id, id, title, image, price, quantity) => {
-      quantity = parseInt(quantity) + 1;
-      dispatch(changeQuantity(user_id, id, quantity));
-      
-      Swal.fire({
-        icon: 'success',
-        title: 'One unit has been added to the cart.',
-        background: '#f3f3f3',
-        confirmButtonColor: '#B9362C',
-        customClass: {
-          title: 'my-custom-title',
-          content: 'my-custom-content',
-          confirmButton: 'my-custom-button',
-        },
-      });
-    
-      dispatch(getCart(user_id));
-    };
-    
-
-    const handleClickDelete = (user_id, id, title, image, price, quantity) => {
-        if (parseInt(quantity) > 1) {
-          quantity = parseInt(quantity) - 1;
-          dispatch(changeQuantity(user_id, id, quantity));
-      
-          Swal.fire({
-            icon: 'success',
-            title: 'One unit has been removed from the cart.',
-            background: '#f3f3f3',
-            confirmButtonColor: '#B9362C',
-            customClass: {
-              title: 'my-custom-title',
-              content: 'my-custom-content',
-              confirmButton: 'my-custom-button',
-            },
-          });
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Cannot remove more units of this product.',
-            background: '#f3f3f3',
-            confirmButtonColor: '#B9362C',
-            customClass: {
-              title: 'my-custom-title',
-              content: 'my-custom-content',
-              confirmButton: 'my-custom-button',
-            },
-          });
-        }
-        
+    const handleClickAdd = (user_id, id, title, image, price, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+        quantity = parseInt(quantity) + 1;
+        dispatch(changeQuantity(user_id, id, quantity));
+        alert("One unit has been added to the cart.");
         dispatch(getCart(user_id));
-      };
+    }
+
+    const handleClickDelete = (user_id, id, title, image, price, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+        if(parseInt(quantity) > 1) {
+            quantity = parseInt(quantity) - 1;
+            dispatch(changeQuantity(user_id, id, quantity));
+            alert("One unit has been removed from the cart.");
+        } else {
+            alert("Cannot remove more units of this product.");  
+        }
+        dispatch(getCart(user_id));
+    }
       
       const handleDeleteFromCart = async (user_id, id) => {
         await dispatch(deleteCart(user_id, id));
