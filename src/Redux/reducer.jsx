@@ -76,6 +76,7 @@ const initialState = {
   publisherStats: [],
   genreStats: [],
   countryStats: [],
+  allSalesStats: [],
   teamData: [],
 };
 
@@ -265,7 +266,7 @@ const reducer = (state = initialState, action) => {
     case GET_ALL_SALES: 
       return{
         ...state,
-        stats: action.payload
+        allSalesStats: action.payload
       };
     case GET_SALES_AMOUNT:
       return{

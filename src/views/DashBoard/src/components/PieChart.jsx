@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getSalesByPublisher } from "../../../../Redux/actions"
 
-const PieChart = () =>{
+const PieChart = ({isDashboard = false}) =>{
     
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
@@ -23,7 +23,7 @@ const PieChart = () =>{
         
         if (totalSales === 0) {
             const equalValue = 1 / publisherStats?.length;
-            const mappedData = publisherStats.map((item, index) => ({
+            const mappedData = publisherStats?.map((item, index) => ({
                 id: item.publisher,
                 label: item.publisher,
                 value: equalValue,
