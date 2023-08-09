@@ -34,6 +34,7 @@ import Qa from './views/Q&A/Q&A';
 import WishlistItem from "./components/WishlistContainer/WishlistContainer";
 import Confirmation from "./views/Confirmation/Confirmation"
 import DashBoard1 from './views/DashBoard/src/DashBoard1';
+import Suscription from './views/Home/Suscription/Suscription';
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/wishlist" element={<WishlistItem />} /> 
           <Route path="/profile" element={<Profile />} />
           <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/suscription" element={<Suscription />} />
 
 
 {/*           <Route path="dashboard1" element={

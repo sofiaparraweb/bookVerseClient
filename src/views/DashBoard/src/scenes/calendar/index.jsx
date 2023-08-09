@@ -44,7 +44,7 @@ const Calendar =() =>{
         }
 
         return (
-            <Box>
+            <Box marginTop="70px">
                 <Header title='CALENDAR' subtitle='Full Calendar Interactive Calendar' />
                 <Box display='flex' justifyContent='space-between'>
 
@@ -58,7 +58,7 @@ const Calendar =() =>{
                             Events
                         </Typography>
                         <List>
-                            {currentEvents.map((event)=>(
+                            {currentEvents?.map((event)=>(
                                 <ListItem
                                 key={event.id}
                                 sx={{

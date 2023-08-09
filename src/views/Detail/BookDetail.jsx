@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import "./BookDetail.css";
 import ReviewForm from "../reviewForm/ReviewForm";
+import Swal from 'sweetalert2';
 
 
 const Detail = () => {
@@ -18,8 +19,6 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
-    // const publisherStats = useSelector(state => state.LocalPersist.publisherStats);
-    // console.log(publisherStats)
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
     const [quantity, setQuantity] = useState(1);
@@ -27,8 +26,13 @@ const Detail = () => {
     const [userRating, setUserRating] = useState(null);
     const [isFav, setIsFav] = useState(false);
     
+
      const url = "https://bookverse-m36k.onrender.com";
     //const url = "http://localhost:3001";
+
+    const url = "https://bookverse-m36k.onrender.com";
+    // const url = "http://localhost:3001";
+
 
     useEffect(() => {
         async function fetchData() {
@@ -61,63 +65,125 @@ const Detail = () => {
       }
     };
     
-    const handleAddToCart = (event, user_id, id, quantity) => {  // --------------------------------------------------ADD BOOKS TO CART
-        event.preventDefault()
+    const handleAddToCart = (event, user_id, id, quantity) => {
+        event.preventDefault();
         try {
-            if (!Cart || typeof Cart !== 'object') {
-                return;
-            }
-            const cartItems = Cart.Books;
-            const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
-            if (isAuthenticated) {
-                if (productInCart) {
-                    alert("Book is already in the shopping cart.");
-                } else {
-                    dispatch(addToCart(user_id, id, quantity));
-                    alert("Book has been added to the shopping cart.");
-                    dispatch(getCart(user_id));
-                    navigate("/cart");
-                }
+          if (!Cart || typeof Cart !== 'object') {
+            return;
+          }
+          const cartItems = Cart.Books;
+          const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
+          if (isAuthenticated) {
+            if (productInCart) {
+              Swal.fire({
+                icon: 'info',
+                title: 'Book is already in the shopping cart.',
+                background: '#f3f3f3',
+                confirmButtonColor: '#B9362C',
+                customClass: {
+                  title: 'my-custom-title',
+                  content: 'my-custom-content',
+                  confirmButton: 'my-custom-button',
+                },
+              });
             } else {
-                alert('You need to log in to buy books.');
+              dispatch(addToCart(user_id, id, quantity));
+              Swal.fire({
+                icon: 'success',
+                title: 'Book has been added to the shopping cart.',
+                background: '#f3f3f3',
+                confirmButtonColor: '#B9362C',
+                customClass: {
+                  title: 'my-custom-title',
+                  content: 'my-custom-content',
+                  confirmButton: 'my-custom-button',
+                },
+              }).then(() => {
+                dispatch(getCart(user_id));
+                navigate("/cart");
+              });
             }
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'You need to log in to buy books.',
+              background: '#f3f3f3',
+              confirmButtonColor: '#B9362C',
+              customClass: {
+                title: 'my-custom-title',
+                content: 'my-custom-content',
+                confirmButton: 'my-custom-button',
+              },
+            });
+          }
         } catch (error) {
-            console.error("Error adding/removing book to/from Cart:", error);
+          console.error("Error adding/removing book to/from Cart:", error);
         }
-    }
+      };
+      
     
     useEffect(() => {
         dispatch(getWishlist(user_id));
     }, [dispatch]);
     
 
-    const handleFavorite = async (event, user_id, id) => {  // -----------------------------------------------ADD  AND DELETEBOOKS from WISHLIST
-        console.log(user_id, "estoy en user id");
+    const handleFavorite = async (event, user_id, id) => {
         event.preventDefault();
         try {
-            if (!wish || typeof wish !== 'object') {
-                return;
-            }
-            if (isAuthenticated) {
-                const productInWish = Object.values(wish.Books)?.find((item) => item.id === id);
-                if (productInWish) {
-                    setIsFav(false);
-                    await dispatch(removeWishlist(user_id, id));
-                    dispatch(getWishlist(user_id));
-                    alert("Book has been removed from your wishlist.");
-                } else {
-                    setIsFav(true);
-                    await dispatch(addWishlist(user_id, id));
-                    dispatch(getWishlist(user_id));
-                    alert("Book has been added to your wishlist.");
-                }
+          if (!wish || typeof wish !== 'object') {
+            return;
+          }
+          if (isAuthenticated) {
+            const productInWish = Object.values(wish.Books)?.find((item) => item.id === id);
+            if (productInWish) {
+              setIsFav(false);
+              await dispatch(removeWishlist(user_id, id));
+              dispatch(getWishlist(user_id));
+              Swal.fire({
+                icon: 'success',
+                title: 'Book has been removed from your wishlist.',
+                background: '#f3f3f3',
+                confirmButtonColor: '#B9362C',
+                customClass: {
+                  title: 'my-custom-title',
+                  content: 'my-custom-content',
+                  confirmButton: 'my-custom-button',
+                },
+              });
             } else {
-                alert('You need to log in to add books to your wishlist.');
+              setIsFav(true);
+              await dispatch(addWishlist(user_id, id));
+              dispatch(getWishlist(user_id));
+              Swal.fire({
+                icon: 'success',
+                title: 'Book has been added to your wishlist.',
+                background: '#f3f3f3',
+                confirmButtonColor: '#B9362C',
+                customClass: {
+                  title: 'my-custom-title',
+                  content: 'my-custom-content',
+                  confirmButton: 'my-custom-button',
+                },
+              });
             }
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'You need to log in to add books to your wishlist.',
+              background: '#f3f3f3',
+              confirmButtonColor: '#B9362C',
+              customClass: {
+                title: 'my-custom-title',
+                content: 'my-custom-content',
+                confirmButton: 'my-custom-button',
+              },
+            });
+          }
         } catch (error) {
-                console.error("Error adding/removing book to/from wishlist:", error);
+          console.error("Error adding/removing book to/from wishlist:", error);
         }
-    };
+      };
+      
 
     useEffect(() => {
         wish.Books?.forEach((fav) => {
@@ -225,7 +291,7 @@ const Detail = () => {
                     <div style={{padding:"1rem 6rem"}}>
                         <ReviewForm id={id} />
                         <div className="ComentariosDetail">
-                            <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
+                            <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Book reviews</p>
                             {book.Reviews?.map((con)=>{
                                 return(
                                     <div>
@@ -239,7 +305,7 @@ const Detail = () => {
                     </div>
                 ) : (
                     <div className="ComentariosDetail">
-                        <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Others Reviews</p>
+                        <p style={{fontSize:"1.2rem", paddingBottom:"1.5rem"}}>Book reviews</p>
                         {book.Reviews?.map((con)=>{
                             return(
                                 <div>

@@ -22,14 +22,16 @@ import {
   DELETE_ALL_CART,
   CHANGE_QUANTITY,
   POST_PAYMENT,
-  GET_BOOKS_DASHBOARD,
-  DELETE_PRODUCT,
   ADD_PRODUCT,
+  GET_BOOKS_DASHBOARD,
+  DELETE_PRODUCT_DASHBOARD,
+  //  RESTORE_PRODUCT, 
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
    GET_DASHBOARD_USERS,
   //  DELETE_USER_SUCCESS, 
   //  DELETE_USER_FAILURE,
+
 //   DELETE_USER,
 //   SUSPEND_USER,
   GET_BALANCE,
@@ -39,6 +41,7 @@ import {
   GET_SALES_BY_PUBLISHER,
   GET_SALES_BY_GENRE,
   GET_SALES_BY_LANGUAGE,
+  GET_SALES_BY_COUNTRY,
   GET_USER,
   CREATE_USER,
   GET_USER_ID,
@@ -71,7 +74,10 @@ const initialState = {
   reviews: [],
   balance: [],
   transactions: [],
-  publisherStats: {},
+  publisherStats: [],
+  genreStats: [],
+  countryStats: [],
+  allSalesStats: [],
   teamData: [],
 };
 
@@ -219,7 +225,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         CartBooks: action.payload,
-      };
+      }; 
 
 //*==========>>>dashboard users<<<===========// 
 case GET_DASHBOARD_USERS:
@@ -235,7 +241,8 @@ case GET_DASHBOARD_USERS:
   //   };
   // case DELETE_USER_FAILURE:
   //   return state;
-//*============>>>hasta acá<<<=================//  
+//*============>>>hasta acá<<<=================// 
+      
   // case DELETE_USER_SUCCESS:
   //     return {
   //       ...state,
@@ -254,10 +261,10 @@ case GET_DASHBOARD_USERS:
         ...state,
         products: action.payload,
       };
-    case DELETE_PRODUCT:
+    case DELETE_PRODUCT_DASHBOARD:
       return {
         ...state,
-        products: state.products.filter((item) => item.id !== action.payload),
+        products: state.products.filter((user) => user.id !== action.payload),
       };
     case ADD_PRODUCT:
       return {
@@ -288,7 +295,7 @@ case GET_DASHBOARD_USERS:
     case GET_ALL_SALES: 
       return{
         ...state,
-        stats: action.payload
+        allSalesStats: action.payload
       };
     case GET_SALES_AMOUNT:
       return{
@@ -303,14 +310,24 @@ case GET_DASHBOARD_USERS:
     case GET_SALES_BY_GENRE:
       return{
         ...state,
-        stats: action.payload
+        genreStats: action.payload
       };
     case GET_SALES_BY_LANGUAGE:
       return{
         ...state,
         stats: action.payload
       };
+    case   GET_SALES_BY_COUNTRY:
+      return{
+        ...state,
+        countryStats: action.payload
+      };
 
+      case GET_DASHBOARD_USERS:
+        return {
+          ...state,
+          teamData: action.payload,
+        };
 //------------------------------------USER actions-----------------------------------
 //     case GET_ALL_USERS:
 //       return {
@@ -341,7 +358,7 @@ case GET_DASHBOARD_USERS:
     case GET_USER_ID:
       return {
         ...state,
-        userProfile: action.payload,
+        userId: action.payload,
       }
     case UPDATE_USER:
       return {
@@ -353,13 +370,7 @@ case GET_DASHBOARD_USERS:
         ...state,
         userId: action.payload,
       };
-      case ADD_REVIEW_REQUEST:
-        return { ...state, loading: true, error: null };
-      case ADD_REVIEW_SUCCESS:
-        return { ...state, loading: false, reviews: [...state.reviews, action.payload] };
-      case ADD_REVIEW_FAILURE:
-        return { ...state, loading: false, error: action.payload };
-      
+
 //------------------------------------suscription form-----------------------------------
 //===========>>>reviews<<<============//  
     case ADD_REVIEW_REQUEST:
@@ -370,9 +381,9 @@ case GET_DASHBOARD_USERS:
       
     case ADD_REVIEW_FAILURE:
       return { ...state, loading: false, error: action.payload };   
-        default:
-          return state;
-      }
-    };
+    default:
+      return state;
+    }
+  };
 
 export default reducer;
