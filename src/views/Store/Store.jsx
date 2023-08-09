@@ -50,7 +50,7 @@ const Store = () => {
           <div>{' '}</div>
           <div className="booksAvailable">{ebooks.length} {' '} books available</div>   
           <div className="OrderStore">
-            <Order setCurrentPage={setCurrentPage}/>
+            {/* <Order setCurrentPage={setCurrentPage}/> */}
           </div>
         </div>
         <div>
