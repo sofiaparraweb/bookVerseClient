@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser, getUser } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Profile.css";
+import axios from "axios";
+import { Select } from "@chakra-ui/react";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -13,12 +15,30 @@ const Profile = () => {
   const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
   const dispatch = useDispatch()
   const mail = useSelector((state) => state.LocalPersist.userId.email);
-  
+  const [countryOptions, setCountryOptions] = useState([]);
+
   useEffect(() => {
     dispatch(getUser(mail));
     console.log(userProfile)
   }, [dispatch]);
 
+  useEffect(() => {
+    const loadCountryOptions = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/countries');
+        const countries = response.data.map(country => ({
+          value: country.name,
+          label: country.name,
+        }));
+        setCountryOptions(countries);
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+      }
+    };
+
+    loadCountryOptions();
+  }, []);
+  
   const [initialProfile, setInitialProfile] = useState({
     name: userProfile?.name || "",
     email: userProfile?.email || "",
@@ -188,17 +208,22 @@ const Profile = () => {
             <label htmlFor="country" className="profile-label">
               Country
             </label>
-            <Input
-              type="text"
+            <Select
               id="country"
               name="country"
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.country}
               {...register("country", { required: true })}
-            />
+            >
+              {countryOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
             {errors.country && <span className="error-message">Required field</span>}
-            <div className="button-group">
+             <div className="button-group">
               {!editing && (
                 <Button type="button" className="edit-button" onClick={handleEditProfile}>
                   Edit

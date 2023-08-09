@@ -1,31 +1,34 @@
-import { Box, Typography, useTheme } from '@mui/material'
-import {DataGrid} from '@mui/x-data-grid'
-import { tokens } from '../../theme'
-import {mockDataInvoices} from '../../data/mockData'
-
-import Header from '../../components/Header'
-//import { aD } from '@fullcalendar/core/internal-common'
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, useTheme } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+import { tokens } from '../../theme';
+import Header from '../../components/Header';
+import axios from 'axios'
 
 const Invoices = () =>{
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
+    const [salesData, setSalesData] = useState([]);
 
     const columns = [
-        {field:'id', headerName: 'ID'},
-        {field:'name', headerName:'Name', flex:1, cellClassName:'name-column--cell'},
-        {field:'phone', headerName:'Phone Number', flex:1},
-        {field:'email', headerName:'Email', flex:1},
-        {field:'cost', headerName:'Cost', flex:1, 
-        renderCell:(params)=>(
-            <Typography color={colors.greenAccent[500]}>
-                ${params.row.cost}
-            </Typography>
-        )},
-        {field:'date', headerName:'Date', flex:1},
-       
-        
-    ]
+    { field: 'user_email', headerName: 'User Email', flex: 1 },
+    { field: 'book', headerName: 'Book', flex: 1 },
+    { field: 'book_price', headerName: 'Price', flex: 1 },
+    { field: 'book_quantity', headerName: 'Quantity', flex: 1 },
+    { field: 'date', headerName: 'Date', flex: 1 },
+  ];
+
+  useEffect(() => {
+    // Realizar la solicitud al backend para obtener los datos de ventas
+    axios.get('http://localhost:3001/dashboard/sales/all')
+      .then(response => {
+        setSalesData(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching sales data:', error);
+      });
+  }, []);
 
     return(
         <Box m='20px' marginTop='70px'>
@@ -62,10 +65,10 @@ const Invoices = () =>{
 
             }}
             >
-                <DataGrid 
-                checkboxSelection
-                rows={mockDataInvoices}
-                columns={columns}
+                <DataGrid
+          checkboxSelection
+          rows={salesData}
+          columns={columns}
                
                 />
 

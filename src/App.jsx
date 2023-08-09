@@ -19,7 +19,7 @@ import FAQ from './views/DashBoard/src/scenes/faq'
 import Bar from './views/DashBoard/src/scenes/bar'
 import Pie from './views/DashBoard/src/scenes/pie'
 import Line from './views/DashBoard/src/scenes/line'
-import Geography from './views/DashBoard/src/scenes/geography/index'
+// import Geography from './views/DashBoard/src/scenes/geography/index'
 /* import { ProtectedRoutes } from './components/protectedRoutes/protectedroutes' */
 
 
@@ -134,7 +134,7 @@ const App = () => {
         <Route path='/bar' element={<Bar />}/>
         <Route path='/pie' element={<Pie />}/>
         <Route path='/line' element={<Line />}/>
-        <Route path='/geography' element={<Geography />}/>
+        {/* <Route path='/geography' element={<Geography />}/> */}
 
         </Routes>
         <Footer />
