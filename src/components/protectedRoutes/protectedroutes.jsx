@@ -8,7 +8,7 @@ import { Navigate } from "react-router-dom";
 export const ProtectedRoutes = ({ children, redirectTo="/Home" }) => {
     const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
-    const admin = useSelector(state => state.LocalPersist.userProfile.email)
+    const admin = useSelector(state => state.LocalPersist.userProfile?.email)
     const [isVerificated, setIsVerificated] = useState(false);
     
     useEffect(() => {
