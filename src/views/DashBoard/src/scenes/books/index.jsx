@@ -12,7 +12,6 @@ const Products = () => {
 
     const dispatch = useDispatch();
     const products = useSelector(state => state.LocalPersist.products);
-    console.log(products)
     const [enabledBooks, setEnabledBooks] = useState({});
 
     useEffect(() => {

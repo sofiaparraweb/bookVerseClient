@@ -93,8 +93,8 @@ const NavBar = ({ isAuthenticated }) => {
         </div>
         <div className={style.rightSection}>
           {isAuthenticated ? (
-            <div className={style.linkNavBar} id="tiendaNav">
-              <button onClick={handleLogout} style={{ fontWeight: "500", border: "none", backgroundColor: "transparent" }}> LOG OUT </button>
+            <div className={style.linkNavBar} id="tiendaNav" style={{ cursor:"pointer" }}>
+              <button onClick={handleLogout} style={{ fontWeight: "500", border: "none", backgroundColor: "transparent", cursor:"pointer"}}> LOG OUT </button>
             </div>
           ) : (
             <button onClick={handleLogin} className={style.linkNavBar} style={{ border: "none", backgroundColor: "transparent" }}>

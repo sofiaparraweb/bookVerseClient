@@ -66,7 +66,7 @@ const Detail = () => {
           if (!Cart || typeof Cart !== 'object') {
             return;
           }
-          const cartItems = Cart.Books;
+          const cartItems = Cart?.Books;
           const productInCart = cartItems?.find((item) => item.id === id); //check if book is already in cart
           if (isAuthenticated) {
             if (productInCart) {
@@ -188,7 +188,7 @@ const Detail = () => {
                 setIsFav(false);
             }
         });
-    }, [wish.Books, id]);
+    }, [wish, id]);
     
     
     return (
