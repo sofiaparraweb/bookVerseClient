@@ -49,6 +49,7 @@ export const GET_SALES_AMOUNT = "GET_SALES_AMOUNT";
 export const GET_SALES_BY_PUBLISHER = "GET_SALES_BY_PUBLISHER";
 export const GET_SALES_BY_GENRE = "GET_SALES_BY_GENRE";
 export const GET_SALES_BY_LANGUAGE = "GET_SALES_BY_LANGUAGE";
+export const GET_SALES_BY_COUNTRY = "GET_SALES_BY_COUNTRY";
 
 //actions users
 export const GET_USER= "GET_USER";
@@ -381,16 +382,16 @@ export const getBooksDashboard = () => {
   };
 };
 
-export const deleteProduct = (id) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.delete(`${URL}/dashboard/books/delete/${id}`);
-      dispatch({ type: DELETE_PRODUCT_DASHBOARD, payload: id });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const deleteProduct = (id) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.delete(`${URL}/dashboard/books/delete/${id}`);
+//       dispatch({ type: DELETE_PRODUCT_DASHBOARD, payload: id });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 export const addBook = (data) => {
   console.log(data)
@@ -478,21 +479,19 @@ export const getSalesByLanguage = () => {
     }
   };
 };
+export const getSalesByCountry = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${URL}/sales/country/`);
+      dispatch({ type: GET_SALES_BY_COUNTRY, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 
-// export function getAllOrders() {
-//   return async function (dispatch) {
-//     try {
-//       const res = await axios.get(`${URL}`);
-//       return dispatch({
-//         type: GET_ALL_ORDERS,
-//         payload: res.data,
-//       });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// }
+
 
 export const getDashboardUsers = () => async (dispatch) => {
   try {

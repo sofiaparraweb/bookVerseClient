@@ -1,33 +1,47 @@
 import { useTheme } from "@mui/material"
 import { ResponsiveBar } from "@nivo/bar"
 import { tokens } from "../theme"
+import { mockBarData as data} from "../data/mockData"
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getSalesByGenre } from "../../../../Redux/actions"
 
-
-const BarChart = () =>{
+const BarChart = ({isDashboard = false}) =>{
 
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
 
     const genreStats = useSelector(state => state.LocalPersist.genreStats);
     console.log(genreStats)
-    
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
 
     useEffect(() => {
-        dispatch(getSalesByGenre())
-        const mappedData = genreStats?.map((item, index) => ({
-            id: item.genre,
-            genre: item.genre,
-            sales: item.sales,
-            color: colors[index % colors.length],
-        }));
-        setData(mappedData);
-    }, [dispatch]);
+        dispatch(getSalesByGenre())  
+    }, [dispatch])  
 
+    useEffect(() => {     
+        const totalSales = genreStats?.reduce((total, item) => total + item.sales, 0);
+        
+        if (totalSales === 0) {
+            const equalValue = 1 / genreStats?.length;
+            const mappedData = genreStats.map((item, index) => ({
+                id: item.publisher,
+                label: item.publisher,
+                value: equalValue,
+                color: colors[index % colors.length],
+            }));
+            setData(mappedData);
+        } else {
+            const mappedData = genreStats?.map((item, index) => ({
+                id: item.publisher,
+                label: item.publisher,
+                value: item.sales,
+                color: colors[index % colors.length],
+            }));
+            setData(mappedData);
+        }
+    }, [dispatch]);
 
     return (
         <ResponsiveBar
@@ -64,13 +78,13 @@ const BarChart = () =>{
         indexBy="genre"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
-        valueScale={{ type: "linear" }}
-        indexScale={{ type: "band", round: true }}
-        colors={(bar) => bar.data.color} // Usar el color asignado
+        valueScale={{ type: 'linear' }}
+        indexScale={{ type: 'band', round: true }}
+        colors={{ scheme: 'nivo' }}
         // defs={[
         //     {
-        //         id: "dots",
-        //         type: "patternDots",
+        //         id: 'dots',
+        //         type: 'patternDots',
         //         background: 'inherit',
         //         color: '#38bcb2',
         //         size: 4,
@@ -166,9 +180,7 @@ const BarChart = () =>{
         ]}
         role="application"
         ariaLabel="Nivo bar chart demo"
-        barAriaLabel={(e) =>
-            `${e.id}: ${e.formattedValue} in genre: ${e.indexValue}`
-          }
+        barAriaLabel={e=>e.id+": "+e.formattedValue+" in country: "+e.indexValue}
     />
     )
 }

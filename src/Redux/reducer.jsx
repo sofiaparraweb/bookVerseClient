@@ -40,6 +40,7 @@ import {
   GET_SALES_BY_PUBLISHER,
   GET_SALES_BY_GENRE,
   GET_SALES_BY_LANGUAGE,
+  GET_SALES_BY_COUNTRY,
   GET_USER,
   CREATE_USER,
   GET_USER_ID,
@@ -74,6 +75,7 @@ const initialState = {
   transactions: [],
   publisherStats: [],
   genreStats: [],
+  countryStats: [],
   teamData: [],
 };
 
@@ -221,7 +223,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         CartBooks: action.payload,
-      };
+      }; 
 
 //------------------------------------DASHBOARD actions-----------------------------------//
     case GET_BOOKS_DASHBOARD:
@@ -285,6 +287,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         stats: action.payload
       };
+    case   GET_SALES_BY_COUNTRY:
+      return{
+        ...state,
+        countryStats: action.payload
+      };
+
       case GET_DASHBOARD_USERS:
         return {
           ...state,

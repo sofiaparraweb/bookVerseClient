@@ -14,33 +14,32 @@ const PieChart = () =>{
     const publisherStats = useSelector(state => state.LocalPersist.publisherStats);
     console.log(publisherStats)
     
-        const theme = useTheme()
-        const colors = tokens(theme.palette.mode)
+    const theme = useTheme()
+    const colors = tokens(theme.palette.mode)
 
-        useEffect(() => {
-            dispatch(getSalesByPublisher())
+    useEffect(() => {
+        dispatch(getSalesByPublisher())      
+        const totalSales = publisherStats?.reduce((total, item) => total + item.sales, 0);
         
-            const totalSales = publisherStats?.reduce((total, item) => total + item.sales, 0);
-        
-            if (totalSales === 0) {
-                const equalValue = 1 / publisherStats?.length;
-                const mappedData = publisherStats.map((item, index) => ({
-                    id: item.publisher,
-                    label: item.publisher,
-                    value: equalValue,
-                    color: colors[index % colors.length],
-                }));
-                setData(mappedData);
-            } else {
-                const mappedData = publisherStats?.map((item, index) => ({
-                    id: item.publisher,
-                    label: item.publisher,
-                    value: item.sales,
-                    color: colors[index % colors.length],
-                }));
-                setData(mappedData);
-            }
-        }, [dispatch]);
+        if (totalSales === 0) {
+            const equalValue = 1 / publisherStats?.length;
+            const mappedData = publisherStats.map((item, index) => ({
+                id: item.publisher,
+                label: item.publisher,
+                value: equalValue,
+                color: colors[index % colors.length],
+            }));
+            setData(mappedData);
+        } else {
+            const mappedData = publisherStats?.map((item, index) => ({
+                id: item.publisher,
+                label: item.publisher,
+                value: item.sales,
+                color: colors[index % colors.length],
+            }));
+            setData(mappedData);
+        }
+    }, [dispatch]);
 
 
     return (

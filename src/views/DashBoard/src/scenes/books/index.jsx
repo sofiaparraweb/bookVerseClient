@@ -3,7 +3,7 @@ import { Box, Typography, useTheme, Button} from '@mui/material';
 import {DataGrid, GridToolbar} from '@mui/x-data-grid';
 import { tokens } from '../../theme';
 import Header from '../../components/Header';
-import { getBooksDashboard, deleteProduct } from '../../../../../Redux/actions';
+import { getBooksDashboard } from '../../../../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
@@ -88,7 +88,7 @@ const Products = () => {
 
     return(
         <Box m='20px' marginTop="70px">
-            <Header title='OUR BOOKS' subtitle='List of Books available' />
+            <Header title={<h1 style={{ fontSize: '30px' }}>Our books</h1>} subtitle='List of Books available' />
 
             <Box
             m='40px 0 0 0'
