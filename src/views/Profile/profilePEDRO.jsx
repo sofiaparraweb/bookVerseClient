@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser, getUser } from "../../Redux/actions";
+import { getUserId, updateUser, getUser } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Profile.css";
+import Select from 'react-select';
 import axios from "axios";
-import { Select } from "@chakra-ui/react";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -14,15 +14,10 @@ const Profile = () => {
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
   const dispatch = useDispatch()
-  const mail = useSelector((state) => state.LocalPersist.userId.email);
-  const [countryOptions, setCountryOptions] = useState([]);
+  const [countryOptions, setCountryOptions] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  useEffect(() => {
-    dispatch(getUser(mail));
-    console.log(userProfile)
-  }, [dispatch]);
-
-  useEffect(() => {
+   useEffect(() => {
     const loadCountryOptions = async () => {
       try {
         const response = await axios.get('http://localhost:3001/countries');
@@ -38,7 +33,7 @@ const Profile = () => {
 
     loadCountryOptions();
   }, []);
-  
+
   const [initialProfile, setInitialProfile] = useState({
     name: userProfile?.name || "",
     email: userProfile?.email || "",
@@ -96,6 +91,11 @@ const Profile = () => {
     console.log(file)
   };
 
+  const handleDeleteImage = () => {
+    setSelectedImage(defaultImageURL);
+  };
+
+
 
   // useEffect(() => {
   //   if (!editing) {
@@ -109,10 +109,11 @@ const Profile = () => {
     const data = {
       name: formData.name,
       birthDate: formData.birthDate,
-      image: selectedImage,
+      file: selectedImage,
       phone: formData.phone,
       email: formData.email,
-      country: formData.country,
+      country: selectedOption,
+      // country: formData.country,
     };
   
     console.log(selectedImage);
@@ -120,6 +121,7 @@ const Profile = () => {
     dispatch(updateUser(data));
     setInitialProfile(data); // Opcionalmente, si quieres actualizar el estado initialProfile con los datos del formulario enviado
     setEditing(false);
+    reset();
   };
   
   return (
@@ -130,14 +132,14 @@ const Profile = () => {
           <form method="POST" className="profile-form" onSubmit={handleSubmit(handleSaveProfile)} enctype="multipart/form-data">
           <div className="perfil-image">
               <img
-                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image}
+                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image || defaultImageURL }
                 alt="profile"
                 className="profile-image"
               />
               {editing && (
                 <div className="image-buttons">
                   <label htmlFor="image" className="upload-button">
-                    Change Image
+                    Upload Image
                     <Input
                       type="file"
                       id="image"
@@ -146,13 +148,13 @@ const Profile = () => {
                       accept="image/*"
                     />
                   </label>
-                  {/* <button className="delete-button" onClick={handleDeleteImage}>
+                  <button className="delete-button" onClick={handleDeleteImage}>
                     Delete Image
-                  </button> */}
-  </div>
-)}
-      </div> 
-       <label htmlFor="name" className="profile-label">
+                  </button>
+                     </div>
+                 )}
+                </div> 
+            <label htmlFor="name" className="profile-label">
               Full name
             </label>
             <Input
@@ -188,42 +190,69 @@ const Profile = () => {
               className="profile-input"
               isDisabled={!editing}
               defaultValue={editedProfile.birthDate}
-              {...register("birthDate", { required: true })}
+              {...register("birthDate", {
+                required: {
+                  value: true,
+                  message: "Date of birth is required",
+                },
+                validate: (value) => {
+                  const fechaNacimiento = new Date(value);
+                  const fechaActual = new Date();
+                  const edad =
+                    fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+                  return edad >= 18 || "You must be of legal age";
+                },
+              })}
             />
-            {errors.birthDate && <span className="error-message">Required field</span>}
+            {errors.birthDate && (
+          <span  className="error-message">{errors.birthDate.message}</span>
+        )}
             <label htmlFor="phone" className="profile-label">
               Phone number
             </label>
             <Input
-              type="tel"
+              type="text"
               id="phone"
               name="phone"
               className="profile-input"
+              placeholder="Ej: +549 11 12345678"
               isDisabled={!editing}
               defaultValue={editedProfile.phone}
-              {...register("phone", { required: true })}
-              placeholder="Ej: +5493815709293"
+            {...register("phone", {
+              maxLength: 16,
+              required: "The field cannot be empty",
+              pattern: {
+                value:
+                  /^\+(?:[0-9]?){1,3}[-. (]*(?:[0-9]{1,})[-. )]*(?:[0-9]{1,})[-. ]*(?:[0-9]{1,})$/,
+                message:
+                  "Please enter a valid phone number (example: +549 11 12345678)",
+              },
+            })}
             />
-            {errors.phone && <span className="error-message">Required field</span>}
+             {errors.phone && (
+              <p className="error-message">{errors.phone.message}</p>
+            )}
+            {errors.phone?.type === "maxLength" && (
+              <p className="error-message"> Ingrese un contacto vÃ¡lido</p>
+            )}
+            {/* {errors.phone && <span className="error-message">Required field</span>} */}
             <label htmlFor="country" className="profile-label">
               Country
             </label>
+           
             <Select
               id="country"
               name="country"
               className="profile-input"
               isDisabled={!editing}
-              defaultValue={editedProfile.country}
-              {...register("country", { required: true })}
-            >
-              {countryOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Select>
-            {errors.country && <span className="error-message">Required field</span>}
-             <div className="button-group">
+              // defaultValue={editedProfile.country}
+               {...register("country", { required: true })}
+              value={countryOptions.find(option => option.value === selectedOption)}
+              onChange={(option) => setSelectedOption(option.value)}
+              options={countryOptions}
+            />
+            {errors.country && <span className="error-message">Country is required</span>}
+            <div className="button-group">
               {!editing && (
                 <Button type="button" className="edit-button" onClick={handleEditProfile}>
                   Edit

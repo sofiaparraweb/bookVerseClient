@@ -4,7 +4,7 @@ import NewReleases from "./NewReleases/NewReleases";
 import PreOrder from "./PreOrder/PreOrder";
 import Services from "./Services/Services";
 import Suscription from "./Suscription/Suscription";
-import { createUser, getUser, getUserId } from "../../Redux/actions.jsx";
+import { createUser, getUser, getUserId, getAllBooks } from "../../Redux/actions.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from 'react';
@@ -54,6 +54,10 @@ const Home = () => {
       });
   }
 }, [dispatch, isAuthenticated, user, isProfileCreated]);
+
+useEffect(() => {
+  dispatch(getAllBooks());
+}, [dispatch]);
 
   return (
     <div className="homeContainer">
