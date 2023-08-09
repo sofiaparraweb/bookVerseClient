@@ -25,7 +25,7 @@ const Profile = () => {
   useEffect(() => {
     const loadCountryOptions = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/countries');
+        const response = await axios.get('https://bookverse-m36k.onrender.com/countries');
         const countries = response.data.map(country => ({
           value: country.name,
           label: country.name,
