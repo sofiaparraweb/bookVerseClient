@@ -19,8 +19,8 @@ import FAQ from './views/DashBoard/src/scenes/faq'
 import Bar from './views/DashBoard/src/scenes/bar'
 import Pie from './views/DashBoard/src/scenes/pie'
 import Line from './views/DashBoard/src/scenes/line'
-import Geography from './views/DashBoard/src/scenes/geography/index'
-/* import { ProtectedRoutes } from './components/protectedRoutes/protectedroutes' */
+// import Geography from './views/DashBoard/src/scenes/geography/index'
+import { ProtectedRoutes } from './components/protectedRoutes/protectedroutes' 
 
 
 import Home from "./views/Home/Home";
@@ -57,7 +57,8 @@ const App = () => {
           <Route path="/suscription" element={<Suscription />} />
 
 
-{/*           <Route path="dashboard1" element={
+        
+  <Route path="dashboard1" element={
             <ProtectedRoutes redirectTo='/'>
              <DashBoard1 />
             </ProtectedRoutes>
@@ -117,12 +118,12 @@ const App = () => {
              <Line />
             </ProtectedRoutes>
           }/>
-          <Route path="Geography" element={
+          {/* <Route path="Geography" element={
             <ProtectedRoutes redirectTo='/'>
              <Geography />
             </ProtectedRoutes>
           }/>   */}
-        <Route path='/dashboard' element={<Dashboard />}/>
+        {/* <Route path='/dashboard' element={<Dashboard />}/>
         <Route path="/dashboard1" element={<DashBoard1 />} /> 
         <Route path='/team' element={<Team />}/>
         <Route path='/contacts' element={<Contacts />}/>
@@ -133,8 +134,8 @@ const App = () => {
         <Route path='/faq' element={<FAQ />}/>
         <Route path='/bar' element={<Bar />}/>
         <Route path='/pie' element={<Pie />}/>
-        <Route path='/line' element={<Line />}/>
-        <Route path='/geography' element={<Geography />}/>
+        <Route path='/line' element={<Line />}/> */}
+        {/* <Route path='/geography' element={<Geography />}/> */}
 
         </Routes>
         <Footer />

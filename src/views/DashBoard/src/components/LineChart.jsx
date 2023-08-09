@@ -15,28 +15,39 @@ const LineChart = (isDashboard = false) =>{
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
     
-    useEffect(() => {
-        dispatch(getAllSales())  
-    }, [dispatch])   
-
+    const getRandomColor = () => {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+    
     const transformedData = allSalesStats?.reduce((result, sale) => {
         const { user_country, book_genre, book_quantity } = sale;
        
         let countryEntry = result?.find((entry) => entry.id === user_country);
         if (!countryEntry) {
-            countryEntry = { id: user_country, data: [] };
+            const newColor = getRandomColor();
+            countryEntry = { id: user_country, data: [], color: newColor };
             result?.push(countryEntry);
         }
-        const existingDataPoint = countryEntry.data.find(dataPoint => dataPoint.x === book_genre);
+        
+        const existingDataPoint = countryEntry.data?.find(dataPoint => dataPoint.x === book_genre);
         if (existingDataPoint) {
             existingDataPoint.y += book_quantity;
         } else {
-            countryEntry.data.push({ x: book_genre, y: book_quantity }); 
-        }
-        
+            countryEntry.data?.push({ x: book_genre, y: book_quantity, color: countryEntry.color }); 
+        }    
         return result;
     }, []);
     console.log(transformedData)
+
+    useEffect(() => {
+        dispatch(getAllSales())  
+    }, [dispatch])   
+    
 
     return (
         <ResponsiveLine
@@ -74,7 +85,7 @@ const LineChart = (isDashboard = false) =>{
                 }
             }
         }}
-        colors={isDashboard ? {datum:'color'} : {scheme: 'nivo'}}
+        colors={(d) => d.color}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{

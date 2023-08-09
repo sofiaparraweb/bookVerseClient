@@ -29,8 +29,8 @@ import {
 //   EDIT_PRODUCT,
 //   GET_ALL_ORDERS,
    GET_DASHBOARD_USERS,
-   DELETE_USER_SUCCESS,
-   //DELETE_USER_FAILURE,
+  //  DELETE_USER_SUCCESS, 
+  //  DELETE_USER_FAILURE,
 //   DELETE_USER,
 //   SUSPEND_USER,
   GET_BALANCE,
@@ -225,6 +225,34 @@ const reducer = (state = initialState, action) => {
         ...state,
         CartBooks: action.payload,
       }; 
+
+//*==========>>>dashboard users<<<===========// 
+case GET_DASHBOARD_USERS:
+  return {
+    ...state,
+    teamData: action.payload,
+  };
+
+  // case DELETE_USER_SUCCESS:
+  //   return {
+  //     ...state,
+  //     users: state.users.filter((user) => user.id !== action.payload),
+  //   };
+  // case DELETE_USER_FAILURE:
+  //   return state;
+//*============>>>hasta acá<<<=================// 
+      
+  // case DELETE_USER_SUCCESS:
+  //     return {
+  //       ...state,
+  //       deletedUserId: action.payload,
+  //       error: null,
+  //     };
+  //   case DELETE_USER_FAILURE:
+  //     return {
+  //       ...state,
+  //       error: action.payload,
+  //     };
 
 //------------------------------------DASHBOARD actions-----------------------------------//
     case GET_BOOKS_DASHBOARD:
