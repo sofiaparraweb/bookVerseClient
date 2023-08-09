@@ -145,10 +145,24 @@ const Form = () => {
                 helperText={touched.price && errors.price}
                 sx={{ gridColumn: 'span 4' }}
               />
-              <TextField
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label style={{ marginRight: '5px', width:'20rem' }}>Publication Date:</label>
+                  <TextField
+                    fullWidth
+                    variant="filled"
+                    type="date"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.publicationDate}
+                    name="publicationDate"
+                    error={!!touched.publicationDate && !!errors.publicationDate}
+                    helperText={touched.publicationDate && errors.publicationDate}
+                  />
+                </div>
+                  {/* <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+                type="date"
                 label='Publication Date'
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -156,8 +170,8 @@ const Form = () => {
                 name='publicationDate'
                 error={!!touched.publicationDate && !!errors.publicationDate}
                 helperText={touched.publicationDate && errors.publicationDate}
-                sx={{ gridColumn: 'span 4' }}
-              />
+                sx={{ gridColumn: 'span 4', marginLeft: '10px' }}
+              /> */}
                 <TextField
                   fullWidth
                   variant="filled"

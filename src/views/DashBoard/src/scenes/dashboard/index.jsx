@@ -250,10 +250,10 @@ const Dashboard = () => {
                 p='10px'
                 >
                 <Typography variant=" h5" fontWeight='600'>
-                    Sales Quantity
+                    Pie Chart
                 </Typography>
-                <Box height='300px' width='570px' mt='-20px'>
-                    <BarChart isDashboard={true} />           
+                <Box height='370px' mt='-45px'>
+                    <PieChart isDashboard={true}/>
                 </Box>
             </Box>
             
@@ -266,10 +266,10 @@ const Dashboard = () => {
                 height="100%"
                 >
                 <Typography variant=" h5" fontWeight='600'>
-                    Pie Chart
+                    Sales Quantity
                 </Typography>
-                <Box height='370px' mt='-45px'>
-                    <PieChart isDashboard={true}/>
+                <Box height='300px' width='100%' mt='-20px'>
+                    <BarChart isDashboard={true} />           
                 </Box>
             </Box>
             {/* <Box
