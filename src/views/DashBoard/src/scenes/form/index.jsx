@@ -42,6 +42,12 @@ const Form = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedPublisher, setSelectedPublisher] = useState("");
   const [selectedFormat, setSelectedFormat] = useState("");
+  const [selectedTitle, setSelectedTitle] = useState("");
+  const [selectedAuthor, setSelectedAuthor] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedDescription, setSelectedDescription] = useState("");
+  const [selectedPages, setSelectedPages] = useState("");
+  const [selectedPublicationDate, setSelectedPublicationDate] = useState("");
 
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
@@ -55,20 +61,20 @@ const Form = () => {
   const handleSaveBook = (formData) => {
     const data = {
       image: selectedImage,
-      title: formData.title,
-      author: formData.author,
-      price: formData.price,
-      description: formData.description,
-      pages: formData.pages,
-      publicationDate: formData.publicationDate,
+      title: selectedTitle,
+      author: selectedAuthor,
+      price: selectedPrice,
+      description: selectedDescription,
+      pages: selectedPages,
+      publicationDate: selectedPublicationDate,
       format: selectedFormat ? allFormats.find(format => format.name === selectedFormat).id : null,
       language: selectedLanguage ? allLanguages.find(lang => lang.name === selectedLanguage).id : null,
       publisher: selectedPublisher ? allPublishers.find(pub => pub.name === selectedPublisher).id : null,
       genre: selectedGenre ? allGenres.find(genre => genre.name === selectedGenre).id : null,
     }
+    dispatch(addBook(data));
 
     console.log(data, 'esto mando al back');
-    dispatch(addBook(data));
     setForm({
       image: null,
       title: '',
@@ -97,7 +103,7 @@ const Form = () => {
         initialValues={form}
       >
         {({ values, errors, touched, handleBlur, handleChange, handleSubmit, resetForm }) => (
-          <form method="POST" onSubmit={handleSubmit}  enctype="multipart/form-data" >
+          <form method="POST" onSubmit={handleSubmit} enctype="multipart/form-data" >
             <Box
               display='grid'
               gap='30px'
@@ -112,8 +118,8 @@ const Form = () => {
                 type="text"
                 label='Book Name'
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.title}
+                onChange={(e) => setSelectedTitle(e.target.value)}
+                value={selectedTitle}
                 name='title'
                 error={!!touched.title && !!errors.title}
                 helperText={touched.title && errors.title}
@@ -125,8 +131,8 @@ const Form = () => {
                 type="text"
                 label='Author'
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.author}
+                onChange={(e) => setSelectedAuthor(e.target.value)}
+                value={selectedAuthor}
                 name='author'
                 error={!!touched.author && !!errors.author}
                 helperText={touched.author && errors.author}
@@ -138,8 +144,8 @@ const Form = () => {
                 type="number"
                 label='Price'
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.price}
+                onChange={(e) => setSelectedPrice(e.target.value)}
+                value={selectedPrice}
                 name='price'
                 error={!!touched.price && !!errors.price}
                 helperText={touched.price && errors.price}
@@ -151,8 +157,8 @@ const Form = () => {
                 type="text"
                 label='Publication Date'
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.publicationDate}
+                onChange={(e) => setSelectedPublicationDate(e.target.value)}
+                value={selectedPublicationDate}
                 name='publicationDate'
                 error={!!touched.publicationDate && !!errors.publicationDate}
                 helperText={touched.publicationDate && errors.publicationDate}
@@ -164,8 +170,8 @@ const Form = () => {
                   type="number"
                   label='Pages'
                   onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.pages}
+                  onChange={(e) => setSelectedPages(e.target.value)}
+                  value={selectedPages}
                   name='pages'
                   error={!!touched.pages && !!errors.pages}
                   helperText={touched.pages && errors.pages}
@@ -177,8 +183,8 @@ const Form = () => {
                 type="text"
                 label='Description'
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.description}
+                onChange={(e) => setSelectedDescription(e.target.value)}
+                value={selectedDescription}
                 name='description'
                 error={!!touched.description && !!errors.description}
                 helperText={touched.description && errors.description}
