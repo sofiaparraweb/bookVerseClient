@@ -6,9 +6,10 @@ import LockOpenOutlinedIcon from  '@mui/icons-material/LockOpenOutlined'
 import SecurityOutlinedIcon from  '@mui/icons-material/SecurityOutlined'
 import Header from '../../components/Header'
 import React from "react";
-import {getDashboardUsers, deleteUser} from "../../../../../Redux/actions";
+import {getDashboardUsers} from "../../../../../Redux/actions";
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Team = () =>{
     const dispatch = useDispatch();
@@ -17,18 +18,33 @@ const Team = () =>{
     console.log("estoy en teamdata", teamData);
     console.log("estoy en enabledUsers", enabledUsers);
 
-    const handleToggleBanUser = (userId, isBanned) => {
-        dispatch(deleteUser(userId));
-        setEnabledUsers((prevEnabledUsers) => ({
-            ...prevEnabledUsers,
-            [userId]: !prevEnabledUsers[userId],
-          })); 
-      };
 
       useEffect(() => {
         dispatch(getDashboardUsers());
        
       }, [dispatch]);
+
+      const URL = "https://bookverse-m36k.onrender.com";
+      const handleToggleUsers = async (id) => {
+          if (enabledUsers[id]) {
+              await axios.post(`${URL}/dashboard/user/restore/${id}`);
+          } else {
+              await axios.delete(`${URL}/dashboard/user/delete/${id}`);
+          }
+          setEnabledUsers((prevEnabledUsers) => ({
+              ...prevEnabledUsers,
+              [id]: !prevEnabledUsers[id],
+          }));
+          dispatch(getDashboardUsers());
+      };
+
+      useEffect(() => { 
+        const initialEnabledUsers = teamData?.reduce((acc, user) => {
+            acc[user.id] = user.deletedAt !== null;
+            return acc;
+        }, {});
+        setEnabledUsers(initialEnabledUsers);
+    }, [teamData]);
 
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
@@ -67,9 +83,7 @@ const Team = () =>{
                         variant='contained'
                         disableElevation
                         color={buttonColor}
-                        onClick={() => {
-                            handleToggleBanUser(id, !isBanned);
-                        }}
+                        onClick={() => handleToggleUsers(id)}
                         >
                         {isEnabled ? 'Off' : 'On'}
                     </Button>
