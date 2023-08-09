@@ -19,8 +19,6 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
-    // const publisherStats = useSelector(state => state.LocalPersist.publisherStats);
-    // console.log(publisherStats)
     const Cart = useSelector((state) => state.LocalPersist.cart);
     const wish = useSelector((state) => state.LocalPersist.wish);
     const [quantity, setQuantity] = useState(1);

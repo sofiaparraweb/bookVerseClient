@@ -193,7 +193,7 @@ const Form = () => {
                   name="genre"
                   error={!!touched.genre && !!errors.genre}
                 >
-                  {allGenres && allGenres.map((genre) => (
+                  {allGenres && allGenres?.map((genre) => (
                     <MenuItem key={genre.id} value={genre.name}>
                       {genre.name}
                     </MenuItem>
@@ -209,7 +209,7 @@ const Form = () => {
                   name="language"
                   error={!!touched.language && !!errors.language}
                 >
-                  {allLanguages && allLanguages.map((language) => (
+                  {allLanguages && allLanguages?.map((language) => (
                     <MenuItem key={language.id} value={language.name}>
                       {language.name}
                     </MenuItem>
@@ -225,7 +225,7 @@ const Form = () => {
                   name="publisher"
                   error={!!touched.publisher && !!errors.publisher}
                 >
-                  {allPublishers && allPublishers.map((publisher) => (
+                  {allPublishers && allPublishers?.map((publisher) => (
                     <MenuItem key={publisher.id} value={publisher.name}>
                       {publisher.name}
                     </MenuItem>
@@ -241,7 +241,7 @@ const Form = () => {
                   name="format"
                   error={!!touched.format && !!errors.format}
                 >
-                  {allFormats && allFormats.map((format) => (
+                  {allFormats && allFormats?.map((format) => (
                     <MenuItem key={format.id} value={format.name}>
                       {format.name}
                     </MenuItem>

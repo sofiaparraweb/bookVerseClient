@@ -92,7 +92,7 @@ const ReviewForm = ({ id }) => {
         <>
           <p style={{fontSize:"1.2rem"}}>If you already read the book, write a review to help others!</p>
           <ol className="rating-list" >
-            {[1, 2, 3, 4, 5].map((value) => (
+            {[1, 2, 3, 4, 5]?.map((value) => (
               <li
                 key={value}
                 onClick={() => handleStarClick(value)}
