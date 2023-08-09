@@ -211,7 +211,7 @@ const Sidebar = () => {
                         sx={{m: '15px 0 5px 20px'}}
                         >Charts</Typography>
                         <Item 
-                        title='Bar Chart'
+                        title='Genre Chart'
                         to='/bar'
                         icon={<BarChartOutlinedIcon />}
                         selected={selected}
@@ -219,7 +219,7 @@ const Sidebar = () => {
                         isCollapsed={isCollapsed}
                         />
                         <Item 
-                        title='Pie Chart'
+                        title='Publisher Chart'
                         to='/pie'
                         icon={<PieChartOutlineOutlinedIcon />}
                         selected={selected}
@@ -227,21 +227,21 @@ const Sidebar = () => {
                         isCollapsed={isCollapsed}
                         />
                         <Item 
-                        title='Line Chart'
+                        title='Sales Chart'
                         to='/line'
                         icon={<TimelineOutlinedIcon />}
                         selected={selected}
                         setSelected={setSelected}
                         isCollapsed={isCollapsed}
                         />
-                        <Item 
+                        {/* <Item 
                         title='Geo Chart'
                         to='/geography'
                         icon={<MapOutlinedIcon />}
                         selected={selected}
                         setSelected={setSelected}
                         isCollapsed={isCollapsed}
-                        />
+                        /> */}
 
                     </Box>
                 </Menu>

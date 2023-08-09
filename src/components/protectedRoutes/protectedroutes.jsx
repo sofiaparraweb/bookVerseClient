@@ -8,7 +8,7 @@ import { Navigate } from "react-router-dom";
 export const ProtectedRoutes = ({ children, redirectTo="/Home" }) => {
     const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
-    const admin = useSelector(state => state.LocalPersist.userProfile.email)
+    const admin = useSelector(state => state.LocalPersist.userProfile?.email)
     const [isVerificated, setIsVerificated] = useState(false);
     
     useEffect(() => {
@@ -19,7 +19,7 @@ export const ProtectedRoutes = ({ children, redirectTo="/Home" }) => {
       }, [isAuthenticated, dispatch, user]);
     
 
-      if (!isAuthenticated || !admin || admin.name !== "admin"/* AQUI IRIA EL MAIL */) {
+      if (!isAuthenticated || !admin || admin !== "bookverseweb@gmail.com"/* AQUI IRIA EL MAIL */) {
         return <Navigate to={redirectTo} />;
       } else {
         return children;
