@@ -8,6 +8,7 @@ import iconbookclose from "../../assets/imgNavbar/iconbookclose.png";
 import iconbookopen from "../../assets/imgNavbar/iconbookopen.png";
 import { getCart } from "../../Redux/actions"
 import style from "./NavBar.module.css";
+import Swal from 'sweetalert2';
 
 const NavBar = ({ isAuthenticated }) => {
   const location = useLocation();
@@ -20,8 +21,18 @@ const NavBar = ({ isAuthenticated }) => {
   const isDashboardPage = location.pathname === '/dashboard1';
 
   const handleLoginAlert = () => {
-    alert('You need to log in to access this function.');
-  };
+    Swal.fire({
+      icon: 'error',
+      title: 'You need to log in to access this function.',
+      background: '#f3f3f3',
+      confirmButtonColor: '#B9362C',
+      customClass: {
+        title: 'my-custom-title',
+        content: 'my-custom-content',
+        confirmButton: 'my-custom-button',
+      },
+    });
+  };  
 
   const toggleNavbar = () => {
     setIsNavVisible(!isNavVisible);
@@ -37,9 +48,9 @@ const NavBar = ({ isAuthenticated }) => {
     loginWithRedirect({ appState: { targetUrl: "/perfil" } }); 
   };
 
-  useEffect(() => {
-    dispatch(getCart(user_id));
-  }, [user_id]);
+  // useEffect(() => {
+  //   dispatch(getCart(user_id));
+  // }, [user_id]);
   
   const handleClick = () => {
     window.scrollTo({ top: 0 });
@@ -54,12 +65,12 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <>
       <nav className={style.navContainer}>
-        <div className={style.LeftSection}>
+        <div className={style.buttonsNav}>
           <NavLink to="/">
             <img
               src={bookVerse}
               alt="logo"
-              className={style.logoNavBar}
+              className={style.linkNavBar}
               onClick={handleClick}
             />
           </NavLink>
@@ -117,7 +128,6 @@ const NavBar = ({ isAuthenticated }) => {
               <div className={style.wishlistNav}>
                 <button onClick={handleLoginAlert} style={{ border: "none", backgroundColor: "transparent" }}>
                   <img src={iconbookclose} alt="close" className={style.IconRightNavBar} />
-                  <p style={{ fontSize: "0.8rem" }}>Wishlist</p>
                 </button>
               </div>
             </>

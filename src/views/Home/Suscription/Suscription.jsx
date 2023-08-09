@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import Swal from 'sweetalert2';
 import { formSuscription } from "../../../Redux/actions";
 
+
 const Suscription = () => {
 
     const handleClick = () => {
@@ -90,7 +91,7 @@ const Suscription = () => {
   <p className={style.suscriptionfail}>Type a valid email</p>
 )}
 <button className={style.btnSuscripcion} type="submit">
-  SUSCRIBIRSE
+  SUBSCRIBE
 </button>
 </form>
               </div>

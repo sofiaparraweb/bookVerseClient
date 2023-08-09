@@ -1,38 +1,53 @@
-import Axios from 'axios';
-import { Box, Typography, useTheme, Button} from '@mui/material'
-import {DataGrid, GridToolbar} from '@mui/x-data-grid'
-import { tokens } from '../../theme'
-import Header from '../../components/Header'
-import { getBooksDashboard, deleteProduct } from '../../../../../Redux/actions'
+import axios from 'axios';
+import { Box, Typography, useTheme, Button} from '@mui/material';
+import {DataGrid, GridToolbar} from '@mui/x-data-grid';
+import { tokens } from '../../theme';
+import Header from '../../components/Header';
+import { getBooksDashboard } from '../../../../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import LockOpenOutlinedIcon from  '@mui/icons-material/LockOpenOutlined'
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 
-const Products = () =>{
+const Products = () => {
 
     const dispatch = useDispatch();
     const products = useSelector(state => state.LocalPersist.products);
+    console.log(products)
     const [enabledBooks, setEnabledBooks] = useState({});
 
-    const handleToggleBooks = (id, isBanned) => {
-        dispatch(deleteProduct(id));
+    useEffect(() => {
+        dispatch(getBooksDashboard());
+    }, [dispatch]);
+
+    const URL = "https://bookverse-m36k.onrender.com";
+    const handleToggleBooks = async (id) => {
+        if (enabledBooks[id]) {
+            await axios.post(`${URL}/dashboard/books/restore/${id}`);
+        } else {
+            await axios.delete(`${URL}/dashboard/books/delete/${id}`);
+        }
         setEnabledBooks((prevEnabledBooks) => ({
             ...prevEnabledBooks,
             [id]: !prevEnabledBooks[id],
         }));
-    };
-    
-    useEffect(() => {
         dispatch(getBooksDashboard());
-    }, [dispatch]); 
+    };
 
-    const theme = useTheme()
-    const colors = tokens(theme.palette.mode)
+    useEffect(() => {
+        const initialEnabledBooks = products?.reduce((acc, product) => {
+            acc[product.id] = product.deletedAt !== null;
+            return acc;
+        }, {});
+        setEnabledBooks(initialEnabledBooks);
+    }, [products]);
+
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
 
     const columns = [
         {field:'image', headerName:'Image', flex:0.4, renderCell: (params) => (
             <img src={params.value} alt="Book" style={{ width: '100%', height: "100%", objectFit: 'cover' }} />
-          )},
+        )},
         {field:'id', headerName:'ID', flex:0.3, type: 'number', headerAlign: "left", align: 'left'},
         {field:'author', headerName:'Author', flex:1, cellClassName:'name-column--cell'},
         {field:'title', headerName:'Title', flex:1.5, cellClassName:'name-column--cell'},
@@ -41,7 +56,7 @@ const Products = () =>{
         {field:'access', 
         headerName:'Access Level', 
         flex:0.5, 
-        renderCell: ({row:{access, id, isBanned} })=> {
+        renderCell: ({row:{access, id} })=> {
             const isEnabled = enabledBooks[id];
             const buttonColor = isEnabled ? 'primary' : 'secondary';
 
@@ -62,18 +77,18 @@ const Products = () =>{
                         variant='contained'
                         disableElevation
                         color={buttonColor}
-                        onClick={() => {handleToggleBooks(id, !isBanned)}}
+                        onClick={() => handleToggleBooks(id)}
                         >
                         {isEnabled ? 'Off' : 'On'}
                     </Button>
                 </Box>
-            )
+            );
         }},
-    ] 
+    ]; 
 
     return(
-        <Box m='20px'>
-            <Header title='' subtitle='List of Books available' />
+        <Box m='20px' marginTop="70px">
+            <Header title={<h1 style={{ fontSize: '30px' }}>Our books</h1>} subtitle='List of Books available' />
 
             <Box
             m='40px 0 0 0'
@@ -103,16 +118,13 @@ const Products = () =>{
                 '& .MuiDataGrid-toolbarContainer .MuiButton-text' :{
                     color: `${colors.grey[100]} !important`
                 }
-
             }}
             >
                 <DataGrid 
                 rows={products || []}
                 columns={columns}
-                components={{Toolbar: GridToolbar}}
                 rowHeight={100}
                 />
-
             </Box>
         </Box>
     )

@@ -88,7 +88,7 @@ const Qa = () => {
     <div className="qa-container">
        <h2 className="qa-title">Curious Minds: Ask Away!</h2>
       <p className="qa-subtitle">Can't find your answer here? Shoot us an email!</p>
-      {questionsAndAnswers.map((qa, index) => (
+      {questionsAndAnswers?.map((qa, index) => (
         <div key={index} className="qa-item">
           <div className="question" onClick={() => toggleAnswer(index)}>
             <span>{qa.question}</span>
